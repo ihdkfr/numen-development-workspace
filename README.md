@@ -6,7 +6,7 @@ The **NUMEN Command Centre** is a browser-based development planner for a two-pe
 - **Source:** `index.html`; Cloudflare Pages deploys the GitHub `main` branch.
 - **Database:** Supabase project `rvvilkqxphdpkepojwnr` (London / eu-west-2).
 - **Schema:** `supabase/initial_schema.sql` (already applied to the existing project; **do not rerun blindly**).
-- **Plan:** The original independent 20-phase, 281-task blueprint is embedded in the HTML. Task changes, comments, ideas, custom combat designs and media metadata are saved separately.
+- **Plan:** The Soul Survival plan (14 phases, 182 tasks, owner decisions, codex) is in `data/plan-data.js` and `data/codex-data.js`, with images in `plan-assets/`. It replaced the earlier NUMEN blueprint on 13 Oct 2026; that blueprint, the original-plan data and any team records made for it are kept on the **Archive** page and in `archive/`. See `docs/PLAN_MOVE_2026-10-13.md`. Task changes, comments, ideas, custom combat designs and media metadata are saved separately in Supabase.
 
 ## First-time team setup
 
@@ -25,7 +25,7 @@ The **NUMEN Command Centre** is a browser-based development planner for a two-pe
 - Attachments use a private Supabase Storage bucket; only team members may fetch signed URLs.
 - Each save carries a revision number. When a teammate's change conflicts, refresh and review before saving again.
 - A server-side activity log records authenticated actions.
-- The original 281 tasks remain available even if the shared database has no edits.
+- The plan's tasks remain available even if the shared database has no edits. Records saved for the earlier blueprint are never deleted; they appear on the Archive page.
 
 ## Recovery and safe editing
 

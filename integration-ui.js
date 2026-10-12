@@ -83,6 +83,31 @@ handleAct=async function(act,el){
  if(act==='legacy-tab-shortcut'){state.legacyTab='code';go('legacy');return;}
  return previousHandleAct(act,el);
 };
+// NUMEN approved handoff prompt: preserve independent plan detail AND earlier accepted constraints.
+var previousCopyPrompt=copyPrompt;
+copyPrompt=function(id){
+ var policy=L.taskGuidance?.[id],old=related(id),code=(L.codeMappings||[]).filter(function(x){return x.taskId===id;});
+ var ap=(policy?.approvalIds||[]).map(function(a){return L.approvedChoices.find(function(c){return c.id===a;});}).filter(Boolean);
+ if(!policy&&!old.length&&!code.length)return previousCopyPrompt(id);
+ var t=getTask(id),p=allPhases().find(function(ph){return ph.idx===t.phase_id;});
+ var prompt=[
+  'NUMEN task '+id+' · '+t.title,
+  'PHASE: '+(p?.title||t.phase_title)+' · PRIORITY: '+t.priority+' · EFFORT: '+t.effort,
+  'IMPORTANT: This is an existing Roblox game, NOT an empty project. Inspect the current SoulSurvival repository first, then implement only missing pieces or verified improvements.',
+  'PURPOSE:\n'+t.why,
+  'BASE TASK INSTRUCTIONS:\n'+t.implementation_instructions,
+  'RECOMMENDED TOOLS:\n'+t.suggested_tools,
+  policy?.note?'APPROVED GAME-SPECIFIC TASK GUIDANCE:\n'+policy.note:'',
+  ap.length?'OWNER-APPROVED DECISIONS:\n'+ap.map(function(a){return a.id+': '+a.decision+'\nRequired tests: '+a.tests.join('; ');}).join('\n\n'):'',
+  old.length?'OLD DEVELOPMENT WORK TO INSPECT (not a completion claim):\n'+old.map(function(m){return m.oldId+' '+m.oldTitle+' — '+(m.legacyMarkedDone?'ticked in old planner':'open in old planner')+'; validate in current Studio before claiming complete';}).join('\n'):'',
+  code.length?'REPORTED SOURCE CODE TO VERIFY:\n'+code.map(function(c){return c.codeId+': '+c.note+' (source: '+c.source+')';}).join('\n'):'',
+  'ACCEPTANCE TEST:\n'+t.acceptance_test,
+  'PHASE DEPENDENCIES:\n'+(p?.depends||'None listed'),
+  'WORKING RULES: Preserve all existing game content, source, old approval decisions and saved player data. Locked Standard Cero visuals require explicit owner unlock. The expanded Soul Reaper Academy remains on hold. Never treat coded as tested or auto-approve a task. Record files changed, proof from Roblox Studio and unanswered decisions. No paid tools/assets without approval.',
+  'TASK CHECKLIST:\n'+(taskState(id).checklist.map(function(x){return (x.done?'[x] ':'[ ] ')+x.text;}).join('\n')||'No new checklist yet.')
+ ].filter(Boolean).join('\n\n');
+ copyText(prompt);
+};
 function filterRows(){
  var q=(document.getElementById('integrationSearch')?.value||'').toLowerCase(),p=document.getElementById('integrationPhase')?.value||'all';
  document.querySelectorAll('.integrationRow').forEach(function(e){

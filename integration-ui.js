@@ -12,8 +12,8 @@ function pill(t){return '<span class="badge">'+esc(t)+'</span>';}
 function newTask(t){return getTask(t);}
 var previousTaskPage=taskPage;
 taskPage=function(id){
- var html=previousTaskPage(id),policy=L.taskGuidance?.[id],rels=related(id);
- if(!policy&&!rels.length)return html;
+ var html=previousTaskPage(id),policy=L.taskGuidance?.[id],rels=related(id),coded=(L.codeMappings||[]).filter(function(m){return m.taskId===id;});
+ if(!policy&&!rels.length&&!coded.length)return html;
  var involved=(policy?.approvalIds||[]).map(function(k){return L.approvedChoices.find(function(c){return c.id===k;});}).filter(Boolean);
  var panel='<div class="panel" style="margin-bottom:18px;border-left:3px solid var(--blue)"><div class="row between wrap"><h2 class="cardTitle">Approved design & existing game context</h2>'+pill(rels.length+' legacy link'+(rels.length===1?'':'s'))+'</div>';
  if(policy){panel+='<div class="notice" style="margin-top:12px"><b>Required direction for this task:</b><div style="white-space:pre-wrap;margin-top:8px;line-height:1.7">'+esc(policy.note)+'</div></div>';}
@@ -25,6 +25,7 @@ taskPage=function(id){
   }).join('');
   if(rels.length>9)panel+='<div class="tiny muted" style="padding:12px">+'+(rels.length-9)+' more legacy entries mapped here. Open Plan reconciliation for the full list.</div>';
  }
+ if(coded.length){panel+='<h3 class="cardTitle" style="margin:16px 0 8px">Reported game code – verify in Studio</h3><p class="small muted">These statements are linked to source history. They are NOT approvals or proof the current build works.</p>'+coded.map(function(e){var it=L.codeStatus.find(function(r){return r.id===e.codeId;});return '<div class="infoBox" style="margin:8px 0"><div class="eyebrow">'+esc(e.codeId)+' · '+esc(e.codeStatus)+'</div><b>'+esc(it?.title||e.codeId)+'</b><div class="small" style="margin:6px 0">'+esc(e.note)+'</div><div class="tiny muted">Source: '+esc(e.source)+'</div></div>';}).join('');}
  panel+='<div class="row wrap" style="margin-top:15px"><button class="btn" data-act="nav" data-page="integration">Browse old-to-new mappings →</button><button class="btn" data-act="integration-choices">Review all approved choices →</button></div></div>';
  return html.replace('<div class="taskLayout">',panel+'<div class="taskLayout">');
 };
@@ -40,11 +41,12 @@ pageRender=function(){
  return previousPageRender();
 };
 function integrationPage(){
- var list=mappings(),pending=L.conflicts.filter(function(c){return c.status==='needs_choice';}),known=L.approvedChoices||[];
+ var list=mappings(),pending=L.conflicts.filter(function(c){return c.status==='needs_choice';}),known=L.approvedChoices||[],codeLinks=L.codeMappings||[];
  var actions='<button class="btn" data-act="integration-choices">Approved design choices</button><button class="btn" data-act="integration-conflicts">Unresolved choices ('+pending.length+')</button>';
  var out=pageHeader('PLAN RECONCILIATION','Existing work → independent roadmap','Everything you already built or planned, connected to the new 281 tasks without inventing completion or discarding the original notes.',actions);
  out+='<div class="statrow"><div class="stat"><span>Original entries mapped</span><b>'+list.length+'</b><span>63 curated + 93 provisional</span></div><div class="stat"><span>New roadmap tasks</span><b>'+allTasks().length+'</b><span>Progress is unchanged</span></div><div class="stat"><span>Approved owner decisions</span><b>'+known.length+'</b><span>Recorded 12 October 2026</span></div><div class="stat"><span>Open design conflicts</span><b>'+pending.length+'</b><span>Awaiting your choice</span></div></div>';
  out+='<div class="notice" style="margin:18px 0"><b>Integrity rule:</b> original checkboxes reflect the old planner, source-code inventory is evidence of implementation, Studio testing is separate, and only actual task approval changes the current roadmap. The game repository has not been edited.</div>';
+ out+='<div class="panel" style="margin-bottom:17px"><h2 class="cardTitle">Code audit evidence</h2><p class="small muted">'+(L.codeStatus||[]).length+' source-code implementation categories and '+codeLinks.length+' links to the independent roadmap have been recorded. Open any matching task to see the evidence and acceptance requirements. There are no automatic completion approvals.</p><button class="btn" data-act="legacy-tab-shortcut">Review game code inventory →</button></div>';
  out+='<div class="panel" style="margin-bottom:17px"><h2 class="cardTitle">Plan what to verify first</h2><p class="small muted" style="margin:9px 0">Suggested order: compare existing code against the new task brief; confirm gameplay in a fresh Studio session; attach screenshots/logs; only then mark tasks ready for review. Hueco Mundo relocation is an approved *future migration*, not a completed map move.</p><button class="btn" data-act="integration-old" data-id="legacy-080">Read old Hueco Mundo plan</button> <button class="btn" data-act="task" data-id="13.06">Open world migration task 13.06</button> <button class="btn" data-act="task" data-id="12.10">Open reiatsu task 12.10</button></div>';
  out+='<div class="filterbar"><input id="integrationSearch" class="inp" style="flex:1;min-width:220px" placeholder="Search old tasks, new task IDs or notes…"><select class="sel" id="integrationPhase"><option value="all">All 9 original phases</option>'+L.phases.map(function(p){return '<option value="'+attr(p.id)+'">'+p.id+' · '+esc(p.title)+'</option>';}).join('')+'</select></div>';
  out+='<div class="stack" id="integrationRows">';
@@ -78,6 +80,7 @@ handleAct=async function(act,el){
  }
  if(act==='integration-choices'){go('approved-decisions');return;}
  if(act==='integration-conflicts'){state.legacyTab='conflicts';go('legacy');return;}
+ if(act==='legacy-tab-shortcut'){state.legacyTab='code';go('legacy');return;}
  return previousHandleAct(act,el);
 };
 function filterRows(){

@@ -1,6 +1,15 @@
 # SoulSurvival → NUMEN: non-destructive reconciliation and overlap register
 Prepared 12 October 2026. **Planning integration only; no game development is authorised by this document.**
 
+## Owner-confirmed precedence policy (12 October 2026)
+**Old SoulSurvival plan first.** Detailed legacy design decisions and explicitly approved old-plan requirements take priority over conflicting proposals in the independent 281-task NUMEN blueprint. A new-plan suggestion is not approval to overwrite earlier work. The NUMEN roadmap is an organising and tracking structure, not a replacement source of design authority.
+
+**Later explicit owner decisions are the exception.** Where the owner has specifically approved a newer change (for example C07's revised Hollow line direction or C16–C40's world requirements), that decision overrides only the exact conflicting part of the older plan. All unaffected legacy requirements remain binding.
+
+**When the new plan might be better:** flag the concrete difference, explain benefits, trade-offs and affected tasks, and ask the owner before adopting it. Until answered, preserve the old-plan choice and label the new alternative **PROPOSAL / NOT APPROVED**. Do not silently replace an old decision because it seems more efficient or easier to build.
+
+**Migration rule:** attach original specifications verbatim by source link, translate their actionable requirements into the relevant NUMEN task guidance, mark historical superseded variants, and avoid duplicates. No old checked task becomes automatically completed in NUMEN. No game code, team task state or cloud data changes as part of this planning work.
+
 ## Actual plans compared
 - **Current organising plan:** 20 phases, 281 numbered NUMEN seed tasks (read from `index.html#seedData`). Maintain IDs, content, phase order, and all user/team overrides.
 - **Old plan:** 9 phases, 63 parent items and 93 subtasks (156 entries), preserved verbatim in `legacy-plan.js` and `docs/legacy/SoulSurvival_original_plan_2026-10-12.md`.

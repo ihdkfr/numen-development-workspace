@@ -134,3 +134,31 @@ function filterRows(){
 document.addEventListener('input',function(e){if(e.target.id==='integrationSearch')filterRows();});
 document.addEventListener('change',function(e){if(e.target.id==='integrationPhase')filterRows();});
 })();
+/* NUMEN old-plan overlap reconciliation: supplementary task guidance only. */
+(function(){
+'use strict';
+var L=window.NUMEN_LEGACY;if(!L)return;
+var guidance={
+'00.01':'Existing game already has design documents and code. Audit and reconcile its current pitch instead of replacing the project with a fresh pitch. C14 still needs explicit owner confirmation.',
+'02.02':'Spiritual Legacy cross-slot bonuses are a proposal only; C06 unresolved. Keep character-specific records independent until approved.',
+'03.11':'Legacy rig/animation work spans playable Hollow rigs and model QA; animation priority rules alone do not satisfy the rig deliverable.',
+'08.05':'C04: maintain/test existing Academy onboarding, but do not begin the expanded 80-minute Academy until owner lifts the hold.',
+'08.09':'C04: preserve existing Kido lessons. Expanded Academy lesson schedule remains on hold.',
+'08.11':'C04: preserve existing assignments. Expanded Academy timetable remains on hold.',
+'09.01':'C07: ten-line humanoid Hollow design is current; older Q/F body proposals are retained as superseded historical references.',
+'09.03':'Legacy Hollow modelling overlaps 09.12 and 16.09. Do not treat older rejected or superseded multi-rig designs as approved build requirements.',
+'09.12':'Legacy Adjuchas models overlap art, rigging and evolution work. Track individual form approvals; no inferred model sign-off.',
+'09.20':'Existing Garganta movement is same-Place; approved A01/C18/C19 require cross-Place travel at a future migration phase, preserving current story/progression hooks.',
+'12.10':'Approved C03: Focus (0–100 transformation meter) and Channel (blade/body/technique/aura allocation) are separate, as are reserve and sensing.',
+'13.05':'Existing Academy campus work and expanded dorm proposals must be distinguished. C04 holds expanded content.',
+'13.06':'Hueco Mundo migration and hazards C16–C40 are approved **future roadmap requirements**, not an instruction to start building now.',
+'13.10':'Distinguish cross-Place Garganta from in-place transport; C24 forbids fast travel *within* Hueco Mundo. Dangai normal-route safety remains C09 unresolved.',
+'13.11':'C16 A/C17 A override streamed-world wording: StreamingEnabled OFF and no custom region unloading; optimise complete-place loading and benchmark instead.',
+'13.13':'C19 and C23 require protected cinematic arrivals, eligible persistent selected spawns, failed-teleport recovery and safe faction/progression fallbacks.',
+'16.05':'Standard Cero visual structure is locked. Only authorised camera/audio/performance maintenance; Sōkatsui is a separate owner-approved volumetric VFX target.',
+'16.09':'New ten-line humanoid Hollow kit supersedes historical Q/F multi-rig proposals; locked individual model references retain priority.',
+'16.11':'Cero audio/sound library overlaps VFX hooks, but source/licence audit and sound design are the canonical deliverable here.',
+'17.06':'Old Cero performance tests overlap VFX but are independently verifiable; never auto-approve based on legacy checks.'
+};
+Object.keys(guidance).forEach(function(id){var g=L.taskGuidance[id]||(L.taskGuidance[id]={approvalIds:[],note:''});var line='Legacy reconciliation: '+guidance[id]+' See docs/integration/LEGACY_TO_NUMEN_DEDUPLICATION_2026-10-12.md.';if(g.note.indexOf(line)<0)g.note+=(g.note?'\\n\\n':'')+line;});
+})();

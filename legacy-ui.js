@@ -26,7 +26,7 @@
   function legacyView(){
     var out=pageHeader('PROJECT HISTORY','Existing game & design decisions','Read your complete original SoulSurvival project archive, including built work, paused plans and potential conflicts. This screen does not alter or mark the 281 independent roadmap tasks.');
     out+='<div class="notice"><b>Preserved without merging:</b> 9 old phases, 156 tasks and subtasks, original specifications and notes. “Done” here means ticked in the original plan, not independently re-tested in Roblox Studio.</div>';
-    out+='<div class="row wrap" style="margin:16px 0">'+[['inventory','Original plan'],['decisions','Design decisions'],['conflicts','Resolve overlaps']].map(function(x){return '<button class="btn '+(state.legacyTab===x[0]?'primary':'')+'" data-act="legacy-tab" data-value="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>';
+    out+='<div class="row wrap" style="margin:16px 0">'+[['inventory','Original plan'],['code','Actual game code'],['decisions','Design decisions'],['conflicts','Resolve overlaps']].map(function(x){return '<button class="btn '+(state.legacyTab===x[0]?'primary':'')+'" data-act="legacy-tab" data-value="'+x[0]+'">'+x[1]+'</button>';}).join('')+'</div>';
     if(state.legacyTab==='inventory'){
       var p=L.phases.find(function(x){return x.id===state.legacyPhase;})||L.phases[0];
       out+='<div class="grid2" style="grid-template-columns:minmax(180px,.4fr) minmax(0,1fr)"><div class="panel stack"><h2 class="cardTitle">Old project phases</h2>';
@@ -40,6 +40,12 @@
       var sel=L.items.find(function(x){return x.id===state.legacyDetail && x.phase===p.id;});
       if(sel)out+='<div class="panel" style="margin-top:14px;border-left:3px solid var(--blue)"><div class="row between wrap"><h2 class="cardTitle">'+esc(sel.title)+'</h2><button class="btn sm" data-act="copy-legacy" data-id="'+attr(sel.id)+'">Copy specification</button></div><div class="eyebrow" style="margin:8px 0">'+esc(sel.id)+' · '+(sel.complete?'Original marked done':'Original open task')+'</div><h3>Task information</h3><div class="infoBox" style="white-space:pre-wrap;line-height:1.7">'+esc(sel.summary)+'</div><h3 style="margin:16px 0 8px">Notes and specifications</h3><div class="infoBox" style="white-space:pre-wrap;line-height:1.7;max-height:550px;overflow:auto">'+esc(sel.body||'No notes recorded.')+'</div></div>';
       out+='</div></div>';
+    } else if(state.legacyTab==='code'){
+      out+='<div class="notice"><b>Source code is not the same as a completed feature.</b> The game repository currently reports Build 245; some features were switched off or last verified earlier. These are evidence links for review, not automatic completion ticks.</div>';
+      out+='<div class="stack">'+(L.codeStatus||[]).map(function(x){
+        var url='https://github.com/ihdkfr/SoulSurvival/blob/rukongai-v2/'+encodeURI(x.source.split(' / ')[0]);
+        return '<div class="panel"><div class="row between wrap"><h2 class="cardTitle">'+esc(x.id)+' · '+esc(x.title)+'</h2>'+badge(x.status)+'</div><div class="eyebrow" style="margin:8px 0">'+esc(x.category)+' · <a href="'+attr(url)+'" target="_blank" rel="noopener">Game source / status documentation ↗</a></div><p class="small">'+esc(x.details)+'</p></div>';
+      }).join('')+'</div>';
     } else if(state.legacyTab==='decisions'){
       out+='<div class="stack">'+L.decisions.map(function(d){return '<div class="panel"><div class="row between wrap"><h2 class="cardTitle">'+esc(d.id)+' · '+esc(d.title)+'</h2>'+badge(d.status)+'</div><div class="eyebrow" style="margin:8px 0">'+esc(d.topic)+' · '+esc(d.source)+'</div><div class="infoBox">'+esc(d.detail)+'</div></div>';}).join('')+'</div>';
     }else{

@@ -59,9 +59,9 @@ Source references: [SoulSurvival game repository](https://github.com/ihdkfr/Soul
 - The checked game source reports **Config.Build 245**; older September handover screenshots and tests were made on earlier builds, not a claim Build 245 was Studio-verified.
 - Code for first-life/Plus, Hollow, Soul Reaper, Quincy, Fullbring, Reiatsu, fights, progression, worlds and saving is extensive, often controlled by feature flags or needing assets and runtime validation.
 - The game repo's owner's verification rule says **done means played in Studio**, Output clean, client FPS budget and visual approval. Do not auto-complete NUMEN tasks from old checkboxes or source-file presence.
-- Historic owner notes also say **StreamingEnabled remains OFF**; this can clash with a streamed separate world design and is now conflict **C16**.
+- **C16 is now resolved: Option A**, StreamingEnabled OFF initially. C17–C40 were approved subsequently and are recorded in [the additive decision supplement](APPROVED_HUECO_C16_C40_2026-10-12.md). These approvals are planning-only and do not authorise game development.
 
-## Remaining decisions, not changed by this update
+## Remaining unresolved decisions (after C16–C40 reconciliation)
 | ID | Issue | A | B |
 |---|---|---|---|
 | C05 | Power rerolls | Earned/free realignment only | Optional 79 Robux non-random convenience alongside free access |
@@ -72,11 +72,14 @@ Source references: [SoulSurvival game repository](https://github.com/ihdkfr/Soul
 | C13 | Neon rule | Restrict Neon to small cores/accent use while respecting current locked art | Enforce historic zero-Neon rule everywhere |
 | C14 | First task 00.01 | Audit existing GDD and code rather than rewrite | Start a fresh GDD ignoring existing work |
 | C15 | Visual references | Only newest owner-approved sheets control new art | Treat all archived references as approved, including superseded versions |
-| C16 | StreamingEnabled | Keep OFF during migration until measured tests justify reconsideration | Allow ON in dedicated Hueco Mundo after explicit performance benchmarks |
+| C16 | **RESOLVED: A** | StreamingEnabled remains OFF initially. | See [approved C16–C40 record](APPROVED_HUECO_C16_C40_2026-10-12.md). |
 
-All are left **unresolved** pending user direction; the recommendation does not approve an option.
+C05, C06, C09, C10 and C12–C15 remain **unresolved** pending user direction. C16 is approved A; C17–C40 are approved as recorded in the separate supplement. Do not re-open approved decisions without explicit owner instruction.
 
 ## Ownership and collaborative workflow
 In the NUMEN website, use **Team & activity** to assign any task to a signed-in teammate or reserve it until they join. The task stays one shared record, and any changes/approvals appear in the team history. Use task notes, images and checklist results to prove that the current code passes the game's Studio requirements.
 
 The live code is in [NUMEN workspace repository](https://github.com/ihdkfr/numen-development-workspace). Separate GitHub commits control the website; team task data stays in Supabase, unaffected by these planning integration commits.
+
+## Additive reconciliation completed 12 October 2026
+The separate [C16–C40 approval record](APPROVED_HUECO_C16_C40_2026-10-12.md) and corresponding planning UI task guidance were added to the NUMEN workspace. The 281 seed tasks, 63 parent links, 93 provisional subtask links, A01–A05 approvals and team data remain unchanged. Hueco Mundo development is **not** the current automatically selected priority. Existing task progress remains subject to independent verification and owner sign-off.

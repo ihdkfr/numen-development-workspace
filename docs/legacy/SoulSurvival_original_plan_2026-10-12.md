@@ -1,0 +1,1981 @@
+# Soul Survival plan
+
+## 01 Standard Cero
+The Grimmjow-style red Cero. Look locked at 76/100 in game (11 Oct); only camera shake and sound are open. No visual change without the owner saying "unlock the Cero".
+
+- [x] **Cero visual build (v3 → v10)** (Locked, Claude Code) — Beam body, bands, mouth, far-end impact and release dressing. Rated 76 in game and locked.
+  > Reference clip: `docs/vfx/cero_v8/video/cero_preview.mp4`. Known deliberate differences (band count/jitter, far-end burst on contact, shard size variation, open far end on hold) are in `CERO_DIFF_CHECKLIST.md` and stay untouched unless unlocked.
+  - [x] Beam body + bands (Locked) — EditableMesh tube, dark emissive body, two bands per side, Neon on the core only.
+  - [x] Mouth release + hold cloud (Locked) — Release strip, vortex, speed-lines, saturated lobes spilling onto the ground, PointLights instead of the pink disc.
+  - [x] Far-end impact (Locked) — Core + slivers + arcs + ring cage in world space; nothing faces the camera.
+  - [x] Release dressing (Locked) — Broken rings at different tilts and opacities, shot-out streaks, 1–2 px edge glow.
+  - [x] In-game preview rated 76 (Locked) — Against Shonen Unleashed ~90, The Strongest Battlegrounds 85, Type Soul 80, Peroxide 75.
+- [ ] **Camera shake fix** (To do, Claude Code, 1 short session) — The release shake is too strong and too long. Camera module only; no VFX instance is touched.
+  > Release: one pulse, 0.35 studs offset, 1.5° roll, decaying over 10 frames (0.17 s). Hold: tremor 0.08 / 0.1°. Impact: pulse 0.5 over 12 frames. FOV +6 on release easing back over 0.3 s, +3 on impact. Full within 20 studs of the shooter, zero at 80. No random walk that drifts. Spec: `CERO_LOCK.md` section 1.
+  - [ ] Release pulse + hold tremor (To do)
+  - [ ] Impact pulse + FOV (To do)
+  - [ ] Distance scaling 20 → 80 studs (To do)
+  - [ ] Before/after capture from cero_side_close, owner sign-off (To do)
+- [ ] **Sound effects** (To do, Claude Code, Usman signs off by ear, 1 session) — Replace the five placeholder hooks in `CeroDefinitions.Standard.sound` with real assets; hook names stay.
+  > Charge t = −1.2 s rising hum + crackle (−20 → −8 dB). Compress −0.1 s suck-in (−10). Release t = 0: hard crack then boom, loudest moment (0 dB). Travel: seamless roar loop for the 1.3 s hold (−8), fade 0.2 s on retraction. Impact on contact: smaller crack, debris, low rumble (−3). All 3D; RollOffMaxDistance 150 for Release/Impact, 90 for the rest. Sources in order: Sine library → Creator Store → CC0 Freesound with licence lines in `assets/audio/SOURCES.md`. Spec: `CERO_LOCK.md` section 2.
+  - [ ] Source the five sounds (To do) — Charge, Compress, Release, Travel (loopable), Impact.
+  - [ ] Log licences in assets/audio/SOURCES.md (To do) — No sound with an unclear licence ships.
+  - [ ] Wire hooks, mix levels and roll-off (To do)
+  - [ ] Two audio captures (player camera, 40 studs away) (To do) — Into `docs/vfx/cero_v8/video/`.
+- [ ] **Performance pass** (To do, Claude Code) — Pooling, tier behaviour, mobile caps. Allowed while locked only if the High tier on PC stays pixel-identical: capture before/after from cero_side_close and diff.
+  > Hollows spam Cero, so this effect must be cheap at scale. Mobile caps: 100 particles/s per emitter, 30 fps flipbooks. Highlights: 255 slots, destroy not disable.
+  - [ ] Pool beam pieces and emitters (To do)
+  - [ ] Low / Medium tiers for mobile (To do)
+  - [ ] Before/after diff of the High tier (To do)
+
+## 02 Beam & Kido library
+Every future beam (Gran Rey Cero, Bala, Hadō, Bakudō) is built from the standard Cero's definition table by recolour, resize and retime, never by editing the standard Cero.
+
+- [ ] **Gran Rey Cero** (To do, Claude Code, 1 session) — Blue, wider, longer hold; Arrancar tier. Recolour, resize and retime of the standard definition.
+  - [ ] Definition entry (colour, W, hold) (To do)
+  - [ ] Capture beside the standard from cero_side_close (To do)
+  - [ ] Sound variant (pitch down, longer travel) (To do)
+- [ ] **Cero Oscuras** (To do, Claude Code) — Black beam with a green rim, Vasto Lorde tier. Same kit, inverted body and rim colours.
+- [ ] **Bala** (To do, Claude Code) — Short fast red bolt: mouth release strip + travel body, about 0.3 s, no hold. The Hollow's spam move, so it must be cheaper than the Cero.
+- [ ] **Hadō set (recolours)** (To do, Claude Code, 1 session each) — Shakkahō, Sōkatsui, Byakurai built from the Cero shape kit (core, slivers, rings, streaks).
+  - [ ] Shakkahō #31: red orb + burst (To do) — Far-end core and sliver kit, no beam.
+  - [ ] Sōkatsui #33: blue, wider lobe spray (To do)
+  - [ ] Byakurai #4: thin white line, no bands (To do)
+- [ ] **Bakudō set** (To do, Claude Code) — Sai #1, Rikujōkōrō #61 light beams; RING-THIN and STREAK classes only, world-space.
+- [x] **Texture variants library** (Done, ChatGPT images, uploaded by Usman) — band_01-03, burst_01-02, streak_01-02, ring_01-02, smoke_01, lick_01 in `assets/vfx/gen/` with SOURCES.md. Keep every variant.
+  > Prompts: `docs/vfx/texture_prompts.md`. `rbxasset://` local content does not load into SurfaceAppearance; textures must be uploaded.
+- [x] **VFX rules sheet** (Done) — No sky dim (neon and emissive instead); Neon on the core only; nothing shaped faces the camera; shape class beats name; captures cropped beside the reference at the same scale; a second capture 60° round proves world-space.
+  > Shape classes: SLIVER, CORE, LOBE, RING-THIN, ARC, STREAK, CHIP (`CERO_TIMELINE.md`). Research: `docs/research/roblox_vfx_how_top_games_do_it.md`.
+
+## 03 Hollow design bible
+Define the species before modelling: Bleach canon (Chain of Fate, mask = lost heart, hole floats), the evolution ladder, the ten lines, the plate and palette rules.
+
+- [ ] **Hollow design bible** (In progress, Claude) — Canon, evolution ladder, Kubo's conventions, the ten lines with animal / aspect / style / gimmick / signatures / fragment / hole / Resurrección / Cero colour.
+  - [x] Write the bible (Done)
+  - [ ] Save HOLLOW_DESIGN_BIBLE.md into docs/characters/ (To do) — The file was sent in chat; the device link dropped before it could be written to the repo.
+- [ ] **Two-page art bible for modellers** (To do, Claude Code, 1 session) — Plate, mask, palette, silhouette and scale rules so no modeller (human or script) guesses.
+  > Plate: hard slab 0.3–0.6 studs thick, bevelled edge, overlaps the plate below by a fifth, never blended into the body. Mask: skull with two dark sockets and one red accent line, 15–20% of body height on humanoids. Palette: bone 235,228,215; flesh 28,28,32 matte; sockets 10,10,12; accent 200,20,30; nothing else, no gradients on plates. Silhouette: reads in black at 150 studs; the sheet's strongest feature is at least a third of it. Scale: Fishbone 1.2x player, Adjuchas 1.8–2.0x, Vasto Lorde 1.3x humanoid.
+- [ ] **Lock the ten lines** (To do, Usman + Claude) — Per line: animal, aspect of death, fighting style, gimmick, three signature moves, mask fragment, hole position, Resurrección name, Cero colour.
+- [ ] **Decide the Fishbone roster at launch** (To do, Usman) — Ten body plans = five rigs and five animation sets, more work than the whole Adjuchas line. Keep 08 Strider, 09 Brute, 10 Crawler on body H; Q (01 Kaijin, 04 Raijin, 05 Kitsune) and F (03 Tsubasa, 06 Karasu) next; cut or defer 02 Ryuu and 07 Sasori.
+- [ ] **Devour / evolution mechanic** (To do, Usman) — Eat-or-regress, partially-eaten = frozen evolution, pack-bite loyalty. Decide how much the game simulates; watch griefing and snowballing.
+
+## 04 Hollow 3D models
+One base body (H humanoid, Q quadruped, F flyer) plus a scripted bone-plate kit. Claude builds the two hero pieces in Blender; every other Hollow is kit + a parameter file.
+
+- [ ] **Ideas for Hollows (ten fresh line designs)** (In progress, Claude designed; Usman reviews each line, Concepts ~32 h in ChatGPT · Models ~32 sessions (~96% of one weekly allowance over 10-11 weeks) + ~11 sessions engineering) — Ten new lines built for the audience that loves Ulquiorra, Grimmjow and Starrk: aspect, personality, full Arrancar appearance, every Hollow stage from four angles, Resurrección and Segunda Etapa, kit, spec sheet, estimate, five ChatGPT prompts each. First-level Hollows are warped souls with one hint, not animals (checked against the canon research); the animal arrives at Adjuchas. All stages on the humanoid rig. Open the notes for the rules and the research.
+  > # Ideas for Hollows: ten fresh lines, built for the audience
+  > 
+  > These replace the first ten. Nothing from the old concept sheets is reused: every animal, aspect, body and mechanic is new, every stage is a humanoid rig so it is controllable and can hold a weapon, and every line is designed from what the audience actually loves about Ulquiorra, Grimmjow and Starrk rather than from a list of animals.
+  > 
+  > ## What the research says the audience loves (8 Oct 2026)
+  > Facts first. Ulquiorra is the only Arrancar in Japan's official top ten (9th) and 13th worldwide in 2022; Grimmjow is 7th worldwide in 2022 and the top villain on most fan lists; Starrk never charts in polls but tops "villains fans loved" lists. What fans name, in their own words, is never the power level:
+  > - Ulquiorra: the calm, the questions about the heart, the tear marks, the helmet fragment, the death scene ("heart-wrenching"), the Segunda Etapa, fighting with one hand on the sword.
+  > - Grimmjow: the grin, the open jacket and bare chest, the jaw fragment on the cheek, the number tattoo, the rivalry with Ichigo, "pride against brutality", the moments of vulnerability.
+  > - Starrk: lazy, lonely, honourable, dislikes violence, a soul split into two companions, his pressure killed anyone near him, guns and wolves in release.
+  > - The Roblox audience (Type Soul and Peroxide tier lists): raw damage and range, guns and beams (the Starrk partial release is S-tier for its beams; Peroxide's Manifest is legendary for a sniper rifle), wings and aerial attacks, near-invulnerability windows, energy-free combos, and rarity.
+  > Inference from that: the audience falls for a personality with one wound, a face with one unforgettable feature, a uniform worn a particular way, a release that changes the silhouette, a named Cero, and a mechanic that is a fantasy (the gun, the wings, the aura, the duel). Every sheet below has all seven.
+  > 
+  > ## The appeal rules every line obeys
+  > 1. One aspect of death, one personality, one wound. The sheet says what it wants and cannot have.
+  > 2. One unforgettable face: a fragment placed like jewellery (crown, visor, muzzle, antennae) and a marking under the eyes that is the personality written on the skin. No two lines share a placement.
+  > 3. The uniform is worn a way only that line would wear it (buttoned to the throat, open and sleeveless, half-cape, off one shoulder, worn as a cloak).
+  > 4. The hole is placed to mean something (throat, palm, shoulder, ribs) and is a real hole.
+  > 5. A sealed weapon that says the fighting style before a hit lands, and a release that changes the silhouette.
+  > 6. A named Cero that is the locked standard Cero's definition recoloured, resized and retimed, never a new effect; and one named signature technique.
+  > 7. A Segunda Etapa at max level for every line: the thing players grind for.
+  > 8. A rival line, so every line has a story with another one.
+  > 9. A taunt line, a defeat line and a defeat animation; voice is half of character.
+  > 10. Fishbone and Adjuchas use the four-colour species palette. Colour arrives at Vasto Lorde in the eyes, the Cero, the tips of the mane and one piece of cloth (scarf, sash, cape or shawl); the Arrancar carries it in hair, eyes and markings.
+  > 
+  > ## What a first-level Hollow really needs (checked against the canon research of 8 Oct)
+  > The bible's research says this about ordinary Hollows, and nothing more: they are "almost always bestial or chimeric", size varies "from pet-sized to building-sized", each has "one gimmick plus bulk", every one has the hole where the heart was and a white skull-like mask that is never the same twice, and "break the mask and the person underneath shows for a moment". The canon's own first Hollows are the proof that the animal is optional: Fishbone D is a fish-skulled thing with a spiked body, Shrieker an ape with bat wings on its hands and frog minions, Acidwire a nāga with a human face under the mask (Orihime's brother), Grand Fisher a furred giant with a lure shaped like a girl, Metastacia a six-limbed thing with tentacles that possessed a body. They are chimeras and warped people, not clean animals, and they are frightening because of the person inside, not the creature outside.
+  > 
+  > So the first level requires six things and nothing else:
+  > | Required | What it is on our sheets |
+  > |---|---|
+  > | A unique white skull mask | each Fishbone has its own; it hides the person |
+  > | The hole, at the chest | 0.4-1.0 studs; the Hollow-heart's is so big the torso is a ring |
+  > | Hunger and instinct | the behaviour line: it hunts, eats, follows, waits |
+  > | One gimmick | the seed of the line's mechanic (the lure, the echo, the pin, the chill, the brood) |
+  > | A warped or chimeric body | a human shape gone wrong, with one wrong feature (extra mouths, a skin cape, four arms, a ring torso) |
+  > | The person underneath | what the cracked mask shows, and the one thing it mutters |
+  > 
+  > Optional at the first level: the animal. The bible's own counterargument (section 9) said to let Fishbones be chimeric and strange and let the line resolve to its animal as it climbs, because "Hollows get cleaner as they climb". That is what the sheets now do: every Fishbone is a warped soul with ONE hint of the line (antenna nubs, a wide grin, brow growths, a raised band), the animal arrives at Adjuchas, where the canon says Adjuchas are "mostly animal", and resolves to a single signature at Vasto Lorde, where the canon says "always humanoid with one animal signature".
+  > 
+  > Do the lines need an animal at all? Not strictly even at the top: Baraggan is death itself, Zommari is eyes, Aaroniero is many faces. We keep animals as the signatures because they give a readable silhouette, a Spanish release name and a sound, which the audience responds to; the first level is where they are not needed and now not used.
+  > 
+  > ## Production decision: every stage on the humanoid base
+  > All ten lines use body H (lean, standard, bulky morphs, scaled 0.7 to 1.3) at every stage. Fishbones are warped human shapes that drop to all fours only to sprint. Wings, tails, strands and shells are kit pieces welded to H and arrive from Adjuchas on. This removes the quadruped, flyer, serpent and scorpion rigs from the first plan: one base body, one locomotion set, one flight set shared by six lines. Every Arrancar can hold its weapon because every Arrancar is on the player rig. The evolution thread is checked in full from Adjuchas on; at Fishbone only its first item (the hint) must be present.
+  > 
+  > ## The four bodies
+  > | Body | Scale (player = 1 = 5 studs) | Mask | Hole | Markings | What the stage says |
+  > |---|---|---|---|---|---|
+  > | Fishbone | 0.8-1.6 (4-8 studs; size varies on purpose) | a unique skull, red accent line, one hint of the line | chest or throat, 0.4-1.0 | none | a warped soul: hunger, one gimmick, the person underneath |
+  > | Gillian | shared model, 2-6 storeys | the standard long nose plus one line tell | chest | none | the crowd; the tell flags a surviving mind |
+  > | Adjuchas | 1.8-2.0 (9-10 studs) | the same skull, larger, with the line's crest | abdomen or sternum, 0.8 | none | a predator; the dominant third |
+  > | Vasto Lorde | 1.3 (6.5 studs) | full mask in the house style: horns down and forward, black markings | the line's thematic position | black markings on bone, mane, line-colour cloth | the most dangerous thing in Hueco Mundo, and it looks it |
+  > | Arrancar | 1.0 (5 studs) | fragment only | kept | full | human until release |
+  > | Resurrección | 1.3, or Adjuchas scale for Bear and the Segunda of the beetle | the Vasto Lorde mask | kept | full | the whole line comes back |
+  > | Segunda Etapa | as the sheet says | changed | changed | full | the aspect written as a shape |
+  > 
+  > ## Lines at a glance
+  > | Line | First level (warped soul) | Signature animal (from Adjuchas) | Aspect | Archetype | Role | Hole | Fragment | Weapon (sealed) | Named Cero |
+  > |---|---|---|---|---|---|---|---|---|---|
+  > | 01 Polilla | the Lantern | moth | longing | the quiet one | mid-range controller with a detonating burst | sternum, 0.4 | quarter mask over the left brow with two antenna rods | thin guardless straight blade | Cero Luna |
+  > | 02 Hiena | the Chorus | hyena | mockery | the feral one | brawler who copies what beats it | left chest, 0.5 | a row of teeth across the bridge of the nose | hooked serrated cleaver | Cero Risa |
+  > | 03 Ciervo | the Crowned | stag | pride | the king | duelist who makes the fight a duel | sternum, 0.5 | a circlet of four antler stubs | estoque (long narrow thrusting sword) | Cero Corona |
+  > | 04 Alcaudón | the Thorn | shrike (the butcher bird) | cruelty | the executioner | aerial sniper that pins | throat, 0.4 | a bone strip across the eyes over a black band, beak tip at the temple | estoc (needle sword); rifle arm in release | Cero Aguja |
+  > | 05 Medusa | the Drowned | jellyfish | apathy | the tired one | aura tank and zoner | lower abdomen, 0.5 | a bell cap on the crown with four trailing strands | katana with a long trailing cord | Cero Marea |
+  > | 06 Escarabajo | the Carapace | rhinoceros beetle | resolve | the immovable one | armoured tank that can suddenly fly | chest centre, 0.5 | a single forked horn on the forehead | greatsword with a hole in the blade | Cero Cuerno |
+  > | 07 Anguila | the Twitch | electric eel | restlessness | the live wire | mobility skirmisher with chain lightning | left palm, 0.25 | a bone spine down the nose to the chin | urumi (whip-sword coiled on the arm) | Cero Relámpago |
+  > | 08 Buitre | the Carrion | vulture | decay | the old one | attrition and sustain; the only line that eats as an Arrancar | lower left ribs, 0.5 | a skull cap with a beak tip and a bone ruff at the neck | khopesh (sickle-sword) | Cero Ceniza |
+  > | 09 Oso | the Hollow-heart | bear | grief | the gentle giant that cannot speak | grappler with a slow heart | chest centre, 0.7 | a bone muzzle over the mouth (mute) | a cleaver never drawn; fights with the hands | Cero Pesar |
+  > | 10 Avispa | the Brood | hornet queen | frenzy | the queen with a swarm | summoner and speed support | right shoulder, 0.4 | a faceted visor across the eyes | stinger rapier | Cero Enjambre |
+  > 
+  > ## Rival pairs
+  > - 01 Moth and 02 Hyena: silence against laughter.
+  > - 03 Stag and 06 Beetle: pride against resolve.
+  > - 04 Shrike and 05 Jellyfish: cruelty against apathy.
+  > - 07 Eel and 08 Vulture: restlessness against decay.
+  > - 09 Bear and 10 Hornet: grief against frenzy.
+  > 
+  > ## Gillian tells (one shared model, one small change per line)
+  > | Line | Tell on the standard mask |
+  > |---|---|
+  > | 01 Polilla | two thin antenna grooves on the crown |
+  > | 02 Hiena | a second row of teeth above the first |
+  > | 03 Ciervo | four stubs across the brow |
+  > | 04 Alcaudón | a raised band across the sockets |
+  > | 05 Medusa | four short strands from the rim |
+  > | 06 Escarabajo | a forked horn stub on the brow |
+  > | 07 Anguila | a spine ridge down the nose |
+  > | 08 Buitre | a short ruff of plates at the throat |
+  > | 09 Oso | a muzzle ridge over the mouth |
+  > | 10 Avispa | facets cut into the brow |
+  > 
+  > ## Stat wheel (1-5; no two lines share a shape)
+  > | Line | Speed | Power | Hierro | Reach | Burst | Sustain | Control |
+  > |---|---|---|---|---|---|---|---|
+  > | 01 Polilla (moth) | 3 | 3 | 2 | 4 | 4 | 2 | 4 |
+  > | 02 Hiena (hyena) | 4 | 4 | 3 | 2 | 4 | 3 | 1 |
+  > | 03 Ciervo (stag) | 3 | 4 | 3 | 4 | 3 | 3 | 3 |
+  > | 04 Alcaudón (shrike) | 5 | 3 | 1 | 5 | 5 | 1 | 3 |
+  > | 05 Medusa (jellyfish) | 1 | 3 | 4 | 3 | 2 | 5 | 5 |
+  > | 06 Escarabajo (rhinoceros beetle) | 2 | 5 | 5 | 2 | 3 | 4 | 1 |
+  > | 07 Anguila (electric eel) | 5 | 2 | 2 | 3 | 3 | 2 | 3 |
+  > | 08 Buitre (vulture) | 2 | 3 | 3 | 3 | 2 | 5 | 3 |
+  > | 09 Oso (bear) | 1 | 5 | 4 | 2 | 4 | 4 | 2 |
+  > | 10 Avispa (hornet queen) | 4 | 2 | 2 | 4 | 2 | 3 | 5 |
+  > 
+  > ## Sound and colour palette
+  > | Line | Voice | Movement | Sonído | Colour (eyes and Cero from Vasto Lorde) |
+  > |---|---|---|---|---|
+  > | 01 Polilla | dry whisper | silent | a soft puff | pale lavender-white |
+  > | 02 Hiena | cackle, bark | heavy pad | a loud bark | orange |
+  > | 03 Ciervo | bellow | hoof click | a single ring | white-gold |
+  > | 04 Alcaudón | thin whistle | talon tick | a wingbeat | crimson |
+  > | 05 Medusa | wet sigh | silent | silent slide | lilac |
+  > | 06 Escarabajo | deep click | heavy | a thud | deep green |
+  > | 07 Anguila | crackle | wet slap | a snap with sparks | electric cyan |
+  > | 08 Buitre | rasping croak | talon drag | silent hop | ash-grey, yellow core |
+  > | 09 Oso | low roar only | heavy | a heavy thud | dark red-brown |
+  > | 10 Avispa | buzz, shriek | light | a buzz | yellow-black stripes |
+  > 
+  > ## Estimates (all ten)
+  > Assumptions: one Claude Code session stops at about 3% of the weekly allowance (the cap in CLAUDE.md); concept hours are your own time in ChatGPT and depend on your plan's image limits; model sessions assume base body H and the plate kit already exist (separate tasks in this phase). Because every line is on H, the Q, F, serpent and scorpion rigs from the first plan are gone: one shared flight set (1 session) covers the moth, shrike, beetle, vulture and hornet. Totals: concepts about 32 h over three weeks of evenings; models about 32 sessions (about 96% of one week's allowance over 10-11 weeks at three a week) plus about 11 sessions (33%) of engineering for the mechanics that need code (copy, duel, pin, drones, feed, lightning). Order: Hyena first as the pilot (it proves the standard H body and the hinged jaw), then Bear and Beetle on the bulky morph, then Moth, Stag, Eel, Shrike, Jellyfish, Vulture, Hornet.
+  > 
+  > | Line | Concepts (ChatGPT) | Models (Claude Code) |
+  > |---|---|---|
+  > | 01 Polilla | 4 h, ~50 images | 3.5 sessions, ~10% (+ flight set) |
+  > | 02 Hiena | 3 h, ~40 | 3 sessions, ~9% (+2, 6%, copy system) |
+  > | 03 Ciervo | 3 h, ~40 | 3 sessions, ~9% (+1, 3%, duel field) |
+  > | 04 Alcaudón | 3.5 h, ~45 | 3.5 sessions, ~10% (+1, 3%, pin; + flight set) |
+  > | 05 Medusa | 3.5 h, ~45 | 3.5 sessions, ~10% (+0.5, strands) |
+  > | 06 Escarabajo | 2.5 h, ~30 | 3 sessions, ~9% (+0.5, shell hinge) |
+  > | 07 Anguila | 3 h, ~40 | 3 sessions, ~9% (+1, 3%, lightning VFX) |
+  > | 08 Buitre | 3 h, ~40 | 3 sessions, ~9% (+1, 3%, feed; + flight set) |
+  > | 09 Oso | 2.5 h, ~30 | 2.5 sessions, ~8% |
+  > | 10 Avispa | 3.5 h, ~45 | 3.5 sessions, ~10% (+2, 6%, drone AI; + flight set) |
+  > 
+  > ## How to generate concepts with ChatGPT (keeps the character the same across views)
+  > 1. Hero first: run the stage prompt but ask for the three-quarter view only; generate four, pick one.
+  > 2. Turnaround: attach the hero and run the full prompt with "use the attached image as the exact character".
+  > 3. For the Arrancar: run the portrait prompt first (face, fragment, uniform), then the Arrancar + Resurrección prompt with the portrait attached.
+  > 4. Detail sheet: attach the turnaround and ask for the mask (or fragment) front and side, the hole, one plate edge and the signature feature, each on the grey ground, no text.
+  > 5. Save as `docs/characters/concepts/<line>/<stage>_hero.png`, `_turnaround.png`, `_portrait.png`, `_details.png`.
+  > 6. Gate before modelling: fill the figure black and view at 10% (silhouette); count the colours on a Hollow stage (four); plate edges visible; the three evolution-thread items present; the hole is a hole; the Arrancar's fragment, marking and hole are where the sheet says.
+  > 7. Attach the passing images to the line's subtask here so the modeller and Claude Code read the same picture.
+  > 
+  > ## Detail sheet prompt (run after the turnaround, with the turnaround attached)
+  > Swap the bracketed parts for the line and stage. Six panels: the mask twice, the hole, one plate edge, the hands, the signature or the wrong thing. This is the sheet the modeller builds from; the turnaround only gives proportions.
+  > ```text
+  > Detail sheet on one wide 16:9 canvas, using the attached turnaround image as the exact creature: [name], a [stage] Hollow for a Bleach-inspired game. Six panels in a grid, each on the plain mid-grey background (hex 808080), no text, no labels, no numbers. Panel 1: the mask from the front, large, showing [mask description]. Panel 2: the same mask from the left side, showing how it sits over the head and the thickness of its edge. Panel 3: the chest from the front at close range, showing the round hole with its bone rim and the plates around it: [hole and chest description]. Panel 4: one bone plate from a three-quarter angle and in cross-section, showing it is a solid slab 0.3 to 0.6 studs thick with a hard bevelled edge, overlapping the plate below it by a fifth, never blended into the flesh. Panel 5: the right hand from above and from the side, [hand description]. Panel 6: [the signature feature or the wrong thing], shown from the three-quarter view at close range. Render every panel as the 3D game model in a 3D viewport, not a drawing: stylised mid-poly geometry, clean hard bevelled edges, simple smooth textures, soft studio light with a rim light, no line art, no cel shading. Materials: bone-white plates (hex EBE4D7) with hard bevelled edges, matte near-black flesh (hex 1C1C20), pitch-black sockets (hex 0A0A0C), one blood-red accent (hex C8141E); no other colours, no glow except where the sheet says. Same model in every panel.
+  > ```
+  > For an Arrancar, the six panels are: the face from the front with the fragment and markings; the fragment alone from the front and side; the hole and the uniform opening that shows it; the sealed weapon from the side and its grip; the hands (gloves or bare); the uniform's one distinctive detail (the collar, the cape clasp, the empty sleeves).
+  > 
+  > ## Render style: 3D game model, not anime (owner decision 8 Oct)
+  > Every prompt now ends with a 3D render block, so concepts come back looking like the Roblox models they will become. The approved anime-style Lantern images stay valid as design references; re-run them in 3D only when the modeller needs it. To pull the look toward a specific game (VV: ULTIMATUM or any other), attach one of its screenshots with the line "match the 3D rendering style of the second attached image, not its design". The text describes the target; a picture fixes it.
+  > 
+  > Hollow stages (Fishbone, Adjuchas):
+  > ```text
+  > Render style: a 3D game character model as it would appear in a high-quality Roblox anime fighting game, shown in a 3D viewport, not a drawing: stylised mid-poly geometry with clean hard bevelled edges and visible flat facets on hard parts, simple smooth hand-painted textures, chunky readable proportions, the look of a game-ready asset. No line art, no ink outlines, no cel shading, no anime illustration, no painterly brushwork, no photorealism. Soft studio lighting from the front-left with a subtle rim light, gentle ambient occlusion in the creases, a soft contact shadow under the feet. Materials: bone-white plates (hex EBE4D7) matte with a slight sheen, matte near-black flesh (hex 1C1C20), pitch-black eye sockets (hex 0A0A0C), one blood-red accent (hex C8141E); no other colours on a Hollow body and no glow except the eyes. Plain mid-grey background (hex 808080), no scene, no text, no labels, no watermark, no UI. Same model, same scale and proportions in every view.
+  > ```
+  > Vasto Lorde:
+  > ```text
+  > Render style: a 3D game character model as it would appear in a high-quality Roblox anime fighting game, shown in a 3D viewport, not a drawing: stylised mid-poly geometry with clean hard bevelled edges and visible flat facets on hard parts, simple smooth hand-painted textures, chunky readable proportions, the look of a game-ready asset. No line art, no ink outlines, no cel shading, no anime illustration, no painterly brushwork, no photorealism. Soft studio lighting from the front-left with a subtle rim light, gentle ambient occlusion in the creases, a soft contact shadow under the feet. Materials: bone-white plates (hex EBE4D7) matte with a slight sheen, matte black markings, black hands and feet, pitch-black sockets; the line colour appears only on the cloth, the tips of the mane and the eyes; no other colours, no glow except the eyes. Plain mid-grey background (hex 808080), no scene, no text, no labels, no watermark, no UI. Same model, same scale and proportions in every view.
+  > ```
+  > Arrancar and Resurrección:
+  > ```text
+  > Render style: a 3D game character model as it would appear in a high-quality Roblox anime fighting game, shown in a 3D viewport, not a drawing: stylised mid-poly geometry with clean hard bevelled edges and visible flat facets on hard parts, simple smooth hand-painted textures, chunky readable proportions, the look of a game-ready asset. No line art, no ink outlines, no cel shading, no anime illustration, no painterly brushwork, no photorealism. Soft studio lighting from the front-left with a subtle rim light, gentle ambient occlusion in the creases, a soft contact shadow under the feet. Character build: a stylised anime humanoid on Roblox R15 proportions made a little taller and leaner (head about one-sixth of the height), smooth simple face with large anime eyes painted on as a texture, hair modelled as a few large sharp chunky locks with no fine strands, clothing modelled as thick layered clothing with clean hems and a few bold folds, bone fragments as solid hard-surface pieces with bevelled edges. Arrancar uniform pure white with black lining and trim; bone fragments bone-white (hex EBE4D7); the hole is a true hole through the model. Plain mid-grey background (hex 808080), no scene, no text, no labels, no watermark, no UI, generic face with no resemblance to any real or existing character. Same model in every view.
+  > ```
+  > 
+  > ## Vasto Lorde house style (owner decision 8 Oct)
+  > Every Vasto Lorde shares one family look, taken from the reference render attached to this task. What makes a Vasto Lorde identifiable is the horns: they leave the temples, sweep back, then turn down and forward so the tips point past the face. Around that: black markings on the bone mask and body, a mane of jagged black shards at the shoulders with line-colour tips, one piece of line-colour cloth, black hands and feet, glowing eyes, a row of slit teeth or a line feature at the mouth.
+  > What is shared is the grammar. What is never shared is the detail: each line has its own horn shape, mask markings, chest emblem, cloth and thread. The reference is a fan render of a canon character; copying its stripe pattern or its red scarf onto all ten would make them skins of one character, which players read as a copy and which is a risk in a monetised game.
+  > 
+  > | Line | Horns (all down and forward) | Mask markings | Chest emblem | Cloth | Eyes |
+  > |---|---|---|---|---|---|
+  > | 01 Polilla | two long slender segmented bone horns grown from the antennae | black dotted lines falling from each socket to the jaw like shed scales | a four-lobed black emblem round the hole like a moth seen from above | a long pale lavender scarf wound once round the neck with both tails trailing to the knees | pale lavender |
+  > | 02 Hiena | two short thick rough horns from the temples that sweep back and then hook hard down and forward beside the jaw like tusks framing the grin | a jagged black line traced along the grin from ear to ear and three black spots in a curve under each socket | black spots scattered round the hole, larger near it | a short torn orange scarf knotted at the throat with one tail | orange |
+  > | 03 Ciervo | antlers: two main beams leave the temples | a black band across the brow and thin black lines from each socket up to the base of the antlers | a black crown-shaped chevron above the hole | a white-gold half-cape over the left shoulder clasped with a bone stud | white-gold |
+  > | 04 Alcaudón | two slim horns that leave the temples | a solid black band across both eyes from temple to temple | a ring of small black thorn marks round the hole | a narrow crimson scarf wrapped low round the collarbones so the throat stays bare | crimson |
+  > | 05 Medusa | two smooth ribbed horns from the temples that sweep back and then droop down and forward past the jaw like the rim of a bell | thin black rings round each socket and black drip lines running down from the rim of the bell cap | concentric black rings round the hole | a loose lilac scarf slipping off one shoulder | lilac, half-lidded |
+  > | 06 Escarabajo | a single forked horn rising from the forehead | a black bar across the nose and black seams between the shell-like plates of the mask | a black split down the centre like closed wing cases, the hole at its centre | a heavy deep green sash knotted at the waist with two short tails | deep green |
+  > | 07 Anguila | two long thin finned horns from the temples that sweep back like dorsal fins | black zigzag lines like lightning running back from each socket across the temples | a black zigzag down the sternum | a short electric cyan scarf whipping to one side | electric cyan |
+  > | 08 Buitre | two heavy ragged horns from the temples that curl back and then down and forward close to the cheeks like a ram's | deep black creases from the inner corner of each socket down to the jaw | black rib lines round the hole | a ragged ash-grey shawl over the shoulders beneath the ruff | dull yellow |
+  > | 09 Oso | two short thick rounded horns from the temples that curve back and then down and forward close to the cheeks | a thick black line down the centre of the mask and a black outline round the muzzle | four black claw-mark stripes across the chest beside the hole | a dark red-brown cloak knotted round the shoulders with the sleeves hanging empty | dark red-brown |
+  > | 10 Avispa | two slender segmented horns from the temples that sweep back and then down and forward to stinger points beside the visor | black chevrons under the visor and black bands across the horns | a black honeycomb emblem of small hexagons on the right shoulder round the hole | a gold-yellow sash tied at the left hip with long tails | gold |
+  > 
+  > Gate for every Vasto Lorde concept: in the side view the horn tips are forward of the face; the mane tips and the cloth are the only colour besides the eyes; no marking from another line or from the reference appears.
+  > 
+  > ## Spec sheet fields (every stage row must answer these before modelling)
+  > Base body · height in studs · tri budget · kit pieces (named and counted) · mask and fragment · hole position and diameter · eyes · dominant third · animation set · voice and step · stats · Cero.
+  > 
+  > ## Counterargument
+  > Ten lines this distinct is a cast, not a type chart, which is the point; the risk is the opposite one: that the Arrancar stage is so strong the Hollow stages feel like a tutorial. The answer is the devour mechanic and the Gillian tells, which make the climb visible, and the Segunda Etapa, which only a player who climbed the whole way gets. If playtests show players only want the Arrancar, shorten the climb; do not weaken the top.
+  > 
+  - [ ] 02 Hiena, the hyena (mockery) (To do) — It laughs because it already knows how this ends. Brawler who copies what beats it; Resurrección "Hiena", Segunda "Hiena Rey". Open the notes for the full sheet and prompts.
+  - [ ] 03 Ciervo, the stag (pride) (To do) — It will not fight you. It will duel you. Duelist who makes the fight a duel; Resurrección "Ciervo", Segunda "Ciervo Rey". Open the notes for the full sheet and prompts.
+  - [ ] 04 Alcaudón, the shrike (cruelty) (To do) — A small bird that impales what it catches and keeps it for later. Aerial sniper that pins; Resurrección "Alcaudón", Segunda "Alcaudón Negro". Open the notes for the full sheet and prompts.
+  - [ ] 05 Medusa, the jellyfish (apathy) (To do) — It is not fighting you. It is just too close to you to let you live. Aura tank and zoner; Resurrección "Medusa", Segunda "Marea Muerta". Open the notes for the full sheet and prompts.
+  - [ ] 06 Escarabajo, the rhinoceros beetle (resolve) (To do) — Nothing moves it. Then the shell opens. Armoured tank that can suddenly fly; Resurrección "Escarabajo", Segunda "Escarabajo de Hierro". Open the notes for the full sheet and prompts.
+  - [ ] 07 Anguila, the electric eel (restlessness) (To do) — It cannot stop moving, and everything it touches carries the charge. Mobility skirmisher with chain lightning; Resurrección "Anguila", Segunda "Anguila de Tormenta". Open the notes for the full sheet and prompts.
+  - [ ] 08 Buitre, the vulture (decay) (To do) — Everything rots. It only has to wait. Attrition and sustain; the only line that eats as an arrancar; Resurrección "Buitre", Segunda "Buitre Rey". Open the notes for the full sheet and prompts.
+  - [ ] 09 Oso, the bear (grief) (To do) — It never says a word. The hug says everything. Grappler with a slow heart; Resurrección "Oso", Segunda "Oso Blanco". Open the notes for the full sheet and prompts.
+  - [ ] 10 Avispa, the hornet queen (frenzy) (To do) — She is never alone, and neither is anyone who fights her. Summoner and speed support; Resurrección "Avispa", Segunda "Reina Avispa". Open the notes for the full sheet and prompts.
+  - [ ] 01 Polilla, the moth (longing) (In progress) — It does not want to kill you. It wants to know why you burn. Mid-range controller with a detonating burst; Resurrección "Polilla", Segunda "Polilla Blanca". Open the notes for the full sheet and prompts.
+- [ ] **Ideas for hollows ** (In progress) — decide the type of look, traits, animal featurs and maks designs 
+- [ ] **Blockouts from the sheets** (To do, Usman, one afternoon; Tripo free tier (~8/month) or one cloud-GPU hour with Hunyuan3D) — Front/side/back of each sheet → GLB blockouts for massing and silhouette only. Test Kaijin first: if one clean-up pass makes it shippable, the separate base-body build disappears.
+  > The GTX 1060 will not run Hunyuan3D locally (about 29 GB VRAM). Nothing from this step ships.
+- [ ] **Build the Vasto Lorde hero model** (To do, Claude Code (Blender MCP), about 4–6 sessions (estimate; was a $200–500 commission)) — The hero piece, humanoid, sets the bar the rest are judged against. Rigged FBX, clean quads, UVs, cage, T-pose, Blender source.
+- [ ] **Base body H (humanoid)** (To do, Claude Code (Blender MCP), or a 4-hour live session, about 3–4 sessions (estimate; was a $150–300 commission)) — Matte dark flesh body; plates welded on separately. 6–9k tris, quad topology, UV-unwrapped, outer cage, T-pose, Blender source included.
+  > Brief: "matte dark flesh body for a bone-plated Hollow; plates will be welded on separately; see art bible".
+  - [ ] Write the brief from the art bible (To do)
+  - [ ] Pick a Roblox creature artist (To do)
+  - [ ] Review delivery against the art bible (To do)
+  - [ ] Fallback: Tripo blockout → Instant Meshes → Rigify → weight paint (To do) — About half a day with Claude Code driving Blender; the slowest part of the plan.
+- [ ] **Bone-plate kit (Blender bpy)** (To do, Claude Code, 2–3 sessions) — Hard-surface pieces are what scripts do well: each is a bpy function with 6–10 parameters; each plate exports as its own MeshPart under 2,000 tris.
+  > Can start while the base body is being built.
+  - [ ] Parametric plate (profile, thickness, bevel, overlap lip) (To do)
+  - [ ] Spine of N plates along a curve (To do)
+  - [ ] Mask from a skull profile with socket cutouts (To do)
+  - [ ] Claws, spikes with base plate, tapered tail segments (To do)
+  - [ ] Wing of rib plates + membrane (To do)
+  - [ ] Export + weld test in Studio (Motor6D / WeldConstraint to the bone) (To do)
+- [ ] **Kaijin pilot (Adjuchas 01 end to end)** (To do, Claude Code) — Kit on body H, materials, rig, gates. Proves the method before the other nine.
+- [ ] **Rig + animation set for body H** (To do, Claude Code) — One locomotion set, one attack set, one Cero cast. Plates ride bones rigidly; max 4 influences per vertex, none on root. RBXMonkey carries rig and animations to Studio.
+- [ ] **Species materials** (To do, Claude Code) — Two SurfaceAppearances: bone (cream, roughness 0.6, baked edge darkening, emissive crack mask for enrage) and flesh (near-black, roughness 0.9). One red emissive for eyes and accents. No normal maps; bevels are geometry.
+  > 1024 texture cap on Roblox; bevels as geometry read cleaner and cost nothing in memory.
+- [ ] **Adjuchas 02–10 as parameter files** (To do, Claude Code, about a session each) — Each variant is a parameter file placing kit pieces on body H's bones plus the two-colour palette.
+- [ ] **Base bodies Q and F** (To do) — Only after H has proven the pipeline, and only if the animal forms are needed at launch.
+- [ ] **Model gates** (To do, Claude Code) — Captures at front/side/back/threequarter beside the sheet: silhouette matches at 150 studs, plate count and placement match, four colours only, under 12,000 tris, walks/runs/casts in Play without clipping.
+  > The Cero's lesson: the capture beside the sheet is the proof, never the description.
+
+## 05 Hollow abilities & combat
+Shared kit by stage (Fishbone → Gillian → Adjuchas → Vasto Lorde), then per-line signature moves, Resurrección and fighting styles.
+
+- [ ] **Shared kit by stage** (To do, Usman + Claude) — Cero tiers, Bala, Hierro, Sonído, regeneration, Garganta: which stage unlocks each.
+- [ ] **Per-line signature moves** (To do, Claude Code) — Three per line from the bible; each reuses the Cero shape kit (core, slivers, rings, streaks) in the line's Cero colour.
+- [ ] **Resurrección (Arrancar)** (To do) — Returns the Hollow form: model swap to the line's plate kit, Cero colour change, Zanpakutō = mask fragment.
+- [ ] **Enemy AI / fighting styles** (To do, Claude Code) — Per-line style from the bible (ambusher, brawler, swarm, ranged). Hollows spam Cero, so every effect they use must stay cheap.
+
+## 06 Hueco Mundo (world)
+The Hollow homeland: eternal night, white desert, the forest under the sand, Las Noches on the horizon. Built as a descent (surface, sinkholes, Menos Forest) that mirrors the evolution ladder.
+
+- [ ] **Hueco Mundo design and build guide** (In progress, Claude researched; Usman approves, ~20 Claude Code sessions (~60% of a weekly allowance) + ~6 h of your time) — Verdict on the six concepts, canon requirements, what Peroxide, Project Mugetsu and Type Soul do, art direction rules, world layout, the Roblox build method with starting values, gates, estimate and prompts. Open the notes.
+  > # Hueco Mundo: design and build guide (8 Oct 2026)
+  > 
+  > > **Update, 8 Oct (later):** the build route is now the task "Step-by-step runbook" (docs/contracts/HUECO_MUNDO_BUILD.md). The world already exists in the main place, so it is matched, not built from zero. Where this guide disagrees with the runbook (a separate place, a new generator, fake-night lighting, square towers), the runbook wins.
+  > 
+  > Built on the owner's six concept images (attached here: 1 dunes, 2 black cliffs, 3 canyon basin, 4 sinkhole field, 5 Menos Forest, 6 flats and ravine with sandstorm). Facts are marked as research; everything else is design judgement and says so.
+  > 
+  > ## 1. Verdict on the six concepts
+  > The direction is right and canon-accurate: endless white dunes, black rock, white dead trees, a crescent moon, eternal night, and a forest under the sand whose treetops break the surface. Image 4 (the sinkholes with the Menos Forest trees below and their tips at the surface) is the best idea in the set and is straight from canon; build the world around it.
+  > 
+  > Five things to change before building:
+  > 1. **Las Noches is too small and too faint** (image 1). It must be the biggest thing in the world, visible from every zone, and the player's compass. Its shape follows the anime frame the owner chose on 8 Oct: a huge shallow dome with three short rods on a wide, low, blocky base, smooth flared cylinder towers at different heights, plain cube buildings half-buried in the dunes, no spires. (Corrected 8 Oct: this guide first said square towers, which contradicted the owner's decision.)
+  > 2. **The concepts are painterly photo-art; Roblox will not render that.** The look has to come from lighting, atmosphere, silhouette and scale, not texture detail. Re-run each concept as a Roblox in-game target with the prompt in section 9 before building, so the target is one the engine can hit.
+  > 3. **No life in any image.** Hueco Mundo in the series is empty, but a game zone that is empty reads as unfinished. Add distant Gillian silhouettes walking the horizon, blowing sand on every dune crest and drifting dust (section 6).
+  > 4. **Value clash with the Hollows.** The Hollows are bone white. On white sand a white Vasto Lorde disappears. Keep the sand cooler and darker than the bone (section 4) and put black rock behind the places where fights happen.
+  > 5. **Image 6's sandstorm wall is a hero moment, not a constant.** In Roblox it is an event that rolls across one zone, not the weather everywhere.
+  > 
+  > ## 2. What canon requires (research, Bleach wiki)
+  > - "An unchanging night covers the sky"; the moon is in the opposite phase to the human world's.
+  > - "An endless white desert covers the ground", with many dunes and scattered boulders; no water anywhere.
+  > - The trees are not plants: "quartz-like minerals".
+  > - A vast forest lies underneath, home to the Menos; "its trees extend to the surface and dot the landscape above ground".
+  > - Las Noches: a series of buildings surrounded by a large dome; once Baraggan's, then Aizen's headquarters.
+  > - Other places: the Negal Ruins, and the Garganta as the way in and out.
+  > - Reishi is dense in the air, so small Hollows can feed without human souls; Hollows hide underground until provoked.
+  > 
+  > ## 3. What the competition does (research, game guides; dates matter, these games update)
+  > | Game | What its Hueco Mundo has | Source date |
+  > |---|---|---|
+  > | Peroxide | Las Noches (with "The Monolith"), The Alley (shops, dojo, clothes), a Colosseum hub with a quest board, The Chasm: a dark ravine leading to Menos Forest with dangerous Vasto Lordes | Jul 2024 |
+  > | Project Mugetsu | Five points of interest: the Mountain (north), the Rib Cage (centre), Las Noches Castle (east), Menos Forest (south-east), the Abyss (south). Described as "one of the lesser populated" maps | Apr 2023 |
+  > | Type Soul | Hueco Mundo exists as the Hollow area; Las Noches not accessible as of mid-2024 | Jun 2024 |
+  > | VV: ULTIMATUM | Hollows are a playable race; no public description of its map found | Sep 2026 |
+  > Inference: every competitor builds Hueco Mundo as a small set of named landmarks plus a hub, and the most common complaint is emptiness. Ours wins by having one landmark always in view, a descent the others do not have (surface, sinkholes, forest), and ambient life.
+  > 
+  > ## 4. Art direction rules (the Hueco Mundo look)
+  > **Palette** (from the concepts, tuned for Roblox):
+  > | Element | Colour | Note |
+  > |---|---|---|
+  > | Sky, zenith | #141A2C | near-black navy |
+  > | Sky, horizon | #2E3A5A | lighter band behind Las Noches |
+  > | Sand, lit | #C9D0DC | cool white, value about 0.82; never brighter than the Hollows' bone (#EBE4D7, about 0.91) |
+  > | Sand, shadow | #6F7890 | blue-grey |
+  > | Black rock | #1C1E24 | with a moonlit edge of #4A5165 |
+  > | Quartz trees | #E6EAF0 | slightly brighter than sand so they pop |
+  > | Moon | #F4F1E6 | warm against the cool world |
+  > | Menos Forest shafts | #9FB4D8 | the only light underground |
+  > The world is cool and the Hollows are warm white: that temperature split is what keeps characters readable. The only saturated colours in Hueco Mundo are the Cero, the eyes and the Vasto Lordes' cloth.
+  > 
+  > **Composition rules:**
+  > 1. Every view has three layers: something near (a rock, a tree, a crest), a middle (a dune line, a cliff), something far (Las Noches, a cliff wall, the moon). All six concepts do this; the build must keep the camera angles that make it work.
+  > 2. Las Noches is visible from every zone; zones are laid out so it sits in a different part of the frame from each.
+  > 3. Scale: things the player stands next to are 10 to 60 times their height. Cliffs 150 to 300 studs; Menos Forest trees 300 to 500 studs; the Las Noches dome about 2,000 studs across at 4,000 studs away (design estimate, check by screenshot).
+  > 4. Big shapes, few of them. One cliff that fills the frame beats ten that do not.
+  > 5. Motion in every frame: sand blowing off crests, drifting dust, a slow cloud streak, a Gillian on the horizon.
+  > 
+  > ## 5. World layout (design)
+  > A descent, not a flat map. The surface is the Fishbone hunting ground; the sinkholes are the doors down; the forest below is Menos territory, where Adjuchas are made; Las Noches is the goal on the horizon. This mirrors the evolution ladder, so the map teaches progression without a word.
+  > 
+  > | Zone | Concept | Role | Who lives there | Size (design estimate) |
+  > |---|---|---|---|---|
+  > | 1 The Dunes | image 1 | arrival from the Garganta; first hunting ground; Las Noches on the horizon | Fishbones, wandering souls | 1,500 x 1,500 studs |
+  > | 2 The Black Teeth | image 2 | cliffs and boulders; cover, ambush lines, first climbing | Fishbones, packs | 800 x 600 |
+  > | 3 The Basin | image 3 | a sunken canyon arena; dust devils; the natural PvP bowl | Fishbones, rare Adjuchas | 600 across, 120 deep |
+  > | 4 The Sinkholes | image 4 | the way down; Menos treetops break the surface; Gillians climb out | Gillians | 1,000 x 1,000, 5 to 7 holes 150 to 300 across |
+  > | 5 Menos Forest | image 5 | underground forest; light shafts from the sinkholes above; Adjuchas territory; devour hunting | Gillians, Adjuchas | 1,200 x 1,200, ceiling 400 |
+  > | 6 The Rift | image 6 | salt flats split by a ravine; sandstorm events; boss or world event zone | Adjuchas, event bosses | 1,200 x 800 |
+  > | Las Noches | skyline only for now | a horizon landmark; later the Arrancar hub | Arrancar (later) | skyline mesh |
+  > 
+  > Our own hero landmark, so we do not copy anyone's Rib Cage: **the Field of Shed Masks**, a crater on the edge of zone 3 where thousands of broken Hollow masks lie half-buried in the sand. It is the devour mechanic made visible (every evolution leaves a mask behind) and the perfect place for the evolution ceremony.
+  > 
+  > ## 6. Roblox build method (research for the engine facts; values are starting points to tune by capture)
+  > **Terrain.** Updated 8 Oct: Claude Code writes the sand and salt with a Luau generator (Terrain:WriteVoxels through the Studio MCP), then hand touch-up. Gaea and World Machine free editions are non-commercial only, so they are out of the shipping pipeline; a Blender or Krita heightmap imported with the Terrain Editor is the fallback. See the pipeline task. Terrain voxels are 4 studs, which is fine for dunes but too soft for cliffs, so cliffs, sinkhole rims and the ravine walls are meshes sitting in the terrain.
+  > 
+  > **Materials.** Custom terrain looks come only from MaterialVariant overrides in MaterialService, and each base material can have one variant per place. Assign:
+  > | Base material | Becomes | Maps |
+  > |---|---|---|
+  > | Sand | white dune sand with fine ripples | colour, normal (ripples), roughness; top and side faces differ via Terrain Details |
+  > | Salt | hard pale crust for the Rift flats | colour, normal (cracks) |
+  > | Basalt | black rock where terrain must be rock | colour, normal, roughness |
+  > | Rock | grey scree and boulders | colour, normal |
+  > | Ground | ash-dark forest floor in Menos Forest | colour, normal |
+  > Textures are capped at 1024; use square textures and keep the count small, since built-in materials cost far less memory than custom ones.
+  > 
+  > **Hero meshes (Blender, Claude Code through Blender MCP).** A kit, reused by rotating and scaling (Roblox's performance guide: reuse cuts draw calls):
+  > - 10 black rock pieces in the same faceted, bevelled style as our Hollows and VFX: 3 cliff slabs, 3 boulders, 2 spires, 2 rim sections.
+  > - 6 quartz trees: 3 surface trees (5 to 15 studs), 3 Menos giants (300 to 500 studs, trunk and crown separate so crowns can poke through sinkholes).
+  > - 1 Las Noches skyline mesh (low detail, huge), 1 Garganta tear, 1 mask-field set (8 mask variants).
+  > Budget 5,000 to 20,000 triangles per primary asset (current guidance for the streaming LOD system).
+  > 
+  > **Lighting.** The concepts all have strong moonlight with long shadows. Roblox's real night is dim and has no moon-specific controls (the moon phase is fixed). Two ways; test both in one session with captures:
+  > - A, real night: ClockTime about 0 with GeographicLatitude set so the moon sits about 35 degrees up; Brightness 1.5 to 2.5; ExposureCompensation +0.5 to +1.0; OutdoorAmbient about (70, 80, 105); Ambient about (25, 30, 45); EnvironmentDiffuseScale and EnvironmentSpecularScale about 0.3.
+  > - B, fake night (recommended): a fixed daytime sun about 35 degrees up wearing a crescent moon texture (Sky.SunTextureId), the real moon hidden (MoonAngularSize 0), a custom night skybox, Brightness about 1.2, ColorShift_Top a cool blue-white, OutdoorAmbient a dark blue. Hueco Mundo never has day, so the usual problem with fake night (switching back to day) does not exist.
+  > Either way: Technology Future; LightingStyle and PrioritizeLightingQuality tested both ways on the baseline phone; Bloom stays exactly at the Cero lock's 0.6 / 24 / 0.9.
+  > 
+  > **Sky.** A custom six-face night skybox (dark navy gradient, thin high cloud streaks, stars); a crescent moon texture; StarCount high (about 3,000). The Clouds object can add slow high cover (Cover about 0.3).
+  > 
+  > **Atmosphere, per zone** (tweened when the player crosses a zone border):
+  > | Zone | Density | Offset | Haze | Color | Decay | Glare |
+  > |---|---|---|---|---|---|---|
+  > | Dunes, Teeth, Basin | 0.30 | 0.25 | 1.5 | (190, 200, 220) | (40, 50, 80) | 0 |
+  > | Sinkholes | 0.35 | 0.20 | 2.0 | (180, 190, 215) | (35, 45, 75) | 0 |
+  > | Menos Forest | 0.45 | 0.10 | 2.5 | (90, 105, 140) | (15, 20, 35) | 0 |
+  > | Rift, calm | 0.30 | 0.25 | 1.5 | (200, 205, 220) | (45, 55, 85) | 0 |
+  > | Rift, sandstorm | 0.65 | 0.05 | 3.0 | (205, 205, 215) | (90, 95, 110) | 0 |
+  > Roblox documents example values, not ranges: these are starting points, set by screenshot beside the concept.
+  > 
+  > **Moving sand and dust.**
+  > - Crest spray: ParticleEmitters on dune-crest attachments near the player only (spawned by a client script within 150 studs), streak texture, wind-aligned, 10 to 20 particles per second each.
+  > - Ground drift: one emitter box following the camera, low, faint, sideways.
+  > - Dust devils in the Basin: a Beam spiral plus a particle column, wandering slowly.
+  > - The sandstorm event (zone 6): a huge curved wall mesh with a scrolling sand texture rolling across the Rift over 40 seconds, Atmosphere tweened to the storm row, a camera-local particle sheet, wind sound rising. Lasts 2 to 3 minutes, then clears.
+  > - Mobile caps from the Cero work still apply: 100 particles per second per emitter, flipbooks at 30 fps; partial transparency is expensive, so the storm wall is one mesh, not stacked sheets.
+  > 
+  > **Light shafts in Menos Forest.** Roblox has no moon rays (it is a feature request on the developer forum). Fake them with Beams: a wide beam from each sinkhole down to the forest floor, a soft vertical gradient texture, LightEmission about 0.5, with slow drifting dust particles inside the shaft. Pools of light on the floor from a few large SpotLights; the rest of the forest stays dark.
+  > 
+  > **Ambient life.** Three or four low-poly Gillian silhouettes (one shared mesh, no AI, a looping walk) crossing the far horizon of zones 1 and 4 on long paths; one occasionally climbs out of a sinkhole. Cheap, and it sells the scale better than anything else on this page.
+  > 
+  > **Streaming and size.** StreamingEnabled on; zones as separate streaming models; the Las Noches skyline set to Persistent so it is always on the horizon; Mesh Streaming with cloud LODs (opt-in beta as of April 2026; cannot set custom LOD distances yet). Keep the whole map within about 10,000 studs of the origin to avoid precision jitter (forum experience). Menos Forest stays in the same place, directly under the sinkholes, because dropping through a hole into the forest is the best moment in the map; only split it into its own place if memory on the baseline phone says so.
+  > 
+  > **Performance budget.** Pick one baseline phone and test on it throughout. Roblox's own example target: under 1,000 draw calls and 1,000,000 triangles on the baseline device. Reuse meshes, prefer built-in materials, keep transparency to 0 or 1 except the sand effects, keep client-only assets out of ReplicatedStorage.
+  > 
+  > **Sound.** A wind bed per zone (thin hiss on the dunes, howl in the Teeth, roar in the storm), a low hum and slow creaks in Menos Forest, distant Gillian moans, sand hiss under footsteps. Silence is part of the place: drop the music on the surface and let the wind carry it.
+  > 
+  > ## 7. Gates (the capture method, as with the Cero)
+  > Each zone passes when:
+  > 1. Captures from three fixed cameras per zone sit beside the zone's concept (or its Roblox-target re-render) and the palette, value structure and composition match.
+  > 2. Las Noches is visible on the horizon from every zone's spawn point.
+  > 3. A white Vasto Lorde test dummy reads clearly against the sand at 50 studs.
+  > 4. The locked Cero is captured in the zone and still looks like the locked Cero (section 10).
+  > 5. The baseline phone holds the frame rate target in the zone with eight players and four Hollows.
+  > 
+  > ## 8. Estimate
+  > | Work | Who | Time |
+  > |---|---|---|
+  > | Roblox-target re-renders of the six concepts, Las Noches, the mask field | Usman in ChatGPT | 3 to 4 h |
+  > | Greybox at true scale | Claude Code | 1 session |
+  > | Terrain generator in Luau and touch-up | Claude Code | 1.5 sessions |
+  > | Materials (5 variants) | Claude Code | 1 session |
+  > | Lighting A/B test, sky, atmosphere presets per zone, captures | Claude Code | 2 sessions |
+  > | Rock and quartz kit, mask set (Blender MCP) | Claude Code | 3 sessions |
+  > | Las Noches skyline mesh | Claude Code 2 sessions | |
+  > | Dressing the six zones | Claude Code | 6 sessions |
+  > | Sand effects and the sandstorm event | Claude Code | 1.5 sessions |
+  > | Menos Forest light shafts and the Gillian walkers | Claude Code | 1 session |
+  > | Streaming and performance pass on the baseline phone | Claude Code | 1 session |
+  > | Sound beds | Claude Code + Usman | 1 session |
+  > Total: about 19 to 20 Claude Code sessions, roughly 60% of one week's allowance at the 3% cap, over 6 to 7 weeks at three sessions a week, plus about 6 hours of your own time.
+  > 
+  > ## 9. Prompts
+  > **Roblox in-game target from a concept** (attach one of the six; run once per zone):
+  > ```text
+  > Re-render the attached concept art as an in-game screenshot from a high-quality Roblox anime game. Keep the composition, camera angle, palette and lighting exactly: eternal night, a crescent moon, cool white sand, black rock, white leafless quartz trees. Change only how it is built: Roblox terrain sand with a fine ripple texture, stylised mid-poly rock meshes with clean bevelled faceted edges, simple matte hand-painted textures, soft moonlight with long shadows, light atmospheric haze, a few streaks of sand blowing off the dune crests. Add one Roblox character about 5 studs tall in a white coat in the foreground for scale, seen from behind. No painterly brushwork, no photorealism, no UI, no text, no watermark.
+  > ```
+  > **Las Noches on the horizon:**
+  > ```text
+  > Wide establishing shot for a Bleach-inspired Roblox game, built like an in-game screenshot with stylised mid-poly geometry and simple matte textures, no painterly brushwork, no photorealism. An endless cool white desert at night under a crescent moon. On the far horizon, enormous and pale, a vast white fortress: a huge shallow dome so large it fills a third of the horizon, with three short rods on its crown, on a wide, low, blocky base, ringed by tall smooth cooling-tower-shaped towers (wide flared bottoms, straight cylinders, flat tops) at different heights, plain cube buildings with dark doorways half-buried in the dunes, all bone-white with faint seams, no ornament, no spires. Its scale is unmistakable: a single player character 5 studs tall stands on a dune crest in the foreground, seen from behind, and the fortress is kilometres away. Thin sand blowing off the crests, light haze over the distance, the fortress slightly lighter than the sky. No UI, no text, no watermark.
+  > ```
+  > **The Field of Shed Masks:**
+  > ```text
+  > In-game screenshot style for a Bleach-inspired Roblox game, stylised mid-poly geometry with simple matte textures, no painterly brushwork, no photorealism. A shallow crater in a cool white desert at night under a crescent moon, its floor covered with thousands of broken bone-white skull masks of every shape, half-buried in the sand, some cracked in two, some with horns, some with a single red stroke across them. A few white leafless quartz trees at the rim, black boulders, faint haze. In the centre a flat ring of black stone where something is clearly meant to happen. One player character 5 studs tall at the rim for scale, seen from behind. No UI, no text, no watermark.
+  > ```
+  > 
+  > ## 10. Counterargument, and the risk not asked about
+  > The counterargument is that a desert is empty by nature, and the competitors' guides call their Hueco Mundos the least populated maps. The answer here is density of landmarks and motion rather than size: if playtests show players crossing zones with nothing to do, shrink the zones by a third before adding anything, because a smaller full world beats a bigger empty one. What would change the plan entirely: if the baseline phone cannot hold the sinkhole-to-forest drop in one place, Menos Forest becomes its own place behind a teleport, and the drop becomes a short cutscene.
+  > 
+  > The risk not asked about: the Cero was locked under daytime lighting, and Hueco Mundo is where Hollows spend most of their time firing it. Under the night lighting, the exposure, ColorShift and atmosphere will change how the dark emissive body and the red read. The rule is the lock's own: the Cero's definition does not change. If it looks wrong in Hueco Mundo, fix it by the zone's lighting (exposure, OutdoorAmbient), never by editing the Cero, and capture it in every zone as part of the gate.
+  > 
+- [ ] **How to build it in Roblox: pipeline and panel-by-panel breakdown** (In progress, Claude researched; Claude Code builds, ~20 sessions, as in the build list) — Build inside Roblox, driven by Claude Code: terrain written by code for sand and salt, a Blender mesh kit for hard edges, lighting and atmosphere for mood, VFX for motion. Options compared, Roblox limits, each panel broken down, the build order and Claude Code prompts for the first sessions.
+  > # How to build the six panels in Roblox (research 8 Oct 2026)
+  > 
+  > > **Update, 8 Oct (later):** the research below still holds, but the order of work is now the "Step-by-step runbook" task. The game already has a Hueco Mundo realm built by code, so there is no greybox and no new generator: the existing terrain, Las Noches and lighting are tuned until each panel matches.
+  > 
+  > ## The answer
+  > Build it inside Roblox, driven by Claude Code, in four layers: **terrain written by code** for every walkable surface of sand and salt, **a small kit of Blender meshes** for everything with a hard edge (cliffs, terraces, sinkhole rims, trees, Las Noches, Gillians), **lighting and atmosphere** for the mood, and **VFX** for everything that moves (blowing sand, sand falls, light shafts, the storm). No single tool makes a world like this; the look in the concepts comes from the combination, and each layer has a different best tool.
+  > 
+  > Do not build it outside and import it whole. A full mesh world hits Roblox's per-mesh limits immediately, loses terrain's material blending and cheap collision, and the forum's own experience of tiling heightmaps into meshes is that it looks "hacked together".
+  > 
+  > ## The options, compared
+  > | Route | What it is | Verdict |
+  > |---|---|---|
+  > | A. Terrain written by code (Luau, through the Studio MCP) | Claude Code writes a generator: noise-shaped dunes, the basin, sinkholes, the rift, all with seeds and parameters, using Terrain:WriteVoxels | **Use for all sand and salt.** Free, no licence issue, repeatable, tunable per zone, and Claude Code can run it, capture it and adjust it in one loop |
+  > | B. Heightmap imported with the Terrain Editor | sculpt or generate a greyscale height image, import it with the Import tool | Good fallback for hand-shaped areas. Make the heightmap in Blender or Krita (both free for commercial use) |
+  > | C. Gaea or World Machine heightmaps | professional terrain generators | **Not on the free tiers**: both free editions are non-commercial only and cap export at about 1024 px. Paid tiers are fine, but dunes do not need erosion simulation |
+  > | D. Full mesh terrain from Blender | the whole ground as tiled meshes | Only for cliffs, terraces and rims. As ground it is tedious, capped per tile, and loses terrain blending |
+  > | E. Roblox's AI mesh generation (Assistant, or the MCP's generate_mesh) | text-to-mesh inside Studio, default 10,000-triangle cap | Use for quick variants and placeholders (extra boulders, debris). Hero assets stay hand-built: quality is unproven for this style |
+  > | F. Roblox's AI material generation (generate_material, Material Generator) | text-to-material variants inside Studio | Use for the first pass of sand, salt and rock textures, then refine. Fast and native |
+  > | G. Creator Store packs (search_asset, insert_asset) | free rock and cliff packs | Placeholders during greybox only; check every model for hidden scripts before use |
+  > | H. Whole-environment AI tools (Nilo and similar) | AI generates a scene for export | Unproven for this look; skip for now |
+  > 
+  > ## Limits that shape the build (research; confirm in Studio before relying on any)
+  > | Limit | Value | What it means here |
+  > |---|---|---|
+  > | Triangles per imported mesh | about 21,000 | every cliff piece, tree and Las Noches section stays under it; props under 5,000 |
+  > | Texture size | 1024 x 1024 | one set of maps per material; detail comes from shape and light, not pixels |
+  > | MeshPart size | 2048 studs in each axis | Las Noches (about 2,000 studs wide) is built from several pieces |
+  > | Terrain voxel | 4 studs | dunes and basins are fine in terrain; sharp cliffs are meshes |
+  > | WriteVoxels per call | up to 4,194,304 voxels | the generator works in chunks (a 1,500-stud zone 100 studs deep is about 3.5 million voxels) |
+  > | Terrain extent | plus or minus 128,000 studs | no practical limit; precision, not size, is the reason to stay within about 10,000 studs of the origin |
+  > | Terrain materials | one MaterialVariant override per base material per place | Sand, Salt, Basalt, Rock, Ground each get one look for the whole world |
+  > | Mesh LOD | Roblox steps detail down at 250 and 500 studs when RenderFidelity is Automatic; cloud LODs need Mesh Streaming (beta in April 2026) | big distant pieces (Las Noches) need Precise fidelity or they will look broken on the horizon |
+  > | Studio MCP | 26 official tools including execute_luau, generate_mesh, generate_material, search_asset, insert_asset, screen_capture (with camera position); no terrain tool | terrain is written through execute_luau; captures from fixed cameras give the compare-to-concept loop |
+  > 
+  > ## Panel by panel
+  > | Panel | Terrain (code) | Meshes (Blender kit) | VFX | Light and atmosphere |
+  > |---|---|---|---|---|
+  > | 1 Dunes | long dunes with ripple-scale noise, wind from one side, sharp crests | 3 surface quartz trees, Las Noches skyline pieces, 2 Gillian silhouettes | sand spraying off crests, low ground drift | the base night preset; the moon low behind Las Noches |
+  > | 2 Black Teeth | sand banked against the cliff feet | stacked columnar basalt blocks (6 pieces combine into every cliff), 4 boulders | sand pouring off cliff edges (beams plus particles) | the same preset; cliffs get a moonlit edge from the low key light |
+  > | 3 Basin | a bowl cut 120 studs down, flat floor | ring of terrace step pieces (4 pieces rotated round the bowl), rim boulders | a wandering dust devil, sand falls on the terraces | slightly thicker haze in the bowl |
+  > | 4 Sinkholes | holes cut through the sand with FillCylinder and FillBall set to Air, open to the forest below | rim lip pieces with streaked sand, the cave mouth, crowns of the Menos giants rising through the holes | sand streaming down the inner walls | haze thicker over the holes; darker inside |
+  > | 5 Menos Forest | the cavern floor and walls in terrain (Ground and Basalt), ceiling either terrain or large rock pieces | 3 Menos giant trees (trunk and crown separate), floor rock blocks | light shafts as Beams from each hole, sand falls in the shafts, slow dust | the forest preset: dark, blue, lit only by the shafts and a few SpotLights |
+  > | 6 Rift | flat Salt crust, the ravine cut 80 to 150 studs deep | ravine wall pieces from the cliff kit, 3 trees on the edges | the sandstorm event wall (one big mesh with a scrolling texture), camera-local sand sheets | the storm preset tweened in and out |
+  > 
+  > ## The pipeline, in order
+  > 1. **Greybox** (1 session). Grey parts for every zone at true scale, a 5-stud dummy, Las Noches as grey blocks at its real distance. Walk it, Sonído across it, capture it from the six concept angles. Fix the layout here; it costs nothing to move a grey block.
+  > 2. **Terrain generator** (1.5 sessions). A Luau module that writes all six zones from parameters, plus touch-ups in the Terrain Editor.
+  > 3. **Materials** (1 session). First pass with generate_material for sand, salt, basalt, rock and ground; normal maps for the sand ripples built from a height texture by script; all five set as terrain overrides.
+  > 4. **Lighting, sky, atmosphere** (2 sessions). The fake-night preset, the crescent moon, per-zone atmosphere tweens; capture beside each concept.
+  > 5. **Mesh kit** (3 sessions, Blender MCP). Basalt column blocks, terraces, rim lips, boulders, quartz trees, Menos giants; faceted and bevelled to match our Hollows and VFX.
+  > 6. **Las Noches and the Gillians** (2 sessions). Several skyline pieces under 2,048 studs each, Precise render fidelity, Persistent streaming.
+  > 7. **Dress the zones** (6 sessions, one each).
+  > 8. **VFX** (2.5 sessions). Crest spray, sand falls, dust devils, light shafts, the storm event.
+  > 9. **Streaming and performance** (1 session) on the baseline phone.
+  > 10. **Sound** (1 session).
+  > That is the build list already in this phase, with the greybox added in front and the terrain step changed from Gaea to code.
+  > 
+  > ## Prompts for Claude Code
+  > > **Superseded (8 Oct):** these first prompts assumed a separate place and a new generator. The world already exists in the main place. Use the prompts in the "Step-by-step runbook" task instead.
+  > 
+  > **Session 1: greybox** (paste as is)
+  > ```text
+  > New place for the world: HuecoMundo.rbxl, separate from the Cero test place. Using the Roblox Studio MCP, build a grey-box of Hueco Mundo from grey Parts only: no terrain, no materials, no lighting work. Map, in studs, with Roblox north as minus Z: zone 1 Dunes centred at (0, 0, 0), 1,500 x 1,500; zone 2 Black Teeth centred at (1,300, 0, -300), 800 x 600, with cliff blocks 150 to 300 tall; zone 3 Basin centred at (1,000, 0, 900), a bowl 600 across and 120 deep with stepped sides; zone 4 Sinkholes centred at (-1,400, 0, 200), 1,000 x 1,000, with six round holes 150 to 300 across; zone 5 Menos Forest directly under zone 4, floor at Y -500, ceiling at Y -100, with grey cylinders 40 studs wide and 400 tall for the giant trees, their tops reaching up through the holes; zone 6 Rift centred at (0, 0, 1,600), 1,200 x 800, a ravine 100 deep and 60 wide across it; Las Noches as a cluster of grey blocks totalling about 2,000 wide and 600 tall centred at (0, 0, -4,500). Put a 5-stud dummy at the Garganta arrival point (0, 0, 300). Then capture with screen_capture from six cameras that match the six concept panels (eye height 6 above the ground, looking at each zone's main feature with Las Noches in frame where the panel shows it) and save them to docs/world/hueco/greybox/. Report the six capture paths and anything about scale that looks wrong. Stop at 3 percent of the weekly allowance.
+  > ```
+  > **Session 2: terrain generator**
+  > ```text
+  > Read docs/world/hueco/greybox/ first. Write src/server/World/HuecoTerrain.lua: a terrain generator run once in edit mode through execute_luau, never at runtime. It writes the six zones with Terrain:WriteVoxels in chunks of no more than 4,194,304 voxels, resolution 4, regions expanded to the grid, deterministic from a seed. Zone 1: long transverse dunes from layered noise, wind from the west, sharp crests and soft lee slopes, heights 10 to 60 studs, material Sand. Zone 2: sand ramps against where the cliff blocks stand (cliffs stay meshes). Zone 3: a bowl 600 across and 120 deep, flat Sand floor. Zone 4: rolling Sand with six holes cut to Air with FillCylinder down to the forest ceiling. Zone 5: the cavern floor in Ground with Basalt patches, walls in Basalt. Zone 6: flat Salt crust with a ravine 100 deep cut through it. Keep every greybox position. After generating, delete the greybox ground parts, keep the dummy and the Las Noches blocks, capture from the same six cameras into docs/world/hueco/terrain_v1/ and put each beside its concept panel. Report what does not match. Stop at 3 percent.
+  > ```
+  > **Session 5 onward: mesh kit** (one family per session)
+  > ```text
+  > Using the Blender MCP, build the Hueco Mundo rock kit in the same faceted, bevelled hard-surface style as our Hollow plates: six columnar basalt blocks that stack into cliffs (heights 40 to 120 studs, flat tops, vertical fluting, chipped edges), four boulders, four terrace steps for the basin, three sinkhole rim lips. Each piece under 5,000 triangles, one shared 1024 material (near-black with a lighter edge mask), real-world scale with 1 stud = 0.28 m, pivots at the base. Export as FBX, import through the Studio MCP, set CollisionFidelity Box or Hull (Precise only on surfaces players stand on), and capture each piece on the grey plate beside panel 2. Stop at 3 percent.
+  > ```
+  > 
+  > ## Risks
+  > - **Correction (8 Oct):** an earlier version of this bullet said Las Noches in this sheet reads as a power station and should get square towers. That was wrong: the owner chose this anime-frame shape on 8 Oct (commit d337a72): a huge shallow dome with three short rods on a blocky base, flared cylinder towers, cube buildings, no spires. Keep it.
+  > - **The concept sheet is painterly; the build will not be.** Judge each zone against the Roblox re-render of its panel, not the painting, or every capture will look like a failure.
+  > - **Free models and free terrain tools have strings.** Creator Store models can hide scripts; Gaea and World Machine free editions forbid commercial use. Neither is in the shipping pipeline above.
+  > - **AI-generated meshes vary run to run.** Use generate_mesh for filler only, and capture every generated asset beside the kit before it goes in.
+  > 
+- [ ] **Step-by-step runbook: match the six panels (Claude Code)** (To do, Claude Code builds; Usman answers Q1 to Q7, picks variants, re-bakes, about 23 sessions (about 70% of one weekly allowance at the 3% cap), 8 weeks at three a week) — Every step Claude Code takes to make the existing Hueco Mundo realm match concept sheet v2: rules it never breaks, a one-change-at-a-time compare loop, a fix table, 14 phases and paste prompts. In the project as docs/contracts/HUECO_MUNDO_BUILD.md. Eight owner questions first.
+  > # Step-by-step runbook: match the six panels
+  > 
+  > **In the project:** `docs/contracts/HUECO_MUNDO_BUILD.md` (CLAUDE.md now points to it). It holds every step, the rules Claude Code can never break, the loop it repeats, the fix table and the paste prompts.
+  > 
+  > > **8 Oct, later:** you chose to grow the world (Q2). This runbook pauses after Phase 2 until the "World scale" task (docs/contracts/HUECO_WORLD_SCALE.md) reaches W9. In the bigger world Las Noches can sit at its painted size, so it no longer needs masking.
+  > 
+  > ## What changed from the first draft (8 Oct)
+  > - **The world already exists.** Hueco Mundo is a realm in the main place (origin (0, 0, -16000)): terrain from DesertField, Las Noches from LasNochesMaster, lighting from HuecoClient. Claude Code tunes that world. It does not make a new place or a new generator.
+  > - **Las Noches follows your 8 Oct anime-frame shape.** The earlier "power station, make the towers square" advice was wrong, and is corrected in the guide, the pipeline task and the Las Noches step.
+  > 
+  > ## What "1:1" means
+  > compare.py prints PASS at the final stage for a panel, and you say yes on the sign-off sheet. Measured limits, with the locked numbers:
+  > - Las Noches will look **1.3 to 3 times wider** than painted: the realm cannot put it as far away as the paintings do (Q2).
+  > - The locked moon (38 degrees up) is **above the frame in every panel**; the paintings have it 10 to 18 degrees up (Q1).
+  > - The sky is locked **black and starless**; the paintings are dark navy with soft cloud (Q3).
+  > 
+  > ## The tools
+  > | Tool | Job |
+  > |---|---|
+  > | spot_solver.py | where each panel's camera stands in the existing realm, and what cannot match |
+  > | cam_lua.py and hueco_cam.luau | park the character, pin the camera in Play, measure the skyline by raycasts, Las Noches and the moon |
+  > | compare.py | six scores, a gate per stage, findings biggest first; only owner-approved masks |
+  > | make_sheet.py | variant and sign-off sheets |
+  > 
+  > ## Your part
+  > 1. Commit or put away your uncommitted work first, including the new Hueco files, CLAUDE.md and the Cero contracts it points to: the contract refuses to start on a dirty tree.
+  > 2. Answer Q1 to Q8 in `docs/world/hueco/OWNER_QUESTIONS.md` (recommended answers marked). Phase 3 cannot start until Q1 to Q4 and Q8 are answered.
+  > 3. Pick one camera variant per panel after Phase 3.
+  > 4. Re-bake and save the place after the terrain is signed off. Claude never saves.
+  > 
+  > ## Phases
+  > | Phase | What | Sessions |
+  > |---|---|---|
+  > | 0 to 2 | preflight, reference notes, spot finding (no Studio) | 1 |
+  > | 3 | camera matching, variants, lock | 2 |
+  > | 4 | terrain shape | 3 |
+  > | 5 | terrain colours | 1 |
+  > | 6 and 7 | sky, lighting, atmosphere | 2 |
+  > | 8 | Las Noches reshape | 2 |
+  > | 9 | rock and tree kit | 3 |
+  > | 10 | dressing, one panel each | 6 |
+  > | 11 | motion and VFX | 2 |
+  > | 12 and 13 | performance, sign-off | 1 |
+  > 
+  > ## Session 1 prompt
+  > ```text
+  > Hueco Mundo session. Weekly usage now: __ percent. Read docs/contracts/HUECO_MUNDO_BUILD.md completely and follow it exactly. Do Phase 0, Phase 1 and Phase 2. No Studio this session. Stop at 3 percent of the weekly allowance and finish with the end-of-session routine in section 6.
+  > ```
+  > ## Every later session
+  > ```text
+  > Hueco Mundo session. Weekly usage now: __ percent. Read docs/contracts/HUECO_MUNDO_BUILD.md completely, then docs/world/hueco/OWNER_QUESTIONS.md, STEP_LOG.md and the newest REPORT. Do Phase 0, then continue from the exact phase and step the last report names, following section 3's loop and section 1's rules without exception. Stop at 3 percent and finish with the end-of-session routine.
+  > ```
+  > 
+- [ ] **World scale: Hueco Mundo as its own place, about 5x the area, baked once** (To do, Claude Code builds; Usman answers W-Q1 to W-Q8, creates the place, runs the phone and party tests, about 14 sessions (about 40% of one weekly allowance at the 3% cap)) — Owner decisions 8 to 9 Oct: Hueco Mundo moves into its own place (Garganta teleport, streaming on), about 16,000 studs across (5x), the desert generated once from the seed and baked into the place, the basalt ring kept with passes, a sandstorm at the edge. In the project as docs/contracts/HUECO_WORLD_SCALE.md (v1.1). Next: W1, the generator on paper.
+  > > **Updated 9 Oct (owner answers):** about **5x** the area (radius 8,000, 16,000 across), not 20x; the desert is **baked once** in Edit mode and saved into the place, not generated live; the basalt ring is **kept, with passes**. The project contract `docs/contracts/HUECO_WORLD_SCALE.md` is now version 1.1 with every number changed, and its section 0b lists every Hueco source (design research, build research, step-by-step, owner pictures), copied into `docs/world/hueco/sources/`. The text below is version 1 (20x) for history.
+  > 
+  > # World scale: Hueco Mundo as its own place
+  > 
+  > **In the project:** `docs/contracts/HUECO_WORLD_SCALE.md`. It runs between Phase 2 and Phase 3 of the panel-match runbook.
+  > 
+  > ## The target
+  > | Part | What it is |
+  > |---|---|
+  > | The place | a second place in the same universe, entered and left by Garganta (a teleport) |
+  > | The Core | today's realm out to its basalt mountain ring (radius 4,000): Las Noches, craters, fins, Menos basin and forest, unchanged |
+  > | The Expanse | radius 4,000 to 16,000, generated from the seed in 256-stud chunks around players |
+  > | The Edge | a permanent sandstorm at 16,000 that turns travellers back |
+  > | Streaming | on in the Hueco place only (your call: W-Q7) |
+  > 
+  > ## Why not grow it in the main place (facts)
+  > - Streaming is off there, so every player downloads every terrain voxel before spawning: 232 s with terrain, 15 s without (build 153).
+  > - Grown to a 16,000 radius at its current spot, Hueco Mundo would run into Karakura.
+  > - Precision falls with distance from a place's centre; developers report jitter from about 10,000 to 20,000 studs. Its own origin keeps everything within 16,000.
+  > - Roblox writes generated terrain on the server, in the serial step; client-made terrain is streamed out.
+  > 
+  > ## The best news
+  > In the bigger world, with the moon lowered to about 16 degrees (Q1), four of the five sky panels can match Las Noches' painted size and the painted moon almost exactly. All five camera spots are 5,000 to 7,000 studs south-west of Las Noches, so that side of the fortress becomes the postcard side.
+  > 
+  > ## Phases
+  > | Phase | What | Sessions |
+  > |---|---|---|
+  > | W0, W1 | questions; the generator on paper (Lune tests and renders) | 2 |
+  > | W2 | the second place, boot per place, origin (0, 0, 0) | 2 |
+  > | W3 | Garganta between places: save, release lock, teleport, retry | 2 |
+  > | W4 | chunks at runtime: load near players, drop when far, Actors | 3 |
+  > | W5 | far view: Las Noches visible from 7,200 studs, far dunes | 2 |
+  > | W6 | the sandstorm edge | 0.5 |
+  > | W7 | things to find in the Expanse | 1.5 |
+  > | W8 | performance and validation | 1 |
+  > | W9 | hand back: world.json, scene placement, the owner picks | 0.5 |
+  > 
+  > ## Your part
+  > 1. Answer W-Q1 to W-Q8 in `docs/world/hueco/OWNER_QUESTIONS.md` (size, edge, same desert everywhere, waypoints, both place ids, the test phone, streaming, the mountain ring).
+  > 2. Create the place in the Creator Hub when W2 starts.
+  > 3. Run the four-person Garganta round trip and the phone test (checklists provided).
+  > 4. Bake and save the Hueco place after W2.
+  > 
+  > ## Session prompt
+  > ```text
+  > Hueco Mundo world-scale session. Weekly usage now: __ percent. Read docs/contracts/HUECO_WORLD_SCALE.md completely, then section 1 of docs/contracts/HUECO_MUNDO_BUILD.md, docs/world/hueco/OWNER_QUESTIONS.md, STEP_LOG.md and the newest REPORT. Do W0, then continue from the exact phase and step the last report names. Follow both rule lists without exception. Stop at 3 percent and finish with the end-of-session routine.
+  > ```
+  > 
+  > ## Strongest counterargument
+  > Bigger mostly means emptier: 20 players spread over 20 times the area rarely meet. If playtests show that, shrink the Expanse or add things that pull players together (events, Menos spawns, Las Noches raids). Plan B, only with your yes, if runtime generation cannot hold its frame budget: bake a smaller Expanse (radius 10,000) in Edit mode and let streaming send it.
+  > 
+  - [ ] W0-W1 Questions, then the generator on paper (In progress) — Owner answered W-Q1 (5x), bake once, and W-Q8 (keep the ring, cut passes) on 9 Oct. DesertExpanse.lua built (build 246, commit 358939d, local): 1,024-stud cells with hashed seeds, DesertField's own shapes (dunes, craters, fins, mesas with sand drifts), salt flats with ravines, sinkhole clusters, ruin and grove slots, blend from 4,000 to 4,400. Lune tests all pass (determinism, seams, Core untouched, 99.2% walkable, landmark within 1,300 studs of 99% of points). Renders: docs/renders/hm_expanse_height.png and hm_expanse_cell.png. Waiting: the owner's yes on the renders.
+  - [ ] W2 The second place (In progress) — Done locally 9 Oct (build 246, not pushed): Places.lua (SSPlace attribute), hueco.project.json (streaming on), Hueco Mundo at (0,0,0) radius 8,000 in that place, other realms parked far away, server and client skip the main-place services, the spawn streams before the body lands. Local test: server ready 11.6 s, player standing on the Hueco spawn at 3.5 s, only Hueco content inside the world. Waiting on: the place ids (W-Q5) and saving a baked copy (owner).
+  - [ ] W3 Garganta between the places (In progress) — Built 9 Oct (build 246, off behind HuecoOwnPlace, not pushed): DataService.prepareTeleport (save, release the lock, refuse every later save on this server) and cancelTeleport; GargantaTravel (party saved first, one TeleportAsync with TeleportData, retries 2/4/8 s, clean give-up; Studio only logs); the Garganta ability uses it when the Hueco place is live. Studio checks pass. Gate: the owner's published round trip, docs/world/hueco/CHECKLIST_W3_GARGANTA_ROUND_TRIP.md (needs the W-Q5 place ids).
+  - [ ] W4 Bake the Expanse (owner chose bake once, 9 Oct) (In progress) — Bake test DONE in a scratch place with streaming on (9 Oct): Core 9.5 s; Expanse 2,884 chunks in 100 s, 0 failed, 39.8 million solid voxels; server terrain memory 283 MB (warn above 1,500); Play: character standing on sand at 1.2 s (main place: 232 s); teleports 6,000-7,000 studs out all landed on sand; 62 fps. Verdict: bake once and save passes, live chunks not needed. Next: the real bake in the Hueco place after W2 (needs the owner's place ids).
+  - [ ] W5 The far view (In progress) — Step 1 done 9 Oct: Las Noches is a Persistent Model in the Hueco place, so it never streams out (all 1,623 parts on the client at 4,751 studs). Next: fog end and the far band of dunes; client memory cost measured in W8.
+  - [ ] W6 The sandstorm edge (In progress) — Built 9 Oct to W-Q2 answer A (still to confirm): haze from 7,200 to a white-out at the wall, sand blowing in, a wind pushing back from 7,800, the server setting bodies past 8,000 back to 7,985 (HuecoEdgeClient + HuecoEdgeService, Hueco place only). Test: driven out at 80 studs/s from 7,850, max r 7,917 (gate 8,050). Its look still to be judged in game.
+  - [ ] W7 Things to find in the Expanse (In progress) — Blockout built 9 Oct (build 246, Hueco place only, built once at boot, same in every server): landforms baked (mesas, craters, fins, sinkholes, salt flats, seif and barchan dunes) plus HuecoExpanseFinds props: 4 ruins (half-buried bone cubes with dark doorways), 8 white-tree groves (thin, leafless, fine branching per the owner's picture), 23 Menos crowns breaking out of sinkholes; 3,171 parts. Studio captures: docs/renders/hm_expanse_finds_b246.png. Next: the owner judges, then the detail pass; Garganta waypoints only if W-Q4 says yes.
+  - [ ] W8 Performance and validation (To do) — Join under 30 s, 60 fps mid PC and 30 fps mid phone, server budget with 20 players spread out, Garganta hop under 20 s; regression of every locked item. Then the owner decides whether to retire the old in-place Hueco Mundo.
+  - [ ] W9 Hand back to the panel-match runbook (To do) — world.json rewritten; spot_solver --free-layout proposes each panel's scene spot; the owner picks keep-the-Core-scene or stamp-a-new-scene per panel; panel_map.json rewritten; the runbook resumes at Phase 2.
+- [ ] **Build Hueco Mundo** (To do, Claude Code; Usman answers the owner questions, picks variants and re-bakes, 6 to 7 weeks at three sessions a week) — The build now follows the step-by-step runbook (task above, Phases 0 to 13). The subtasks below are the first draft: the greybox and the new terrain generator are replaced, the rest map to runbook phases.
+  - [ ] Replaced: greybox (now runbook Phases 2 and 3) (To do) — The world already exists in the main place, so there is no greybox: the runbook finds each panel's spot in the existing realm (spot_solver.py) and matches the camera in live Play.
+  - [ ] Roblox-target re-renders of the six concepts, Las Noches and the mask field (To do) — Prompts in the guide, section 9. These become the capture targets.
+  - [ ] Replaced: terrain generator (now runbook Phase 4) (To do) — No new generator: the existing DesertField terrain is tuned through Layout.json and HuecoMundoGeo parameters behind a switch, with the Lune tests green and the owner re-baking and saving.
+  - [ ] Five terrain material overrides (To do) — Sand, Salt, Basalt, Rock, Ground as MaterialVariant overrides; 1024 textures.
+  - [ ] Lighting A/B test, sky, atmosphere presets per zone (To do) — Runbook Phases 6 and 7: lighting lives in HuecoClient (it already has real moonlight). Live trials in Play, then code. The moon (38 degrees up) and the black sky stay locked until the owner answers Q1 and Q3. Bloom stays 0.6/24/0.9.
+  - [ ] Rock, quartz tree and mask kit in Blender (To do) — 10 rock pieces, 3 surface trees, 3 Menos giants, 8 masks; faceted bevelled style; 5k to 20k tris per asset.
+  - [ ] Las Noches in the owner's 8 Oct shape (runbook Phase 8) (To do) — Reshape the existing LasNochesMaster, not a new skyline mesh: a huge shallow dome with three short rods on a wide, low, blocky base, smooth flared cylinder towers at different heights, cube buildings with dark doorways half-buried in the dunes, no spires. Footprint, routes and interior fit stay. (Corrected 8 Oct: an earlier note here said square towers, which contradicted the owner's decision.)
+  - [ ] Zone 1 The Dunes (To do) — Garganta arrival, Fishbone grounds, Las Noches on the horizon.
+  - [ ] Zone 2 The Black Teeth (To do) — Cliffs, cover, ambush lines.
+  - [ ] Zone 3 The Basin + the Field of Shed Masks (To do) — Canyon arena with dust devils; the mask crater for the evolution ceremony.
+  - [ ] Zone 4 The Sinkholes (To do) — 5 to 7 holes, Menos treetops breaking the surface, Gillians climbing out.
+  - [ ] Zone 5 Menos Forest (To do) — Under the sinkholes; beam light shafts; Adjuchas territory.
+  - [ ] Zone 6 The Rift + sandstorm event (To do) — Salt flats, ravine, the rolling storm wall event.
+  - [ ] Ambient life: Gillian walkers on the horizon (To do) — One shared mesh, looping walk, no AI.
+  - [ ] Streaming and performance pass on the baseline phone (To do) — Under 1,000 draw calls and 1M triangles; eight players and four Hollows.
+  - [ ] Sound beds per zone (To do) — Wind per zone, forest hum, distant Gillian moans; no music on the surface.
+  - [ ] Capture the locked Cero in every zone (To do) — Must still look like the locked Cero; fix with zone lighting, never by editing the Cero.
+
+## 07 Tooling & session rules
+What lets Claude Code see and prove its work: Studio capture rig, screenshot loop, gates, usage caps, Sine shortlist workflow.
+
+- [x] **Studio capture rig** (Done, Claude Code) — `tools/studio/capture_rig.luau` presets: cero_side_close, cero_side_wide, cero_rear34, cero_front, cero_charge_front.
+- [x] **Screenshot / compare loop** (Done) — Studio MCP execute_luau + screen capture; captures cropped beside the reference at the same scale.
+- [x] **Session rules in CLAUDE.md** (Done) — One governing contract per feature; 3% weekly usage cap per session; numbers after pictures; never save the place, never push.
+- [x] **Sine VFX shortlist workflow** (Done) — Owner shortlists library assets into `Workspace.<Feature>SineShortlist`; Claude Code captures each on the dark plate before use and stops if the class is wrong.
+- [ ] **Blender MCP + RBXMonkey check** (To do, Claude Code) — Confirm a scripted plate exports from Blender and lands in Studio welded to a bone before the kit is built.
+
+## 08 Later: Shinigami side & world
+Not scoped yet. Zanpakutō, Shinigami kit, Soul Society and Hueco Mundo maps, progression. Add tasks here once the Hollow side is playable.
+
+- [ ] **Scope this phase** (To do, Usman) — List the Shinigami/Zanpakutō kit, maps and progression once the Hollow side is playable.
+- [ ] **Hueco Mundo terrain (ground only)** (To do, Claude Code, 3-4 sessions · about 8-12% weekly) — Six terrain types from the reference image: dune sea, mountain edge, crater basin, sinkhole field, the empty Menos cavern, flats and ravine. Ground, sand and rock only, built from Roblox Terrain so it looks like Roblox, not the AI picture. No trees yet.
+  > # Hueco Mundo terrain: the ground only
+  > 
+  > The reference is the six-scene image above (owner, 8 Oct), made in ChatGPT from the prompt at the bottom. This pass is the ground only: sand, rock, mountains, the crater, the sinkholes and the EMPTY cavern for the Forest of Menos. The quartz trees, the forest itself, Las Noches, ruins and creatures come later.
+  > 
+  > ## What the show does
+  > - An endless white Sahara-like dune desert under a permanent night and a pale crescent moon: no sun, no water, sandstorms that come and go.
+  > - The Forest of Menos is a huge cavern under the sand. In the anime (episode 147) the group falls into it when a pit opens in the desert; Hollow dens on the surface lead down through tunnels like an ant colony.
+  > 
+  > ## Rules
+  > - **Roblox graphics, not the AI picture.** Roblox smooth Terrain (Sand, Rock, Basalt, Slate, Salt), a few low-poly rock meshes, Roblox lighting: night, a crescent-moon sky, Atmosphere haze, a cool blue-grey colour tint.
+  > - **Colours (8 Oct review).** Sand is cooler and slightly darker than bone so white Hollows never vanish on it: sand about 0.82 brightness (around #C8CDD1), bone (trees, masks, Las Noches) about 0.91 (around #E8E4DA). Darker grey packed sand in the low areas, charcoal and black rock, a dark charcoal-grey night sky with soft grey clouds, one pale crescent moon.
+  > - **Fast movement.** Long open sightlines and wide corridors (plan HM-DUNE-01); no slopes so steep that high-speed movement gets frustrating (HM-CRATER-01).
+  > - **Performance.** Never bake one huge voxel layer with StreamingEnabled off (it broke PlaySolo on 4 Oct). Stream the terrain, or use mesh/part ground for the far areas. Measure client fps and spawn time for every scene.
+  > - **Pipeline (docs/PIPELINE.md).** Contract, then an in-game blockout, then a measured gate, then detail. Show each scene as a screenshot beside its panel before adding detail.
+  > 
+  > ## The six scenes
+  > | # | Scene | What it is | How it gets built in Roblox |
+  > |---|---|---|---|
+  > | 1 | Dune sea | rolling crescent and ridge dunes with soft crests, flat darker corridors between them, haze on the horizon | scripted terrain from height noise |
+  > | 2 | Mountain edge | black basalt ridges and flat-topped mesas, sand ramps drifted up their sides, a few half-buried boulders | rock terrain blocks and wedges, sand filled up the sides, low-poly rock meshes |
+  > | 3 | Crater basin | a round bowl about 300 studs wide, stepped rock terraces, sand ramps in and out, flat sand floor | a bowl carved in rings for the terraces |
+  > | 4 | Sinkhole field | funnel-shaped sand pits dropping into blackness, sand trickling over the rims, a tunnel mouth in a dune | cone holes carved into the sand, particle streams on the rims, a carved tunnel |
+  > | 5 | Menos cavern (EMPTY) | a huge dark space under the desert, about 200 studs high, slate floor with mounds and raised platforms, sandfalls and moonlight shafts from holes in the ceiling | a big void carved underground, beams for the light shafts, particles for the sandfalls |
+  > | 6 | Flats and ravine | salt-white hard-packed flats with wind streaks, a winding rock ravine you can run through, a passing sandstorm | a flat in the Salt material, a carved channel, particles plus haze for the storm |
+  > 
+  > ## The image prompt (ChatGPT)
+  > ```
+  > Create one 16:9 image laid out as a 3-column x 2-row grid of six separate panels, thin black borders between them. Each panel is an in-game screenshot from a Roblox game set in Hueco Mundo (the Bleach desert world). Put a small white number (1 to 6) in the top-left corner of each panel; no other text anywhere.
+  > 
+  > IT MUST LOOK LIKE ROBLOX, NOT AN AI PAINTING
+  > - Real Roblox graphics: Roblox smooth Terrain with soft, rounded voxel shapes, the standard Roblox Sand, Rock, Basalt, Slate and Salt terrain materials with their simple tiled textures, and a few low-poly rock meshes.
+  > - Roblox lighting: night time, a big crescent-moon skybox, Roblox Atmosphere haze, soft simple shadows, a cool blue-grey colour tint, light bloom.
+  > - Moderate detail only: no photoreal sand grains, no painterly brush strokes, no film-style lighting, no ray-traced reflections. It should look buildable by one developer in Roblox Studio.
+  > - Shapes are clean and readable: soft dune crests (not razor-thin), smooth slopes, big simple forms.
+  > 
+  > COLOURS FOR EVERY PANEL
+  > - Sand: near-white bone/ash colour (slightly warm, so it reads as sand, not snow), with darker grey compacted sand in the low areas.
+  > - Rock and mountains: charcoal and black.
+  > - Sky: dark indigo night, almost no stars, one pale crescent moon. Shadows are cool blue-grey.
+  > - Mood: empty, quiet, ancient, hostile.
+  > 
+  > PANEL 1, THE DUNE SEA
+  > Rolling white dunes to the horizon: big crescent dunes and long ridge dunes with soft crests, gentle windward slopes and steeper shadowed slip faces. Wide, flat corridors of darker packed sand run between the dune ranges, giving long open sightlines. A faint sand haze near the horizon. Camera at player height, looking down a long corridor.
+  > 
+  > PANEL 2, THE MOUNTAIN EDGE
+  > Large dark basalt mountain ridges and flat-topped mesas rising out of the sand, with smooth sand ramps drifted up their sides so you could run up them. A few low-poly boulders half buried at their feet. White sand meets black rock in a clear, clean edge.
+  > 
+  > PANEL 3, THE CRATER BASIN
+  > A huge round crater bowl in the desert, about 300 studs wide, seen from its rim. Its sides step down in wide rock terraces and ledges, with a few sand ramps leading in and out. A flat sand floor at the bottom. Dunes continue beyond the rim.
+  > 
+  > PANEL 4, THE SINKHOLE FIELD
+  > An area of dunes with three large funnel-shaped sinkholes: smooth cone-shaped sand pits that drop into pure blackness, with thin streams of sand trickling over their rims (simple particle streams). One dark tunnel mouth dug into the side of a dune nearby. These are the ways down to the underground forest.
+  > 
+  > PANEL 5, THE UNDERGROUND CAVERN (space for the Forest of Menos, left EMPTY)
+  > Inside a gigantic dark cavern under the desert, roughly 200 studs high and far wider. Floor of dark grey slate and basalt with low mounds and a few raised rock platforms at different heights. The ceiling is a rough dark rock-and-sand underside high above, with a few holes: pale sand pours through them as long soft sandfalls, and thin semi-transparent beams of moonlight shine down to the floor. Very dark blue-grey ambient light. Completely empty: no trees, no crystals, no pillars, no creatures.
+  > 
+  > PANEL 6, THE WINDSWEPT FLATS AND RAVINE
+  > A wide hard-packed flat of salt-white sand with wind-streak patterns, cut by a narrow winding ravine with dark rock walls, deep enough to run through. In the distance a small sandstorm crosses the flats as a soft wall of drifting sand haze.
+  > 
+  > DO NOT INCLUDE
+  > - trees of any kind, quartz or crystal trees, plants, bones, skulls, ruins, buildings, Las Noches, walls, roads
+  > - characters, avatars, Hollows, Menos, animals, UI, health bars, chat
+  > - water, oases, snow, a sun, a starry sky, bright colours
+  > - any text except the panel numbers 1-6, no watermarks
+  > ```
+  - [ ] 1 Dune sea (To do) — Rolling crescent and ridge dunes with soft crests, flat darker corridors between the ranges, long sightlines, haze on the horizon. Scripted terrain from height noise.
+  - [ ] 2 Mountain edge (To do) — Black basalt ridges and flat-topped mesas rising from the sand, sand ramps drifted up their sides you can run up, a few half-buried boulders. Rock terrain blocks plus low-poly rock meshes.
+  - [ ] 3 Crater basin (To do) — Round bowl about 300 studs wide with stepped rock terraces, sand ramps in and out, a flat sand floor. Carved in rings.
+  - [ ] 4 Sinkhole field (To do) — Funnel-shaped sand pits that drop into the cavern, sand trickling over the rims, one tunnel mouth in a dune side. Cone holes carved into the sand, particle streams on the rims.
+  - [ ] 5 Menos cavern (empty) (To do) — A huge dark space under the desert, about 200 studs high: slate floor with mounds and raised platforms, sandfalls and moonlight shafts from holes in the ceiling. Left empty for the Forest of Menos later. Carved void, beams for the light, particles for the sand.
+  - [ ] 6 Flats and ravine (To do) — Salt-white hard-packed flats with wind streaks, a winding rock ravine you can run through, a sandstorm passing in the distance. Salt material flat, carved channel, particles plus haze.
+  - [ ] Performance and streaming check (To do) — Client fps and spawn time measured for every scene; terrain streamed or far areas as meshes, never one huge baked voxel layer with streaming off.
+- [ ] **Hueco Mundo dressing (trees, life, Las Noches)** (To do, Claude Code, 2-3 sessions · about 6-9% weekly) — The finished look for the six scenes: Las Noches as the huge landmark seen from every zone (shaped like the anime: shallow dome, flared cylinder towers, cube buildings), Gillian silhouettes on the horizon, sand off every crest, thin white trees (giant ones in the Forest of Menos), a sandstorm event. Sand 0.82, bone 0.91. Re-run each scene as a Roblox screenshot (prompt v3).
+  > # Hueco Mundo dressing: trees, life, Las Noches
+  > 
+  > The target look for every scene once the ground is built (task "Hueco Mundo terrain"). The four pictures above are the first reference (owner, 8 Oct). The review the same day changed five things; the prompt v3 at the bottom has them all, and every scene should be re-run with it as a Roblox in-game screenshot.
+  > 
+  > ## The 8 Oct review (these rules win over the first pictures)
+  > 1. **Las Noches is the landmark.** It is the biggest thing in the world, visible from every zone so players can navigate by it. Its shape follows the anime frame the owner chose (8 Oct): an enormous wide, low, blocky base with a huge shallow dome and three short rods on its crown; tall smooth cooling-tower-shaped towers (wide flared bottoms, straight cylinders, flat tops) at different heights around it; plain cube buildings with dark doorways half-buried in the dunes. No spires, minarets or ornament: a villain's fortress, not a place of worship. (Owner decision 8 Oct: replaces the round towers and dome spires of the locked LN-MASTER-01, and the heavy square towers first suggested in the review.)
+  > 2. **Roblox screenshot first.** Roblox cannot reproduce painted images; the quality comes from lighting, haze, big shapes and scale, not texture detail. Every concept is re-run as a Roblox in-game screenshot (prompt v3) so the target is one the engine can reach.
+  > 3. **Life.** A few huge Gillian silhouettes walking along the horizon, sand blowing off every dune crest, drifting dust. Cheap, and it does more for the sense of scale than anything else.
+  > 4. **Colour values.** White Hollows vanish on white sand, so the sand is cooler and slightly darker than bone: sand about 0.82 brightness (around #C8CDD1), bone about 0.91 (around #E8E4DA). Bone = trees, Hollow masks, Las Noches.
+  > 5. **The sandstorm is an event, not weather.** It rolls across one zone for two or three minutes, then clears.
+  > 
+  > ## The tree (owner's anime screenshot, 8 Oct)
+  > - A thin, tall, leafless white tree, like a bare winter tree made of white bone or quartz.
+  > - One slender trunk; branches that keep splitting into many fine twigs in an airy crown; slightly crooked, organic lines; smooth, no bark, no leaves; bone colour (0.91).
+  > - Surface trees are sparse: mostly lone trees, sometimes two or three far apart.
+  > - The small surface trees are the tips of the giant trees in the Forest of Menos below (anime): line them up over the cavern and around the sinkholes.
+  > 
+  > ## How it gets built in Roblox
+  > | Piece | Built as |
+  > |---|---|
+  > | Las Noches on the horizon | one big simple impostor mesh (blocky base, shallow dome with three rods, flared cylinder towers, cube buildings) far out in the haze, matched to the real fortress later |
+  > | Gillian silhouettes | a few far, flat-shaded impostors walking slow loops along the horizon (client-side, no AI) |
+  > | Surface trees | 3-5 low-poly branching tree meshes, bone colour, placed by rule (sparse, lone) |
+  > | Giant cavern trees | the same design scaled to about 200 studs, trunk floor to ceiling, branches spreading under the ceiling |
+  > | Sand off every crest, dust, ribbons, dust devils | ParticleEmitters with soft sand sprites and streaks, only near the player |
+  > | Sandfalls and moonlight shafts | particles plus semi-transparent Beams |
+  > | Sandstorm event | a timed event: a moving particle wall plus an Atmosphere haze change across one zone for 2-3 minutes, then it clears |
+  > | Spirit motes | one sparse ParticleEmitter around the player |
+  > 
+  > ## Prompt v3 (ChatGPT)
+  > To get one scene at a time (sharper): keep everything from "THIS IS A ROBLOX SCREENSHOT" down to "THE TREE" plus ONE panel section and the DO NOT INCLUDE list, and change the first paragraph to "Create one 16:9 in-game screenshot from a Roblox game set in Hueco Mundo (the Bleach desert world). No text anywhere."
+  > 
+  > ```
+  > Create one 16:9 image laid out as a 3-column x 2-row grid of six separate panels, thin black borders between them. Each panel is a real in-game screenshot from a Roblox game set in Hueco Mundo (the Bleach desert world). Put a small white number (1 to 6) in the top-left corner of each panel; no other text anywhere.
+  > 
+  > THIS IS A ROBLOX SCREENSHOT, NOT CONCEPT ART
+  > - The quality comes from lighting, haze, big shapes and huge scale, not from texture detail.
+  > - Roblox smooth Terrain (soft, rounded voxel shapes) with the default Sand, Rock, Basalt, Slate and Salt materials and their plain tiled textures. Trees, rocks and buildings are simple low-poly meshes with flat matte colours.
+  > - Roblox lighting: night, a large crescent-moon skybox, strong Atmosphere haze that fades distant shapes into blue-grey, soft simple shadows, a cool colour grade, light bloom.
+  > - Effects are plain Roblox particles: soft sand sprites and streaks.
+  > - No painted detail, no photoreal grain, no film lighting, no ray-traced reflections, no fine sculpted surface detail.
+  > 
+  > COLOUR VALUES (so white Hollows never vanish on the sand)
+  > - Sand: cool, slightly darker grey-white, about 82% brightness (around #C8CDD1), with darker grey packed sand in the low areas.
+  > - Bone (trees, Hollow masks, the walls of Las Noches): a warmer, brighter off-white, about 91% brightness (around #E8E4DA), so bone always stands out against the sand.
+  > - Rock and mountains: charcoal and black.
+  > - Sky: dark charcoal-grey night with a faint cold blue tint and soft grey clouds, as in the anime; almost no stars; one pale crescent moon. Shadows are cool blue-grey and long.
+  > 
+  > LAS NOCHES, THE LANDMARK (in every outdoor panel)
+  > - The biggest thing in the world, visible from every zone so players can find their way by it: on the horizon of every outdoor panel, huge even from far away, its top rising above the haze.
+  > - Shaped exactly like Las Noches in the Bleach anime: an enormous, wide, low blocky base building with a huge shallow dome on top, and three short thin rods standing on the crown of the dome.
+  > - Around it, tall smooth cylindrical towers shaped like cooling towers: each flares out wide at the bottom like a skirt, then rises as a straight cylinder with a flat top; several of them, at different heights, spaced around the dome.
+  > - Small plain cube-shaped buildings with dark rectangular doorways sit half-buried in the dunes around the fortress.
+  > - Plain, smooth, windowless matte surfaces and simple heavy geometric shapes: eerie and monumental, a villain's fortress, not a place of worship. No ornament, no spires, no minarets.
+  > - Bone-white to pale grey walls (the warmer 91% white in the light), lit pale by the moon.
+  > 
+  > LIFE AND MOVEMENT
+  > - Sand blows off EVERY dune crest in thin pale plumes.
+  > - Drifting dust and low sand ribbons move across the ground; tiny faint pale spirit particles hang in the air.
+  > - In panels 1, 3 and 6, a few huge Gillian (Menos Grande) silhouettes walk slowly along the far horizon: giant figures in long black cloaks with long white pointed-nose masks, many times taller than the dunes, softened by the haze.
+  > 
+  > THE TREE (as in the Bleach anime)
+  > - A thin, tall, leafless white tree, like a bare winter tree made of white bone or quartz: one slender trunk, branches that keep splitting into many fine twigs in an airy crown, slightly crooked organic lines, smooth, no bark, no leaves.
+  > - Bone colour (the warmer 91% white), long thin moonlight shadows.
+  > - Sparse: mostly lone trees, sometimes two or three far apart.
+  > 
+  > PANEL 1, THE DUNE SEA
+  > Rolling dunes to the horizon: big crescent dunes and long ridge dunes with soft crests, gentle windward slopes and steeper shadowed slip faces. Wide, flat corridors of darker packed sand run between the dune ranges, giving long open sightlines. One lone white tree stands on a dune flank in the foreground with its long shadow across the sand. Las Noches fills a large part of the horizon at the end of the corridor, and three Gillian silhouettes walk beside it in the haze. Camera at player height, looking down a long corridor.
+  > 
+  > PANEL 2, THE MOUNTAIN EDGE
+  > Large dark basalt mountain ridges and flat-topped mesas rising out of the sand, with smooth sand ramps drifted up their sides so you could run up them. Half-buried low-poly boulders and broken rock slabs at their feet, and a few thin white trees spaced out along the cliff base. Sand spills over the mesa edges in thin veils. The flared towers and the dome of Las Noches rise above the haze in the gap between two mesas.
+  > 
+  > PANEL 3, THE CRATER BASIN
+  > A huge round crater bowl in the desert, about 300 studs wide, seen from its rim. Its sides step down in wide rock terraces and ledges, with a few sand ramps leading in and out. A flat sand floor at the bottom with three thin white trees far apart, scattered boulders and a slow dust devil. Beyond the far rim, the dunes, Las Noches on the horizon, and two Gillian silhouettes walking far away.
+  > 
+  > PANEL 4, THE SINKHOLE FIELD
+  > An area of dunes with three large funnel-shaped sinkholes: smooth cone-shaped sand pits dropping into darkness, with thin streams of sand trickling over their rims. Inside the nearest pit, the pale crowns of giant white trees can be seen rising from far below, and the small thin white trees around the pits are their very tips poking up through the sand. One dark tunnel mouth in the side of a dune (a Hollow den). Las Noches stands on the horizon behind.
+  > 
+  > PANEL 5, THE FOREST OF MENOS (the underground cavern)
+  > Inside a gigantic dark cavern under the desert, roughly 200 studs high and far wider. A forest of colossal versions of the same white tree: tall pale trunks (still slender for their huge height) rise from the cavern floor all the way up to the ceiling, splitting into long thin branches and fine twigs that spread under the ceiling like white veins. Dark grey slate and basalt floor with low mounds, raised rock platforms at different heights and fallen white branches. Through holes in the ceiling, sand pours down as long soft sandfalls and thin semi-transparent beams of moonlight shine onto the pale trunks. Faint mist and drifting particles in the beams; very dark blue-grey light; the white trees stand out against the darkness.
+  > 
+  > PANEL 6, THE WINDSWEPT FLATS AND RAVINE, DURING A SANDSTORM
+  > A wide hard-packed flat with wind-streak patterns, cut by a narrow winding ravine with dark rock walls, deep enough to run through. A few thin white trees lean along the ravine edge. A passing sandstorm is rolling across this zone: a tall soft wall of sand haze crossing the flats, streaks of blowing sand at its front, loose sand skimming low across the ground towards the camera. Behind it, Las Noches and a Gillian silhouette are dimmed but still visible.
+  > 
+  > DO NOT INCLUDE
+  > - green or living plants, leaves, grass, cacti, thick or chunky tree trunks, angular crystal trees
+  > - spires, minarets, pointed towers or ornament on Las Noches (only the three short rods on the dome)
+  > - players, avatars, small Hollows, animals, UI, health bars, chat (only the distant Gillian silhouettes)
+  > - water, oases, snow, a sun, a starry sky, bright colours
+  > - any text except the panel numbers 1-6, no watermarks
+  > ```
+  - [ ] Re-run the six scenes as Roblox screenshots (prompt v3) (To do) — Owner runs prompt v3 in ChatGPT (one scene at a time is sharper) and adds the pictures here; they replace the painted ones as the target.
+  - [ ] Surface trees (To do) — Thin, tall, leafless white trees with fine branching twigs, like the owner's anime screenshot. 3-5 low-poly mesh variants, sparse placement (mostly lone trees), long shadows.
+  - [ ] Giant trees of the Forest of Menos (To do) — The same tree design scaled to about 200 studs: trunks from the cavern floor to the ceiling, branches spreading under it. Their tips poke through the sand as the small surface trees, around the sinkholes.
+  - [ ] Gillian silhouettes on the horizon (To do) — A few huge Gillian silhouettes walking slow loops along the far horizon (flat-shaded far impostors, client-side): the cheapest way to sell the scale.
+  - [ ] Sand in the air (To do) — Sand off every dune crest, low ribbons along the corridors, veils off mesa edges, slow dust devils, sandfalls into the cavern. The sandstorm is an event: it crosses one zone for 2-3 minutes, then clears.
+  - [ ] Sky, moonlight and spirit particles (To do) — Dark indigo night, soft grey clouds, one pale crescent moon, cyan-tinted moonlight, faint drifting spirit motes near the player.
+  - [ ] Las Noches, the landmark (To do) — The biggest thing in the world, visible from every zone so players navigate by it. Shaped like the anime frame (owner 8 Oct): a wide blocky base with a huge shallow dome and three short rods, tall cooling-tower-shaped cylinder towers with flared bottoms and flat tops, cube buildings half-buried in the dunes; no spires. A big far impostor in the haze, matched to the real fortress later.
+  - [ ] Boulders, slabs and fallen branches (To do) — Half-buried boulders and broken rock slabs at the mountain feet and in the crater; fallen white branches on the cavern floor.
+  - [ ] Performance check (particles and trees) (To do) — Client fps measured in every scene; tree counts and particle rates budgeted; sand effects only near the player.
+- [ ] **Bigger Hueco Mundo: its own place, 5x the area** (To do, Claude Code + Usman, about 10-14 sessions) — Merged into the "World scale" task in the Hueco Mundo (world) phase: one contract, docs/contracts/HUECO_WORLD_SCALE.md v1.1 (5x, baked once, ring kept with passes). The steps below map to its W phases: s-hb-4 = W4 step 1, s-hb-5 = W4 steps 2-3, s-hb-2 = W2-W3, s-hb-3 = W5, s-hb-6 = W6-W7, s-hb-7 = W8.
+  > # Bigger Hueco Mundo: its own place, 5x the area (owner decisions, 8 Oct)
+  > 
+  > ## Decisions
+  > - **Its own place.** Hueco Mundo moves out of the main place into its own place, entered through a Garganta, with streaming on.
+  > - **Start at about 5x today's area (about 16,000 studs across), not 20x.** Grow later only if playtests show players still meet often; the generator makes growing cheap.
+  > - **Fixed size, not infinite.** It feels endless: a permanent sandstorm at the edge turns travellers back. Canon already calls Hueco Mundo an endless white desert.
+  > - **Generate once, save it into the place.** The desert is generated from a seed once and saved into the Hueco place; no terrain is built while people play (combat must stay smooth). First run one measured test: a big block of desert, checking server memory and join time. Only switch to building chunks live if that test fails.
+  > - **Hand-built spots stay hand-built.** Las Noches, the six concept scenes and the Menos Forest sit at fixed spots inside the generated desert. Las Noches gets a low-detail far version and a longer fog distance so it is seen from far away (this also fixes runbook question Q2 properly: at about 3,500 to 6,100 studs away it looks the painted size).
+  > - **Data-saving safety first.** Session locking so realm changes never lose progress or duplicate items (reuse the Las Noches multi-place plan).
+  > - **Teleports are tested in a published test copy** (Studio's Play button cannot teleport). The owner does this.
+  > - **The concept-matching runbook pauses after Phase 2.** Matching cameras to the old small map would be wasted work; it resumes on the new map.
+  > 
+  > ## Why it cannot grow inside the current place
+  > - **Join time:** streaming is off there, so every player downloads every terrain voxel before spawning (measured 232 s with terrain against 15 s without). More desert makes that unplayable.
+  > - **Overlap:** Hueco Mundo sits 16,000 studs south of Karakura; grown big, it runs into Karakura.
+  > - **Soul Society** is built around streaming being off; switching streaming on for the whole place would hit everything else.
+  > - **Precision:** keep everything within about 20,000 studs of a place's centre (developers report jitter from about 10,000 to 20,000 studs out; not an official limit). A separate place centred on its own origin does exactly that.
+  > 
+  > ## Sizes (sprint 19 studs/s)
+  > | Size | Across | Area vs today | Sprint straight across |
+  > |---|---|---|---|
+  > | Today | 7,200 studs | 1x | 6 min |
+  > | **5x the area (the start)** | about 16,000 | 5x | about 14 min |
+  > | 20x the area | 32,000 | 20x | 28 min |
+  > | 20x the width | 144,000 | 400x | 2 h 6 min |
+  > 
+  > ## Steps (session counts are estimates)
+  > | Step | Who | Sessions |
+  > |---|---|---|
+  > | Create the Hueco Mundo place in the Creator Hub (done in the browser) | Usman | none |
+  > | Shared code across places, plus a Garganta teleport that saves player data safely (session locking) | Claude Code | 3 to 4 |
+  > | Streaming on in that place, plus the far version of Las Noches and a longer fog distance | Claude Code | 2 |
+  > | Bake test: one big block of seeded desert saved into the place; measure server memory and join time | Claude Code | 1 |
+  > | Generate the desert once at 5x from the existing seeded desert code, save it, and stamp in the fixed zones | Claude Code | 2 to 3 |
+  > | Points of interest roughly every 1,000 studs, and the sandstorm edge | Claude Code | 1 to 2 |
+  > | Join time, fps and server memory with 20 players spread out (published test copy) | Claude Code + Usman | 1 to 2 |
+  > 
+  > About 10 to 14 sessions before the concept matching continues from runbook Phase 3.
+  > 
+  > ## Risks
+  > - **Bigger mostly means emptier.** Players spread thinner and meet less, which hurts PvP and events (players already call rivals' Hueco Mundo maps the least populated). Fix with events, Menos spawns and raids on Las Noches, or keep the area smaller.
+  > - **Every realm change becomes a teleport** with a loading screen and a data save. Without session locking, fast realm-hopping can lose progress or duplicate items.
+  > - **Soul Reaper invasions** in one shared server are harder across separate places.
+  > - **Order:** the master order puts the Hueco map 4th, after VFX/combat and the 3D models; this pushes the Cero sound and shake and the Hollow models back. Chosen on purpose.
+  > 
+  > ## Sources (from the research, 8 Oct)
+  > - Roblox docs, Parallel Luau (procedural terrain example): https://create.roblox.com/docs/scripting/multithreading
+  > - Roblox docs, Instance streaming: https://create.roblox.com/docs/en-us/workspace/streaming
+  > - DevForum, client-side terrain streamed out (Sep 2025): https://devforum.roblox.com/t/client-sided-terrain-stops-being-interactable-with-after-being-streamed-out-and-back-in/3910355
+  > - DevForum, huge map and floating-point problems (Sep 2025): https://devforum.roblox.com/t/how-to-make-a-huge-map-and-no-floating-problem/3912306
+  > - DevForum, extremely large open-world maps (May 2025): https://devforum.roblox.com/t/help-tips-for-extremely-large-open-world-maps-10k-studs/3670141
+  > - DevForum, Terrain.MaxExtents values: https://devforum.roblox.com/t/get-size-of-terrain/3294967
+  > - DevForum, problems with large amounts of terrain: https://devforum.roblox.com/t/problem-with-large-amounts-of-terrain/1909754
+  > - Creator Roadmap 2026, Fall Update: https://devforum.roblox.com/t/creator-roadmap-2026-fall-update/4880208
+  > - Dead Rails wiki (Bloxodes): https://bloxodes.com/wiki/dead-rails
+  > - Sportskeeda, when does Dead Rails end: https://www.sportskeeda.com/roblox-news/when-dead-rails-end
+  - [ ] Create the Hueco Mundo place in the Creator Hub (To do) — Done in the browser.
+  - [ ] Shared code across places + Garganta teleport with safe data saving (In progress) — Shared code across places: done locally (one codebase, hueco.project.json, per-place boot). Garganta teleport with session locking: next (W3).
+  - [ ] Streaming on + far Las Noches + longer fog (In progress) — Streaming on in the Hueco place (hueco.project.json) and Las Noches kept loaded: done 9 Oct. Longer fog and the far band: next.
+  - [x] Bake test (decides baked vs live chunks) (Done) — Done 9 Oct: bake once and save passes (283 MB terrain memory, standing at 1.2 s with streaming on, 0 failed chunks, teleports 6,000-7,000 studs out land on sand). Full numbers in docs/world/hueco/REPORT_2026-10-09.md.
+  - [ ] Generate the 5x desert once and save it (To do) — From the existing seeded desert code; stamp in Las Noches, the six scenes and the Menos Forest at fixed spots. 2 to 3 sessions.
+  - [ ] Points of interest + sandstorm edge (To do) — Something to find roughly every 1,000 studs; a permanent sandstorm at the edge turns travellers back. 1 to 2 sessions.
+  - [ ] 20-player test in a published copy (To do) — Join time, fps and server memory with 20 players spread out; teleports tested here (Studio Play cannot teleport). 1 to 2 sessions.
+
+## 09 Research: Life of a Soul Reaper
+The 9 Oct research doc, sorted into topics. Design only: nothing here is built. Every topic says what fits today's game and what clashes. Our start stays human.
+
+- [ ] **Read first: decisions and clashes** (To do, Design only (owner + ChatGPT research, 9 Oct)) — The doc's locked decisions in one list, plus a table of where it clashes with today's game and what we do about each clash.
+  > # Fits our game?
+  > Most of the doc fits. Seven things clash or need an owner call. They are in the table below and repeated in each topic.
+  > 
+  > # Where the doc clashes with today's game
+  > | Topic | The doc says | Today's game | What we do |
+  > |---|---|---|---|
+  > | Start of the game | You arrive as a soul in Rukongai and find the Academy | You start as a human in Karakura. After the school you leave your body as a Plus. Konsō leads to the Soul Reaper path; the chain running out or a Hollow catching you leads to the Hollow path | **Keep the human start.** The doc's Rukongai arrival can come after Konsō instead (owner decides) |
+  > | Academy | The opening chapter, about 80 minutes | On hold since 4 Oct | Keep as design for later. Build nothing until the owner asks |
+  > | Character slots | A strong earlier slot gives later slots a small head start | Slots share nothing | Owner decides |
+  > | Paid power change | 79 Robux instant pick (no gamble) | Plan says earned, not bought; no Robux sword rerolls | Owner decides. Free routes must always exist |
+  > | Where Hollows are born | Every new Hollow appears in Hueco Mundo; Human World Hollows arrive by Garganta | Hollows spawn and raid in Karakura; a Hollow-path player turns in Karakura | Treat Karakura Hollows as arrivals through a Garganta. Check where a new Hollow player spawns |
+  > | Dangai | Authorised Senkaimon trips are short and safe; the dangerous run is for unauthorised travel | Dangai run with the sweeper | Keep the run for unauthorised or story trips (owner decides) |
+  > | The word "focus" | Where your reiatsu goes (blade, body, technique, aura) | The 0–100 focus meter that unlocks Shikai and Bankai | Rename one before building |
+  > 
+  > # Locked decisions (the owner chose these during the research)
+  > ## World and Hollows
+  > - Every new or reborn Hollow appears in **Hueco Mundo**, never in the Human World.
+  > - Basic (Fishbone) Hollows later learn a rough Garganta to the Human World. Stronger Hollows learn routes to Rukongai.
+  > - Seireitei stays protected by its barrier. Only big events break in.
+  > - Dangai is the Soul Reaper route (Senkaimon). It is not the Hollow route.
+  > 
+  > ## Reiatsu
+  > - Release % is a share of **your own** maximum. 100% from a weak character is far smaller than 100% from a strong one.
+  > - Each player sees another's pressure **relative to their own level**. There is one real value on the server, and different visuals per player.
+  > - Huge pressure up close slows, kneels and finally floors a much weaker player. They always keep a way to escape, defend or be rescued.
+  > - Extreme, sustained pressure can kill in allowed zones. An ordinary human can die from it. Their chain breaks and they are reborn as a Hollow in Hueco Mundo.
+  > 
+  > ## Zanpakutō and slots
+  > - Every Soul Reaper gets a personal Zanpakutō and Inner World, shaped by play, preferences and choices, not only random rolls.
+  > - Character slots are **not** related (no parents or children). A strong earlier slot may give later slots a small start bonus, for game reasons only.
+  > 
+  > ## Academy (on hold)
+  > - The outside matches the owner's image: white symmetrical front, tiered gold roofs.
+  > - A busy multiplayer school with famous guest teachers. It ends with **permission to sit the exams**. The exams are not designed yet.
+  > - About 80 real minutes for the first run. Four story stages stand for six school years.
+  > - Lessons start on demand, day or night. Joining late never means waiting. NPCs fill empty seats.
+  > - About 36 players per campus server and 12 per lesson. About 100 dorm beds per campus. Roommates are optional and need everyone's yes.
+  > - A shared day/night look (24 minutes: 16 day, 8 night). Resting is optional and never skips time.
+  > - Rooms bigger and more detailed than the first concept sheets.
+  > 
+  > # Topics in this phase
+  > 1. Zanpakutō: personal choice, inner world, rebirth
+  > 2. Spiritual Legacy across character slots
+  > 3. Reiatsu release, concealment and focus
+  > 4. Seeing reiatsu relative to your level
+  > 5. Pressure: oppression, collapse and lethal exposure
+  > 6. Chain of Fate and where Hollows are born
+  > 7. Hollow travel: Garganta stages
+  > 8. Dangai, Senkaimon and time distortion
+  > 9. Academy: way in, story and timing
+  > 10. Academy: teachers and subjects
+  > 11. Academy: multiplayer lessons and day/night
+  > 12. Academy: campus, buildings and dorms
+  > 13. Bleach lore and reference links
+  > 14. Numbers to tune
+  > 15. Superseded ideas and how decisions changed
+  > 16. Before shipping: test list
+- [ ] **Zanpakutō: personal choice, inner world, rebirth** (To do, Design only (owner + ChatGPT research, 9 Oct)) — How each player's three awakening choices are picked, how Inner Worlds are built from modules, the sword spirit, growth to Bankai, and fair ways to change a power.
+  > # Fits our game?
+  > - **Fits.** Our plan already has modular powers with inner worlds and sword spirits. This topic adds **how** a player's three choices are picked, and fair ways to change a power.
+  > - **Fits.** The owner's blade workbook (first 10 blades) can be the hand-made pool the choices come from.
+  > - **Owner decides.** A paid instant change (79 Robux) clashes with "earned, not bought" and our no-Robux-reroll rule. The free routes stay either way.
+  > 
+  > # What the other games do (check again before quoting)
+  > | | Type Soul | VV: Ultimatum |
+  > |---|---|---|
+  > | Inner World | 3 preset maps: Desert, Abyss, Ichigo World. Can be rerolled | Level ~25: a white Blank World with a bell riddle, then a foggy Inner World |
+  > | Getting Shikai | Meditate, meet the spirit, beat it | Level ~35: find the spirit and fight it |
+  > | Powers | Random rolls from rarity pools; rerolls replace them | Random or preset, reroll tokens; weapon form rerolled with Experimental Hogyoku Shards |
+  > | A unique world per player? | No | Not confirmed |
+  > 
+  > **Our chance to beat them:** personal choice, a real spirit relationship, varied worlds, and fair options instead of paid random rerolls.
+  > 
+  > # Soul Imprint: six hidden traits (WORKING)
+  > Tracked from meaningful play, not from spam you can grind.
+  > | Trait | Shown by | Power ideas |
+  > |---|---|---|
+  > | Aggression | pressing, taking risks, repeated attacks | Fire, Blood, Destruction |
+  > | Precision | perfect parries, timing, placement | Lightning, Glass, Space |
+  > | Mobility | dodges, air moves, fast fights | Wind, Shadow, Teleport |
+  > | Protection | guarding allies, rescues, shields | Earth, Barriers, Restoration |
+  > | Control | traps, counters, interrupts | Ice, Gravity, Illusion |
+  > | Resolve | surviving setbacks, persistence | Metal, Adaptation, Endurance |
+  > 
+  > - Example duellist: Aggression 88, Precision 72, Mobility 63, Protection 12. Likely Lightning, Fire or Pressure.
+  > - Example tactician: Aggression 18, Precision 57, Mobility 26, Protection 94. Likely Earth, Restoration or Barriers.
+  > - Traits guide the choice. They never lock a player out of a style they like.
+  > 
+  > # How the three choices are picked (WORKING)
+  > | Input | Weight |
+  > |---|---|
+  > | What the player says they like | 40% |
+  > | How they actually fight | 25% |
+  > | Story and spirit choices | 20% |
+  > | Bounded randomness | 15% |
+  > 
+  > - Show **three** hand-made choices: 1) matches the strongest trait, 2) shows another side of the player, 3) unusual but compatible.
+  > - The player looks at each one, then plays a themed **awakening trial**. Never force a power they dislike.
+  > - Example blades (our own ideas, not final):
+  >   - **Arashi no Kiba** (Fang of the Storm): lightning duellist, ruined city in a storm. Flash Step Strike (Z), Voltage Counter (X), Thunder Fang (C).
+  >   - **Hai no Ō** (King of Ash): fire bruiser, ash battlefield. Cinder Slash, Burning Pursuit, Ash Dominion.
+  >   - **Kūhaku no Ito** (Threads of Emptiness): space controller, broken floating palace. Spatial Thread, Rift Counter, Empty Horizon.
+  > 
+  > # Personal Inner World (WORKING)
+  > Built from hand-made modules and saved per character, so it is always the same world.
+  > | Module | Options |
+  > |---|---|
+  > | Base landscape | desert, city, ocean, forest, ruins, mountains, void |
+  > | Weather | rain, snow, storm, fog, clear |
+  > | Architecture | temples, towers, broken buildings, floating platforms |
+  > | Mood | peaceful, hostile, mysterious, melancholic |
+  > | Meeting point | throne, lake, shrine, battlefield, tower |
+  > | Behaviour | shifting gravity, rising water, moving ground |
+  > 
+  > - Keep the look separate from the combat theme, but make the pair make sense. Lightning: ruined city in an endless storm. Restoration: flooded shrine and living trees.
+  > - Weather and damage change with the spirit bond and the player's state.
+  > - No need to hand-build thousands of maps: modules do it.
+  > 
+  > # The sword spirit (WORKING)
+  > - Hand-written personalities: proud, calm, deceptive, protective, and so on. Looks, dialogue and challenges match.
+  > - It remembers what you do: abandoning an ally, rescuing someone, perfect parries.
+  > - A protective spirit confronts you for abandoning allies. A precision spirit respects discipline.
+  > - Sometimes it disagrees with you, and the Inner World's mood changes. It is never a static quest-giver.
+  > 
+  > # Growth path (WORKING)
+  > - A Zanpakutō = core theme + weapon form + combat role + signature mechanic + weakness + evolution.
+  > - Steps: Asauchi → first awakening → learn the name and first trial → Shikai → bond and skill branches → inner conflict → Bankai → true resonance.
+  > - Bankai grows the same identity. It is never a random new power.
+  > - Shikai and Bankai come **after** the Academy chapter.
+  > - 12 themes × 4 forms × 4 roles × 3 specialisations = 576 combinations on paper. Not all will be ready; some need rules, animations and balance.
+  > - **Rejected:** live AI inventing moves (too hard to balance). Preferred: hand-made modules, module-built worlds, some dialogue variation.
+  > 
+  > # Changing a power: Zanpakutō Rebirth (WORKING)
+  > - The first change is **free**. Later ones come from an in-game Soul Realignment mission in the Inner World (about 20 minutes).
+  > - The **Soul Archive** keeps old blades with their bond, skills, mastery and Shikai/Bankai progress. Switching back restores them.
+  > - A second archive slot can be earned for free. Extra slots could be bought, but storage must never give a combat edge.
+  > - Try a Shikai in a test arena before choosing. Swap only in safe areas, never in the middle of PvP.
+  > - Rarity means looks, spirit or specialisation, never automatic PvP wins.
+  > - Price ideas (a proposal, not a shop): 79 R$ instant chosen change, 149 R$ extra storage, 99 R$ spirit look, 199 R$ Inner World theme. Repeat buys would be Developer Products; permanent slots would be Passes.
+  > - Avoid blind paid spins completely (Roblox rules on paid random items).
+- [ ] **Spiritual Legacy across character slots** (To do, Design only (owner + ChatGPT research, 9 Oct)) — A strong earlier character gives later slots a small head start in energy and growth. Account progress only: no family story, no skills carried over.
+  > # Fits our game?
+  > - **Clash.** Today's slots share nothing ("Nothing carries between slots"). This adds a small account-level head start. **Owner decides.**
+  > - If yes: it is account progress only, with no family story.
+  > 
+  > # The rule (LOCKED)
+  > - New slots are separate, unrelated characters. No parents, no children, no shared name.
+  > - Your best earlier slot gives the next one more starting energy and slightly faster growth, for game reasons only.
+  > - **SUPERSEDED:** slot 2 as the child of slot 1 (family tree, mixed Shinigami/Quincy genes, a time skip).
+  > 
+  > # What carries over and what never does
+  > | Carries over | Never carries over |
+  > |---|---|
+  > | Starting spiritual energy | Reiatsu control |
+  > | Training growth rate | Shikai, Bankai, the Zanpakutō itself |
+  > | Maybe a tiny max-potential bonus (open) | Inner World, sword skills, years of practice, division |
+  > 
+  > - Room for naturally gifted first characters (like Kenpachi) without a forced family or a paywall.
+  > 
+  > # Tiers (WORKING)
+  > | Best earlier slot | Next slot's starting energy | Growth bonus |
+  > |---|---|---|
+  > | Beginner | 1,000 | 0% |
+  > | Developed | 1,050 | +3% |
+  > | Strong | 1,100 | +5% |
+  > | Captain-class | 1,150 | +7% |
+  > | Exceptional | 1,200 | +10% |
+  > | Legendary | 1,250 | +12% |
+  > 
+  > - Example: slot 1 peaks at 50,000 earned energy, with Bankai and strong control. Slot 2 starts at 1,250 instead of 1,000 and grows 12% faster.
+  > - Slot 3 uses the **highest** earlier slot (say slot 2 reached 70,000). Bonuses never stack across generations.
+  > - A long-term potential bonus of up to 5% is **open** and needs balance tests.
+  > 
+  > # Stopping abuse
+  > - Judge on earned energy, stable control, training milestones and big achievements. Not top DPS, temporary buffs, pets or gear.
+  > - Only the strongest valid earlier slot counts.
+  > - Open question: switch the bonus off in ranked PvP but keep it in the open world and PvE.
+  > - A new slot gets a real advantage, never mastery.
+- [ ] **Reiatsu release, concealment and focus** (To do, Design only (owner + ChatGPT research, 9 Oct)) — Release % is a share of your own power. Formulas for output and upkeep, where the energy goes (blade, body, technique, aura), the Alt controls, HUD and sensing.
+  > # Fits our game?
+  > - **Fits.** Our plan already has concealment and a focus meter for forms.
+  > - **Clash (naming).** The doc's "focus" means **where** reiatsu goes. Ours is the 0–100 meter that unlocks Shikai and Bankai. Rename one before building (for example "channel" for the doc's idea).
+  > - **Check.** The Alt keys are a proposal. Check them against our real control list before building.
+  > 
+  > # Four separate values
+  > | Value | What it is |
+  > |---|---|
+  > | Max reserve (Rmax) | How much energy the soul holds. Grows with training, events and Legacy |
+  > | Current reserve | What is left after attacks, injury and upkeep |
+  > | Release ceiling (Pmax) | The most pressure you can safely let out. Set by reserve, control, limiters, transformations and state |
+  > | Control (C, 0 to 1) | Precision, suppression, steadiness, recovery |
+  > 
+  > Release % is always a share of **your own** Pmax. A strong character at 25% can beat a weak one at 100%.
+  > 
+  > # Formulas (WORKING, not canon)
+  > ```
+  > Pmax    = 100 × (Rmax / 1000)^0.7 × (0.6 + 0.4 × C)
+  > Pactual = Pmax × Release% / 100
+  > Upkeep per second = Rmax × 0.008 × (Release% / 100)^2   (attacks cost extra)
+  > ```
+  > | Rmax | Control | Release | Output |
+  > |---|---|---|---|
+  > | 1,000 | 0.8 | 100% | about 92 |
+  > | 10,000 | 0.8 | 100% | about 462 |
+  > | 10,000 | 0.8 | 60% | about 277 |
+  > | 10,000 | 0.8 | 25% | about 116 (beats the weak one at 100%) |
+  > 
+  > - The 0.7 power gives diminishing returns from huge reserves. Recalculate Pmax whenever reserve, control, limits or progress change.
+  > - 100% costs 0.8% of max reserve per second for anyone: 80 per second at 10,000, and 5 per second at 25%.
+  > - Below about 20% reserve, the ceiling shrinks. At 10% left it is about half.
+  > - New big power with low control means instability, wasted energy and extra strain.
+  > 
+  > # Where the energy goes (WORKING)
+  > **Auto (default):** it follows what you do. Sword swing → blade. Block → body. Flash Step → legs. Kidō → spell. Cero → Cero. Shikai → sword. Idle → balanced. No constant toggling in normal fights.
+  > 
+  > Manual modes:
+  > | Mode | Gives | Costs | Leak outward |
+  > |---|---|---|---|
+  > | Zanpakutō | Stronger blade, parries and clashes; glowing edge | Less body defence | 0.12 |
+  > | Body | Defence, stamina, movement | Weaker attacks | 0.20 |
+  > | Technique | Stronger Kidō, ranged skills, Cero | A brief drop in defence | 0.15 |
+  > | Aura | A pressure field that weighs on weaker souls | Most expensive; weaker blade | 1.0 |
+  > 
+  > - Always keep a minimum body defence, even in blade or Cero focus.
+  > - Leak values are placeholders to tune.
+  > 
+  > # Controls (WORKING proposal)
+  > | Input | Action |
+  > |---|---|
+  > | Tap Left Alt | Conceal, or restore the last output |
+  > | Hold Left Alt | Small Reiatsu overlay |
+  > | Alt + mouse wheel | Release up or down |
+  > | Alt + 1 / 2 / 3 / 4 | Blade / Body / Technique / Aura |
+  > | Alt + R | Auto |
+  > 
+  > - Outside Alt, the number keys and wheel work as normal (hotbar, zoom). WASD, Shift, Q/E/F/R stay the same.
+  > - Everything rebindable; an extra mouse button works too (Alt can clash with mouse lock or accessibility settings).
+  > - **Phone:** one Reiatsu button. Hold it for a radial focus wheel and an output slider.
+  > - **Controller:** tap D-pad down to conceal; hold for the overlay; D-pad adjusts; face buttons pick the focus. Auto first.
+  > - No big permanent HUD panels; never take over the camera.
+  > 
+  > # HUD and feel
+  > - Show release %, real output (can be hidden), the focus icon, and the reserve as its own meter.
+  > 
+  > | Release | Label |
+  > |---|---|
+  > | 0–10% | Concealed |
+  > | 11–30% | Low |
+  > | 31–60% | Controlled |
+  > | 61–85% | High |
+  > | 86–100% | Maximum |
+  > 
+  > - Labels are display only. Effects always follow real output.
+  > - Weak at 100% → small aura. Captain level → dense pressure, moving dust, sound. Exceptional → huge reach.
+  > - A charged blade can glow hard without a big outer aura.
+  > - Concealing after a full release is not instant: wind-down and a leftover signature. Attacking briefly reveals you.
+  > - Example menu: release 60%, output 277 / 462, focus Zanpakutō, reserve 8,200 / 10,000. A developer slider panel explored reserves 1,000–20,000; players don't need a big debug menu.
+  > 
+  > # Sensing (Reikaku)
+  > - Skilled sensors read the signature, rough direction, several sources and hidden ones. A trained sensor can find someone weak from far away.
+  > - Suppression helps stealth but never beats server detection or safety rules.
+  > - An enemy rising from 30% to 90% must give a readable warning.
+- [ ] **Seeing reiatsu relative to your level** (To do, Design only (owner + ChatGPT research, 9 Oct)) — One real output on the server, but each player sees it scaled to their own strength. Ratio table, aura size curve and labels.
+  > # Fits our game?
+  > - **Fits well.** Our plan already shows SP relative to the viewer (log2 of the ratio). This topic gives the exact rule, the labels and a size curve.
+  > 
+  > # The rule (LOCKED)
+  > - One real output on the server. Each player sees and hears it **scaled to their own level**.
+  > - Hits, physics and terrain are the same for everyone. Only the visuals and sound differ.
+  > 
+  > ```
+  > PerceptionRatio = pressure reaching the observer / observer's spiritual baseline
+  > ```
+  > - "Reaching" includes distance, concealment, focus direction, and sight or sensing.
+  > - Baseline = the observer's real strength and sensing, **not** their current concealed release. Hiding your own power must not make everyone else look huge.
+  > 
+  > # Examples
+  > | Source | Observer | Ratio | Feels |
+  > |---|---|---|---|
+  > | 10,000 | 100 | 100:1 | Colossal |
+  > | 10,000 | 1,000 | 10:1 | Very large |
+  > | 10,000 | 10,000 | 1:1 | Normal |
+  > | 10,000 | 100,000 | 0.1:1 | Small, faint |
+  > | 1,000 | 100 | 10:1 | Very large |
+  > | 1,000 | 1,000 | 1:1 | Normal |
+  > | 1,000 | 10,000 | 0.1:1 | Small |
+  > | 1,000 | 100,000 | 0.01:1 | Barely noticeable |
+  > 
+  > # Visual curve (prototype, not physics)
+  > - Aura radius = clamp(10 + 17 × log2(1 + ratio), 8, 61). Zero output = no aura.
+  > 
+  > | Ratio | Label |
+  > |---|---|
+  > | below 0.05 | Barely detectable |
+  > | below 0.25 | Tiny |
+  > | below 0.75 | Small |
+  > | below 1.5 | Normal |
+  > | below 4 | Powerful |
+  > | below 12 | Overwhelming |
+  > | 12 and up | Colossal |
+  > 
+  > - Grow slowly at extreme ratios so the screen stays readable.
+  > - Beginners: muffled sound, low camera, heavy air. Equals: normal controlled glow, no distortion. Stronger observers: a faint compact glow.
+  > - Body effects come from the oppression system, not from this.
+  > - Add a reduced-motion option. Attack warnings and hitboxes are identical for everyone.
+  > 
+  > # Transcendence (IDEA, rare)
+  > - Like transcendent Aizen or Ichigo: the force is obvious in the world, but weaker sensors read **nothing** or "unreadable", not a fake low number.
+  > - Rare and separate from normal scaling.
+- [ ] **Pressure: oppression, collapse and lethal exposure** (To do, Design only (owner + ChatGPT research, 9 Oct)) — How a much stronger player's pressure slows, kneels and floors a weaker one; how the weaker one can survive; Spiritual Integrity and death; effects on humans.
+  > # Fits our game?
+  > - **Fits.** A new system; nothing clashes. It needs safe zones and PvP rules before it goes live.
+  > - **Owner decides.** Who may release extreme area pressure in the Human World, and the PvP consent rules.
+  > 
+  > # How it works (WORKING)
+  > - OppressionRatio = pressure arriving at the target / the target's resistance.
+  > - Resistance = their level, control, block or body focus, protective spells, and allowed gear.
+  > - The source must **release** pressure outward. Owning 10,000 reserve while concealed or blade-focused crushes nobody.
+  > 
+  > ```
+  > Exposure = StrongPmax × Release%/100 × Leak × max(0, 1 − distance/80)^1.4
+  > Ratio    = Exposure / TargetResistance
+  > ```
+  > - Leak: aura 1.0, blade 0.12, body 0.20, technique 0.15 (placeholders). Start with an 80-stud field.
+  > - Targeted pressure on one person: stronger (idea: double), costly, must be aimed and held, clearly telegraphed, with range, visibility and cooldown limits.
+  > - Keep server cost bounded.
+  > 
+  > # Stage 1: slowing down (the approach)
+  > | Ratio | State | Move speed | Effect |
+  > |---|---|---|---|
+  > | below 1 | Unaffected | 100% | none |
+  > | 1–2 | Uneasy | 95% | heavier breathing |
+  > | 2–4 | Pressured | 80% | slower charging |
+  > | 4–8 | Oppressed | 60% | shorter dodge, weaker hits |
+  > | 8–15 | Crushed | 40% | trembling, broken focus |
+  > | 15+ | Overwhelmed | 25% | heavy slow, short staggers |
+  > 
+  > Use this for the approach. The collapse stages below take over close up. Do not build two competing movement systems.
+  > 
+  > # Stage 2: collapse (close up)
+  > | Ratio | Body |
+  > |---|---|
+  > | below 4 | Standing |
+  > | 4–8 | Unsteady |
+  > | 8–15 | Struggling, knees buckle |
+  > | about 15 | Forced to kneel, leaning on the sword |
+  > | about 30, sustained | Hands and knees, barely crawling |
+  > 
+  > - Example distances for a **huge** gap only: 30–50 studs heavy breathing; 15–30 slow, shaking hands; 8–15 knees buckle; 4–8 one knee on the sword; 0–4 hands and knees, head down, crawling. Not fixed ranges.
+  > - 1–2 seconds of dwell before a full collapse, so there is no flicker at the edge. Stay below the recovery line briefly before standing up again.
+  > - Three animations: kneel with sword support; hands and knees with one arm bracing; trying to rise and being pushed back down.
+  > - Full collapse: about 8% movement and about 15% crawling away, with heavy stamina limits. Real crawling, never a frozen lock.
+  > - Short big bursts can knock someone down briefly, never take control for good.
+  > - A suppressing captain standing right next to you causes none of this.
+  > 
+  > # How the weaker player survives
+  > - WASD steers the crawl; moving away is easier than moving closer.
+  > - Block braces, sends energy to defence and helps you rise (drains resources).
+  > - Dodge becomes an emergency spirit step out of range: big stamina cost, long cooldown, doesn't stop direct hits.
+  > - Idea: Desperate Resolve, one short burst of resistance after long pressure (cooldown).
+  > - Stronger allies can shield you. Barriers and shelters cut pressure. Distance and line of sight help.
+  > - Spawn, human hubs and safe zones: cosmetic only, or no lockdown and no lethality. No stun-lock at spawn.
+  > - A true captain should still win. Survival = run, hide, get help, conceal, time your resistance. Not equal damage.
+  > - Other effects: shorter sprint, Flash Step and jumps; slower sword recovery; dearer blocks; slower Kidō and Cero charge; shaking, hunching, dust, muffled sound. Motion settings tone down shake and distortion. Incoming attacks stay readable.
+  > 
+  > # Spiritual Integrity and death (WORKING, very rough)
+  > - A separate bar from health. It drains only under extreme, sustained exposure.
+  > - Stages: feel the presence → kneel → collapse → leaking particles → death or dispersal (normal respawn rules).
+  > 
+  > | Ratio | Result |
+  > |---|---|
+  > | below 8 | Mild |
+  > | 8–15 | Exhausting, not lethal |
+  > | 15–30 | Slow injury, possible death |
+  > | 30–50 | Fast deterioration |
+  > | 50+ | Can kill in seconds |
+  > 
+  > - Prototype time to death (far too harsh, NOT balance): spirit max(4 s, 900 / (ratio − 5)); human max(2 s, 180 / ratio); nothing below 15. Integrity = max(0, 100 × (1 − seconds exposed / time to death)).
+  > - Leaving stops the damage. Open: how fast you heal afterwards.
+  > - Add caps per source, no repeat abuse, PvP eligibility and low-level protection. PvE can be more dramatic than PvP.
+  > 
+  > # Humans and the world
+  > | Output | Ordinary humans |
+  > |---|---|
+  > | Tiny | Feel nothing |
+  > | Moderate | Dread, headaches |
+  > | Large | Distress, hard to breathe |
+  > | Extreme | Collapse |
+  > | Extraordinary, uncontrolled | Can die, leaving a Plus with a chain |
+  > 
+  > - Shown as a non-graphic blue-white particle fade, then the soul and its chain appear.
+  > - Needs real absolute output and real vulnerability, never just "100%".
+  > - No XP or loot for civilians, no farming. Reputation and political consequences.
+  > 
+  > # Example encounter
+  > A strong Soul Reaper walks in concealed. At 30% a beginner senses something is wrong. At 60% their breathing, movement and sword control slip. At 100%, up close, they kneel, then collapse onto hands and knees and try to crawl, block or escape. An equally strong player nearby just sees a controlled aura and feels nothing. No strike is needed. Lethal drain starts only past extreme sustained thresholds, in allowed zones.
+- [ ] **Chain of Fate and where Hollows are born** (To do, Design only (owner + ChatGPT research, 9 Oct)) — Extreme pressure can kill a human and break their chain; the new Hollow is always reborn in Hueco Mundo. Rescue timing, population records and the Human World limiter.
+  > # Fits our game?
+  > - **Mostly fits.** Our opening already uses the Plus, the rusting chain and Konsō.
+  > - **Check.** Where does a new Hollow-path player appear today? The doc says **always Hueco Mundo**.
+  > - **Fits, with framing.** Karakura's Hollow raids and the Garganta Rupture event can stay, as long as those Hollows came **through a Garganta** and were not born on the street.
+  > 
+  > # Canon vs our game
+  > - CANON: unburied Pluses can suffer chain Encroachment and become Hollows. Aizen's pressure destroyed fragile beings.
+  > - Pressure eating a chain is **not** a canon rule. It is our GAME addition.
+  > - LOCKED: the new Hollow is reborn in **Hueco Mundo**, not where the soul died.
+  > 
+  > # The path (LOCKED)
+  > 1. Extraordinary pressure near a living human.
+  > 2. The body dies; the Plus soul remains.
+  > 3. The chain erodes fast while exposed.
+  > 4. A Soul Reaper can still do Konsō before the last link goes.
+  > 5. If the chain breaks: Hollowfication. The soul fades out of the Human World.
+  > 6. A new Hollow appears in **Hueco Mundo only**.
+  > 7. Later it may travel back to the Human World through a Garganta.
+  > 
+  > - Normal Encroachment Hollows from Human World souls also move to Hueco Mundo.
+  > - **SUPERSEDED:** Hollows spawning locally where the soul died.
+  > - Soul Reapers, Hollows and Arrancar have no chain. Too much pressure damages their Integrity or kills them. It never turns them.
+  > 
+  > # Chain timing and rescue (WORKING)
+  > | Pressure | Chain |
+  > |---|---|
+  > | Moderate | Trembles |
+  > | Severe | Links fracture |
+  > | Overwhelming | Fast corrosion |
+  > | Point-blank, extraordinary | Breaks almost at once |
+  > 
+  > - Rescuers see a temporary chain meter (for example 18% left) and can do Konsō in time.
+  > - Stopping the pressure stops the extra corrosion. Links do not grow back.
+  > - The new Hollow's strength comes from **the soul's own potential**, not the killer's power.
+  > 
+  > # What it does to the world
+  > - New Hueco Hollows come from **population records**, not thousands of live NPCs. A record holds origin world and district, soul potential, class, spawn seed, and whether it later returns home by Garganta.
+  > - Soul Society notices reckless, unlicensed releases in the Human World: crime and reputation penalties, rescue requests, Gotei warnings, faction response.
+  > - No reward for farming the Hollows you created. Nearby Soul Reapers can do Konsō. Hollows may later raid the districts they came from.
+  > 
+  > # Human World limiter (IDEA from canon)
+  > - Captains and lieutenants work at about 20% in the Human World (Gentei Reiin) unless released (Gentei Kaijo).
+  > - In game: an authorised trip turns the limiter on. Higher classes may get containment. Dangerous approved fights allow a temporary release. Reckless release brings casualties and Soul Society consequences.
+  > - It is about jurisdiction. It never takes control away from players in safe zones.
+  > 
+  > # Example
+  > A huge uncontrolled release near people: bodies fade, Pluses with chains appear, and a rescue timer starts. A Soul Reaper may Konsō them. If not, the chains break and **new Hollows are born in Hueco Mundo**, not in the Human World. One may later come back through a Garganta to where it lived. Discipline and reputation follow. No XP farm; no permanent city destruction.
+- [ ] **Hollow travel: Garganta stages** (To do, Design only (owner + ChatGPT research, 9 Oct)) — Hollows are born in Hueco Mundo and earn travel in three stages: Human World first, then Rukongai. Seireitei stays behind its barrier.
+  > # Fits our game?
+  > - **Mostly fits.** We already have Garganta for Hollows (level 10, key 3) and a Garganta Rupture event.
+  > - **Adds** three mastery stages and direct Hueco → Rukongai trips.
+  > - **Keep** Seireitei's barrier blocking normal Garganta.
+  > 
+  > # Canon notes
+  > - Fishbone D hunts in the Human World and flees to Hueco Mundo, so even weak Hollows cross. His birthplace is never shown.
+  > - Hueco Mundo residents cross by Garganta. Advanced ways: Menos Kūmon, Arrancar Descorrer.
+  > - Sora (Acidwire): the anime shows Hollows taking him to Hueco Mundo. That is not a rule for every Hollow.
+  > - **Our rule:** every Hollow is born in Hueco Mundo anyway.
+  > 
+  > # Why Hollows travel
+  > | World | Role |
+  > |---|---|
+  > | Hueco Mundo | The only Hollow birthplace. Reishi in the air, predators, growth |
+  > | Human World | Prey and soul signatures; reached by Garganta; Hollows may return later |
+  > | Soul Society | Dense souls and strong defenders; dangerous to invade |
+  > 
+  > No player has to pass through the Human World to reach Soul Society. An upgraded Garganta can go straight from Hueco Mundo to Rukongai.
+  > 
+  > # Three Garganta stages (WORKING)
+  > | Stage | Who | What it does |
+  > |---|---|---|
+  > | I Instinctive | Fishbone level, after enough growth and a one-time Dimensional Instinct awakening | Find a weak rift, focus, hold a short stabilise. A slow, unstable tear. Few Human World spots. Cooldown |
+  > | II Controlled | A developed Hollow | Senses Soul Society's signature. Opens to chosen Rukongai sites and the Human World. Training: hold a rift steady, match signatures. Gillian is **not** required |
+  > | III Mastered | High Hollow or Arrancar | Fast, precise, stable, bigger, group transport, raids. Still cannot pass Seireitei's barrier |
+  > 
+  > - A strong but clumsy Hollow makes a huge unstable tear. A skilled one makes a small precise portal.
+  > - The owner wanted travel to come from growth, not a hard wait until Gillian.
+  > 
+  > # Soul Society defences
+  > - **Rukongai:** can be invaded by Garganta. Alerts, residents flee, Soul Reapers investigate.
+  > - **Seireitei:** Sekkiseki walls and the Shakonmaku barrier stop normal Garganta. Getting in needs a broken barrier, a coordinated invasion or a story event.
+  > - Faction event idea: strong Hollows attack an opening while Soul Reapers defend. A breach opens only that sector, and only for a while.
+  > - Canon: Negación lifting Aizen, Gin and Tōsen out at Sōkyoku Hill was exceptional. It does not mean any Fishbone can walk in.
+  > 
+  > # How it feels to use
+  > - No new permanent hotkey. Pick Garganta in the travel or ability menu, choose an unlocked place, a black tear opens in front of you, walk in.
+  > - In PvP, opening it takes concentration and strong hits interrupt it. You cannot escape every losing fight.
+  > - A bigger portal gives a bigger signature. Sensors can find it; good control hides it.
+  > - Unlocked places and precision are saved. No teleporting anywhere you like.
+  > 
+  > # The whole route
+  > Born in Hueco Mundo → grow and awaken the instinct → Human World by Garganta → learn control and Soul Society's signature → Rukongai → Seireitei only through a breach or story event. Natural and pressure-born Hollows share one population. Arrancar get advanced travel later. All of this is separate from Senkaimon and Dangai.
+- [ ] **Dangai, Senkaimon and time distortion** (To do, Design only (owner + ChatGPT research, 9 Oct)) — Safe authorised Senkaimon trips, the dangerous unauthorised run with Kōryū and the Cleaner, rare stabilised training with capped rewards, and how the worlds connect.
+  > # Fits our game?
+  > - **Small clash.** Today's Dangai is a run with the sweeper. The doc says **authorised** Senkaimon trips should be short and safe, and the run is for unauthorised or story trips. **Owner decides.**
+  > - **Fits.** Training in a stabilised Dangai can be a later, high-level activity.
+  > 
+  > # Canon notes
+  > - Dangai (the Precipice World) links Soul Society and the Human World through the Senkaimon. Hell Butterflies (Jigokuchō) guide safe trips.
+  > - Time runs about **2,000 to 1** inside (from the research conversation).
+  > - **Kōryū:** current walls that grab spiritual matter (Uryū's cape got caught; the sword was at risk).
+  > - **Kōtotsu, the Cleaner:** a huge guardian that sweeps the corridor and can destroy or displace travellers. Not a normal Hollow and not a DPS boss. Aizen destroying it was exceptional.
+  > - Isshin held the current still (Kaikyō Kotei) so Ichigo could train. Story flavour, not a beginner skill.
+  > 
+  > # Four ways to use it (WORKING)
+  > | Mode | What happens |
+  > |---|---|
+  > | Authorised Senkaimon | Safe and short. No chase every time you go on duty |
+  > | Unauthorised or unprotected | Walk it: shifting walls, sticky sections, a rumble warns of the Cleaner, escape with your movement and Shunpo. Caught = displaced or die and reset, never account loss |
+  > | Stabilised training | Rare and high level. Dangerous training with story time compression. No idle rewards |
+  > | Rare Hollow access | An advanced Garganta can sometimes break in for intercept missions. Not the normal Hollow route |
+  > 
+  > # Training and rewards
+  > - Options: output and control, Zanpakutō bond, concentration, endurance, a special awakening later.
+  > - About 10 real minutes of hard exercises stand for a long stretch of story time. Rewards are **capped**. Never 2,000× XP.
+  > - Old stabilise score (prototype): (Release% / 100) × (0.5 + Control% / 200) × (Reserve% / 100) × 100. 60+ stable, 30–59 unstable, below 30 failing.
+  > - That score ignores absolute power. A real build must also check absolute pressure, technique and energy. A beginner at 100% must not stabilise Dangai like a trained captain.
+  > 
+  > # How the worlds connect
+  > | Route | How |
+  > |---|---|
+  > | Soul Society ↔ Human World | Senkaimon through Dangai; with a butterfly it is safe |
+  > | Hueco Mundo ↔ Human World | Garganta |
+  > | Hueco Mundo ↔ Rukongai | Advanced Garganta |
+  > | Dangai | Rare Garganta encounters only; never a required Hollow route |
+  > | Seireitei | Protected by its barrier |
+  > 
+  > Keep the endpoints separate. A Hollow must never have to pass through the Human World to reach Rukongai.
+- [ ] **Academy: way in, story and timing** (To do, Design only (owner + ChatGPT research, 9 Oct)) — ON HOLD. How a new soul gets recruited in Rukongai, the entrance screening, the four-stage 80-minute first run, and the requirements to sit the exams. Bridges to our human start after Konsō.
+  > # Fits our game?
+  > - **On hold.** The owner paused the Academy on 4 Oct. This is saved design for later. Build nothing until the owner asks.
+  > - **Clash.** The doc starts you as a new soul in Rukongai. **We keep the human start.**
+  > - **Bridge (owner decides).** After Konsō, the Plus arrives in Rukongai. From there the doc's recruitment routes and the walk to the Academy work almost as written. The human opening stays first.
+  > - The doc's 80 minutes include 8 minutes of Rukongai discovery. With our human opening in front, the first session gets longer, so trim or split it.
+  > 
+  > # What the Academy chapter must do
+  > - Show a new soul exploring Rukongai, meeting people and seeing Shinigami before joining. No starting uniform or named Shikai.
+  > - A living school and the start of a career, not the whole game.
+  > - About 80 minutes on the first run, satisfying but not rushed.
+  > - It ends with **permission to sit the exams**. Exams, graduation, divisions and Bankai are out of scope for now.
+  > 
+  > # Canon references
+  > - Bleach episode 46 "Authentic Records! School of Shinigami"; manga chapter −17 "Beginning of the Death of Tomorrow"; the "Star and the Stray Dog" Rukongai flashback.
+  > - Renji and Rukia were hungry in Rukongai, a sign of spiritual power. Renji, Momo and Kira joined advanced Class 1; Rukia went to another class.
+  > - Ōnabara welcomed and supervised the advanced class. White uniforms with blue or red trim, Kidō targets (Renji struggles, Momo excels), a wooden-sword spar Renji vs Kira, senior Hisagi helping juniors, a Gotei officers' visit.
+  > - Canon school takes about **six years**, sometimes less for the talented. Arts: Zanjutsu, Hakuda, Hohō, Kidō, spirit control, Soul Reaper duties.
+  > - No full canon floor plan exists, so our building is a reconstruction.
+  > - Famous characters are **visiting guest teachers** in our version. We do not claim they taught Renji's class.
+  > 
+  > # Three ways to be recruited (WORKING)
+  > | Route | What happens |
+  > |---|---|
+  > | A: Hunger | You get hungry when neighbours don't. An elder explains strong souls feel hunger and sends you to a local Soul Reaper |
+  > | B: Accidental reiatsu | While helping someone, your energy moves things. An off-duty Shinigami comes to look |
+  > | C: Self-discovery | A recruitment poster, gossip, or asking an official about the Gotei and the Academy |
+  > 
+  > - Every route leads to: walk through the district → Recruitment Officer → a harmless spirit reading → directions → apply.
+  > - The NPC can mention high or low Legacy potential but never turns a beginner away.
+  > - No giant "JOIN ACADEMY" marker at spawn. Encourage walking the market, alleys and rumours.
+  > 
+  > # Getting in
+  > - A real road to the Academy gate and the guard checkpoint. No teleport-only first arrival.
+  > - About 3 minutes of **entrance screening**: spirit reading, a small controlled release, a reaction and target drill. This is not the final exam.
+  > - Class 1 advanced, Class 2 standard, Class 3 foundation (GAME addition). A class never caps potential (Hisagi failed entry twice, then passed).
+  > - On arrival: white uniform with blue or red accents, school record, timetable, guided tour, and an Asauchi later.
+  > - A short welcome by Ōnabara in the main hall. An older student shows the classroom, Zanjutsu hall, Hakuda hall, Hohō course, Kidō field, reiatsu chamber, library, dining and rooms. NPC students fill gaps. The map fills in as you go. No 5-minute speech; you can watch teacher demos.
+  > 
+  > # First-run timing (about 80 active minutes, WORKING)
+  > | Part | Minutes | Running total |
+  > |---|---|---|
+  > | Rukongai discovery and recruitment | 8 | 8 |
+  > | Walk, screening, admission | 5 | 13 |
+  > | Stage 1: induction, reiatsu, Asauchi | 15 | 28 |
+  > | Stage 2: Zanjutsu, Hakuda | 16 | 44 |
+  > | Stage 3: Kidō, Hohō | 16 | 60 |
+  > | Stage 4: duties, Hisagi practical, readiness | 17 | 77 |
+  > | Eligibility announcement | 3 | 80 |
+  > 
+  > - Active play time, not a server timer. Exploring, retries and friends add time.
+  > - **SUPERSEDED:** five school days and 90–110 minutes.
+  > 
+  > ## Stage by stage (minutes)
+  > - **Stage 1 (15):** 0–2 welcome; 2–5 class intro and tour; 5–9 release and control practice; 9–12 Asauchi induction and theory; 12–15 free time, home, optional rest.
+  > - **Stage 2 (16):** 0–1 registration; 1–5 Ikkaku's Zanjutsu; 5–9 Soi Fon's Hakuda; 9–12 sparring (player or NPC); 12–13 break; 13–16 dorm or home.
+  > - **Stage 3 (16):** 0–1 arrival; 1–5 Momo's Kidō; 5–9 Yoruichi's Hohō; 9–12 concentration drill; 12–13 study or social; 13–16 free.
+  > - **Stage 4 (17):** 0–1 registration; 1–4 Konsō and Hollow ID; 4–9 Hisagi's team practical; 9–13 mixed combat and control; 13–15 feedback; 15–17 back to the courtyard. Then the separate 3-minute eligibility notice.
+  > 
+  > ## Six school years without waiting
+  > - The four playable stages stand for the first year, the early years, the middle years and the last stretch before exams.
+  > - Short transitions, seasons, records and dialogue show time passing. Gifted students may finish sooner in the story.
+  > - Lesson screens show real minutes; the in-world clock is decoration. Stages don't need to match the server's day and night.
+  > 
+  > # Eligible for the exams
+  > - Needs: all core modules; safe output and concealment; basics in all four combat arts; a controlled spar; Konsō and Hollow theory; the team practical; teacher sign-off.
+  > - Weak students get catch-up lessons, never a permanent fail or a full restart.
+  > - Ōnabara confirms; names go up on the noticeboard; the student gets an admission notice. **Stop here.** No question bank, exam room, graduation, division or Bankai yet.
+- [ ] **Academy: teachers and subjects** (To do, Design only (owner + ChatGPT research, 9 Oct)) — ON HOLD. The teacher roster (canon and guest), how a lesson runs, and every beginner subject with its drills.
+  > # Fits our game?
+  > - **On hold** with the rest of the Academy.
+  > - **Check.** Famous Bleach characters as teachers need IP care before a public release, or original stand-ins.
+  > - **Fits.** The four arts match our combat kit: sword, hand-to-hand, Flash Step, Kidō.
+  > 
+  > # Teachers
+  > | Teacher | Teaches | Canon or game | Style |
+  > |---|---|---|---|
+  > | Gengorō Ōnabara | Welcome, rules, registration, progress, exam sign-off | Canon instructor | Strict, disciplined, observant |
+  > | Yoruichi Shihōin | Hohō, first steps to Shunpo | GAME guest | Vanishes and reappears behind the class; students follow her glowing footsteps |
+  > | Ikkaku Madarame | Zanjutsu | GAME guest | Stern, competitive; footwork, strikes, counters, sparring |
+  > | Soi Fon | Hakuda | GAME guest | Strict; reflexes, pressure, dodging, counters |
+  > | Momo Hinamori | Kidō | GAME guest | Incantation, stability, accurate low-energy casting |
+  > | Shūhei Hisagi | Hollow awareness, team field exercise | Canon senior student; later a GAME guest | Calm decisions, team scenarios |
+  > | Izuru Kira | Literature and haiku | OPTIONAL | Culture lesson |
+  > 
+  > - Original assistant teachers (optional, not canon): Daichi Arakawa (Zanjutsu), Sae Morita (Kidō), Tetsu Hara (Hakuda), Kaede Mizuno (Hohō), Chiyo Senda (reiatsu).
+  > - Regular staff run repeat lessons. Famous guests appear in instanced set-pieces that can repeat, with no once-a-day gate.
+  > 
+  > # How a lesson runs
+  > 1. Short gathering.
+  > 2. Teacher demo, 15–25 seconds.
+  > 3. Everyone practises at once at their own station.
+  > 4. Personal feedback and a quick retry.
+  > 5. A small final challenge.
+  > 6. Saved to the record; dismissed.
+  > 
+  > - Not "click the NPC, get XP".
+  > - Teachers react to: a missed Kidō, an energy flare, reckless attacks, a perfect parry, protecting an ally, a precise low-energy spell.
+  > - Huge natural reserves do **not** mean a top Kidō mark.
+  > - Between classes: rivalries, peer help, group spars, teacher dialogue, side activities.
+  > 
+  > # Subjects (all required unless marked optional)
+  > ## Induction and law (Ōnabara)
+  > Registration, code of conduct, timetable, the Gotei 13, divisions, duty to human souls, the buildings, safe practice. Taught through dialogue, short checks and examples. Class placement is earned and never a cap.
+  > 
+  > ## Reiryoku, reiatsu, suppression and sensing
+  > - Room: measuring platforms, training stones, meditation pads, a viewing gallery.
+  > - Learn reserve vs release vs control and recovery; set output; conceal; send energy to blade, body or technique; never flare near civilians; sense others.
+  > - Drills: hold an exact release %, hide your signature, reinforce a wooden sword, find hidden weak and strong signatures.
+  > - Big reserves make fine low control harder at first. Training steadies it.
+  > 
+  > ## Asauchi and Zanpakutō basics
+  > - A ceremony room with racks and a raised platform. Everyone gets a nameless Asauchi near the end of the first day.
+  > - Bonding and imprinting, carrying and caring for the sword, spiritual individuality. No Shikai yet.
+  > - A later quiet moment hints at the spirit and Inner World without unlocking it. No inherited weapon, no fixed personality at entry.
+  > 
+  > ## Zanjutsu (Ikkaku)
+  > - Wooden swords: stance, grip, timed strikes, block and parry, recovery, paired spars. Graded on technique, defence and accuracy, not click spam.
+  > - Sample 4-minute class: demo → land three well-timed strikes → one controlled spar.
+  > - Dojo: safe lanes, teaching dais, sword racks, viewing gallery.
+  > 
+  > ## Hakuda (Soi Fon)
+  > - Posture, punches and kicks, evasion, breaking holds, precise counters.
+  > - She attacks fast once to show, then slowly to teach. Students answer at their stations, then controlled partner rounds.
+  > - Mats, rings, dummies. Graded on timing and defence; nobody has to take big damage.
+  > 
+  > ## Hohō (Yoruichi)
+  > - Footwork, balance, spirit in the legs, bursts of speed, Shunpo basics.
+  > - Follow her glowing footsteps through timed lanes that get harder: moving blocks, platforms, simple wall-runs, high paths.
+  > - You see expert Shunpo. You don't master it in four minutes.
+  > 
+  > ## Kidō (Momo)
+  > - Concentration, incantation, spell safety, accuracy, stability.
+  > - Hadō #1 **Shō** pushes a target. Bakudō #1 **Sai** binds one. Talented students may see a **Shakkahō** (Hadō #31) demo, inspired by Renji's troubled one.
+  > - Many stations so 12 students cast at once. Accuracy and control beat explosion size.
+  > - Example: a high-Legacy student overcharges and can't aim, and Momo tells them to lower output. A low-reserve student lands a precise spell and gets the better grade. Potential and current skill are different things.
+  > 
+  > ## Hollow ID and judging power (Hisagi or a tutor)
+  > Mask, hole, hunger and signatures; why Hollows come by Garganta in our game; spotting an enemy far above you; calling it out; protecting civilians. Drill: rate threats low, medium or high, then choose retreat, shield or call for backup.
+  > 
+  > ## Konsō and the Chain of Fate
+  > Pluses, Soul Burial, the chain, Encroachment, Hollowfication risk, ethics, urgency. Link to our rule: extreme pressure can break chains, and those Hollows are reborn in Hueco Mundo. A quick aimed or contextual action, not a long cutscene.
+  > 
+  > ## Travel and Dangai safety
+  > Senkaimon, Hell Butterflies, who authorises trips, how it differs from Garganta, Kōryū and the Cleaner, rescue rules. Awareness only; one short visual or simulation. No surviving the real Dangai at school level.
+  > 
+  > ## Fieldwork and teamwork (Hisagi)
+  > Teams of three (like Renji, Momo and Kira): sense a signature, defend, cast or strike, swap roles. A strong simulated Hollow arrives and Hisagi steps in. It teaches protecting teammates, falling back and knowing your limits; no solo heroics. Real partners or NPC companions. Graded alone and as a team.
+  > 
+  > ## Culture and community (OPTIONAL)
+  > Soul Society history, Rukongai vs Seireitei life, etiquette, library revision, Kira's haiku, rivalries, social events, extra practice, night meditation. Good for immersion; not needed for the 80-minute route.
+- [ ] **Academy: multiplayer lessons and day/night** (To do, Design only (owner + ChatGPT research, 9 Oct)) — ON HOLD. On-demand lessons so nobody waits, 36 players per server and 12 per lesson, NPC classmates, flexible timetables, a shared 24-minute day with optional rest, and the systems it needs.
+  > # Fits our game?
+  > - **On hold** with the Academy.
+  > - **Fits.** The lesson rules (on demand, never wait) suit any instanced activity, not just the Academy.
+  > - **Small clash.** Our Karakura day is 40 minutes; the doc's Academy clock is 24. Pick one rule per realm.
+  > 
+  > # The problem it solves
+  > - 100+ players at peak, about 10 when quiet. Lessons must work at both.
+  > - Joining 5 minutes late must never mean waiting days, a full cycle or a full room.
+  > - **SUPERSEDED:** fixed cohorts that start and advance together.
+  > 
+  > # Servers and classes (WORKING, needs profiling)
+  > - About 36 students per campus server; about 12 players per lesson; NPCs fill seats.
+  > - Servers needed = ceil(online students / 36). Example at 100 online: 36 + 36 + 28.
+  > - One logical campus can span several servers and still keep a fixed 100-bed roster. **100 beds is not 100 players in one server.**
+  > - Test CPU, avatars, physics, particles, humanoids and teleport success before fixing numbers.
+  > 
+  > # Lessons on demand
+  > - A core lesson is about 4–5 real minutes.
+  > - Example staggered Hohō: 00:00–05:00, 02:30–07:30, 05:00–10:00, up to 12 players each plus NPC helpers.
+  > - Create rooms when needed; don't keep hundreds of empty ones open.
+  > - One student → a solo assisted lesson starts at once. 30 students → parallel rooms, time slices or instances.
+  > - The server clock never blocks a start.
+  > 
+  > ## Common cases
+  > | Case | What happens |
+  > |---|---|
+  > | Join 5 minutes late | A new instance, or join one in progress with a short recap. No restart, no waiting |
+  > | Join mid-lesson | Jump to a practice checkpoint if ready, or replay the key demo alone. Fair grading |
+  > | Leave mid-lesson | Finished drills are saved; rejoin at the unfinished one |
+  > | Only one player online | Teacher plus an NPC class: a full lesson |
+  > | The lesson already has 12 | A parallel instance or another room |
+  > | A friend wants the same lesson | Placed together if progress and space allow; never hold a lesson for them |
+  > | Different timetables | Meet at lunch, breaks, the courtyard and dorms |
+  > | Slow learner | Extra practice and tutoring; nobody else waits |
+  > | Away for a week | Nothing expires |
+  > | Rest | Never needs to match friends |
+  > 
+  > # Flexible timetable
+  > - Each student's record shows recommended next classes and the current room.
+  > - A sword fan might do Zanjutsu → Hakuda → Reiatsu. A Kidō fan might do Kidō → Hohō → Reiatsu.
+  > - Example 14-minute personal window: 0–4 subject one, 4–8 subject two, 8–11 reiatsu, 11–14 free practice. These are minutes in **your** session, not global times.
+  > - Join any lesson you're eligible for. Some need a prerequisite (reiatsu output before Kidō). Never a hard calendar lock.
+  > 
+  > # NPC classmates
+  > - Sample class: 8 players + 4 NPCs. NPCs sit, walk, raise hands, practise, react to spells, spar safely and help solo players.
+  > - Fewer or simpler NPCs when the server is busy. Nobody waits for 11 others to press ready.
+  > 
+  > # Lesson flow
+  > 1. Enter or get placed in a room, and join the current objective.
+  > 2. Short context and a 15–25 second demo. No long lecture.
+  > 3. Everyone practises at separate stations, scored on the server.
+  > 4. Corrections, quick retries, NPC partner backup.
+  > 5. A final graded drill; the micro-objectives are saved.
+  > 6. Exit; the next lesson is offered. Early finishers can socialise or practise more.
+  > 
+  > # Day and night (LOCKED: no global sleep)
+  > - One shared day/night look: **24 real minutes** (16 day, 8 night). Sync it across servers if possible so hopping servers doesn't move the sun.
+  > - **SUPERSEDED:** sleeping moves the whole server to morning; "everyone ready" days; a 10–15 second sleep that ends the school day.
+  > - Bed options: Rest (about 5–10 seconds, a small fatigue restore, cooldown), Study (records and theory), Leave. Rest never moves the clock. Roleplay and meditation are fine.
+  > - **Day:** full classrooms, guest demos, practical groups, staff in the courtyard, library open.
+  > - **Night:** lanterns, patrols, dorm social life, study, meditation, practice rooms, on-demand catch-up lessons with a night assistant.
+  > - Someone joining at 02:00 game time can start training straight away.
+  > - Academy stage 1–4 is saved per player and moves when modules are done, never by the clock.
+  > - Keep "school stage" and "campus time" clearly separate in the UI.
+  > 
+  > # HUD and record examples
+  > - Small HUD: game time 13:40, current lesson Kidō Practice, a real countdown 02:35, a progress bar, next lesson Hohō Training Ground B. The countdown informs; it never fails you. Late students get a short retry.
+  > - Student record (old 5-day mock-up): Class 2, day 4 of 5, attendance 3, Zanjutsu 74, Hakuda 61, Hohō 58, Kidō 42, Reiatsu Control 81, Knowledge 69, advice "excellent reiatsu control; Kidō needs more practice before exam eligibility". Update it to **four stages** and keep the six bars and the advice.
+  > 
+  > # Systems mentioned (names only; none exist yet)
+  > - Academy: AcademyProgressService, LessonScheduler, ClassroomManager, AcademyMatchmaker, TeacherAIService, DormitoryService, SchoolTimeService, StudentRecordService.
+  > - Wider game: SoulProfileService, ZanpakutoRegistry, SpiritService, InnerWorldService, AwakeningService, CombatService, BondService, PlayerDataService, ReiatsuInputController, ReiatsuOutputService, ReiatsuFocusService, SpiritualSensingService, ReiatsuCombatService.
+  > - Roblox: DataStore for profiles, checkpoints and rooms (UpdateAsync and session locks); MemoryStore for live lesson queues and capacity; TeleportService and reserved servers for overflow classes, dorm instances and Inner World trials; ContextActionService for the Alt modifier.
+  > - The server validates release, damage, suppression and purchases. Clients only ask and draw their own visuals. No per-frame network chatter. Movement limits are checked on the server, not by trusting WalkSpeed.
+- [ ] **Academy: campus, buildings and dorms** (To do, Design only (owner + ChatGPT research, 9 Oct)) — ON HOLD. The owner's gold-roof front as the anchor, the full building list, the interior sheets, the 100-bed dorm plan with consent-based roommates, and the 12 images in the doc.
+  > # Fits our game?
+  > - **On hold.** Siting options already exist from 4 Oct (MAP_REVIEW_2026-10-04.md: option A, inside the Seireitei to the north-north-west, about 1,000 × 1,640 studs). Waiting for the owner.
+  > - When it starts, it goes through our pipeline: contract → in-game blockout → measured gate → detail.
+  > - **Images.** Images 1–11 from the doc are in this task's References tab. Image 12 (server UI) is on "Academy: multiplayer lessons and day/night".
+  > 
+  > # Exterior: the owner's image is the anchor (LOCKED)
+  > - A monumental white, symmetrical main building. A big two-tier gold and orange roof with strongly upturned eaves and dark shadow underneath. Long rows of slim windows. Gold crest medallions on the lower walls. A small gold-roofed gate at the centre. Deep blue sky.
+  > - Make it **bigger and more detailed** than the first concepts. The owner said not to underestimate Roblox.
+  > - The broad campus map "could use some work", so treat its layout as tentative.
+  > 
+  > # Campus layout idea
+  > - A grand symmetrical front block: entrance, reception, offices, classroom wings, a central hall, several floors, tall roofs.
+  > - A stone front court with lanterns, water and paths.
+  > - Behind it: practical grounds and special buildings around open courtyards.
+  > - Two dorm wings with 100 beds in total, shared rooms and privacy.
+  > - Short walks: **10–25 seconds** between the rooms used most. No decorative maze eating the 80 minutes.
+  > - Big rooms for many avatars and effects. Wide stairs, clear doors, broad covered verandas, good sightlines.
+  > 
+  > # Building list
+  > | Area | Contents |
+  > |---|---|
+  > | Front | Ceremonial gate, covered steps, big central courtyard |
+  > | Main block | Entrance hall, reception, staff offices, classrooms A–C and more, lecture hall, library and study galleries, noticeboard |
+  > | Reiatsu chamber | Measuring core, pads, viewing gallery, meditation platforms |
+  > | Asauchi hall | Secure racks, procession aisle, demonstration platform |
+  > | Zanjutsu dojo | 8+ marked sparring lanes, gallery, wooden swords, dais |
+  > | Hakuda hall | Padded floor, rings, dummies, physical course |
+  > | Kidō field and chambers | Separate lanes, barriers, moving targets |
+  > | Hohō course | Speed lanes, platforms, height changes, timed gates |
+  > | Practical yard | Simulation spaces, preparation and briefing rooms |
+  > | Student life | Library, dining hall, lounges, gardens, courtyards |
+  > | Services | Admin, registration, infirmary, teacher offices, lockers, toilets, bathhouse, archive, a future exam hall |
+  > | Dorms | East and West wings, 50 beds each, shared spaces, garden court |
+  > 
+  > # Interior reference sheets (the newer large sheets win)
+  > - **Main core:** double-height reception with twin staircases, gold crests and banners, teacher balconies; a classroom with wide aisles, board, dais and windows; a library with tall shelves, a balcony and study clusters; a round reiatsu hall with a ringed floor, pads, a measuring core and gallery; the Asauchi hall with racks, an aisle and a lectern.
+  > - **Training:** Zanjutsu hall with a beamed roof, 8+ lanes, a raised gallery and racks; Hakuda squares, padding and dummies; Kidō launch corridors with glowing targets; a huge 3D Hohō course with towers, ramps, platforms, dash lanes and walls; a prep hall with benches, lockers, a map board and a briefing area.
+  > - **Student life:** bright traditional dorm rooms with beds, desks, lockers and partitions; single and shared versions; lounges with sofas and desks; a big dining hall; a Japanese bathhouse; corridors, balconies, stairs and garden views.
+  > - Style: timber beams, off-white walls, gold roof ridges, dark-blue crest banners, wood floors, stone paving, railings, lanterns. Clean large shapes, modular repeats, readable signs. No need to detail every brick.
+  > - The sheets are mood and function, not measured drawings. Keep weapon-training areas from spilling into the next space.
+  > 
+  > # Dorms (LOCKED: about 100 beds per campus)
+  > | Room | Rooms (both wings) | Beds |
+  > |---|---|---|
+  > | Single | 8 | 8 |
+  > | Double | 12 | 24 |
+  > | Triple | 12 | 36 |
+  > | Four-person | 8 | 32 |
+  > | **Total** | **40** | **100** |
+  > 
+  > - Per wing: 4 single, 6 double, 6 triple and 4 four-person = 20 rooms, 50 beds.
+  > - One artwork shows a different mix (16 four-person, 12 double, 12 single). That is a concept only. Decide before building; the total stays 100.
+  > - Two floors per wing was suggested, not required. Test the sizes in a blockout.
+  > 
+  > ## Where a student can live
+  > 1. Their own Rukongai home (commute; same rest and storage).
+  > 2. A dorm single, if one is free.
+  > 3. Opt-in random roommates.
+  > 4. Invite up to three friends; everyone must accept.
+  > 
+  > - No forced roommates and no Robux fee. Waiting on a request never blocks classes; there is a temporary bed meanwhile.
+  > 
+  > ## Friend requests
+  > - Pick friends or type usernames, up to four people including you. Each gets accept or decline.
+  > - The room is assigned only when **everyone** accepts. Offline friends see the invite at their next login.
+  > - You can drop people who don't answer and take a smaller room. Groups over four can ask for neighbouring rooms.
+  > - Nobody can be put into a group without consent. Change roommates later through the accommodation officer. Personal storage stays private.
+  > 
+  > ## Across servers
+  > - Saved by campus ID, room ID, bed ID and character IDs.
+  > - 100 is the roster size, not the number of players online in one server.
+  > - Going home tries to bring the roommate group into one dorm instance (teleport if needed) without touching lesson progress. Room E-12 looks the same on any server.
+  > - Never evict anyone or double-book a bed. Cross-server invites need careful handling and consent.
+  > 
+  > ## Dorm life
+  > Beds or futons, partitions, desks, wardrobes, storage, lights, personal touches. Shared lounges, a bathhouse with private stalls, washrooms, dining, snacks, gardens, notices, study corners. At night one roommate rests, one is in Kidō, one is sparring, one is out in Rukongai. Studying and chatting give no free power.
+  > 
+  > # The 12 images in the doc
+  > | # | Image | Status |
+  > |---|---|---|
+  > | 1 | The owner's original Shin'ō Academy front (832 × 540) | **Primary reference** |
+  > | 2 | Roblox-style white and gold entrance study | Accepted direction |
+  > | 3 | First full campus layout | Zoning study only; needs work |
+  > | 4 | Aerial multi-panel study 1 | Superseded as a room reference |
+  > | 5 | Aerial multi-panel study 2 | Superseded as a room reference |
+  > | 6 | Early interior sheet: main building | Layout only; detail superseded |
+  > | 7 | Early interior sheet: training | Layout only; detail superseded |
+  > | 8 | Early interior sheet: dorms | Layout only; detail superseded |
+  > | 9 | Large sheet 1: reception, class, library, reiatsu hall, Asauchi hall | **Preferred** interior direction |
+  > | 10 | Large sheet 2: Zanjutsu, Hakuda, Kidō, Hohō, prep hall | **Preferred** training direction |
+  > | 11 | Large sheet 3: dorms, lounges, dining, bathhouse, corridors | **Preferred** residential direction |
+  > | 12 | Server UI: 100 students on 36/36 + 36/36 + 28/36, 12 per lesson, zero wait | Reference |
+  > 
+  > Where an image and the text disagree, the text wins.
+- [ ] **Bleach lore and reference links** (To do, Design only (owner + ChatGPT research, 9 Oct)) — Key terms, why Ichigo is strong and why his power swings, the canon pressure scenes, every link from the doc, and the scenes to use as visual reference.
+  > # Fits our game?
+  > - Reference only. Use it to keep names and ideas accurate.
+  > - **IP.** Bleach names and art are protected. Before a public release, get permission or swap in original characters (see the test list).
+  > 
+  > # Words
+  > | Term | Meaning |
+  > |---|---|
+  > | Reiryoku | Spiritual energy: the reserve a soul holds |
+  > | Reiatsu | Spiritual pressure released from it. Big reserves can be hidden |
+  > | Reikaku | Spiritual sensing |
+  > | Asauchi | A blank sword a student slowly imprints with their soul |
+  > | Zanpakutō | The personal spirit and sword; Shikai and Bankai are its releases |
+  > | Plus | The soul of a dead human |
+  > | Chain of Fate | The chain on a Plus |
+  > | Encroachment | The chain corroding, leading to Hollowfication |
+  > 
+  > # Why Ichigo is so strong
+  > - Father Isshin Shiba: a captain from the Shiba clan. Mother Masaki: a pure-blood Quincy. The Hollow White infected Masaki before his birth, so Hollow power is woven into his Shinigami power.
+  > - No formula says how much came from each parent. His sisters Karin and Yuzu share the parents but differ a lot, so lineage is no guarantee. Kenpachi is huge talent with no known noble line.
+  > - This inspired Spiritual Legacy, but the family idea was rejected.
+  > 
+  > # Why his power swings
+  > - Fear and confidence, and his bond with Zangetsu. He couldn't cut Kenpachi until his resolve came back.
+  > - Ulquiorra notes his reiatsu jumping above his own and then far below it.
+  > - Fear of his inner Hollow blocks his Hollow power.
+  > - Old Man Zangetsu (his Quincy power) held back his Shinigami and Hollow side to protect him. Accepting the true swords opened it up.
+  > - Injury, exhaustion and spent energy lower what is available right now. Unohana saw it after a big fight.
+  > - Training and control make output steadier. Releases and limiters (Kenpachi's eyepatch, Gentei Reiin) change how much comes out.
+  > - High reiatsu helps clashes, defence, Kidō, sensing and intimidation. It never replaces technique or tactics. Felt pressure and maximum power are different things.
+  > 
+  > # Canon pressure scenes used for design
+  > - Yamamoto's targeted pressure leaves Nanao unable to move or breathe; Shunsui shields her.
+  > - Ichigo can't cut Kenpachi at first.
+  > - Transformed Aizen kills ordinary souls just by being near them.
+  > - Starrk's natural pressure kills weaker Hollows around him.
+  > 
+  > # Links
+  > - Type Soul Inner Worlds: https://type.fandom.com/wiki/Inner_Worlds
+  > - VV: Ultimatum Shinigami progression: https://progameguides.com/roblox/vv-ultimatum-shinigami-progression-guide/
+  > - Bleach episode 46 (Academy flashback): https://tv.apple.com/bs/episode/episode-46/umc.cmc.74xxk0j81dvnbuui5nlverpt5
+  > - Manga "Beginning of the Death of Tomorrow": https://bleach.fandom.com/wiki/BEGINNING_OF_THE_DEATH_OF_TOMORROW
+  > - Episode 46 screenshots: https://bleach.fandom.com/wiki/Category:Episode_46_screenshots
+  > - VIZ recap (Ichigo training in Dangai): https://www.viz.com/blog/posts/catch-up-bleach-373
+  > - Roblox docs to read: DataStoreService, MemoryStoreService, TeleportService and reserved servers, ContextActionService, server-side validation, Developer Products, Passes, paid random item rules.
+  > 
+  > # Scenes to use as visual reference
+  > - **Zanpakutō and inner worlds:** Ichigo's sideways skyscraper world and its flooded, stormy version; Old Man Zangetsu; White Zangetsu; the true dual swords.
+  > - **Pressure:** Kenpachi's aura; Ulquiorra vs Ichigo; Yamamoto and Nanao; Aizen among Karakura humans; Starrk; Ulquiorra's Cero; Getsuga Tenshō; Yoruichi's Shunpo and Shunkō; the Byakuya vs Ichigo standoff.
+  > - **Hollows and travel:** Masaki and Isshin (Everything But the Rain); the Hollow White; Fishbone D's mask and first fight; Acidwire; Pluses and chains; the black Garganta tear; Gillian Kūmon; Grimmjow's Descorrer; Aizen's escape under Negación.
+  > - **Places:** Rukongai houses; the Seireitei walls and barrier; a forest and temple world; Dangai's purple corridor, Kōryū, the Cleaner, a Hell Butterfly, Isshin's training.
+  > - **Academy:** the gold-roof front; Rukia and Renji arriving; uniforms; Ōnabara; Renji, Momo and Kira in class; Kira vs Renji wooden spar; Shakkahō targets; Hisagi mentoring; Yoruichi's Shunpo pose; Ikkaku's sword lessons; Soi Fon's Hakuda; Momo's spell demo; beamed ceilings; classroom; library; reiatsu hall; Asauchi rack; tatami rooms; dining hall and bathhouse.
+  > 
+  > # Cautions
+  > - Figures like 30:1 collapse, the 0.7 power and 79 Robux are **our** numbers, not canon.
+  > - Type Soul and VV change with updates. Re-check before quoting.
+  > - Guest teachers other than Ōnabara (and Hisagi as a senior student) are our invention.
+  > - Nothing here is real in our game until it is scripted and tested.
+- [ ] **Numbers to tune** (To do, Design only (owner + ChatGPT research, 9 Oct)) — Every placeholder number and formula from the doc in one table, with worked examples. None of them are final.
+  > # Fits our game?
+  > - These are placeholders. Every number needs a play test before it is final.
+  > 
+  > # All the numbers in one place
+  > | What | Value | Status |
+  > |---|---|---|
+  > | Academy first run | about 80 real minutes | Preferred target |
+  > | Story school stages | 4 | Preferred target |
+  > | Shared day and night | 24 minutes (16 day, 8 night) | Working |
+  > | Students per server | about 36 | Working; profile it |
+  > | Players per lesson | about 12 | Working |
+  > | Beds per campus | about 100 (50 per wing) | Owner requirement |
+  > | Dorm room mix | 8 single, 12 double, 12 triple, 8 four-person | Working; adds up to 100 |
+  > | First Asauchi | Stage 1 induction | Working |
+  > | Pressure field radius | about 80 studs | Tuning placeholder |
+  > | Full collapse | about 30:1, sustained | Tuning placeholder |
+  > | Collapse movement | 8%, or 15% crawling away | Tuning placeholder |
+  > | Legacy best start bonus | +25% energy, about +12% growth | Working tiers |
+  > | Paid instant realignment | 79 R$ | Proposal only; no shop |
+  > | Paid extra storage | 149 R$ | Proposal only; no shop |
+  > | Fastest death at extreme ratio | 2–4 second floor (old prototype) | Exploratory; needs heavy testing |
+  > 
+  > # Formulas
+  > ```
+  > Pmax         = 100 × (Rmax / 1000)^0.7 × (0.6 + 0.4 × C)
+  > Pactual      = Pmax × Release% / 100
+  > Upkeep/s     = Rmax × 0.008 × (Release% / 100)^2
+  > Perception   = pressure reaching observer / observer baseline
+  > Aura radius  = clamp(10 + 17 × log2(1 + ratio), 8, 61)
+  > Exposure     = StrongPmax × Release%/100 × Leak × max(0, 1 − dist/80)^1.4
+  > Oppression   = Exposure / target resistance
+  > Integrity    = max(0, 100 × (1 − exposedSeconds / timeToDeath))
+  > Death time   = spirit max(4, 900 / (ratio − 5)); human max(2, 180 / ratio); none below 15
+  > Dangai score = (Release/100) × (0.5 + Control/200) × (Reserve/100) × 100
+  > Servers      = ceil(online students / 36)
+  > ```
+  > 
+  > # Worked examples
+  > - Rmax 1,000 with control 0.8 → about 92 max. Rmax 10,000 with control 0.8 → about 462 max; at 25% about 116; at 50% about 231.
+  > - Against a beginner with resistance 100: a 1,000 source at full aura, point-blank, is 10:1. A 5,000 source is 50:1.
+  > - At 60 studs inside an 80-stud field, exposure drops a lot.
+  > - Blade focus (leak 0.12) cuts outward pressure hugely, but the blade stays dangerous.
+- [ ] **Superseded ideas and how decisions changed** (To do, Design only (owner + ChatGPT research, 9 Oct)) — What NOT to build, what is still open, and the 30 steps of the research conversation, so nobody revives an idea the owner dropped.
+  > # Fits our game?
+  > - Read this before building any of these systems, so nobody builds an idea the owner dropped.
+  > 
+  > # Do NOT build (SUPERSEDED)
+  > | Old idea | Replaced by |
+  > |---|---|
+  > | Slot 2 is the child of slot 1 | Unrelated slots with an account-level Spiritual Legacy |
+  > | Corrupted Pluses turn into Hollows in the Human World | All new Hollows appear in Hueco Mundo |
+  > | Five Academy days, 90–110 active minutes | About 80 minutes, four milestone stages |
+  > | Next day only after sleeping, everyone ready, or the server clock | A shared decorative clock, your own lesson progress, optional 5–10 second rest |
+  > | One time slot per class; miss it and wait a day | Rolling lessons, parallel rooms, night catch-up, saved partial progress |
+  > | Everyone takes the same class order as a cohort | Personal flexible timetables, shared where it works |
+  > | 48 beds per campus | 100 beds per campus |
+  > | Small three-room concept sheets as final interiors | Bigger, detailed Roblox-scale sheets |
+  > | **Ours (10 Oct):** start as a soul in Rukongai | **Start as a human** (today's opening) |
+  > 
+  > # Still open (needs a build or a play test)
+  > - The 80-minute route and four stages: test with new players of different skill.
+  > - 36 per server, 12 per lesson, rolling sessions: profile them.
+  > - The 24-minute clock (16/8): it must never close lessons.
+  > - Dorm mix 8/12/12/8: check whether private rooms and friend groups need spare rooms so all 100 beds stay usable.
+  > - All reiatsu formulas, curves, distances, leak values, lethal exposure and aura sizes.
+  > - Who may release extreme area pressure in the Human World; PvP consent.
+  > - Spirit dialogue depth, Zanpakutō stats and move library fit, Bankai branches.
+  > - Garganta timing and scale, challenges, Rukongai targets, Seireitei raid rules.
+  > - Upstairs Academy layouts, exact studs, room visuals.
+  > 
+  > # How the research went (9 Oct)
+  > 1. Looked at Type Soul and VV: Ultimatum Inner Worlds and how unique each player is.
+  > 2. Asked for reference images for both games.
+  > 3. Asked how they pick Zanpakutō powers, and what the best system could be.
+  > 4. Designed Soul Imprint, six traits, evolving worlds and spirits, three choices, modular powers.
+  > 5. Asked how to replace a disliked Zanpakutō, including paid convenience. Explored free realignment, the archive, previews and no blind paid spins.
+  > 6. Asked what spiritual pressure is, what raises or lowers it, and why Ichigo's swings.
+  > 7. Asked whether Ichigo's power came from his parents, and explored slot 2 inheriting from slot 1.
+  > 8. **Corrected:** slots are not relatives. Locked the account-only Spiritual Legacy.
+  > 9. Asked how players control and hide output and steer it without crowding the keys: Alt, wheel, focus, auto.
+  > 10. **Corrected:** 100% after big growth must feel much stronger. Added absolute output, upkeep, HUD examples and scaling visuals.
+  > 11. Wanted real oppression on beginners with a chance to survive: ratio, distance, suppression, shielding, emergency dodge, sensory effects.
+  > 12. Wanted close range to floor the victim: barely moving, kneeling, collapsing, crawling. Added staged animations and 15:1 and 30:1 examples.
+  > 13. Added lethal exposure: human death, the soul separating, and fatal Integrity loss.
+  > 14. **Changed:** human victims' chains break into Hollowfication instead of the soul simply vanishing.
+  > 15. **Corrected:** the new Hollow is reborn in Hueco Mundo, not the Human World.
+  > 16. Asked why Fishbone D and many Hollows are in the Human World: Garganta travel and mixed origins.
+  > 17. **Locked:** all new Hollows in Hueco Mundo; Fishbone level learns Human World travel, stronger Hollows learn Rukongai; Seireitei stays protected.
+  > 18. Asked about Dangai: Kōryū, the Cleaner, butterflies, safe Senkaimon, 2,000× time, limited training.
+  > 19. Asked how each observer should see reiatsu relative to their own level: per-player ratio, the 10,000 / 1,000 / 100 examples.
+  > 20. Began "Life of a Soul Reaper" from an untrained soul in Rukongai: recruitment, Academy, lessons, dorm or home, teachers, exam eligibility, using Renji's flashback.
+  > 21. Wanted it shorter, more fun, with famous teachers like Yoruichi: about 80 minutes, four stages, guests, practical lessons.
+  > 22. Uploaded the gold-roof front image to keep. Asked the school to handle 100 or 10 players, separate timetables, several servers and mass housing.
+  > 23. **Raised:** joining 5 minutes late must not mean waiting four days. Locked rolling, on-demand classes and saved checkpoints.
+  > 24. Asked for about 100 beds per campus and optional friend roommates with a mutual yes: 40 rooms in two 50-bed wings.
+  > 25. **Raised:** sleeping can't work with many players. Locked a shared 24-minute clock, optional rest and lessons around the clock.
+  > 26. Asked for a Roblox-friendly exterior image (symmetrical white and gold front).
+  > 27. Asked for a full campus layout image (it needed more work).
+  > 28. Asked for interior sheets. The first tries repeated outdoor maps; then smaller interior sheets.
+  > 29. **Said** the interiors were too small for Roblox. A larger, detailed three-sheet set was made.
+  > 30. Asked to put everything into one file: the doc this phase comes from.
+- [ ] **Before shipping: test list** (To do, Design only (owner + ChatGPT research, 9 Oct)) — What the doc puts in scope for later, what it leaves out, and the eleven checks to pass before any of these systems goes live.
+  > # Fits our game?
+  > - Use this as the gate list whenever one of these systems gets built.
+  > 
+  > # In scope to build later (from the doc)
+  > - Reserves, release, control and perception; focus modes and keybind profiles.
+  > - Suppression, collapse and lethal exposure.
+  > - NPC human death, chains and Hueco Mundo rebirth.
+  > - Garganta mastery and links between worlds; Dangai travel.
+  > - Soul Imprint, a living Zanpakutō spirit, a personal Inner World, fair awakening choices.
+  > - Free and earned realignment; optional Robux convenience (owner decides).
+  > - Multi-slot Spiritual Legacy (owner decides).
+  > - The Academy intro and curriculum; famous and resident teachers.
+  > - Rolling timetables, classes and NPC fill; cross-server placement and the Student Record.
+  > - The shared clock and optional rest; the 100-bed dorm roster and consent-based roommates.
+  > - Bigger Roblox-scale buildings and reference images.
+  > 
+  > # Out of scope for now
+  > - The doc does **not** assume our base code, maps, character controller, economy, skill inventory or pipelines. It is a design add-on.
+  > - Later, and only when the owner asks: the final exam, graduation, picking a division, Gotei ranks, combat balance passes, full Bankai skills.
+  > 
+  > # Checks before release
+  > 1. 36 real avatars, NPCs, ability VFX and 12-player multi-room lessons run well on **phone and PC**.
+  > 2. One student's class or checkpoint change never resets another student. Late joiners never wait real days or cycles.
+  > 3. All 100 dorm beds stay unique across servers, competing friend requests, disconnects and two offers at the same moment.
+  > 4. All core lessons can be played at night with no shared sleep or time skip.
+  > 5. A 10,000 aura looks colossal to a 100 player, normal to a 10,000 player and small to a 100,000 player, with the same server physics.
+  > 6. A weak player's 100% never looks like a strong player's 100%. No instant kills from a percentage.
+  > 7. Safe, PvP and faction zones stop low-level grief traps. Crawl, dodge and block always work.
+  > 8. Pressure-made Hollows only get Hueco Mundo spawn records. None appear in the Human World by accident.
+  > 9. Garganta unlocks and Rukongai arrivals never skip the Seireitei barrier and never need Dangai.
+  > 10. Controller and phone inputs don't clash with core controls or allow input-lock exploits.
+  > 11. Guest teachers, Bleach names and copied anime art have permission, or are replaced with originals before a public release.

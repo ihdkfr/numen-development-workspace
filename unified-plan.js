@@ -3,6 +3,8 @@
 (function(){
 'use strict';
 var L=window.NUMEN_LEGACY;if(!L)return;
+// Historical reconciliation pages remain accessible by direct link, but are not separate primary navigation destinations.
+for(var ni=NAV.length-1;ni>=0;ni--){if(NAV[ni][0]==='legacy'||NAV[ni][0]==='integration')NAV.splice(ni,1);}
 var byId=Object.fromEntries(L.items.map(function(x){return [x.id,x];}));
 var groups=[];
 L.items.forEach(function(x,i){if(x.indent!==0)return;var children=[];for(var n=i+1;n<L.items.length&&L.items[n].phase===x.phase&&L.items[n].indent>0;n++)children.push(L.items[n]);groups.push({parent:x,children:children});});

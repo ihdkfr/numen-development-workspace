@@ -19,6 +19,27 @@ var oldItems=libraryItems;
 libraryItems=function(type){var live=oldItems(type);if(type!=='combat')return live;var used=new Set(live.map(function(x){return x.id;}));return live.concat(combat.filter(function(x){return !used.has(x.id);}).map(function(x){return Object.assign({},x);}));};
 var oldItem=libraryItem;
 libraryItem=function(type,id){var saved=oldItem(type,id);if(saved.name||type!=='combat')return saved;return combat.find(function(x){return x.id===id;})||saved;};
+/* Render the old requirements inline in the standard Roadmap rows, rather than in a separate page. */
+var inherited={};
+L.items.forEach(function(x){var id=mapping(x.id);if(id)(inherited[id]||(inherited[id]=[])).push(x);});
+var previousRow=taskRow;
+taskRow=function(t,showPin){
+ var row=previousRow(t,showPin);
+ if(state.page!=='roadmap')return row;
+ var old=inherited[t.id]||[];
+ var badgeNew='<span class="badge" style="font-size:10px;margin-left:8px">New</span>';
+ if(!old.length)return row.replace('</button><div class="taskdesc">','</button>'+badgeNew+'<div class="taskdesc">');
+ var entries=old.map(function(x){
+  return '<details style="padding:9px 13px;margin:5px 0;background:var(--panel2);border-radius:8px;border-left:2px solid var(--blue)">'+
+   '<summary style="cursor:pointer;display:flex;gap:10px;align-items:center;flex-wrap:wrap"><span class="badge">Original</span><strong>'+esc(x.title)+'</strong><span class="small muted">'+esc(x.complete?'Checked in old plan':'Planned in old plan')+'</span></summary>'+
+   '<div class="small" style="white-space:pre-wrap;line-height:1.7;padding:12px 4px">'+esc(originalBody(x)||'Original child requirement; refer to the complete specification below.')+'</div>'+
+   '<div class="row wrap"><button class="btn sm" data-act="task" data-id="'+attr(t.id)+'">Open combined NUMEN task '+esc(t.id)+' →</button></div></details>';
+ }).join('');
+ return '<div class="panel" style="padding:6px 8px;margin:6px 0;border-left:3px solid var(--blue)">'+
+   row.replace('</button><div class="taskdesc">','</button>'+badgeNew+'<div class="taskdesc">')+
+   '<div style="padding:5px 10px 7px 32px"><div class="small muted" style="margin:7px 0">'+old.length+' original requirements integrated into this task · click to read full details</div>'+entries+'</div></div>';
+};
+window.numenOriginalMatches=function(id,query){var q=String(query||'').toLowerCase();return (inherited[id]||[]).some(function(x){return [x.title,x.summary,x.body,x.id].join(' ').toLowerCase().includes(q);});};
 var previousTask=taskPage;
 taskPage=function(id){
  var html=previousTask(id);

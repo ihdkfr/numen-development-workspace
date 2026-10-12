@@ -160,5 +160,5 @@ var guidance={
 '16.11':'Cero audio/sound library overlaps VFX hooks, but source/licence audit and sound design are the canonical deliverable here.',
 '17.06':'Old Cero performance tests overlap VFX but are independently verifiable; never auto-approve based on legacy checks.'
 };
-Object.keys(guidance).forEach(function(id){var g=L.taskGuidance[id]||(L.taskGuidance[id]={approvalIds:[],note:''});var line='Legacy reconciliation: '+guidance[id]+' See docs/integration/LEGACY_TO_NUMEN_DEDUPLICATION_2026-10-12.md.';if(g.note.indexOf(line)<0)g.note+=(g.note?'\\n\\n':'')+line;});
+Object.keys(guidance).forEach(function(id){var g=L.taskGuidance[id]||(L.taskGuidance[id]={approvalIds:[],note:''});var line='Legacy reconciliation: '+guidance[id]+' See docs/integration/LEGACY_TO_NUMEN_DEDUPLICATION_2026-10-12.md.';if(g.note.indexOf(line)<0)g.note+=(g.note?'\n\n':'')+line;});
 })();

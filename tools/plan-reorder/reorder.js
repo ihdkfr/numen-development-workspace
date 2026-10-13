@@ -147,7 +147,7 @@ const sum = (arr, k) => Math.round(arr.reduce((a, t) => a + (t[k] || 0), 0) * 10
 const phases = PHASES.map(p => {
   const ts = finalTasks.filter(t => t.phase_id === p.idx);
   const prev = PHASES[PHASES.indexOf(p) - 1];
-  return { idx: p.idx, title: p.title, goal: p.goal, depends: prev ? `Phase ${prev.idx} (${prev.title}) is finished.` : 'Nothing. Start here.', gate: p.gate, kind: p.kind, next_up: `Start with ${ts[0].id}: ${ts[0].title}.`, estimate_sessions: p.idx === '14' ? null : sum(ts, 'estimate_sessions'), estimate_tricky: p.idx === '14' ? null : sum(ts, 'estimate_tricky') };
+  return { idx: p.idx, title: p.title, goal: p.goal, depends: prev ? `Phase ${prev.idx} (${prev.title}) is finished.` : 'Nothing. Start here.', gate: p.gate, kind: p.kind, next_up: `${ts[0].id}: ${ts[0].title}.`, estimate_sessions: p.idx === '14' ? null : sum(ts, 'estimate_sessions'), estimate_tricky: p.idx === '14' ? null : sum(ts, 'estimate_tricky') };
 });
 
 const statusCounts = {};

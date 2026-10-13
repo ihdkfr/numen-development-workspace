@@ -1,52 +1,124 @@
 S11.01 | Check what's built: menus, sound and looks
 W: Some menus, sounds and visual polish are already in the game. They only count as done when you have played them and they work.
 1. Open Studio with the current build (see S01.01).
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Type: "Which branch has the current build from S01.01, and how do I open it in Studio with Rojo? Don't change anything."
+   - Open the game in Studio with Rojo connected, the way Claude Code told you.
 2. Play each item in the checklist.
+   - Press Play (F5) and look at the anime HUD: the on-screen bars and buttons.
+   - Try the realm lighting, photo mode and the device quality settings (called device tiers in the checklist).
+   - Open the DevPanel: check it is one panel, you can drag it, and the QUICK buttons work.
+   - Press Stop when you have tried each item.
 3. Read the Output window after each one.
+   - Open View > Output before you press Play.
+   - After each item, look for red lines in Output.
+   - If you see red text, copy it into a note on this task with the item's name.
 4. Write anything broken in a note here, or as a new task.
+   - For each problem, write what you did, what you expected and what happened.
+   - Press Save note. For a big problem, ask Claude Code to help you word it as a new task.
 5. Approve this task when everything works.
+   - Tick each checklist item that worked with no red lines in Output.
+   - If every item is ticked, press Submit for review. If not, leave it open and keep the notes.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S11.02 | Finish the HUD and menus
 W: Make the HUD (the on-screen bars and buttons) and menus clean, simple and anime-styled.
-1. Make separate HUD modes for exploring and fighting.
-2. Make the most important info easiest to see.
-3. Join menus that overlap.
-4. Guide players without lots of markers.
-5. Show status, bounty and rank clearly.
+1. Ask Claude Code to make separate HUD modes for exploring and fighting.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P8-B01 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: explore and combat HUD modes. Then stop and report."
+   - Check its report lists source change, runs, visible and verified.
+2. Ask Claude Code to make the most important info easiest to see.
+   - Type: "Do step 2 only: the ability and readability order on the HUD, most important first. Then stop and report."
+   - Play in Studio and check your health and abilities are the easiest things to read.
+3. Ask Claude Code to join menus that overlap.
+   - Type: "Do step 3 only: join menus that do the same job. Don't make another dev panel. Then stop and report."
+   - Check its report says which menus were joined.
+4. Ask Claude Code to guide players without lots of markers.
+   - Type: "Do step 4 only: objective guidance without marker spam. Then stop and report."
+   - Play in Studio and check you can find your next goal without the screen filling with markers.
+5. Ask Claude Code to show status, bounty and rank clearly, then check it yourself.
+   - Type: "Do step 5 only: status, bounty and rank presentation. Then stop and report."
+   - Play in Studio, start a fight and check the HUD warns you of danger without covering the game.
+   - Attach a capture with + Attach result and press Submit for review.
 D: The HUD warns you of danger without covering the game.
 
 S11.03 | Finish the character creator
 W: Let players make their character look how they want, without looks changing their power.
-1. Polish the human creator.
-2. Show Hollow forms and masks.
-3. Link Bankai looks to the creator.
-4. Add the wardrobe and recolours.
+1. Ask Claude Code to polish the human creator.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P8-B02 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: human creator polish. Then stop and report."
+   - Play in Studio and make a human character to try it.
+2. Ask Claude Code to show Hollow forms and masks in the creator.
+   - Type: "Do step 2 only: Hollow form and mask presentation. Then stop and report."
+   - Check its report says what changed and how it was tested.
+3. Ask Claude Code to link Bankai looks to the creator.
+   - Type: "Do step 3 only: Bankai manifestation creator integration. Then stop and report."
+   - Check its report says what changed and how it was tested.
+4. Ask Claude Code to add the wardrobe and recolours, then check looks stay fair.
+   - Type: "Do step 4 only: wardrobe and recolours. Keep power rerolls separate from cosmetics. Then stop and report."
+   - Type: "Show me proof that looks never change hitboxes or combat power. Don't change anything."
+   - Attach a capture of the creator with + Attach result and press Submit for review.
 D: Looks never change hitboxes or fighting power.
 
 S11.04 | Add all the sound and music
 W: Missing or placeholder sound is the biggest quality gap. Add real sounds and our own music everywhere.
-1. Add footsteps and hit sounds.
-2. Add movement and spiritual pressure sounds.
-3. Add Hollow sounds.
-4. Add transformation sounds.
-5. Add background sound for each realm.
-6. Add our own music, never ripped anime audio.
+1. Ask Claude Code to add footsteps and combat hit sounds.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P8-B03 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do footsteps and combat impacts only. Original or licensed sounds. Then stop and report."
+   - Ask it to list any sound IDs it still needs (marked TODO audio IDs), so you know what is missing.
+2. Ask Claude Code to add movement and spiritual pressure (Reiatsu) sounds.
+   - Type: "Now add movement arts and Reiatsu sounds. Then stop and report."
+   - Play in Studio, move around and power up, and listen for each new sound.
+3. Ask Claude Code to add Hollow sounds.
+   - Type: "Now add Hollow sounds. Then stop and report."
+   - Play in Studio near a Hollow and check you can hear it.
+4. Ask Claude Code to add transformation sounds.
+   - Type: "Now add transformation calls and effect sounds. Then stop and report."
+   - Play in Studio, transform and check the moment is not silent.
+5. Ask Claude Code to add background sound for each realm.
+   - Type: "Now add realm ambience for each realm. Then stop and report."
+   - Visit each realm in Studio and listen for its background sound.
+6. Ask Claude Code to add our own music, never ripped anime audio.
+   - Type: "Now add the original music states. Never use ripped anime audio. Then stop and report."
+   - Type: "List every big moment and say which sound plays there. Don't change anything."
+   - Check nothing on the list is silent or a placeholder, then press Submit for review.
 D: No big moment in the game is silent or uses a placeholder.
 
 S11.05 | Add camera and accessibility settings
 W: Settings for cutscene camera, screen shake, flashing and colour-blind players, without changing fight timing.
-1. Add Full, Reduced and Off cutscene camera.
-2. Add a screen shake slider.
-3. Add flash reduction.
-4. Make colours clear for colour-blind players.
-5. Fix the camera going through walls.
+1. Ask Claude Code to add Full, Reduced and Off cutscene camera.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P8-B05 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do the Full, Reduced and Off cinematic camera only. Then stop and report."
+   - Check its report says Camera Off gives no fighting advantage.
+2. Ask Claude Code to add a screen shake slider.
+   - Type: "Now add the screen shake slider. Then stop and report."
+   - Play in Studio, move the slider and check the shake gets smaller.
+3. Ask Claude Code to add flash reduction.
+   - Type: "Now add flash reduction. Then stop and report."
+   - Play in Studio with it on and use a bright move. The flash should be softer.
+4. Ask Claude Code to make colours clear for colour-blind players, and polish subtitles.
+   - Type: "Now do colour-blind readability and the subtitle and log polish. Then stop and report."
+   - Check its report says what changed and how it was tested.
+5. Ask Claude Code to fix the camera going through walls, then test it all.
+   - Type: "Now add the camera collision fallbacks. Then stop and report."
+   - Play in Studio, back up against a wall and check the camera does not go through it.
+   - Type: "Show me proof the settings change only how it looks, never fight timing. Don't change anything."
 D: Settings change only how it looks, never how fights play.
 
 S11.06 | Build stances and weapon looks
 W: Stances and sword looks let players show off their style before releasing a power, without any hidden advantage.
-1. Make stance styles that change idle poses only.
-2. Add sealed sword looks that fit the sword rules.
-3. Add carry styles for each race.
-4. Check nothing clips on custom bodies or phones.
+1. Ask Claude Code to make stance styles that change idle poses only.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch PB-B15 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: stance families that change idle animation, no timing advantage. Then stop and report."
+   - Play in Studio and check each stance only changes how you stand.
+2. Ask Claude Code to add sealed sword looks that fit the sword rules.
+   - Type: "Do step 2 only: sealed sword cosmetic variants that fit the generated Zanpakuto rules. No copied canon weapons. Then stop and report."
+   - Check its report says which looks were added.
+3. Ask Claude Code to add carry styles for each race.
+   - Type: "Do step 3 only: race carry styles and release presentation options. Then stop and report."
+   - Play in Studio as each race and look at how the sword is carried.
+4. Ask Claude Code to check nothing clips on custom bodies or phones.
+   - Type: "Do step 4 only: check clipping on custom bodies and mobile cameras. Show me captures. Then stop and report."
+   - Open the captures and look for the sword going through the body.
+   - Type: "Prove cosmetics never change reach, startup or hurtboxes. Don't change anything."
 D: Players look unique before releasing, and looks never change reach or speed.

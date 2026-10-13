@@ -1,109 +1,254 @@
 S06.01 | Cero look: locked
 W: The standard Cero (a red beam fired from the mouth or hand) is finished and locked. Nothing about its look changes unless you say "unlock the Cero".
 1. Leave the Cero's look alone.
+   - Never ask Claude Code to change the Cero's beam, bands, mouth, far end or release dressing.
+   - Only you saying "unlock the Cero" can change its look. Don't say it unless you really mean it.
+   - If Claude Code suggests a change to the look, type: "No. The Cero is locked. Leave its look alone."
 2. Use it as the standard to compare other beams with.
+   - The locked look is in the clip docs/vfx/cero_v8/video/cero_preview.mp4 in the game folder. Open it in File Explorer to watch it.
+   - When you judge a new beam, put its capture beside the standard Cero at the same size.
+   - The differences listed in CERO_DIFF_CHECKLIST.md are on purpose. They stay as they are.
 D: The Cero still looks exactly as it did when it was locked.
 
 S06.02 | Fix the Cero camera shake
 W: The screen shakes too much and too long when the Cero fires.
-1. Make one short shake when it fires.
-2. Add a tiny shake while holding.
-3. Add one shake when it hits.
-4. Shake less when you're far away.
-5. Record before and after and show Usman.
+1. Ask Claude Code to make one short shake when the Cero fires.
+   - Open Claude Code in the game folder, press Copy Claude build brief on this task and paste it in.
+   - Type: "Take a before capture from the cero_side_close preset and tell me where it is. Don't change anything."
+   - Type: "Do the release shake only: one short pulse when the Cero fires. Camera module only. Then stop and report."
+   - Check its report says only the camera module changed.
+2. Ask Claude Code to add a tiny shake while holding.
+   - Type: "Now add the small hold tremor from the spec in CERO_LOCK.md section 1. Then stop and report."
+   - Check its report says no effect on the Cero itself was touched.
+3. Ask Claude Code to add one shake and a small zoom when it hits.
+   - Type: "Now add the impact pulse and the small zoom on impact. Then stop and report."
+   - Check its report says the zoom eases back after the hit.
+4. Ask Claude Code to shake less when you're far away.
+   - Type: "Now scale the shake down with distance, full within 20 studs and zero at 80. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Record before and after and judge it yourself.
+   - Type: "Take an after capture from the cero_side_close preset and tell me where it is."
+   - Open the before and after captures and watch them side by side.
+   - Play it yourself in Studio: press Play, fire the Cero and feel the shake.
+   - Attach both captures with + Attach result, write what you think in Notes and press Submit for review.
 D: You fire the Cero and the shake feels right.
 
 S06.03 | Add the Cero sound effects
 W: The Cero has five empty sound slots. Fill them with real sounds you're allowed to use.
-1. Find the five sounds.
-2. Write down each sound's licence.
-3. Put them in the slots and set the volumes.
-4. Record from close up and 40 studs away.
+1. Find the five sounds with Claude Code's help.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Tell me exactly where and how to find the five Cero sounds: Sine sound set first, then Creator Store, then CC0 Freesound. Don't change anything."
+   - The five are Charge, Compress, Release, Travel (it must loop smoothly) and Impact.
+   - Write each sound's name and where it came from in Notes and press Save note.
+2. Ask Claude Code to write down each sound's licence.
+   - Type: "Add a licence line for each of the five sounds to assets/audio/SOURCES.md. Then stop and report."
+   - If any sound's licence is unclear, don't use it. Find another one.
+3. Ask Claude Code to put them in the slots and set the volumes.
+   - Type: "Put the five sounds in the existing Cero sound hooks, keeping the hook names, with the timings, volumes and roll-off from the brief. Sound only. Then stop and report."
+   - Check its report says nothing visual on the Cero changed.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+4. Ask Claude Code to record from close up and 40 studs away, then listen.
+   - Type: "Make two audio captures into docs/vfx/cero_v8/video/: one from the player camera, one from 40 studs away. Tell me where they are."
+   - Listen to both. The release crack should be the loudest moment, and far away should sound quieter.
+   - Attach both with + Attach result, write what you think in Notes and press Submit for review.
 D: You fire the Cero and the sounds feel right.
 
 S06.04 | Make the Cero run faster
 W: Make the Cero cheaper to run so phones keep up, without changing how it looks on PC.
-1. Reuse beam pieces instead of making new ones (pooling).
-2. Make lighter versions for phones.
-3. Compare before and after pictures on PC High.
+1. Ask Claude Code to reuse beam pieces instead of making new ones (pooling).
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "First take a before capture of the Cero on PC High from the cero_side_close preset. Tell me where it is. Don't change anything."
+   - Type: "Now pool the beam pieces and emitters. Don't change how the Cero looks. Then stop and report."
+   - Check its report says how it tested this.
+2. Ask Claude Code to make lighter versions for phones.
+   - Type: "Now make Low and Medium tiers for phones, using the mobile caps in the brief. Don't change the High tier. Then stop and report."
+   - Check its report lists what the Low and Medium tiers leave out.
+3. Ask Claude Code to compare before and after pictures on PC High.
+   - Type: "Take an after capture on PC High from cero_side_close and compare it pixel by pixel with the before capture. Tell me if anything differs."
+   - If anything differs, type: "Find what changed the High look and put it back. Then stop and report."
+   - When they match, type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach both captures with + Attach result, write the result in Notes and press Submit for review.
 D: Phones get lighter versions and the PC High picture is exactly the same.
 
 S06.05 | Check what's built: Cero and effects library
 W: The Cero and the effects library are already in the game. They only count as done when you have played them and they work.
-1. Open Studio with the current build (see S01.01).
-2. Play each item in the checklist.
+1. Open the current build in Studio (see S01.01).
+   - Read the note on S01.01 that says which build is the current one.
+   - If you're not sure, open Claude Code in the game folder and type: "Which branch is the current build and how do I open it? Don't change anything."
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
+2. Play each item in the checklist, one at a time.
+   - Press Play (F5), hold to charge the Cero and fire it at the sky, the ground and a lock-on target.
+   - Before you try /unlock cero, type to Claude Code: "What does /unlock cero do and how do I lock it again? Don't change anything."
+   - For any item you don't know how to trigger, ask Claude Code the same way, then press Stop.
 3. Read the Output window after each one.
-4. Write anything broken in a note here, or as a new task.
+   - Open View > Output while the game is playing.
+   - Look for red lines. Copy any red text into a note with the item's name.
+   - If Output is clean and the item worked, tick that item on the checklist.
+4. Write anything broken in a note here.
+   - Write what you did, what went wrong and the red Output text in Notes, then press Save note.
+   - For a bigger problem, type to Claude Code: "Write a short bug report for this problem. Don't change anything." Paste its report into a note.
 5. Approve this task when everything works.
+   - Check every checklist item has been played and ticked.
+   - If all of them work, set this task's status to Approved / done.
+   - If something failed, leave it in Needs review and make sure your note lists every problem.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S06.06 | Build the Gran Rey Cero
 W: The Gran Rey Cero is the Arrancar's blue Cero: wider and held longer. It's a recolour of the standard Cero.
-1. Add its colour, width and hold time.
-2. Record it beside the standard Cero.
-3. Add a deeper sound.
+1. Ask Claude Code to add its colour, width and hold time.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Add a Gran Rey Cero definition entry: blue, wider and held longer, as a recolour of the standard. Don't change the standard Cero. Then stop and report."
+   - Check its report says the standard Cero's definition did not change.
+2. Ask Claude Code to record it beside the standard Cero.
+   - Type: "Capture the Gran Rey Cero beside the standard Cero from the cero_side_close preset. Tell me where the captures are."
+   - Open both and look at them side by side. The Gran Rey should be blue, wider and held longer.
+3. Ask Claude Code to add a deeper sound.
+   - Type: "Add a Gran Rey sound variant: the standard sounds pitched down, with a longer travel sound. Then stop and report."
+   - Type: "Tell me exactly how to fire the Gran Rey Cero in Studio. Don't change anything." Then fire it and listen.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write what you think in Notes and press Submit for review.
 D: It sits beside the standard Cero in a recording and you approve it.
 
 S06.07 | Build the Cero Oscuras
 W: The Cero Oscuras is the Vasto Lorde's black beam with a green edge, using the same parts as the Cero.
-1. Swap the body and edge colours.
-2. Record it beside the standard Cero.
-3. Show Usman.
+1. Ask Claude Code to swap the body and edge colours.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Add a Cero Oscuras definition: the same kit with a black body and a green rim. Don't change the standard Cero. Then stop and report."
+   - Check its report says the standard Cero's definition did not change.
+2. Ask Claude Code to record it beside the standard Cero.
+   - Type: "Capture the Cero Oscuras beside the standard Cero from the cero_side_close preset. Tell me where the captures are."
+   - Open both and look at them side by side.
+3. Judge it yourself and hand it in.
+   - Type: "Tell me exactly how to fire the Cero Oscuras in Studio. Don't change anything." Then fire it in Play.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write what you think in Notes and press Submit for review.
 D: It sits beside the standard Cero in a recording and you approve it.
 
 S06.08 | Build the Bala
 W: The Bala is a short fast red shot that Hollows use a lot, so it must be cheaper to run than the Cero.
-1. Make the mouth flash and the travelling shot.
-2. Keep it about 0.3 seconds with no hold.
-3. Check it's cheaper than the Cero.
-4. Record it beside the Cero.
+1. Ask Claude Code to make the mouth flash and the travelling shot.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build the Bala: a mouth release strip and a short travelling red bolt. Don't change the standard Cero. Then stop and report."
+   - Check its report says the standard Cero's files did not change.
+2. Ask Claude Code to keep it about 0.3 seconds with no hold.
+   - Type: "Make the Bala last about 0.3 seconds from start to end, with no hold. Then stop and report."
+   - Play it in Studio. It should fire straight away, with no charging or holding.
+3. Ask Claude Code to check it's cheaper than the Cero.
+   - Type: "Compare what the Bala and the Cero cost to run, with numbers. Don't change anything."
+   - The Bala's numbers should be lower. If not, type: "Make the Bala cheaper without changing its look. Then stop and report."
+4. Ask Claude Code to record it beside the Cero.
+   - Type: "Capture the Bala beside the standard Cero from the cero_side_close preset. Tell me where the captures are."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write the cost numbers in Notes and press Submit for review.
 D: The Bala looks right and costs less than the Cero.
 
 S06.09 | Build Shakkahō, Kido #31
 W: Shakkahō is a red ball spell that bursts. Build it from the Cero's shape pieces, with no beam.
-1. Make the red ball and the burst.
-2. Record it beside the standard Cero.
-3. Show Usman.
+1. Ask Claude Code to make the red ball and the burst.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build Shakkahō: a red ball and burst from the Cero shape kit (core, slivers, rings, streaks), with no beam. Don't change the standard Cero. Then stop and report."
+   - Check its report says the standard Cero's files did not change.
+2. Ask Claude Code to record it beside the standard Cero.
+   - Type: "Capture Shakkahō beside the standard Cero from the cero_side_close preset. Tell me where the captures are."
+   - Open both and look at them side by side.
+3. Judge it yourself and hand it in.
+   - Type: "Tell me exactly how to cast Shakkahō in Studio. Don't change anything." Then cast it in Play.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write what you think in Notes and press Submit for review.
 D: You approve it beside the standard Cero.
 
 S06.10 | Build Sōkatsui, a 3D blue flame burst
 W: Sōkatsui is a violent blue flame burst with a white centre that looks right from every side, not a flat picture.
-1. Build a real 3D flame shape in Blender.
-2. Layer flame sheets and particles.
-3. Make a lighter phone version.
-4. Record it from front, back, sides and above.
+1. Ask Claude Code to build a real 3D flame shape in Blender.
+   - Open Blender first and check the Blender MCP add-on says it's connected.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build the Sōkatsui flame shape in Blender: real 3D planes or meshes with jagged lobes. Not a flat picture or a recoloured Cero beam. Then stop and report."
+   - Check its report says where the Blender file was saved.
+2. Ask Claude Code to layer flame sheets and particles.
+   - Type: "Tell me exactly what I need to import or upload for this flame, and how. Don't change anything." Then do what it says.
+   - Type: "Now layer flame sheets and particles on the shape: violent blue with a white-blue centre. Don't change the standard Cero. Then stop and report."
+3. Ask Claude Code to make a lighter phone version.
+   - Type: "Make a lighter phone version that stays within the phone budget. Then stop and report."
+   - Check its report gives the numbers for the phone version.
+4. Ask Claude Code to record it from the front, back, sides and above.
+   - Type: "Capture Sōkatsui from the front, back, both sides and above. Tell me where the captures are."
+   - Look at each capture. It should look like flame from every side, never a flat picture.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write what you think in Notes and press Submit for review.
 D: It looks like flame from every side, runs on phones and you approve it.
 
 S06.11 | Build Byakurai, Kido #4
 W: Byakurai is a thin white lightning line with no bands.
-1. Build it from the thin streak and ring pieces.
-2. Record it beside the standard Cero.
-3. Show Usman.
+1. Ask Claude Code to build it from the thin streak and ring pieces.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build Byakurai: a thin white line using only the STREAK and RING-THIN shape classes, with no bands. Don't change the standard Cero. Then stop and report."
+   - Check its report says the standard Cero's files did not change.
+2. Ask Claude Code to record it beside the standard Cero.
+   - Type: "Capture Byakurai beside the standard Cero from the cero_side_close preset. Tell me where the captures are."
+   - Open both and look at them side by side.
+3. Judge it yourself and hand it in.
+   - Type: "Tell me exactly how to cast Byakurai in Studio. Don't change anything." Then cast it in Play.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write what you think in Notes and press Submit for review.
 D: You approve it beside the standard Cero.
 
 S06.12 | Build the binding spells
 W: Build the Bakudō (binding spells) Sai #1 and Rikujōkōrō #61, which uses six beams of light.
-1. Build them from the thin ring and streak pieces.
-2. Make them sit in the world, not on the screen.
-3. Record them and show Usman.
+1. Ask Claude Code to build them from the thin ring and streak pieces.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build Sai #1 and Rikujōkōrō #61 using only the RING-THIN and STREAK shape classes. Don't change the standard Cero. Then stop and report."
+   - Check its report says the standard Cero's files did not change.
+2. Ask Claude Code to make them sit in the world, not on the screen.
+   - Type: "Make sure both spells are placed in the world, not stuck to the screen or turned to face the camera. Then stop and report."
+   - Play in Studio and walk round a bound target. The light beams should stay where they are.
+3. Ask Claude Code to record them, then judge them yourself.
+   - Type: "Capture both spells, then a second capture 60 degrees round. Tell me where the captures are."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write what you think in Notes and press Submit for review.
 D: Both binding spells work and you approve them.
 
 S06.13 | Texture variants library: done
 W: The library of effect textures (bands, bursts, streaks, rings, smoke) is made and uploaded. Keep every version.
 1. Keep every texture version.
+   - The textures live in assets/vfx/gen/ in the game folder, from band_01 to lick_01.
+   - Never delete an old version, even when a new one is better. Give a new one the next number.
+   - To make a new one, copy its prompt from docs/vfx/texture_prompts.md into ChatGPT and save the image.
+   - New textures must be uploaded to Roblox. Type to Claude Code: "Tell me exactly how to upload this texture. Don't change anything."
 2. Keep the source list up to date.
+   - Every texture has a line in SOURCES.md in the same folder.
+   - When you add one, type to Claude Code: "Add a line for this new texture to assets/vfx/gen/SOURCES.md. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
 D: All the textures and their source list are in the game repo.
 
 S06.14 | VFX rules sheet: done
 W: The rules for effects are written: no darkening the sky, neon on the core only, nothing flat facing the camera.
 1. Follow the rules for every new effect.
+   - The rules: no darkening the sky (use neon and glow instead), Neon on the core only, and nothing shaped turns to face the camera.
+   - Build from the shape classes in CERO_TIMELINE.md, like CORE, SLIVER and STREAK. The shape matters more than the name.
+   - Before you approve a new effect, type to Claude Code: "Check this effect against the VFX rules sheet and list anything that breaks it. Don't change anything."
 2. Record each effect from two angles.
+   - Type: "Capture this effect cropped beside the reference at the same scale, then a second capture 60 degrees round. Tell me where they are."
+   - In the second capture the effect should still look solid. If it looks flat or turns to face you, it breaks the rules.
+   - Attach both captures to the effect's task with + Attach result.
 D: Every new effect follows the rules sheet.
 
 S06.15 | Set effect quality levels for each device
 W: Set one high standard for effects, with Ultra, High, Medium and Low versions, so they look great without hiding the fight.
-1. Set three levels: normal hits, named moves, big finishers.
-2. Make effects react to the world.
-3. Make Ultra, High, Medium and Low settings.
-4. Add options to reduce flashing and shaking.
+1. Ask Claude Code to set three levels: normal hits, named moves, big finishers.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P8-B04 only. First set the three effect levels: restrained normal hits, named moves, then transformations and finishers. Then stop and report."
+   - More particles doesn't mean better. Check its report explains how each level looks different.
+2. Ask Claude Code to make effects react to the world.
+   - Type: "Now make effects react to the world around them. Then stop and report."
+   - Play in Studio and watch a big move hit the ground.
+3. Ask Claude Code to make Ultra, High, Medium and Low settings.
+   - Type: "Now make Ultra, High, Medium and Low settings. The standard Cero must stay pixel-identical on PC High. Then stop and report."
+   - Check its report says the standard Cero on PC High did not change.
+4. Ask Claude Code to add options to reduce flashing and shaking.
+   - Type: "Now add settings that reduce flashing and screen shake. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Test a fight on Low and on High.
+   - Type: "Tell me exactly how to switch between Low and High effects in Studio. Don't change anything."
+   - On Low, check you can still see every attack coming. On High, check effects never hide the enemy.
+   - Attach captures of both with + Attach result, write what you saw in Notes and press Submit for review.
 D: On Low you can still see every attack coming, and on High effects never hide the enemy.

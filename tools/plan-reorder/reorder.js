@@ -38,11 +38,12 @@ function parseBlocks(text) {
     if (!lines.length) continue;
     const m = lines[0].match(/^(\S+) \| (.+)$/);
     if (!m) fail('bad block header: ' + lines[0]);
-    const item = { title: m[2].trim(), why: '', steps: [], done: '' };
+    const item = { title: m[2].trim(), why: '', steps: [], how: [], done: '' };
     for (const l of lines.slice(1)) {
       if (l.startsWith('W: ')) item.why = l.slice(3).trim();
       else if (l.startsWith('D: ')) item.done = l.slice(3).trim();
-      else if (/^\d+\. /.test(l)) item.steps.push(l.replace(/^\d+\. /, '').trim());
+      else if (/^\d+\. /.test(l)) { item.steps.push(l.replace(/^\d+\. /, '').trim()); item.how.push([]); }
+      else if (l.startsWith('- ') && item.steps.length) item.how[item.how.length - 1].push(l.slice(2).trim());
       else fail('bad line in ' + m[1] + ': ' + l);
     }
     if (!item.why || !item.done || !item.steps.length) fail('incomplete block ' + m[1]);
@@ -108,6 +109,18 @@ function estimateText(best, tricky) {
 }
 const effortFor = best => best === null ? 'L' : best <= 1 ? 'S' : best <= 3 ? 'M' : 'L';
 const numbered = steps => steps.map((s, i) => `${i + 1}. ${s}`).join('\n');
+// The owner is "you" in the plan (13 Oct: "Usman is my second name").
+const WHO_FIX = {
+  'Claude Code, then Usman pushes': 'Claude Code, then you push', 'Usman plays': 'You play', 'Usman imports and uploads': 'You import and upload',
+  'Usman': 'You', 'Usman decides, Claude Code edits the docs': 'You decide, Claude Code edits the docs', 'Usman judges the renders': 'You judge the renders',
+  'Usman tests and saves': 'You test and save', 'Usman runs the round trip': 'You run the round trip', 'Claude Code bakes, Usman saves': 'Claude Code bakes, you save',
+  'Usman judges in game': 'You judge in game', 'Claude Code; Usman judges': 'Claude Code; you judge', 'Claude Code + Usman (phone and party tests)': 'Claude Code + you (phone and party tests)',
+  'Claude Code; Usman picks': 'Claude Code; you pick', 'Claude Code builds; Usman answers Q1 to Q7, picks variants, re-bakes': 'Claude Code builds; you answer Q1 to Q7, pick variants and re-bake',
+  'Claude Code; Usman answers the owner questions, picks variants and re-bakes': 'Claude Code; you answer the owner questions, pick variants and re-bake',
+  'Claude Code + Usman': 'Claude Code + you', 'Usman + Claude': 'You + Claude', 'Claude designed; Usman reviews each line': 'Claude designed; you review each line',
+  'Usman (sheets in ChatGPT) + Claude': 'You (sheets in ChatGPT) + Claude', 'Claude Code, Usman signs off by ear': 'Claude Code; you sign off by ear',
+  'ChatGPT images, uploaded by Usman': 'ChatGPT images, uploaded by you', 'Usman decides (C06)': 'You decide (C06)', 'Usman approves the flow, then Claude Code': 'You approve the flow, then Claude Code' };
+const fixWho = w => { if (WHO_FIX[w] !== undefined) return WHO_FIX[w]; if (/Usman/.test(w || '')) fail('no "who" wording for: ' + w); return w; };
 const DECISION_KEYS = new Set(['core-loop', 'version-1', 'death-rules', 'races-clans-vizard', 'money-plan', 'server-size', 'ip-names', 'maturity-draft']);
 
 function originalDetail(t) {
@@ -132,13 +145,13 @@ const tasks = ORDER.map(o => {
   const common = { id: o.id, phase_id: o.phase, phase_title: ph.title, estimate_sessions: o.best, estimate_tricky: o.tricky, estimate: estimateText(o.best, o.tricky), phase_dependencies: depends, phase_exit_gate: ph.gate };
   if (o.ref.startsWith('S')) {
     const t = OLD[o.ref], r = REWRITE[o.ref];
-    return { ...t, ...common, aliases: [o.ref], title: r.title, why: r.why, implementation_instructions: numbered(r.steps), acceptance_test: r.done, details: originalDetail(t) };
+    return { ...t, ...common, aliases: [o.ref], title: r.title, why: r.why, implementation_instructions: numbered(r.steps), step_help: r.how, acceptance_test: r.done, details: originalDetail(t), who: fixWho(t.who) };
   }
   const key = o.ref.slice(4), r = NEWTASK[o.ref];
-  return { ...common, aliases: [], key, title: r.title, priority: 'CORE', effort: effortFor(o.best), seed_status: 'todo', locked: false, why: r.why, implementation_instructions: numbered(r.steps), acceptance_test: r.done, suggested_tools: '', details: '', steps: r.steps.map((s, i) => ({ text: s, note: '', done: false, state: '', src: `new-${key}-${i + 1}` })), sources: ['Owner brief, 13 Oct 2026 plan reorder'], decisions: [], images: [], who: DECISION_KEYS.has(key) ? 'Usman' : 'Claude Code', roadmap: '' };
+  return { ...common, aliases: [], key, title: r.title, priority: 'CORE', effort: effortFor(o.best), seed_status: 'todo', locked: false, why: r.why, implementation_instructions: numbered(r.steps), step_help: r.how, acceptance_test: r.done, suggested_tools: '', details: '', steps: r.steps.map((s, i) => ({ text: s, note: '', done: false, state: '', src: `new-${key}-${i + 1}` })), sources: ['Owner brief, 13 Oct 2026 plan reorder'], decisions: [], images: [], who: DECISION_KEYS.has(key) ? 'You' : 'Claude Code', roadmap: '' };
 });
 // Keep the field order of the old tasks, with the new fields after "estimate".
-const FIELD_ORDER = ['id', 'aliases', 'key', 'phase_id', 'phase_title', 'title', 'priority', 'effort', 'seed_status', 'locked', 'why', 'implementation_instructions', 'acceptance_test', 'suggested_tools', 'phase_dependencies', 'phase_exit_gate', 'details', 'steps', 'sources', 'decisions', 'images', 'who', 'estimate', 'estimate_sessions', 'estimate_tricky', 'roadmap'];
+const FIELD_ORDER = ['id', 'aliases', 'key', 'phase_id', 'phase_title', 'title', 'priority', 'effort', 'seed_status', 'locked', 'why', 'implementation_instructions', 'step_help', 'acceptance_test', 'suggested_tools', 'phase_dependencies', 'phase_exit_gate', 'details', 'steps', 'sources', 'decisions', 'images', 'who', 'estimate', 'estimate_sessions', 'estimate_tricky', 'roadmap'];
 const ordered = tasks.map(t => { const o = {}; for (const k of FIELD_ORDER) if (k in t) o[k] = t[k]; for (const k of Object.keys(t)) if (!(k in o)) o[k] = t[k]; return o; });
 // Swap S ids for T ids in every text field (aliases keep the S id on purpose).
 const finalTasks = ordered.map(t => { const aliases = t.aliases; const x = remapDeep(t); x.aliases = aliases; return x; });
@@ -166,7 +179,7 @@ const oq = idx('Open questions for the owner');
 sections[oq].content = sections[oq].content.trimEnd() + '\n' + read('codex-open-questions-add.md').trimEnd();
 const mv = sections.findIndex(s => s.title === 'About the move (13 Oct)');
 if (mv >= 0) sections[mv].content = sections[mv].content.trimEnd() + '\n\n## Reorder (13 Oct, later the same day)\n\nThe plan was put into 14 phases done one after another, 29 tasks were added, every task was rewritten in plain English with a time estimate, and task ids changed from S01.01 style to T01.01 style. Each moved task keeps its old S id as an alias, so notes, files, checklists and history saved under the old id show on the new task. The full old-to-new table is in docs/PLAN_REORDER.md.';
-sections.splice(1, 0, { title: 'Words explained', content: read('codex-words.md').trim() });
+sections.splice(1, 0, { title: 'How to: the basics', content: read('codex-basics.md').trim() }, { title: 'Words explained', content: read('codex-words.md').trim() });
 const finalSections = sections.map(s => ({ title: s.title, content: remap(s.content).replace(/Built so far: /g, "Check what's built: ") }));
 
 function fullExport() {
@@ -177,6 +190,7 @@ function fullExport() {
     if (p.estimate_sessions !== null) out.push(`**Time:** about ${p.estimate_sessions} sessions (${p.estimate_tricky} if it gets tricky).`, '');
     for (const t of finalTasks.filter(t => t.phase_id === p.idx)) {
       out.push(`- **${t.id} ${t.title}** [${t.seed_status}, ${t.priority}${t.aliases.length ? ', was ' + t.aliases.join(', ') : ''}] ${t.why} *Done when:* ${t.acceptance_test} *Time:* ${t.estimate}.`);
+      t.implementation_instructions.split('\n').forEach((st, i) => { out.push(`  ${st}`); for (const h of (t.step_help || [])[i] || []) out.push(`     - ${h}`); });
       for (const s of t.steps || []) out.push(`  - [${s.done ? 'x' : ' '}] ${s.text}`);
     }
     out.push('', '');
@@ -185,6 +199,8 @@ function fullExport() {
 }
 const newCodex = { sections: finalSections, full: fullExport() };
 
+for (const t of finalTasks) for (const k of ['title', 'why', 'implementation_instructions', 'acceptance_test', 'who']) if (/Usman/.test(t[k] || '')) fail(t.id + ' still says Usman in ' + k);
+for (const t of finalTasks) if (/Usman/.test(JSON.stringify(t.step_help || []))) fail(t.id + ' still says Usman in its how lines');
 if (unmapped.size) fail('S ids with no new id: ' + [...unmapped].join(', '));
 
 // ---- Write ----

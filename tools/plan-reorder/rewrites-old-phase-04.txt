@@ -1,82 +1,227 @@
 S04.01 | Check what's built: spiritual power and movement
 W: Spiritual power and movement systems are already in the game. They only count as done when you have played them and they work.
-1. Open Studio with the current build (see S01.01).
-2. Play each item in the checklist.
+1. Open the current build in Studio (see S01.01).
+   - Read the note on S01.01 that says which build is the current one.
+   - If you're not sure, open Claude Code in the game folder and type: "Which branch is the current build and how do I open it? Don't change anything."
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
+2. Play each item in the checklist, one at a time.
+   - Press Play (F5) and try the first item, for example the Focus meter filling from 0 to 100.
+   - If you don't know how to trigger an item, type to Claude Code: "How do I test the Airwalk V2 in Play mode? Don't change anything."
+   - Do the same for Shunpo, the pressure ring and the pressure atmosphere, then press Stop.
 3. Read the Output window after each one.
-4. Write anything broken in a note here, or as a new task.
+   - Open View > Output while the game is playing.
+   - Look for red lines. Copy any red text into a note with the item's name.
+   - If Output is clean and the item worked, tick that item on the checklist.
+4. Write anything broken in a note here.
+   - Write what you did, what went wrong and the red Output text in Notes, then press Save note.
+   - For a bigger problem, type to Claude Code: "Write a short bug report for this problem. Don't change anything." Paste its report into a note.
 5. Approve this task when everything works.
+   - Check every checklist item has been played and ticked.
+   - If all of them work, set this task's status to Approved / done.
+   - If something failed, leave it in Needs review and make sure your note lists every problem.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S04.02 | Build Channel: where your power goes
 W: Channel picks where your spiritual power goes in a fight: blade, body, technique, aura or auto. It never touches the Focus meter.
-1. Make Auto the default, following what you do.
-2. Add the manual modes with their gains and costs.
-3. Keep some body defence in every mode.
-4. Let the server decide the mode, not the player's computer.
-5. Test it on keyboard, controller and phone.
+1. Ask Claude Code to add Channel with Auto as the default mode.
+   - Open Claude Code in the game folder, press Copy Claude build brief on this task and paste it in.
+   - Type: "Do step 1 only: add Channel with Auto as the default, following what the player does. Never touch the Focus meter. Then stop and report."
+   - Check its report says the Focus meter code did not change.
+2. Ask Claude Code to add the manual modes with their gains and costs.
+   - Type: "Now add the Blade, Body, Technique and Aura modes with the gains, costs and leak values from the brief. Then stop and report."
+   - Check its report lists what each mode gives and what it costs.
+3. Ask Claude Code to keep some body defence in every mode.
+   - Type: "Make every mode keep a minimum body defence, even Blade and Technique. Then stop and report."
+   - Check its report says where the minimum value lives, so it can be tuned later.
+4. Ask Claude Code to let the server decide the mode, not the player's computer.
+   - Type: "Make the server own the Channel mode. The player's computer only asks to change it. Then stop and report."
+   - Check its report says how it tested this.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Test it yourself on keyboard, controller and phone.
+   - Type: "Tell me exactly how to switch Channel modes on keyboard, controller and phone in Studio. Don't change anything."
+   - Open the game in Studio with Rojo, press Play and fight a test enemy in each mode.
+   - Watch the Focus meter each time you switch. It should never move.
+   - Write what each mode changed in Notes, attach a capture with + Attach result and press Submit for review.
 D: In a test fight each mode changes what it should, and Focus never changes.
 
 S04.03 | Build reserve, release and control values
 W: Spiritual power uses four numbers: max reserve, current reserve, release limit and control. Release % is always a share of your own limit.
-1. Add the four values to the server.
-2. Add the formulas behind an on/off switch.
-3. Make every number easy to tune.
-4. Recalculate the limit when your stats change.
+1. Ask Claude Code to add the four values to the server.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: add max reserve, current reserve, release ceiling and control as server values. Then stop and report."
+   - Check its report says which files changed.
+2. Ask Claude Code to add the formulas behind an on/off switch.
+   - Type: "Now add the Pmax, Pactual and upkeep formulas from the brief behind a feature switch that starts off. Then stop and report."
+   - A feature switch is a setting that turns new code on or off without deleting it.
+   - Check its report names the switch.
+3. Ask Claude Code to make every number easy to tune.
+   - Type: "Put every number in these formulas in one tuning config, so they can change without code changes. Then stop and report."
+   - Type: "Which file holds the tuning numbers? Don't change anything." Write the file name in Notes.
+4. Ask Claude Code to recalculate the limit when your stats change.
+   - Type: "Recalculate the release ceiling whenever reserve, control or progress change. Low reserve should shrink it. Then stop and report."
+   - Check its report says low reserve shrinks the ceiling.
+5. Ask Claude Code to run the strong against weak test.
+   - Type: "Test Rmax 10,000 at 25% against Rmax 1,000 at 100%, both with control 0.8. Tell me both outputs."
+   - The strong one should give about 116 and the weak one about 92.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Write both numbers in Notes and press Submit for review.
 D: In a test, a strong character at 25% beats a weak one at 100%.
 
 S04.04 | Build hiding and sensing spiritual pressure
 W: Each player feels another's spiritual pressure scaled to their own strength. Players can hide their pressure, but never fully from the server.
-1. Use the strength ratio table from the research.
-2. Scale the aura size by that ratio.
-3. Make hiding after a full release take time.
-4. Warn players when someone's pressure jumps up.
+1. Ask Claude Code to use the strength ratio table from the research.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: add the perception ratio from the brief, using the viewer's real strength, not their concealed release. Then stop and report."
+   - Check its report says hits and damage are the same for everyone. Only looks and sound change.
+2. Ask Claude Code to scale the aura size by that ratio.
+   - Type: "Now scale the aura size with the curve and labels in the brief, from Barely detectable to Colossal. Then stop and report."
+   - Check its report says zero output means no aura at all.
+3. Ask Claude Code to make hiding after a full release take time.
+   - Type: "Make concealing after a full release slow, with a wind-down and a leftover signature. Attacking briefly reveals you. Then stop and report."
+   - Check its report says the server can still detect hidden players.
+4. Ask Claude Code to warn players when someone's pressure jumps up.
+   - Type: "Add a clear warning when an enemy rises from 30% to 90% release. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Test it with two characters of different strength.
+   - Type: "Tell me exactly how to test two characters of different strength in Studio. Don't change anything."
+   - Follow its steps and take a capture from each character's view of the same aura.
+   - Attach both captures with + Attach result, write what you saw in Notes and press Submit for review.
 D: Two test characters of different strength see the same aura differently.
 
 S04.05 | Build pressure that floors weak players
 W: Huge spiritual pressure close up slows a much weaker player, makes them kneel, then crawl. There is always a fair way out.
-1. Make distance and time decide the stage, 1 to 8.
-2. Give the weaker player an escape, defence or rescue.
-3. Protect new players in safe areas.
-4. Let the server check everything.
+1. Ask Claude Code to make distance and time decide the stage, 1 to 8.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: set the pressure stage from distance and time, using the exposure formula and 80-stud field in the brief. Then stop and report."
+   - Check its report mentions the short wait before a full collapse, so the edge doesn't flicker.
+2. Ask Claude Code to give the weaker player an escape, defence or rescue.
+   - Type: "Now add the ways out from the brief: crawling away, blocking to brace, an emergency spirit step and rescue by allies or barriers. Then stop and report."
+   - Check its report says crawling is real movement, never a frozen lock.
+3. Ask Claude Code to protect new players in safe areas.
+   - Type: "Make spawn, human hubs and safe zones cosmetic only: no lockdown, no death and no stun-lock. Then stop and report."
+   - Who may use extreme pressure in the Human World, and the PvP consent rules, are your decision. Write your answer in Notes and press Save note.
+4. Ask Claude Code to make the server check everything.
+   - Type: "Make the server check every stage, escape and damage, with caps per source and low-level protection. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Test a captain-level character against a beginner.
+   - Type: "Tell me exactly how to test a captain-level character against a beginner, inside and outside a safe zone. Don't change anything."
+   - Play it: outside the safe zone the beginner should kneel, then crawl, and still get away.
+   - Inside the safe zone nothing should floor the beginner.
+   - Attach captures with + Attach result, write what happened in Notes and press Submit for review.
 D: A captain-level test character floors a beginner outside safe areas, and the beginner can crawl away.
 
 S04.06 | Check the spiritual power controls
 W: The proposed Alt-key controls might clash with keys the game already uses. Check before building them.
-1. List every key and button the game uses now.
-2. Check the Alt keys, phone wheel and controller pad against it.
-3. Suggest the final controls to Usman.
-4. Make every control changeable by the player.
-D: No controls clash and Usman has approved the final layout.
+1. Ask Claude Code to list every key and button the game uses now.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "List every keyboard, mouse, controller and phone input the game uses now, as a table. Don't change anything."
+   - Copy the table into Notes and press Save note.
+2. Ask Claude Code to check the Alt keys, phone wheel and controller pad against it.
+   - Type: "Check the proposed Alt keys, phone Reiatsu wheel and controller D-pad against that table. Include mouse lock and accessibility settings. List every clash. Don't change anything."
+   - Read the list of clashes.
+3. Ask Claude Code to suggest the final controls, then decide yourself.
+   - Type: "Suggest a final control layout with no clashes, as a table. Don't change anything."
+   - Read it and write in Notes whether you approve it or what to change, then press Save note.
+4. Ask Claude Code to make every control changeable by the player.
+   - Type: "Make every spiritual power control rebindable by the player, using the layout I approved. Then stop and report."
+   - Play in Studio, change one key in the settings and check the new key works.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+D: No controls clash and you have approved the final layout.
 
 S04.07 | Finish Shunpo, steps 3 to 6
 W: Shunpo (the Shinigami flash step) needs its last four steps: direction from the camera, vanishing, afterimages, chaining and mastery.
-1. Do one Shunpo step per session, in order.
-2. Test each step in play.
-3. Show Usman before starting the next one.
+1. Ask Claude Code to do batch SHUNPO-03: animation, camera and sound.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch SHUNPO-03 only. Read docs/combat/SHUNPO_V3.md first. Then stop and report."
+   - Play it with effects off. You should still tell the direction from the body pose alone.
+   - If it passes, type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+2. In the next session, ask Claude Code to do batch SHUNPO-04: combat.
+   - Paste the brief again and type: "Run batch SHUNPO-04 only. Then stop and report."
+   - Play against a test enemy. An attack pressed during Shunpo should start when you reappear.
+   - Check nobody can be hit by an invisible attack, then commit the same way.
+3. In the next session, ask Claude Code to do batch SHUNPO-05: chaining and mastery.
+   - Paste the brief again and type: "Run batch SHUNPO-05 only. Then stop and report."
+   - Hold Q and steer forward, right, back, then left. It should follow you and never go forward on its own.
+   - If it passes, commit the same way.
+4. In the next session, ask Claude Code to do batch SHUNPO-06: polish and stress test.
+   - Paste the brief again and type: "Run batch SHUNPO-06 only. Tell me exactly how you tested 10 and 20 Shunpo users. Then stop and report."
+   - Check its report: no sliding, no ghosts left behind, no getting stuck in walls, no false anti-cheat kicks.
+5. Judge each batch yourself before starting the next one.
+   - After each batch, write in Notes what passed or failed and press Save note.
+   - Attach a capture of each batch with + Attach result.
+   - When all four pass, press Submit for review.
 D: Each step passes its test when you play it.
 
 S04.08 | Finish Airwalk, steps 3 to 7
 W: Airwalk lets you stand on spirit particles in the air. It needs smooth landing, animations, effects, sound and phone controls.
-1. Do one Airwalk step per session, in order.
-2. Add the catch and descent.
-3. Add animations, effects and sound.
-4. Make it work with combat and Shunpo.
-5. Test on controller and phone.
+1. Play-check the catch and descent from batches 01 and 02 first.
+   - Open the game in Studio with Rojo and press Play.
+   - Jump, hold Space to stand in the air, release, then double-tap Space to fall.
+   - From high up, double-tap to fall and hold Space. You should be caught smoothly, with no snap or jitter.
+   - Write what you found in Notes and press Save note.
+2. Ask Claude Code to do batch AIRWALK-03: animations.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch AIRWALK-03 only. Read docs/combat/AIRWALK_V2.md first. Then stop and report."
+   - Play with effects off and look from the side. You should see footing, rising, descending, falling and catching.
+   - If it passes, type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+3. In the next session, ask Claude Code to do batch AIRWALK-04: effects and sound.
+   - Paste the brief again and type: "Run batch AIRWALK-04 only. Then stop and report."
+   - Play it. You should see small rings at your feet and no glowing platforms, circles or auras.
+   - If it feels spiritual but understated, commit the same way.
+4. In the next session, ask Claude Code to do batch AIRWALK-05: combat and Shunpo.
+   - Paste the brief again and type: "Run batch AIRWALK-05 only. Then stop and report."
+   - Stand in the air, fight, then Shunpo sideways. You should still be standing in the air afterwards.
+   - Get launched by a strong hit and catch yourself. Commit if there are no state bugs.
+5. In the next session, ask Claude Code to do batch AIRWALK-06: controller and phone.
+   - Paste the brief again and type: "Run batch AIRWALK-06 only. Tell me exactly how to test controller and phone in Studio. Then stop and report."
+   - Follow its test steps. On controller, A jumps, hold A rises and double-tap A turns Airwalk off.
+6. In the next session, ask Claude Code to do batch AIRWALK-07: stress test.
+   - Paste the brief again and type: "Run batch AIRWALK-07 only. Then stop and report."
+   - Check its report: no endless climbing, no jitter, no leftover effects and no hover timer coming back.
+   - Attach captures of each batch with + Attach result, write results in Notes and press Submit for review.
 D: Each step passes its test when you play it.
 
 S04.09 | Build one movement system for every form
 W: Make one shared movement system (walk, sprint, jump, fall, wall run) that every playable form plugs into.
-1. Set the rules for walking, sprinting, jumping and falling.
-2. Add wall and rooftop movement.
-3. Build the movement states and animation markers.
-4. Leave room for each race's special moves.
+1. Ask Claude Code to set the rules for walking, sprinting, jumping and falling.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B01 only. Do part 1 first: walk, sprint, jump, land, fall, turn and air-control standards. Then stop and report."
+   - Check its report says which movement modules changed.
+2. Ask Claude Code to add wall and rooftop movement.
+   - Type: "Now do part 2: wall interaction and rooftop movement. Then stop and report."
+   - Play in Studio and run along a rooftop. Look in View > Output for red lines.
+3. Ask Claude Code to build the movement states and animation markers.
+   - Type: "Now do part 3: the movement state machine and animation markers. Then stop and report."
+   - An animation marker is a named moment in an animation, like a footstep, that code can react to.
+4. Ask Claude Code to leave room for each race's special moves.
+   - Type: "Now do part 4: hooks for each race's own moves. Don't reuse one dash animation for every race. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Play two different forms and compare them.
+   - Type: "Which forms can I test this with in Studio, and how? Don't change anything."
+   - Play each form. They should use the same controls but move in their own way.
+   - Write what you saw in Notes, attach a capture with + Attach result and press Submit for review.
 D: Every form uses the same system but still moves in its own way.
 
 S04.10 | Build each race's fast movement
 W: Give each race its own fast move: Shunpo, Sonído, Hirenkyaku and Bringer Light. Each should look and feel different.
-1. Polish Shunpo.
-2. Build Sonído for Hollows and Arrancar.
-3. Build Hirenkyaku and Bringer Light.
-4. Add special movement for Hollow body types.
-5. Allow flying and wall moves only for forms that should have them.
+1. Ask Claude Code to polish Shunpo for this batch.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B03 only. Do Shunpo first, keeping the SHUNPO V3 work. Then stop and report."
+   - Check its report says what changed in Shunpo.
+2. Ask Claude Code to build Sonído for Hollows and Arrancar.
+   - Type: "Now do Sonído. It must not be a recoloured Shunpo. Then stop and report."
+   - Play it in Studio with effects off. It should still look different from Shunpo.
+3. Ask Claude Code to build Hirenkyaku and Bringer Light.
+   - Type: "Now do Hirenkyaku, then Bringer Light. No recoloured universal dash. Then stop and report."
+   - Check its report says how each one moves differently, not just how it looks.
+4. Ask Claude Code to add special movement for Hollow body types.
+   - Type: "Now add movement that fits each Hollow and Adjuchas body shape. Then stop and report."
+   - Check its report lists which body types got which movement.
+5. Ask Claude Code to allow flying and wall moves only for the right forms.
+   - Type: "Now limit flying, gliding and wall movement to the forms that should have them. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+6. Test every fast move with effects switched off.
+   - Type: "Tell me exactly how to switch effects off and try each fast move in Studio. Don't change anything."
+   - Play each move. You should tell which is which from the movement alone.
+   - Attach captures with + Attach result, write what you saw in Notes and press Submit for review.
 D: With effects switched off, you can still tell which move is which.

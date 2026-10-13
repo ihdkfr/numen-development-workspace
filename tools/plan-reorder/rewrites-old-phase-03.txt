@@ -1,157 +1,384 @@
 S03.01 | Check Blender can send models to Studio
 W: Before building lots of models, check one test bone plate goes from Blender (the 3D modelling tool) into Studio and sticks to a bone.
-1. Make one test plate in Blender with a script.
-2. Export it.
+1. Ask Claude Code to make one test plate in Blender with a script.
+   - Open Blender first and check the Blender MCP add-on says it's connected.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: make one test bone plate in Blender with a script. Then stop and report."
+   - You should see the plate appear in the Blender window.
+2. Ask Claude Code to export it.
+   - Type: "Do step 2 only: export the test plate for Studio. Tell me the file name and where it is. Then stop."
+   - Check its report names one file and its folder.
 3. Bring it into Studio with RBXMonkey (the import tool).
-4. Weld it to a bone and test it moves.
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
+   - Type: "Tell me exactly how to bring this plate into Studio with RBXMonkey, click by click. Don't change anything."
+   - Follow its steps yourself. You should see the plate in the Explorer and in the 3D view.
+   - If an error appears, copy it and paste it to Claude Code.
+4. Ask Claude Code to weld it to a bone, then test that it moves.
+   - Type: "Do step 4 only: weld the test plate to one bone in Studio. Then stop and report which bone."
+   - Press Play (F5) and watch the plate. It should move with the bone, not float or fall off.
+   - Open View > Output and look for red lines. Press Stop.
+   - Take a capture, attach it with + Attach result and write pass or fail in Notes.
 D: The test plate shows in Studio and moves with the bone.
 
 S03.02 | Check what's built: models waiting for upload
 W: Some models and animations are made but not in the game yet. Only you can import or upload them.
-1. Import or upload each item in the checklist.
-2. Play each one in Studio.
+1. Import or upload each item in the checklist yourself.
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Copy the checklist on this task and paste it in. Type: "For each item, tell me the exact file and how to import or upload it in Studio. Don't change anything."
+   - Open the game in Studio with Rojo connected and do one item at a time, following Claude Code's steps.
+   - The 32 animations are switched off until uploaded. After uploading, ask Claude Code what it needs from you to switch them on.
+   - Save the place yourself with File > Save to File, using the name Claude Code tells you.
+2. Play each item in Studio.
+   - Type: "How do I reach each of these quickly in a Play test? Don't change anything."
+   - Press Play (F5) and get to the first item: the Vasto Lorde, the Arrancar, the Resurrección, the animations or the Gillian look.
+   - Look at it from the front, side and back. Press Stop, then move on to the next item.
 3. Read the Output window after each one.
-4. Write anything broken in a note here.
+   - While playing, open View > Output.
+   - Look for red lines. If you see any, copy the text into a note.
+   - Check the game doesn't stutter or slow down while the item is on screen.
+4. Write anything broken in a note here, then hand it in.
+   - Write each item as working or broken in Notes, with what you saw, and press Save note.
+   - Tick each checklist item that works.
+   - Attach captures with + Attach result and press Submit for review.
 D: Every item is uploaded and played, and it is approved or its problems are written in a note.
 
 S03.03 | Make rough 3D shapes from the sheets
 W: Turn the front, side and back of each design sheet into a rough 3D shape (a blockout) to check the outline. Try Kaijin first.
-1. Make a blockout of Kaijin first.
-2. Check if one clean-up makes it good enough.
+1. Make a blockout of the pilot line first (Kaijin was in the old roster, so it's replaced).
+   - Check which line you picked as the pilot (open question Q-HO1). Polilla is the furthest along.
+   - Open Tripo in your browser. The free tier gives about 8 models a month, so use them carefully.
+   - Give it the front, side and back views from the line's signed-off turnaround.
+   - Download the result as a GLB file (a 3D model file) and save it next to the sheet.
+   - Your GTX 1060 can't run Hunyuan3D, so if Tripo runs out, use one hour of a cloud GPU instead.
+2. Check if one clean-up pass makes it good enough to use.
+   - Open Blender and check the Blender MCP add-on says it's connected.
+   - Open Claude Code in the game folder. Type: "Import this GLB into Blender and do one clean-up pass only. Then stop and report."
+   - Look at the result. If it already looks good enough to use, the separate base-body build (S03.04) may not be needed.
+   - Write your answer in Notes and press Save note.
 3. Make blockouts of the other sheets.
+   - Repeat step 1 for each signed-off line, one at a time.
+   - Keep a list in Notes of which lines have a blockout, so you don't waste Tripo credits.
 4. Compare each outline to its sheet.
+   - Type: "Show me this blockout from the front, side and back in Blender. Don't change it."
+   - Put the Blender view and the sheet side by side on your screen. The outlines should match.
+   - Write match or no match for each line in Notes. Nothing from this step goes into the game.
 D: Every sheet has a rough 3D shape and the outlines match.
 
 S03.04 | Build the shared Hollow body
 W: Build one dark humanoid body that every Hollow uses, with bone plates added on top separately.
-1. Write the brief from the art guide.
+1. Ask Claude Code to write the brief from the art guide.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: write the body brief from the art guide. Then stop and show it to me."
+   - Check it says: matte dark flesh body, plates welded on separately, 6,000 to 9,000 triangles, T-pose (arms straight out).
 2. Make a rough shape in Tripo.
-3. Clean the mesh with Instant Meshes.
-4. Rig it with Rigify (add bones).
-5. Paint the weights so it bends nicely.
+   - If S03.03 showed a cleaned-up blockout is good enough, write that in Notes and ask Claude Code before doing this step.
+   - Otherwise give Tripo the brief and download the result as a GLB file.
+   - Save it in the game folder and tell Claude Code where it is.
+3. Ask Claude Code to clean the mesh with Instant Meshes.
+   - Open Blender first and check the Blender MCP add-on says it's connected.
+   - Type: "Do step 3 only: clean the mesh with Instant Meshes into clean four-sided faces. If I need to do part of it, tell me exactly how. Then stop and report."
+   - Check its report gives the triangle count. It should be between 6,000 and 9,000.
+4. Ask Claude Code to rig it with Rigify (add bones).
+   - Type: "Do step 4 only: rig the body with Rigify in a T-pose. Then stop and report."
+   - Look in Blender. You should see bones inside the body.
+5. Ask Claude Code to paint the weights so it bends nicely.
+   - Type: "Do step 5 only: weight paint the body, UV unwrap it and add the outer cage. Keep the Blender source file. Then stop and report."
+   - Ask it to bring the body into Studio, then open the game in Studio with Rojo connected.
+   - Press Play and watch the body bend at the elbows and knees. Nothing should stretch or tear.
+   - Attach a capture with + Attach result and write what you saw in Notes.
 D: The body loads in Studio, bends cleanly and stays under 9,000 triangles.
 
 S03.05 | Build the bone plate kit
 W: Write Blender scripts that make bone plates, spines, masks, claws, tails and wings that can be reused on every Hollow.
-1. Make a plate script with settings for shape and thickness.
-2. Make spine, mask, claw and tail scripts.
-3. Make a wing script.
-4. Export each piece.
-5. Weld them onto the body in Studio.
+1. Ask Claude Code to make a plate script with settings for shape and thickness.
+   - Open Blender first and check the Blender MCP add-on says it's connected. This task can start while the body is still being built.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do the plate script only: settings for outline, thickness, bevel and overlap lip. Then stop and report."
+   - You should see a test plate in Blender. Ask it to change one setting so you can see the plate change.
+2. Ask Claude Code to make the spine, mask, claw and tail scripts.
+   - Type: "Now do the spine of plates along a curve, and the mask from a skull outline with eye holes. Then stop and report."
+   - Type: "Now do the claws, the spikes with a base plate and the tapered tail pieces. Then stop and report."
+   - Look at each piece in Blender. Plates should be hard slabs, not soft blobs.
+3. Ask Claude Code to make a wing script.
+   - Type: "Now do the wing: rib plates with a membrane between them. Then stop and report."
+   - Check the wing in Blender from the front and the side.
+4. Ask Claude Code to export each piece.
+   - Type: "Export each piece as its own part, each under 2,000 triangles. List each file with its triangle count. Then stop."
+   - Check every number in the list is under 2,000.
+5. Weld them onto the body in Studio and check they stick.
+   - Type: "Bring the pieces into Studio and weld each one to its bone. Then stop and report."
+   - Open the game in Studio with Rojo connected and press Play. Every piece should move with the body.
+   - Open View > Output and look for red lines. Press Stop.
+   - Attach a capture with + Attach result and write pass or fail in Notes.
 D: Every kit piece shows in Studio stuck to the body, each under 2,000 triangles.
 
 S03.06 | Make the Hollow bone and skin materials
 W: Make two materials: cream bone and near-black skin, plus one glowing red for eyes.
-1. Make the bone material with darker edges.
-2. Add glowing cracks for when a Hollow gets angry.
-3. Make the dark skin material.
-4. Make the red glow for eyes.
+1. Ask Claude Code to make the bone material with darker edges.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do the bone material only: cream, roughness 0.6, darker edges baked in, no normal maps. Then stop and report."
+   - Check its report says the texture is no bigger than 1024 (the Roblox limit).
+2. Ask Claude Code to add glowing cracks for when a Hollow gets angry.
+   - Type: "Now add the glowing crack mask to the bone material for enrage. Then stop and tell me how to see it in a test."
+   - Follow its instructions in Studio and look for the cracks lighting up.
+3. Ask Claude Code to make the dark skin material.
+   - Type: "Now do the flesh material: near-black, roughness 0.9. Then stop and report."
+   - Check it looks matte (not shiny) next to the bone.
+4. Ask Claude Code to make the red glow for eyes, then check everything in Studio.
+   - Type: "Now add one red glowing material for eyes and accents. Then put all three on a test Hollow and report."
+   - Open the game in Studio with Rojo connected and look at the test Hollow: cream bone, dark skin, red eyes.
+   - Attach a capture with + Attach result and write what you think in Notes.
 D: A Hollow in Studio shows cream bone, dark skin and red eyes.
 
 S03.07 | Rig and animate the shared body
 W: Give the shared body its moves: walking and running, attacks and a Cero cast.
-1. Make the walk and run set.
-2. Make the attack set.
-3. Make the Cero cast.
-4. Check plates move with the bones.
-5. Send the rig and animations to Studio.
+1. Ask Claude Code to make the walk and run set.
+   - Open Blender first and check the Blender MCP add-on says it's connected.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do the walk and run set only. Then stop and report."
+   - Ask it to play the animation in Blender so you can watch it.
+2. Ask Claude Code to make the attack set.
+   - Type: "Now do the attack set. Then stop and report."
+   - Watch each attack in Blender. The plates should stay stiff and ride the bones.
+3. Ask Claude Code to make the Cero cast.
+   - Type: "Now do the Cero cast animation. Then stop and report."
+   - Watch it in Blender from the front and the side.
+4. Ask Claude Code to check plates move with the bones.
+   - Type: "Check every plate is fixed rigidly to its bone, with at most 4 bone influences per point and none on the root. Report anything wrong."
+   - Check its report says every plate passed, or lists what it fixed.
+5. Send the rig and animations to Studio, then test them.
+   - Type: "Tell me exactly how to bring the rig and animations into Studio with RBXMonkey. Don't change anything."
+   - Follow its steps, open the game in Studio with Rojo connected and press Play.
+   - Walk, run, attack and cast. Look for plates poking through the body.
+   - Attach a capture with + Attach result and write what you saw in Notes.
 D: The body walks, runs, attacks and casts in Studio with no plates clipping.
 
 S03.08 | Build one full Hollow line as a test
 W: Build one complete Hollow line from start to finish to prove the method works before doing the other nine.
-1. Put the kit pieces on the body.
-2. Add the materials.
-3. Add the rig and animations.
-4. Run the model checks.
+1. Ask Claude Code to put the kit pieces on the body for the pilot line.
+   - Check which line you picked as the pilot (open question Q-HO1). Polilla is the furthest along.
+   - Open Blender first, then open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only for the pilot line: place the kit pieces on the shared body to match its signed-off sheets. Then stop and report."
+   - Put Blender next to the sheet and check the plates are in the right places.
+2. Ask Claude Code to add the materials.
+   - Type: "Now add the bone, flesh and red materials to the pilot line. Then stop and report."
+   - Check the colours match the sheet: four only.
+3. Ask Claude Code to add the rig and animations.
+   - Type: "Now add the shared rig and animation set to the pilot line and bring it into Studio. Then stop and report."
+   - Open the game in Studio with Rojo connected, press Play and watch it walk, run, attack and cast.
+4. Ask Claude Code to run the model checks, then review it yourself.
+   - Type: "Run the model checks from S03.10 on the pilot line and show me the captures beside the sheet."
+   - Look at each capture next to the sheet yourself. The capture is the proof, not the report.
+   - Attach the captures with + Attach result, write pass or fail in Notes and press Submit for review.
 D: One full line passes the model checks and you've approved it.
 
 S03.09 | Build the other nine Hollow lines
 W: Build the other nine lines quickly by giving each one a settings file that places kit pieces on the body.
-1. Write a settings file for each line.
-2. Add each line's colours.
-3. Build each line from its file.
-4. Run the model checks on each.
+1. Ask Claude Code to write a settings file for one line at a time.
+   - Open Blender first, then open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Write the settings file for the next line only, placing kit pieces on the body's bones to match its signed-off sheets. Then stop and report."
+   - Plan about one session for each line. Only start lines whose sheets you've signed off.
+2. Ask Claude Code to add each line's colours.
+   - Type: "Add this line's colours to its settings file. Then stop and report."
+   - Check the colours against the line's sheet.
+3. Ask Claude Code to build each line from its file.
+   - Type: "Build this line from its settings file and bring it into Studio. Then stop and report."
+   - Open the game in Studio with Rojo connected and look at it from every side.
+4. Ask Claude Code to run the model checks on each, then review them.
+   - Type: "Run the model checks from S03.10 on this line and show me the captures beside the sheet."
+   - Look at the captures yourself. Write pass or fail for each line in Notes.
+   - Attach the captures with + Attach result. Repeat steps 1 to 4 for the next line.
 D: All nine lines pass the model checks.
 
 S03.10 | Set up the model checks
 W: The checks every model must pass: matches its sheet from four sides, right plates, four colours only, few enough triangles, no clipping.
-1. Take pictures from front, side, back and three-quarter.
-2. Put them beside the design sheet.
-3. Check the outline from far away.
-4. Check colours and triangle count.
-5. Check it walks, runs and casts without clipping.
+1. Ask Claude Code to take pictures from front, side, back and three-quarter.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: set up captures of a model from the front, side, back and three-quarter. Then stop and tell me where they are."
+   - Open the pictures and check all four angles are there.
+2. Ask Claude Code to put them beside the design sheet.
+   - Type: "Now make a check page that puts the four captures beside the model's design sheet. Then stop and tell me where it is."
+   - Open the check page. The capture beside the sheet is the proof, never the written description.
+3. Ask Claude Code to check the outline from far away.
+   - Type: "Now add a silhouette check: the outline seen from 150 studs away, next to the sheet's outline. Then stop and report."
+   - Look at both outlines. They should be the same shape.
+4. Ask Claude Code to check colours and triangle count.
+   - Type: "Now add checks for plate count and placement, four colours only, and under 12,000 triangles. Then stop and report."
+   - Check the page shows a pass or fail next to each one.
+5. Ask Claude Code to check it walks, runs and casts without clipping.
+   - Type: "Now add a Play test: walk, run and cast, and capture any plate clipping. Then stop and report."
+   - Open the game in Studio with Rojo connected, run the test and watch it yourself too.
+   - Attach an example check page with + Attach result and write in Notes if it works for you.
 D: Each model has a check page and you can see if it passes.
 
 S03.11 | Build the Vasto Lorde hero model
 W: The Vasto Lorde (the strongest Hollow form) is the hero model. It sets the quality bar for every other model.
-1. Build the model in Blender.
-2. Keep the mesh clean.
-3. Add the rig.
-4. Bring it into Studio.
+1. Ask Claude Code to build the model in Blender.
+   - Open Blender first and check the Blender MCP add-on says it's connected.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: build the Vasto Lorde hero model in Blender, humanoid, in a T-pose. Then stop and report."
+   - Plan about 4 to 6 sessions for this whole task.
+2. Ask Claude Code to keep the mesh clean.
+   - Type: "Now make the mesh clean four-sided faces, UV unwrap it and add the outer cage. Then stop and report."
+   - Ask it for the triangle count and write it in Notes.
+3. Ask Claude Code to add the rig.
+   - Type: "Now rig it and export a rigged FBX file. Keep the Blender source file. Then stop and report."
+   - Check its report names both files.
+4. Bring it into Studio and approve it.
+   - Type: "Tell me exactly how to bring this model into Studio. Don't change anything." Then follow its steps.
+   - Open the game in Studio with Rojo connected and look at it from every side. Press Play and check it moves.
+   - Attach captures with + Attach result, write what you think in Notes and press Submit for review.
 D: The Vasto Lorde shows in Studio and you approve it.
 
 S03.12 | Keep the Gillian as it is
 W: You've already approved the Gillian's look. Only fix technical problems; don't redesign it.
-1. Keep the outline and mask the same.
-2. Check the import, materials and detail levels.
-3. Fix only technical problems.
+1. Ask Claude Code to keep the outline and mask the same.
+   - First take captures of the Gillian as it is now, from the front, side and back, so you can compare later.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P3-B02 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Don't redesign the Gillian. Then stop and report."
+2. Ask Claude Code to check the import, materials and detail levels.
+   - Type: "Check the Gillian's import, publishing, detail levels and materials in HollowMeshes and HollowSkinClient. List problems only. Don't change anything yet."
+   - Read the list. Cross out anything that would change how it looks.
+3. Ask Claude Code to fix only technical problems, then compare.
+   - Type: "Fix only the technical problems I've agreed. Report: source change, runs, visible, verified."
+   - Open the game in Studio with Rojo connected, press Play and look at the Gillian from every side.
+   - Put your new captures beside the old ones. It should look exactly the same.
+   - Attach both with + Attach result and press Submit for review.
 D: The Gillian looks exactly as approved in Studio.
 
 S03.13 | Put the locked Vasto Lorde look in game
 W: Turn the locked Vasto Lorde design into a real game model without changing how it looks.
-1. Use the locked design as the target.
-2. Keep the lean body, horns, mask, eyes and chest hole.
-3. Fix the mesh, rig and materials.
-4. Make sure the model is our own work, not copied.
-5. Show it in Studio for approval.
+1. Ask Claude Code to use the locked design as the target.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P3-B05 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. The target is VL-BASE-01. Don't start new concept designs."
+   - Open the full-size VL-BASE-01 picture in the Locked Prototypes tab so you can compare later.
+2. Ask Claude Code to keep the lean body, horns, mask, eyes and chest hole.
+   - Type: "Do step 2 only: turn the approved sheet into the game model in VastoLorde.blend. Keep every locked feature. Then stop and report."
+   - Check the horns point forward and are angular, not bull horns curving back.
+   - Check the mouth is subtle carved white grooves, the red cloth is small and the shoulders are clean.
+3. Ask Claude Code to fix the mesh, rig and materials.
+   - Type: "Do step 3 only: fix the topology, rig, materials, recolour and detail levels without changing the look. Then stop and report."
+   - Check its report says what changed and that the look did not.
+4. Ask Claude Code to confirm the model is our own work, not copied.
+   - Type: "Write down where every part of this model came from. Confirm nothing is copied from Project Mugetsu. Then stop."
+   - If anything's origin is unclear, treat it as unsafe and ask Claude Code to replace it.
+5. Look at it in Studio and approve it.
+   - Open the game in Studio with Rojo connected and press Play.
+   - Look at it from the front, side and back, and from the normal game camera distance.
+   - Put captures beside VL-BASE-01. Attach them with + Attach result and write your verdict in Notes.
+   - Press Submit for review. Combat animation work waits for your approval.
 D: The Vasto Lorde in Studio matches the locked design from all sides and you approve it.
 
 S03.14 | Design how Arrancar look
 W: Decide how an Arrancar (a Hollow that removed its mask) keeps its Hollow look.
-1. Decide where mask pieces can sit.
-2. Decide where Hollow holes can be.
-3. Decide how weapons look.
-4. Decide the clothing style.
+1. Ask Claude Code to propose where mask pieces can sit.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P3-B06 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: propose mask-piece placements. Then stop."
+   - Read its list. Write the ones you like in Notes.
+2. Ask Claude Code to propose where Hollow holes can be.
+   - Type: "Do step 2 only: propose rules for where the Hollow hole can be. Then stop."
+   - Read them and write your yes or change in Notes.
+3. Ask Claude Code to propose how weapons look.
+   - Type: "Do step 3 only: propose limits on how an Arrancar's weapon can look. Then stop."
+   - Write your yes or change in Notes.
+4. Ask Claude Code to propose the clothing style.
+   - Type: "Do step 4 only: propose the clothing and customisation style. Don't copy the canon characters' looks. Then stop."
+   - Write your yes or change in Notes.
 5. Make sure it works with the character creator.
+   - Type: "Do step 5 only: add your agreed rules to the Arrancar look data and character creator. Report: source change, runs, visible, verified."
+   - Open the game in Studio with Rojo connected, press Play and make two different Arrancar.
+   - They should look different but both clearly Hollow. Attach captures and press Submit for review.
 D: Arrancar look different from each other but you can still see their Hollow roots.
 
 S03.15 | Design how Resurrección forms look
 W: A Resurrección (an Arrancar's released form) should grow from that player's old Hollow, not be a random transformation.
-1. Build the look from the player's Hollow history.
-2. Split fixed parts from cosmetic parts.
-3. Set shape and rig limits for each body type.
-4. Leave the moves for later.
+1. Ask Claude Code to build the look from the player's Hollow history.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P3-B07 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: base the release look on the Soul Record and Hollow line. Then stop."
+   - Read its plan and write your yes or change in Notes.
+2. Ask Claude Code to split fixed parts from cosmetic parts.
+   - Type: "Do step 2 only: split the parts that come from the Hollow history (fixed) from the parts players can style. Then stop and report."
+   - Check the fixed list includes the parts that show where the Hollow came from.
+3. Ask Claude Code to set shape and rig limits for each body type.
+   - Type: "Do step 3 only: set outline and rig limits for each body type so no broken rig can be made. Then stop and report."
+   - Ask it how it tested that a broken rig can't be made, and write the answer in Notes.
+4. Leave the moves for later, then check the result.
+   - Don't let Claude Code add combat moves here. They belong to a later combat task.
+   - Open the game in Studio with Rojo connected and try two different Hollow histories. Not every release should be a recoloured humanoid.
+   - Attach captures with + Attach result and press Submit for review.
 D: A release clearly links to the earlier Hollow, and no broken rigs can be made.
 
 S03.16 | Finish the human and Plus looks
 W: Finish how a living human and a Plus (a ghost still on its chain) look at the start of the game.
-1. Make humans work with the character creator.
-2. Show when a human can sense spirits.
-3. Show the Plus and its Chain of Fate.
-4. Show the chain rotting in stages.
+1. Ask Claude Code to make humans work with the character creator.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P5-B01 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: human character creator support. Then stop and report."
+   - Open the game in Studio with Rojo connected, press Play and make a human in the creator.
+2. Ask Claude Code to show when a human can sense spirits.
+   - Type: "Do step 2 only: add the visual signs that a human is spiritually aware. Then stop and report."
+   - Play it and check you can see the change.
+3. Ask Claude Code to show the Plus and its Chain of Fate.
+   - Type: "Do step 3 only: the Plus look and the Chain of Fate in PlusService and ChainOfFate. The Plus is not a combat class. Then stop and report."
+   - Play as a Plus and check the chain is easy to see.
+4. Ask Claude Code to show the chain rotting in stages, then test it all.
+   - Type: "Do step 4 only: the chain corrosion stages, and keep the ghost easy to read. Report: source change, runs, visible, verified."
+   - Play from human to Plus to a rotting chain. It should be clear without a race menu.
+   - Attach captures with + Attach result and press Submit for review.
 D: The opening change from human to ghost is clear without a race menu.
 
 S03.17 | Design the Shinigami uniforms and swords
 W: Lock the Shinigami look: uniform, sword at the hip, Division details and rank.
-1. Make the Academy look.
-2. Make the standard uniform.
-3. Add Division trims.
-4. Make the sword carry and draw.
-5. Show rank without changing stats.
+1. Ask Claude Code to make the Academy look.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P5-B02 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: the Academy and exam look. Then stop and report."
+   - Open the game in Studio with Rojo connected and look at it in Play.
+2. Ask Claude Code to make the standard uniform.
+   - Type: "Do step 2 only: the standard Shinigami uniform system in Outfits. Then stop and report."
+   - Look at it in Play from the front, side and back.
+3. Ask Claude Code to add Division trims.
+   - Type: "Do step 3 only: Division trims and customisation. Then stop and report."
+   - Check two Divisions look different but both still look like the Gotei 13.
+4. Ask Claude Code to make the sword carry and draw.
+   - Type: "Do step 4 only: the sealed sword in its scabbard at the hip, and drawing it. Then stop and report."
+   - Play and draw the sword. It should sit at the hip and come out cleanly.
+5. Ask Claude Code to show rank without changing stats.
+   - Type: "Do step 5 only: rank visuals with no stat changes. Keep high ranks easy to read. Report: source change, runs, visible, verified."
+   - Look at a low rank and a high rank side by side.
+   - Attach captures with + Attach result and press Submit for review.
 D: Players look different from each other but clearly belong to the Gotei 13.
 
 S03.18 | Design the Visored masks
 W: Lock how Visored (Shinigami with Hollow powers) masks look and appear before building their powers.
-1. Design mask types and levels.
-2. Design how the mask appears.
-3. Check it works with faces and hair.
-4. Show the link to the inner Hollow.
+1. Ask Claude Code to design mask types and levels.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P5-B03 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: mask generation and tiers. No combat buffs. Then stop."
+   - Read its report and write your yes or change in Notes.
+2. Ask Claude Code to design how the mask appears.
+   - Type: "Do step 2 only: how the mask forms on the face when it switches on. Then stop and report."
+   - Open the game in Studio with Rojo connected, press Play and watch it happen.
+3. Ask Claude Code to check it works with faces and hair.
+   - Type: "Do step 3 only: make the mask work with different faces and hair. Then stop and report."
+   - Try two or three different faces and hairstyles in Play. Nothing should poke through the mask.
+4. Ask Claude Code to show the link to the inner Hollow, then test it.
+   - Type: "Do step 4 only: make the mask visibly linked to the player's inner Hollow. Report: source change, runs, visible, verified."
+   - Play with the mask on and move the camera around. It must never block your view.
+   - Attach captures with + Attach result and press Submit for review.
 D: Masks are clear and never block the camera.
 
 S03.19 | Finish Substitute, Gigai and Mod Soul looks
 W: Finish the looks for Substitute Shinigami, Gigai (fake bodies) and Mod Souls, which are already in the code.
-1. Make the Substitute change.
-2. Make entering and leaving a Gigai.
-3. Make the Mod Soul look.
-4. Check they work with the character creator.
+1. Ask Claude Code to make the Substitute change.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P5-B04 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do step 1 only: the Substitute change. Nothing beyond existing routes. Then stop."
+   - Open the game in Studio with Rojo connected, press Play and do the Substitute change.
+2. Ask Claude Code to make entering and leaving a Gigai.
+   - Type: "Do step 2 only: entering and leaving a Gigai in GigaiService. Then stop and report."
+   - Play it: go into a Gigai and come back out. Both should be easy to see.
+3. Ask Claude Code to make the Mod Soul look.
+   - Type: "Do step 3 only: the Mod Soul look and getting it back, in ModSoulService. Then stop and report."
+   - Play it and check you can tell the Mod Soul apart from the player.
+4. Ask Claude Code to check they work with the character creator.
+   - Type: "Do step 4 only: check all three work with the character creator. Report: source change, runs, visible, verified."
+   - Make a character in the creator and try each change once. Open View > Output and look for red lines.
+   - Attach captures with + Attach result and press Submit for review.
 D: Each change is easy to see and nothing breaks.

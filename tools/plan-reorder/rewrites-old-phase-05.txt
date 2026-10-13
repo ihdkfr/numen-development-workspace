@@ -1,101 +1,249 @@
 S05.01 | Check what's built: combat
 W: Combat systems are already in the game. They only count as done when you have played them and they work.
-1. Open Studio with the current build (see S01.01).
-2. Play each item in the checklist.
+1. Open the current build in Studio (see S01.01).
+   - Read the note on S01.01 that says which build is the current one.
+   - If you're not sure, open Claude Code in the game folder and type: "Which branch is the current build and how do I open it? Don't change anything."
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
+2. Play each item in the checklist, one at a time.
+   - Press Play (F5) and try the first item, for example the M1 to M3 attack string, parry and guard.
+   - The Menos boss was switched off at the last check. Type to Claude Code: "How do I switch the Menos boss on for a test? Don't change anything."
+   - For any item you don't know how to trigger, ask Claude Code the same way, then press Stop.
 3. Read the Output window after each one.
-4. Write anything broken in a note here, or as a new task.
+   - Open View > Output while the game is playing.
+   - Look for red lines. Copy any red text into a note with the item's name.
+   - If Output is clean and the item worked, tick that item on the checklist.
+4. Write anything broken in a note here.
+   - Write what you did, what went wrong and the red Output text in Notes, then press Save note.
+   - For a bigger problem, type to Claude Code: "Write a short bug report for this problem. Don't change anything." Paste its report into a note.
 5. Approve this task when everything works.
+   - Check every checklist item has been played and ticked.
+   - If all of them work, set this task's status to Approved / done.
+   - If something failed, leave it in Needs review and make sure your note lists every problem.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S05.02 | Polish basic attacks and blocking
 W: Check and improve the basic fighting everyone shares: light attacks (M1), heavy hits, blocks, grabs, knock-ups and recovery.
-1. Test every basic move as it is now.
-2. Fix timings that feel wrong.
-3. Keep the server in charge of hits.
-4. Don't rewrite parts that already work.
-5. Test it with lag.
+1. Play every basic move as it is now and note what feels wrong.
+   - Open the game in Studio with Rojo, press Play and fight a test enemy.
+   - Try M1 strings, heavies, guard, perfect guard, clashes, grabs, launchers, knockback and wall hits.
+   - Write each move that feels wrong, and why, in Notes and press Save note.
+2. Ask Claude Code to check the moves against the existing timing data.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B02 only. First list the current timing data for each basic move and compare it with my notes. Don't change anything yet."
+   - Read its list and agree which timings to fix.
+3. Ask Claude Code to fix only the timings that feel wrong.
+   - Type: "Fix only the timings we agreed. Don't rewrite systems that already work. Then stop and report."
+   - Check its report names each move it changed.
+4. Ask Claude Code to keep the server in charge of hits.
+   - Type: "Check the server still decides every hit, block and grab. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Test the fight with lag.
+   - Type: "Tell me exactly how to test a fight with lag in Studio. Don't change anything."
+   - Follow its steps and fight again. Hits and blocks should still be clear and fair.
+   - Write what you found in Notes, attach a capture with + Attach result and press Submit for review.
 D: A fight with lag still feels clear and fair.
 
 S05.03 | Build the four Shinigami fighting arts
 W: Join sword, hand-to-hand, speed movement and Kido spells (Zanjutsu, Hakuda, Hohō and Kidō) into one Shinigami fighting style.
-1. Build the sword core.
-2. Add hand-to-hand moves.
-3. Add Hohō movement.
-4. Add the Kido spellbook, chanting and healing.
-5. Make Shikai add to these, not replace them.
+1. Ask Claude Code to build the sword core.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B04 only. Do the sword core first. Then stop and report."
+   - Check its report says which files changed.
+2. Ask Claude Code to add hand-to-hand moves.
+   - Type: "Now add the Hakuda (hand-to-hand) options. Then stop and report."
+   - Play in Studio and try them against a test enemy. Look in View > Output for red lines.
+3. Ask Claude Code to add Hohō movement.
+   - Type: "Now add Hohō movement to the kit, using the existing Shunpo. Then stop and report."
+   - Check its report says Shunpo itself was not rebuilt.
+4. Ask Claude Code to add the Kido spellbook, chanting and healing.
+   - Type: "Now add the Kidō spellbook, the chant or skip trade-off and Kaidō healing. Don't make every Shinigami a caster. Then stop and report."
+   - Check its report explains what chanting gives and what skipping costs.
+5. Ask Claude Code to make Shikai add to these arts, not replace them.
+   - Type: "Now make Shikai add to the four arts, not replace them. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+6. Play a full Shinigami fight and hand it in.
+   - Fight using sword, hand-to-hand, Shunpo and a Kidō spell, then release Shikai and keep fighting.
+   - All four arts should still work after Shikai.
+   - Write what you saw in Notes, attach a capture with + Attach result and press Submit for review.
 D: A Shinigami can fight with all four arts, and Shikai adds to them.
 
 S05.04 | Decide which Hollow stage unlocks what
 W: Decide which Hollow stage unlocks each shared power: Cero levels, Bala, Hierro (hard skin), Sonído, healing and Garganta.
-1. List the shared Hollow powers.
-2. Pick the stage that unlocks each.
-3. Write it in this task.
+1. Ask Claude Code to list the shared Hollow powers and the stages.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "List the shared Hollow powers (Cero levels, Bala, Hierro, Sonído, healing, Garganta) and every Hollow stage. Don't change anything."
+   - Copy the list into Notes and press Save note.
+2. Pick the stage that unlocks each power.
+   - Type: "Suggest an unlock stage for each power, with one line on why. Don't change anything."
+   - Read each suggestion and decide yourself. Change any you don't agree with.
+3. Write the final unlock table in this task.
+   - Write each power and its unlock stage in Notes, in your own words, and press Save note.
+   - Tick the steps when every power has a stage.
 D: Every shared power has an unlock stage written down.
 
 S05.05 | Build Hollow and Adjuchas fighting
 W: Design the final moves, movement and animations for the ten Hollow lines at the low stages.
-1. Build the shared Hollow basics.
-2. Add attacks for each body type.
-3. Add moves only one line has.
-4. Set Cero rules for each stage.
-5. Link fighting to hunger.
-6. Give each line its own walk, idle and attack style.
+1. Ask Claude Code to build the shared Hollow basics.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B05 only. Do the shared Hollow basics first. Then stop and report."
+   - Check its report says all ten lines use this one system.
+2. Ask Claude Code to add attacks for each body type, then moves only one line has.
+   - Type: "Now add attacks for each body shape, then the moves only one line has. Then stop and report."
+   - Check its report lists the moves for each line.
+3. Ask Claude Code to set the Cero rules for each stage.
+   - Type: "Now set the Cero rules for each stage. Don't give base Hollows high-stage moves. Then stop and report."
+   - Check its rules match the unlock table you wrote in S05.04.
+4. Ask Claude Code to link fighting to hunger.
+   - Type: "Now link fighting to the hunger system. Then stop and report."
+   - Check its report explains what hunger changes in a fight.
+5. Ask Claude Code to give each line its own walk, idle and attack style.
+   - Type: "Now give each line its own walk, idle and attack style. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+6. Play several lines and compare them.
+   - Type: "Tell me exactly how to play as each Hollow line in Studio. Don't change anything."
+   - Play at least three lines. Each should feel different.
+   - Write what you saw in Notes, attach captures with + Attach result and press Submit for review.
 D: Each line feels different to play, all on one system.
 
 S05.06 | Build three signature moves per Hollow line
 W: Each Hollow line gets three signature moves, built from the Cero's shape pieces in that line's Cero colour.
-1. Take the three moves for each line from the bible.
-2. Build each from the Cero shape kit.
-3. Use the line's Cero colour.
+1. Ask Claude Code to take the three moves for each line from the bible.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "List the three signature moves for each Hollow line from the bible, with each line's Cero colour. Don't change anything."
+   - Check there are 30 moves in the list.
+2. Ask Claude Code to build each move from the Cero shape kit, one line at a time.
+   - Type: "Build the three moves for the first line only, from the Cero shape kit: core, slivers, rings and streaks. Don't change the standard Cero. Then stop and report."
+   - Check its report says the standard Cero files did not change.
+   - Repeat for each line in later sessions.
+3. Ask Claude Code to use each line's Cero colour.
+   - Type: "Check every signature move uses its line's Cero colour. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
 4. Test each move in a fight.
+   - Open the game in Studio with Rojo, press Play and use each move on a test enemy.
+   - Open View > Output and look for red lines after each move.
+   - Write which moves work in Notes, attach captures with + Attach result and press Submit for review.
 D: All 30 moves work in a test fight.
 
 S05.07 | Build Vasto Lorde and Arrancar fighting
 W: Finish fighting for the top Hollow stages: Vasto Lorde, Arrancar and their releases.
-1. Polish Vasto Lorde fighting.
-2. Build Arrancar basics: Hierro, Sonído, Cero, Bala, Pesquisa and Garganta.
-3. Link releases to the old Hollow.
-4. Give Espada-level moves only where right.
+1. Ask Claude Code to polish Vasto Lorde fighting.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B06 only. Do the Vasto Lorde fighting first. Then stop and report."
+   - Check its report says what makes Vasto Lorde more than a stronger copy.
+2. Ask Claude Code to build the Arrancar basics.
+   - Type: "Now add the Arrancar basics: Hierro, Sonído, Cero, Bala, Pesquisa and Garganta. No Shikai or Bankai for Arrancar. Then stop and report."
+   - Check its report lists all six.
+3. Ask Claude Code to link releases to the old Hollow.
+   - Type: "Now tie each Resurrección to the Arrancar's former Hollow line. Then stop and report."
+   - Check its report says which Hollow line each release comes from.
+4. Ask Claude Code to give Espada-level moves only where right.
+   - Type: "Now add Espada-only advanced moves where they fit. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Play each top stage and judge it.
+   - Type: "Tell me exactly how to play as Vasto Lorde and as an Arrancar in Studio. Don't change anything."
+   - Fight a test enemy with each. They should feel like an evolution, not just bigger numbers.
+   - Write what you think in Notes, attach captures with + Attach result and press Submit for review.
 D: Top stages feel like an evolution, not just stronger copies.
 
 S05.08 | Build the Resurrección release
 W: Resurrección brings back an Arrancar's Hollow form: swap the model to the line's plates, change the Cero colour, the sword is the mask piece.
-1. Swap the model to the line's plate kit.
-2. Change the Cero colour.
-3. Link the sword to the mask piece.
-4. Test releasing and returning.
+1. Ask Claude Code to swap the model to the line's plate kit.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: on Resurrección, swap the Arrancar model to their line's plate kit. Then stop and report."
+   - Check its report says which model files it uses.
+2. Ask Claude Code to change the Cero colour on release.
+   - Type: "Now change the Cero colour to the line's colour during Resurrección. Don't change the standard Cero's look. Then stop and report."
+   - Check its report says only the colour changes.
+3. Ask Claude Code to link the sword to the mask piece.
+   - Type: "Now make the Zanpakutō the mask piece that brings the Hollow form back. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+4. Test releasing and returning in a fight.
+   - Type: "Tell me exactly how to trigger Resurrección and return in Studio. Don't change anything."
+   - Release, fight a test enemy, then return to normal. Open View > Output and look for red lines.
+   - Attach a capture with + Attach result, write what happened in Notes and press Submit for review.
 D: An Arrancar releases and returns in a test fight with no errors.
 
 S05.09 | Build enemy AI and fighting styles
 W: Give each Hollow line its own enemy behaviour (ambush, brawl, swarm or shoot from range), keeping their effects cheap.
-1. Take each line's style from the bible.
-2. Build the AI for each style.
-3. Keep their Cero effects cheap.
+1. Ask Claude Code to take each line's fighting style from the bible.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "List each Hollow line's fighting style from the bible: ambusher, brawler, swarm or ranged. Don't change anything."
+   - Check every line has a style.
+2. Ask Claude Code to build the AI for each style.
+   - Type: "Build the enemy AI for the ambusher style first. Then stop and report."
+   - Repeat for brawler, swarm and ranged, one at a time.
+   - Play in Studio after each and watch the enemy fight.
+3. Ask Claude Code to keep their Cero effects cheap.
+   - Type: "Make the Cero effects enemies use cheap to run, without changing the standard Cero's look. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
 4. Test several fights at once.
+   - Type: "Tell me exactly how to spawn several enemy fights at once and read the frame rate in Studio. Don't change anything."
+   - Follow its steps and write the frame rate in Notes.
+   - Attach a capture with + Attach result and press Submit for review.
 D: Each line fights in its own style, and a busy fight keeps its frame rate.
 
 S05.10 | Build transformation and finisher cutscenes
 W: Make short cinematic scenes for Shikai, Bankai, Resurrección, evolutions and finishers, without pausing the server.
-1. Build the shared cutscene system.
-2. Make the Shikai and Bankai scenes.
-3. Make the Resurrección and evolution scenes.
-4. Make finisher scenes.
-5. Handle two players releasing at once.
+1. Ask Claude Code to build the shared cutscene system.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B08 only. Build the shared cutscene system first. No whole-server pause. Then stop and report."
+   - Check its report says the server keeps running during a scene.
+2. Ask Claude Code to make the Shikai and Bankai scenes.
+   - Type: "Now make the Shikai release scene, then the Bankai release scene. Each must feel different. Then stop and report."
+   - Play each in Studio and watch it.
+3. Ask Claude Code to make the Resurrección and evolution scenes.
+   - Type: "Now make the Resurrección scene and the big Hollow evolution moments. Then stop and report."
+   - Play each in Studio and watch it.
+4. Ask Claude Code to make the finisher scenes.
+   - Type: "Now make the finisher scenes. They play only after the server confirms the hit. Then stop and report."
+   - Check its report says no scene can grant a hit on its own.
+5. Ask Claude Code to handle two players releasing at once.
+   - Type: "Now handle two players releasing at once and crowded fights. Never take over other players' cameras. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+6. Test it with two players.
+   - Type: "Tell me exactly how to test two players in Studio. Don't change anything."
+   - Release on both at once. Each camera should stay with its own player.
+   - Attach captures with + Attach result, write what happened in Notes and press Submit for review.
 D: Scenes never pause the server, steal other cameras or grant a hit before the server agrees.
 
 S05.11 | Make combat work on controller and phone
 W: Make the whole fighting system easy to use on a controller and a phone, not just a keyboard.
-1. Check for button clashes on controller.
-2. Build a phone ability tray that changes with the fight.
-3. Add Bankai touch gestures.
-4. Add lock-on, block and jump buttons for touch.
-5. Keep timings the same everywhere.
+1. Ask Claude Code to check for button clashes on controller.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B09 only. First list every controller button clash in combat. Don't change anything yet."
+   - Read the list and agree which fixes to make, then type: "Fix those clashes. Then stop and report."
+2. Ask Claude Code to build a phone ability tray that changes with the fight.
+   - Type: "Now build the phone ability tray that shows the right moves for the moment. Don't copy keyboard buttons one for one. Then stop and report."
+   - Check its report explains when the tray changes.
+3. Ask Claude Code to add Bankai touch gestures.
+   - Type: "Now add the Bankai control gestures for touch screens. Then stop and report."
+   - Check its report lists each gesture and what it does.
+4. Ask Claude Code to add lock-on, block and jump buttons for touch.
+   - Type: "Now add touch buttons for lock-on, guard and jump. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Ask Claude Code to keep timings the same everywhere, then test.
+   - Type: "Check attack timings are the same on keyboard, controller and phone, in every camera setting. Then stop and report."
+   - Type: "Tell me exactly how to test controller and phone in Studio. Don't change anything." Then play a full fight on each.
+   - Write anything hidden or hard to reach in Notes, attach captures and press Submit for review.
 D: A full fight works on controller and phone with nothing important hidden.
 
 S05.12 | Build skill trees
 W: Design skill trees where players pick a fighting role (weapon, hands, speed, spells or support). It shouldn't just be raw damage.
-1. Check the stat and skill systems that exist.
-2. Pick a few clear fighting roles.
-3. Make levels unlock new options, not just bigger numbers.
-4. Keep race and power more important than stats.
+1. Ask Claude Code to check the stat and skill systems that exist.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch PB-B02 only. First list the existing stat points, skill trees, technique mastery and race skills, and where they overlap. Don't change anything."
+   - Copy the summary into Notes and press Save note.
+2. Ask Claude Code to suggest a few clear fighting roles, then pick them.
+   - Type: "Suggest a few clear fighting roles, like weapon, hand-to-hand, speed, spells and support. Don't force the same tree on every race. Don't change anything."
+   - Read them and write the roles you want in Notes.
+3. Ask Claude Code to make levels unlock new options, not just bigger numbers.
+   - Type: "Build the roles I chose so levels unlock new options and skill, not just more damage. Then stop and report."
+   - Check its report doesn't copy another game's tree names or numbers.
+4. Ask Claude Code to keep race and power more important than stats.
+   - Type: "Check that race, Zanpakutō and Hollow powers still matter more than stats. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Test two builds with the same power.
+   - Type: "Tell me exactly how to try two builds with the same power but different roles in Studio. Don't change anything."
+   - Play both. Each should feel useful in its own way.
+   - Write what you found in Notes and press Submit for review.
 D: Two players with the same power can build them differently and both are fine.

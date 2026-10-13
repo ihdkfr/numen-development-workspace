@@ -1,235 +1,567 @@
 NEW:core-loop | Write the core loop and pacing sheet
 W: One page: what a player does in a normal session, where XP comes from at each stage, and roughly how many hours to reach Shikai, Bankai, Adjuchas and Vasto Lorde.
 1. Write what a player does in a normal session.
+   - Picture one hour of play, from pressing Play to leaving. What do they do first, next and last?
+   - Write it as 5 to 8 short lines, for example "join, check the mission board, do 3 missions, fight a boss, train, leave".
+   - In NUMEN, write it in this task's Notes and press Save note.
 2. List where XP comes from at each stage.
+   - Write each stage on its own line, from the very start up to Bankai, and from the start up to Vasto Lorde.
+   - Next to each stage, write 2 or 3 XP sources, for example "missions, training, bosses" or "eating other Hollows, boss fights".
+   - Put a star next to the source that should give the most XP at that stage.
 3. Guess the hours to reach Shikai and Bankai.
+   - Count hours of play, not days. Example: Shikai after 5 hours, Bankai after 25 hours.
+   - Ask yourself: would someone who plays one hour a day feel stuck? If yes, lower the number.
+   - Write the hours next to each stage in Notes.
 4. Guess the hours to reach Adjuchas and Vasto Lorde.
-5. Keep it to one page.
+   - Keep Hollows roughly as fast as Soul Reapers, so neither side feels slow.
+   - Example: Adjuchas after 8 hours, Vasto Lorde after 30 hours.
+   - Write the hours next to each stage in Notes.
+5. Keep it to one page, then ask Claude Code to check it.
+   - Read it back and cut anything that isn't about the session, XP or hours.
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex) and paste your Notes in.
+   - Type: "This is my pacing sheet. Could you set XP numbers from it? List anything missing. Don't change any files."
+   - Add anything it says is missing, then press Save note.
 D: It's written and Claude Code can set XP numbers from it.
 
 NEW:version-1 | Decide what's in version 1
 W: Pick what the first public version needs and what waits (for example 30 Zanpakuto instead of 100, fewer raid types, how many Hollow lines). This is the biggest way to save time.
 1. List the big features in the plan.
+   - In NUMEN, scroll through every phase and write each big feature on its own line in this task's Notes.
+   - Examples: Zanpakuto, Hollow lines, raids, trading, groups, Vizard, achievements, codes.
+   - Aim for 15 to 25 lines. Small fixes don't count.
 2. Mark each one "in version 1" or "later".
+   - For each one ask: would a new player quit in their first week without it? If not, mark it "later".
+   - Keep everything your core loop sheet needs. Most extras can wait.
+   - Write "in" or "later" after each line.
 3. Pick how many Zanpakuto and Hollow lines launch.
+   - Start small: for example 30 Zanpakuto instead of 100.
+   - For Hollow lines, pick ones that are already designed and approved, for example 3 to 5 of the 10.
+   - Write both numbers in Notes.
 4. Pick which raid types launch.
+   - List the raid types in the plan and choose 1 or 2 for launch.
+   - Pick ones that reuse bosses and maps you will already have.
+   - Write the answer in Notes and press Save note.
 D: A written in/out list.
 
 NEW:death-rules | Decide what happens when you're knocked down or die
 W: Can others grip, carry or finish a downed player? What do you lose when you die? What happens if someone leaves mid-fight? Every top Bleach game has rules for this.
 1. Decide if others can grip, carry or finish you.
+   - Grip means holding a knocked-down player to finish them. Carry means picking them up and moving them.
+   - Finishing adds tension, but it can make new players feel bullied.
+   - Example answer: "Grip and finish only in PvP zones. Carry anywhere, so friends can rescue you."
+   - Write your answer in this task's Notes.
 2. Decide what you lose when you die.
+   - Options: nothing, some money, some XP, a dropped item, or a short wait before you come back.
+   - Big losses make fights scary but can make players quit. Most games use a small loss.
+   - Example answer: "Lose 10% of the money you carry. Keep all items and XP."
 3. Decide what happens if someone leaves mid-fight.
+   - Some players leave the game to dodge a death. This is called combat logging.
+   - Example answer: "If you leave within 15 seconds of being hit, you count as dead when you come back."
+   - Write how many seconds after a hit still counts as "in a fight".
 4. Write the rules as a short list.
+   - Turn your three answers into 4 to 8 numbered rules in Notes.
+   - Read them as a brand new player would. Fix anything unclear.
+   - Press Save note.
 D: The rules are a short written list.
 
 NEW:races-clans-vizard | Decide races at launch, clans and Vizard
 W: Other games launch with 3 or 4 races and rolled clans that give buffs. You plan 2 races and no clans. Decide on purpose: races at launch, clans yes or no (and how players get them), Vizard path yes or no.
 1. Decide which races are in at launch.
+   - Your plan has 2 races. Other Bleach games launch with 3 or 4, for example adding Quincy.
+   - Check your version 1 list: is a third race worth a later launch?
+   - Write the launch races in this task's Notes.
 2. Decide clans yes or no.
+   - A clan is a family a player belongs to that gives a small buff, like a bit more damage or speed.
+   - Yes: players love chasing rare clans. No: less to build and less unfairness.
+   - Write "Clans: yes" or "Clans: no" and one reason.
 3. If yes, decide how players get a clan.
+   - Options: a random roll when making a character, earned through a quest, or chosen freely.
+   - If players can reroll a clan with Robux, it's a paid random item, so its odds must be shown in %.
+   - If you said no to clans, write "Not needed" and move on.
 4. Decide the Vizard path yes or no.
+   - A Vizard is a Soul Reaper who gains a Hollow mask. It would be built later in its own task.
+   - Yes means more story and powers to build. No saves a lot of time.
+   - Write "Vizard: yes" or "Vizard: no" in Notes and press Save note.
 D: Answers written.
 
 NEW:money-plan | Decide how the game makes money
 W: List what you'll sell (game passes like extra storage, character slots, private servers, cosmetics) and what you'll never sell. Roblox rule: anything random you pay for must show its odds in %, and some countries block paid random items.
 1. List what you'll sell.
+   - Start with the examples: extra storage, character slots, private servers, cosmetics.
+   - Game passes are bought once. Developer products can be bought again and again, like a reroll.
+   - Write each item on its own line in this task's Notes.
 2. List what you'll never sell.
+   - Think about what would feel unfair to free players, for example buying Bankai, XP or the strongest weapon.
+   - Write each one under a "Never sell" heading.
 3. Set a price for each item.
+   - Look at similar items in 2 or 3 popular Roblox games and note their Robux prices.
+   - Write a Robux price next to each item, for example "Extra storage: 199 Robux".
+   - Don't worry about getting it perfect. You can change prices later.
 4. Mark anything random so its odds get shown.
+   - Random means the player doesn't know what they'll get, like a spin or a reroll.
+   - Roblox requires the odds in %, and some countries block paid random items.
+   - Write "RANDOM" next to these, plus the % chance of each result. The chances must add up to 100%.
+   - Press Save note.
 D: A short list with prices.
 
 NEW:server-size | Decide server size and private servers
 W: How many players per server, and whether to sell private servers.
 1. Pick how many players fit in one server.
+   - Smaller servers (10 to 15) run smoother. Bigger ones (25 to 30) feel busier but can lag.
+   - Think about map size: big realms feel empty with only a few players.
+   - Example answer: "20 players per server."
 2. Decide whether to sell private servers.
+   - Private servers let a group play on their own, for training or playing with friends.
+   - Check your money plan: did you list them there? Keep both answers the same.
+   - Decide yes or no, and a Robux price per month if yes.
 3. Write both answers here.
+   - In NUMEN, write both answers in this task's Notes.
+   - Press Save note.
 D: Answer written.
 
 NEW:ip-names | Check names that could get the game taken down
 W: List the Bleach names, logos, music and character looks in the game and store page, and decide which to swap for your own. Other anime games on Roblox were taken down after copyright claims.
 1. List the Bleach names used in the game and store page.
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Type: "List every Bleach name used in the game's code, on-screen text and docs. Don't change anything."
+   - Add any names from the store page title and description yourself.
+   - Paste the full list into this task's Notes.
 2. List any logos, music and character looks copied from Bleach.
+   - Look at your icon, thumbnails, menus and music. Anything taken from the anime counts.
+   - Character looks count too, for example a model that clearly copies a named character.
+   - Add them to the list in Notes.
 3. Mark each one keep or change.
+   - General words (Hollow, spirit, sword) are lower risk than character names, logos and music.
+   - When unsure, mark it "change". It's cheaper now than after a takedown.
+   - Write "keep" or "change" next to each one.
 4. Pick a new name for each one you change.
+   - Make it your own, not a misspelling of the original.
+   - Write it next to the old name and press Save note.
 D: A keep or change list.
 
 NEW:maturity-draft | Answer Roblox's maturity questions on paper
 W: Roblox asks about violence and blood; without answers the game is restricted. Decide how much blood the game shows.
 1. Read Roblox's maturity questions.
+   - On the Creator Hub (create.roblox.com), open your game and find the maturity and content questionnaire.
+   - If you can't find it, ask Claude Code. Type: "Tell me exactly how to find Roblox's maturity questionnaire for my game. Don't change anything."
+   - Read every question and copy them into this task's Notes. Don't submit anything yet.
 2. Decide how much blood the game shows.
+   - Options: none, sparks and flashes only, small red splashes, or lots of blood.
+   - More blood can mean an older age label, so fewer players can join.
+   - Example answer: "Small red hit sparks. No pools of blood. No body parts."
 3. Write draft answers to every question.
+   - Answer truthfully for the game at launch, including fights, deaths and Hollows eating each other.
+   - Write each answer under its question in Notes.
+   - Press Save note.
 D: Draft answers saved.
 
 NEW:gameplay-spots | Mark gameplay spots on every map
 W: Place markers for mission boards, safe zones, PvP zones, boss arenas, spawn points and shops, using the Phase 02 answers.
 1. Read the Phase 02 answers.
-2. Place spawn points and safe zones.
-3. Place mission boards and shops.
-4. Place PvP zones and boss arenas.
-5. List every marker per map.
+   - In NUMEN, open the Phase 02 tasks and read your Notes, especially the core loop, death rules and version 1 list.
+   - In this task's Notes, write which kinds of spot each map needs.
+2. Ask Claude Code to place spawn points and safe zones.
+   - Open the game in Studio with Rojo connected, then open Claude Code in the game folder.
+   - In NUMEN press Copy Claude build brief on this task and paste it in, with your Notes.
+   - Type: "Do step 2 only: place spawn point and safe zone markers on every map. Then stop and report."
+   - Check its report lists every map it changed.
+3. Ask Claude Code to place mission boards and shops.
+   - Type: "Now do step 3: place mission board and shop markers on every map. Then stop and report."
+   - In Studio, fly around each map and check each marker is somewhere players can reach.
+4. Ask Claude Code to place PvP zones and boss arenas.
+   - Type: "Now do step 4: place PvP zone and boss arena markers, following my death rules. Then stop and report."
+   - Check no PvP zone overlaps a safe zone.
+5. Ask Claude Code to list every marker per map.
+   - Type: "List every marker per map in a short table. Then commit with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Paste the table into Notes and press Save note.
+   - If Claude Code says the place changed, save it yourself: in Studio press File > Save to File and keep the name it gives.
 D: Every map has them and they're listed.
 
 NEW:save-items-money | Saving, inventory and money
 W: Items, storage space and a currency. Check what exists first (save system, Soul Candy shop).
-1. Check the save system and Soul Candy shop that exist.
-2. Add an inventory with storage space.
-3. Add the currency.
-4. Save both when a player leaves.
+1. Ask Claude Code to check the save system and Soul Candy shop that exist.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: tell me what the save system and Soul Candy shop already do. Don't change anything."
+   - Copy anything surprising from its report into this task's Notes.
+2. Ask Claude Code to add an inventory with storage space.
+   - Type: "Do step 2 only: add an inventory with a storage limit, reusing the existing save system. Then stop and report."
+   - Check its report says what changed and how it was tested.
+3. Ask Claude Code to add the currency.
+   - Type: "Do step 3 only: add the currency, and tell me how it fits with the Soul Candy shop. Then stop and report."
+   - Check the report says where the money shows on screen.
+4. Ask Claude Code to save both when a player leaves.
+   - Type: "Do step 4 only: save inventory and money when a player leaves and when the server shuts down. Then stop and report."
+   - Then type: "What happens if a save fails?" It should explain that nobody's data gets wiped.
 5. Test leaving and rejoining.
+   - Type: "Tell me exactly how to test saving in Studio. Don't change anything." Follow what it says.
+   - Press Play, pick up an item and earn some money, press Stop, then press Play again.
+   - You should still have the item and money. Take a capture and attach it with + Attach result.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
 D: A test player keeps items and money after leaving and rejoining.
 
 NEW:missions | Mission boards and daily and weekly quests
 W: The main way to earn XP between story steps, like Type Soul's mission boards.
-1. Build mission boards in each realm.
-2. Add a set of mission types.
-3. Add daily and weekly quests.
-4. Set XP from the pacing sheet.
+1. Ask Claude Code to build mission boards in each realm.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: build mission boards at the mission board markers in each realm. Then stop and report."
+   - Press Play in Studio, walk to a board and check it opens.
+2. Ask Claude Code to add a set of mission types.
+   - Type: "Do step 2 only: suggest 5 mission types that fit my core loop. Don't build yet."
+   - Pick the ones you like, then type: "Build these mission types: [your picks]. Then stop and report."
+3. Ask Claude Code to add daily and weekly quests.
+   - Type: "Do step 3 only: add daily and weekly quests that reset on time. Then stop and report."
+   - Then type: "How can I test a reset without waiting a day?" and try it.
+4. Ask Claude Code to set XP from the pacing sheet.
+   - In NUMEN, open the task "Write the core loop and pacing sheet" and copy your Notes.
+   - Type: "Do step 4 only: set mission XP to match this pacing sheet:" then paste your Notes and add "Then stop and report."
 5. Test levelling from 1 to 10.
+   - Press Play, do missions only, and time how long it takes to go from level 1 to 10.
+   - Compare with your pacing sheet. If it's too fast or slow, ask Claude Code to adjust the XP.
+   - Write the time in Notes and attach a capture with + Attach result.
+   - Ask Claude Code to commit with a clear message.
 D: You can level from 1 to 10 with missions only, at the speed in the pacing sheet.
 
 NEW:knockdowns | Knock-downs, grips, dying and leaving mid-fight
 W: Build the Phase 02 rules.
 1. Read the Phase 02 death rules.
-2. Build knock-downs and getting up.
-3. Build grips and carries if chosen.
-4. Build what you lose when you die.
-5. Handle players who leave mid-fight.
+   - In NUMEN, open "Decide what happens when you're knocked down or die" and copy your Notes.
+   - Open Claude Code in the game folder, paste this task's Claude build brief, then paste your rules.
+   - Type: "These are my death rules. Read them and tell me if anything is unclear. Don't change anything yet."
+2. Ask Claude Code to build knock-downs and getting up.
+   - Type: "Do step 2 only: build knock-downs and getting up, following my rules. Then stop and report."
+   - Press Play, get knocked down, and check you get up the way your rules say.
+3. Ask Claude Code to build grips and carries if chosen.
+   - If your rules said no grips or carries, tick this step and move on.
+   - Otherwise type: "Do step 3 only: build grips and carries, following my rules. Then stop and report."
+   - Type: "Tell me exactly how to test with two players in Studio. Don't change anything." Then test it.
+4. Ask Claude Code to build what you lose when you die.
+   - Type: "Do step 4 only: build what a player loses on death, following my rules. Then stop and report."
+   - Write down your money and XP, die once, and check the loss matches your rules.
+5. Ask Claude Code to handle players who leave mid-fight.
+   - Type: "Do step 5 only: handle players who leave mid-fight, following my rules. Then stop and report."
+   - In a two-player test, hit the other player, then close their window. Check the result matches your rules.
+   - Attach captures with + Attach result and write what passed or failed in Notes.
 D: Tested with two players.
 
 NEW:parties | Parties
 W: Invite friends, share mission progress, travel together (Garganta already moves parties).
-1. Add party invites.
-2. Share mission progress in a party.
-3. Move the party together through Garganta and other travel.
+1. Ask Claude Code to add party invites.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: add party invites, accepting, leaving and kicking. Then stop and report."
+   - Check its report says how it was tested.
+2. Ask Claude Code to share mission progress in a party.
+   - Type: "Do step 2 only: share mission progress between party members. Then stop and report."
+   - Then type: "What happens if one party member is in a different realm?" Write the answer in Notes.
+3. Ask Claude Code to move the party together through Garganta and other travel.
+   - Type: "Do step 3 only: Garganta already moves parties. Make all other travel move the party too. Then stop and report."
+   - Travel between places needs a published test copy. Ask Claude Code which place to publish and how.
+   - Publish it yourself in Studio with File > Publish to Roblox As... into a private test game, never the live game.
 4. Test with two players.
+   - Type: "Tell me exactly how to test with two players. Don't change anything." Follow what it says.
+   - Party up, do a mission together, then travel together. Take a capture and attach it with + Attach result.
+   - Write what passed or failed in Notes, then ask Claude Code to commit.
 D: Two players party up, do a mission and travel together.
 
 NEW:safety-tools | Safe chat, report button and admin tools
 W: Roblox's text filter on any custom chat or names, a report button, and kick and ban tools with a log.
-1. Run every custom chat and name through Roblox's text filter.
-2. Add a report button.
-3. Add kick and ban tools for admins.
-4. Log every report and ban.
+1. Ask Claude Code to run every custom chat and name through Roblox's text filter.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: find every place players type text and filter it with TextService. Then stop and report."
+   - Check its report lists every place it found, such as chat, character names and group names.
+2. Ask Claude Code to add a report button.
+   - Type: "Do step 2 only: add a report button that lets a player report another player with a reason. Then stop and report."
+   - Press Play, press the button, and check it says the report was sent.
+3. Ask Claude Code to add kick and ban tools for admins.
+   - Type: "Do step 3 only: add kick and ban tools only my account and listed admins can use. Then stop and report."
+   - Then type: "Where is the admin list, so I can add helpers later?" Write the answer in Notes.
+4. Ask Claude Code to log every report and ban.
+   - Type: "Do step 4 only: log every report, kick and ban with who, when and why. Then stop and report."
+   - In a two-player test, send a test report and ban the test player. Check both appear in the log.
+   - Attach a capture with + Attach result, then ask Claude Code to commit.
 D: A test report and a test ban both work.
 
 NEW:analytics | Track where players quit
 W: Record key moments (joined, finished the tutorial, first Shikai, left) to see where players give up.
 1. Pick the key moments to record.
-2. Send each one to Roblox analytics.
+   - Start with the four in the task: joined, finished the tutorial, first Shikai, left.
+   - Add 2 or 3 of your own, for example first mission, first Hollow evolution, first boss win.
+   - Write the list in this task's Notes and press Save note.
+2. Ask Claude Code to send each one to Roblox analytics.
+   - Open Claude Code in the game folder, paste this task's Claude build brief, then paste your list.
+   - Type: "Do step 2 only: send each of these moments to Roblox analytics. Then stop and report."
+   - Check its report says where in the game each moment is sent from.
 3. Check they show up in the dashboard.
+   - Type: "Tell me exactly how to see these events on the Creator Hub, and whether they need a published game. Don't change anything."
+   - If needed, publish to a private test game with File > Publish to Roblox As..., never the live game.
+   - Play through a few moments, then open your game on the Creator Hub (create.roblox.com) and find the analytics.
+   - Events can take a while to appear. Attach a capture once they show.
 D: The events show in Roblox analytics.
 
 NEW:servers | Set up server size and private servers
 W: Apply the Phase 02 answer.
 1. Read the Phase 02 server answer.
+   - In NUMEN, open "Decide server size and private servers" and read your Notes.
+   - Write the player number and the private server answer in this task's Notes.
 2. Set the server size.
+   - Open Claude Code in the game folder. Type: "Tell me exactly where to set the max players per server for my game. Don't change anything."
+   - Follow its steps yourself and set it to your number.
+   - Save the setting, then check it shows your number.
 3. Set up private servers if chosen.
+   - If your answer was no, tick this step and move on.
+   - If yes, type: "Tell me exactly how to turn on private servers and set their price. Don't change anything."
+   - Do it yourself, using the price from your money plan.
 4. Test a full server.
+   - Type: "Tell me how to test a server with the max number of players. Don't change anything." Follow what it says.
+   - Check the game runs smoothly when full and a private server opens if you chose them.
+   - Write what happened in Notes and attach a capture.
 D: Servers fill to the chosen size; private servers work if chosen.
 
 NEW:loot | Loot drops
 W: What enemies, bosses and chests drop, and how rare each drop is.
 1. List what each enemy, boss and chest can drop.
+   - Open Claude Code in the game folder. Type: "List every enemy, boss and chest in the game. Don't change anything."
+   - Next to each one, write 2 to 5 drops in this task's Notes.
+   - Check your version 1 list so you don't add drops for things that come later.
 2. Set how rare each drop is.
-3. Build the drop tables.
+   - Start with words: common, uncommon, rare, very rare. Then turn them into %, for example common 60%, rare 5%.
+   - Bosses should drop better things than normal enemies.
+   - If Robux can change any drop chance, the odds must be shown in %. Write those down too.
+3. Ask Claude Code to build the drop tables.
+   - Paste this task's Claude build brief and your Notes into Claude Code.
+   - Type: "Do step 3 only: build drop tables from my list. Then stop and report."
+   - Then type: "Where do I change a drop chance later?" Write the answer in Notes.
 4. Test a boss drop.
+   - Type: "Run the test boss's drop table 1000 times in a test and show me how often each item dropped."
+   - Compare the results with your %. They should be close.
+   - Press Play, beat the boss and check a drop appears. Attach a capture with + Attach result.
 D: Drop tables exist and a test boss drops correctly.
 
 NEW:bosses | Boss system and boss list
 W: One shared boss system, plus a list of every boss: where it lives and what it unlocks (for example the Shikai spirit fight).
-1. Build one shared boss system.
+1. Ask Claude Code to build one shared boss system.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: build one shared boss system that every boss can use. Then stop and report."
+   - Check its report says what a new boss needs to plug in and how it was tested.
 2. List every boss in every realm.
+   - Type: "List every boss in the docs and plan, grouped by realm. Don't change anything."
+   - Check it covers Karakura, Soul Society, Hueco Mundo and Las Noches. Add any it missed.
+   - Paste the list into this task's Notes.
 3. Write where each lives and what it unlocks.
-4. Put one test boss on the system.
+   - Example: "Shikai spirit: inner world fight, unlocks Shikai."
+   - Use the boss arena markers from the gameplay spots task for where each one lives.
+   - Press Save note.
+4. Ask Claude Code to put one test boss on the system.
+   - Type: "Do step 4 only: put one test boss on the boss system. Then stop and report."
+   - Press Play, fight the boss and check its health, attacks and reward all work.
+   - Attach a capture with + Attach result, then ask Claude Code to commit.
 D: One test boss uses the system and the list covers every realm.
 
 NEW:animations | Animations for every playable form
 W: Upload the 32 animations already made, then fill the gaps (walk, run, attacks, Cero cast) for each form.
 1. Upload the 32 animations already made.
+   - Open Claude Code in the game folder. Type: "Tell me where the 32 animations are and exactly how to upload them to Roblox. Don't change anything."
+   - Upload them yourself, following its steps. Each upload gets an ID number.
+   - Paste the IDs into Claude Code and type: "Link these animation IDs in the game. Then stop and report."
 2. List the gaps for each playable form.
-3. Make the missing walk and run animations.
-4. Make the missing attack and Cero cast animations.
+   - Type: "List every playable form and which animations each one is missing. Don't change anything."
+   - Paste the list into this task's Notes.
+3. Ask Claude Code to make the missing walk and run animations.
+   - Open Blender first and make sure the Blender MCP add-on says it's connected.
+   - Type: "Make the missing walk and run animations from my gaps list, one form at a time. Then stop and report."
+   - Watch each one in Blender, then upload and link it the same way as step 1.
+4. Ask Claude Code to make the missing attack and Cero cast animations.
+   - Type: "Now make the missing attack and Cero cast animations from my gaps list. Then stop and report."
+   - Watch each one in Blender. If something looks wrong, say what and ask it to fix it.
+   - Upload and link them the same way as step 1.
 5. Test each form in game.
+   - Press Play, become each form, and walk, run, attack and cast a Cero.
+   - Attach captures with + Attach result and write anything that looks off in Notes.
 D: Every playable form has its full set in game.
 
 NEW:vizard | Vizard path (only if you said yes in Phase 02)
 W: The Soul Reaper's Hollow-mask path.
 1. Check the Phase 02 answer.
+   - In NUMEN, open "Decide races at launch, clans and Vizard" and read your Notes.
+   - Look for "Vizard: yes" or "Vizard: no".
 2. If no, mark this task "not doing".
-3. If yes, build the inner Hollow story.
-4. Build the mask and its powers.
+   - Write "Not doing: Phase 02 said no" in this task's Notes and press Save note.
+   - Mark the task "not doing" in NUMEN and stop here.
+3. If yes, ask Claude Code to build the inner Hollow story.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 3 only: build the inner Hollow story for the Vizard path. Then stop and report."
+   - Press Play and walk through each story step.
+4. Ask Claude Code to build the mask and its powers.
+   - Type: "Do step 4 only: build the Vizard mask and its powers. Then stop and report."
+   - Press Play, put the mask on, try each power, and check Output for red lines.
 5. Play the path from start to end.
+   - Type: "Tell me how to start a fresh Soul Reaper test character. Don't change anything." Follow what it says.
+   - Play from the start of the path to the mask without skipping anything.
+   - Attach captures with + Attach result, write what you found in Notes, then press Submit for review.
 D: Playable end to end, or marked "not doing" if Phase 02 said no.
 
 NEW:trading | Trading between players
 W: A safe trade window where both players confirm, with a log. Roblox rule: some countries can't trade paid items.
-1. Build the trade window.
-2. Make both players confirm.
-3. Log every trade.
-4. Block paid items where Roblox says to.
+1. Ask Claude Code to build the trade window.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: build the trade window, with all checks done on the server. Then stop and report."
+   - Check its report says how it was tested.
+2. Ask Claude Code to make both players confirm.
+   - Type: "Do step 2 only: both players must confirm, and any change to the items resets both confirms. Then stop and report."
+   - In a two-player test, change an item after confirming and check the confirm resets.
+3. Ask Claude Code to log every trade.
+   - Type: "Do step 3 only: log every trade with both players, the items and the time. Then stop and report."
+   - Then type: "Where can I read the trade log?" Write the answer in Notes.
+4. Ask Claude Code to block paid items where Roblox says to.
+   - Roblox's PolicyService tells the game which features each player's country allows.
+   - Type: "Do step 4 only: use PolicyService to block trading paid items where it isn't allowed. Then stop and report."
+   - Then type: "How do I test the blocked case in Studio?" and try it.
 5. Test for item duplication.
+   - Duplication (a dupe) is a bug that copies an item, so it ends up in two inventories.
+   - Type: "Try to break trading: leaving mid-trade, spamming confirm, trading during a save. Add tests. Then stop and report."
+   - In a two-player test, trade, leave mid-trade, rejoin, and count the items on both players.
+   - Attach captures with + Attach result, then ask Claude Code to commit.
 D: Two players trade with no duplication.
 
 NEW:groups | Player groups and bases
 W: Players make their own groups with ranks, and maybe a base.
-1. Let players make a group.
-2. Add ranks and permissions.
-3. Add joining, leaving and kicking.
-4. Add a base if chosen.
+1. Ask Claude Code to let players make a group.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: let players make a group, with the name run through Roblox's text filter. Then stop and report."
+   - Press Play, make a group and check the name shows.
+2. Ask Claude Code to add ranks and permissions.
+   - First decide the ranks yourself, for example Leader, Officer, Member, and what each can do. Write them in Notes.
+   - Type: "Do step 2 only: add these ranks and permissions:" then paste your Notes and add "Then stop and report."
+3. Ask Claude Code to add joining, leaving and kicking.
+   - Type: "Do step 3 only: add joining, leaving and kicking from a group. Then stop and report."
+   - In a two-player test, join, get kicked, then rejoin. Check ranks still work.
+4. Ask Claude Code to add a base if chosen.
+   - Decide now: does a group get a base? Write yes or no in Notes. If no, tick this step.
+   - If yes, type: "Do step 4 only: add a group base. Then stop and report."
+   - Attach a capture with + Attach result, then ask Claude Code to commit.
 D: A group can be made, joined and managed.
 
 NEW:achievements | Achievements and titles
 W: Badges and titles for milestones.
 1. List the milestones.
+   - Examples: first Shikai, first Bankai, reaching Vasto Lorde, beating each boss, 100 missions done.
+   - Aim for at least 10, and mix easy ones with hard ones.
+   - Write them in this task's Notes and press Save note.
 2. Make a badge or title for each.
-3. Award them in game.
+   - Badges are made on the Creator Hub (create.roblox.com): open your game and find the badges section.
+   - Each badge needs a name, a description and an image. Write down each badge's ID.
+   - Titles live inside the game, so Claude Code adds those in step 3.
+3. Ask Claude Code to award them in game.
+   - Open Claude Code in the game folder, paste this task's Claude build brief, then paste your list and badge IDs.
+   - Type: "Do step 3 only: award these badges and titles at each milestone. Then stop and report."
+   - Then type: "How do I test that a badge is awarded?" Follow what it says.
+   - Check at least 10 work, then attach captures with + Attach result.
 D: At least 10 work in game.
 
 NEW:codes-events | Codes and limited-time events
 W: A code box and an easy way to run timed events (holidays, double XP).
-1. Add a code box.
-2. Add a way to switch timed events on and off.
+1. Ask Claude Code to add a code box.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: add a code box. Check codes on the server, one use per player. Then stop and report."
+   - Then type: "Where do I add a new code?" Write the answer in Notes.
+2. Ask Claude Code to add a way to switch timed events on and off.
+   - Type: "Do step 2 only: add a way to switch timed events on and off, with start and end times. Then stop and report."
+   - Then type: "How do I start an event without updating the game?" Write the answer in Notes.
 3. Test a code.
+   - Ask Claude Code to add a test code, then press Play and type it in.
+   - Check the reward arrives once, and a second try says it's already used.
 4. Test a double XP event.
+   - Switch on a test double XP event the way Claude Code told you.
+   - Do one mission and check you get twice the usual XP. Attach a capture with + Attach result.
+   - Switch the event off again, then ask Claude Code to commit.
 D: A test code and a test event work.
 
 NEW:store-page | Store page: icon, thumbnails, trailer and description
 W: What players see before they press Play.
 1. Make the game icon.
+   - Open Claude Code. Type: "Tell me the image sizes Roblox needs for a game icon and thumbnails. Don't change anything."
+   - Make the icon in ChatGPT or from a Studio capture. Keep it bold and readable when small.
+   - Check your keep or change list: no Bleach logos or characters.
 2. Make the thumbnails.
+   - In Studio, take captures of the best moments: a Cero, a boss fight, a Hollow evolving.
+   - Pick 3 to 5 and crop them to the size Claude Code gave you.
 3. Record a short trailer.
+   - Type: "Suggest a free way to record a 30 to 60 second gameplay trailer on Windows. Don't change anything."
+   - Record short clips of your best moments and join them into one video.
 4. Write the description.
+   - The first two lines matter most: say what the game is and why it's fun.
+   - Mention the races, how you level up, and where to find codes.
+   - Check it against your keep or change list. Write it in this task's Notes.
 5. Upload them all.
+   - On the Creator Hub (create.roblox.com), open your game and find where the icon, thumbnails, trailer and description go.
+   - Upload each one, then open the game's page on Roblox and check how it looks.
+   - Attach a capture of the page with + Attach result.
 D: All uploaded and you're happy with them.
 
 NEW:shop | Build the shop
 W: The game passes and products from the money plan, with odds shown for anything random and Roblox's PolicyService checks.
 1. Make each game pass and product from the money plan.
-2. Show odds for anything random.
-3. Add PolicyService checks for each country.
+   - In NUMEN, open "Decide how the game makes money" and read your list and prices.
+   - On the Creator Hub (create.roblox.com), open your game and make each game pass and developer product.
+   - Write down each item's ID in this task's Notes.
+2. Ask Claude Code to show odds for anything random.
+   - Open Claude Code in the game folder, paste this task's Claude build brief, then paste your Notes.
+   - Type: "Do step 2 only: build the shop, and show the % odds before buying anything random. Then stop and report."
+   - Press Play and check the odds show before the buy button.
+3. Ask Claude Code to add PolicyService checks for each country.
+   - Type: "Do step 3 only: use PolicyService to hide paid random items where they aren't allowed. Then stop and report."
+   - Then type: "How do I test the blocked case in Studio?" and try it.
 4. Test a purchase in Studio.
+   - Press Play and buy one game pass and one product. Studio test purchases don't spend real Robux.
+   - Check the item arrives and still works after you rejoin.
+   - Attach a capture with + Attach result, then ask Claude Code to commit.
 D: A test purchase works in Studio.
 
 NEW:maturity-form | Fill in Roblox's maturity questionnaire
 W: Use the Phase 02 draft.
 1. Open the questionnaire on Roblox.
+   - On the Creator Hub (create.roblox.com), open your game and find the maturity and content questionnaire.
+   - In NUMEN, open "Answer Roblox's maturity questions on paper" and keep your draft beside it.
 2. Fill it in from the Phase 02 draft.
+   - Check each draft answer still matches the game now, especially blood and fights.
+   - Copy each answer into the questionnaire. Change any that are no longer true.
 3. Submit it.
+   - Read every answer once more, then submit.
+   - Write the date you submitted it in this task's Notes.
 4. Check the label shows.
+   - Open your game's page on Roblox and look for the maturity label. It may take a little while.
+   - Attach a capture of the label with + Attach result.
 D: It's submitted and the label is shown.
 
 NEW:ip-final | Final name and copyright check
 W: Re-check everything the players will see.
 1. Go through the keep or change list.
+   - In NUMEN, open "Check names that could get the game taken down" and copy your list.
+   - Open Claude Code in the game folder and paste the list.
+   - Type: "Search the game for every name marked change and tell me where any still appear. Don't change anything."
 2. Check the game and store page again.
+   - Press Play and look at every menu, sign and boss name for anything from the list.
+   - Open the game's page on Roblox and read the title, description, icon and thumbnails.
+   - Write anything you find in this task's Notes.
 3. Change anything left on the list.
+   - For game text, type: "Rename these to the new names on my list:" then paste them and add "Then stop and report."
+   - Change store page items yourself on the Creator Hub (create.roblox.com).
+   - Ask Claude Code to commit, then write "Nothing left" in Notes when done.
 D: Nothing on the change list is left.
 
 NEW:community | Discord, wiki and socials
 W: Where players get news, codes and help.
 1. Set up a Discord server.
+   - In Discord, create a new server named after the game.
+   - Add a few channels: news, codes, help and bug reports.
+   - In the server settings, turn on safety settings such as a verification level, so spam accounts can't post straight away.
 2. Set up a wiki.
+   - Pick a free wiki site that other Roblox games use, and create a wiki named after the game.
+   - Start with a few pages: races, how to level up, bosses and codes.
 3. Set up social accounts.
+   - Pick 1 or 2 platforms your players use, for example YouTube or TikTok.
+   - Use the same name everywhere, and post one short gameplay clip to start.
 4. Link them all from the store page.
+   - On the Creator Hub (create.roblox.com), open your game and find where social links go.
+   - Add the Discord, wiki and social links, then check each one opens from the game's page.
+   - Write all the links in this task's Notes.
 D: Each is set up and linked from the store page.

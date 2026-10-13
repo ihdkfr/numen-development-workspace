@@ -227,14 +227,14 @@ About 44 to 64 weeks at 7 sessions a week.
 
 | New id | Title | Who |
 |---|---|---|
-| T02.01 | Write the core loop and pacing sheet | Usman |
-| T02.02 | Decide what's in version 1 | Usman |
-| T02.05 | Decide what happens when you're knocked down or die | Usman |
-| T02.06 | Decide races at launch, clans and Vizard | Usman |
-| T02.07 | Decide how the game makes money | Usman |
-| T02.08 | Decide server size and private servers | Usman |
-| T02.09 | Check names that could get the game taken down | Usman |
-| T02.10 | Answer Roblox's maturity questions on paper | Usman |
+| T02.01 | Write the core loop and pacing sheet | You |
+| T02.02 | Decide what's in version 1 | You |
+| T02.05 | Decide what happens when you're knocked down or die | You |
+| T02.06 | Decide races at launch, clans and Vizard | You |
+| T02.07 | Decide how the game makes money | You |
+| T02.08 | Decide server size and private servers | You |
+| T02.09 | Check names that could get the game taken down | You |
+| T02.10 | Answer Roblox's maturity questions on paper | You |
 | T03.24 | Mark gameplay spots on every map | Claude Code |
 | T04.01 | Saving, inventory and money | Claude Code |
 | T04.03 | Mission boards and daily and weekly quests | Claude Code |

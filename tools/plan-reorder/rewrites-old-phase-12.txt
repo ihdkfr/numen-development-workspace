@@ -1,0 +1,80 @@
+S12.01 | Check what's built: saving and safety
+W: Saving and safety systems are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S12.02 | Make the game load and run faster
+W: Get loading time and running speed under target, without moving slow work into fights.
+1. Find what makes the terrain slow.
+2. Move work to ready-made data where safe.
+3. Keep fight time fast.
+4. Check far-away realms are hidden.
+5. Measure every change.
+D: Loading is faster and fights don't stutter.
+
+S12.03 | Check saves are safe before launch
+W: Make sure player saves never get wiped or broken, including old saves, before real players arrive.
+1. Check for save format clashes.
+2. Test all three character slots.
+3. Test save locks, recovery and backups.
+4. Test updating old sample saves.
+5. Save Bankai, Soul Record and Hollow traits safely.
+D: No save can be wiped by accident and old saves update correctly.
+
+S12.04 | Stop cheaters without blocking fast players
+W: Protect fights from cheaters without wrongly catching players who use fast moves like Shunpo.
+1. Check every message from players on the server.
+2. Add limits on how often they're sent.
+3. Allow fast movement moves.
+4. Try to cheat with transformations and fake attacks.
+5. Log suspicious players, never auto-ban.
+D: Normal fast movement isn't flagged and fake attacks are blocked.
+
+S12.05 | Test with 20 players and slow devices
+W: Test real busy situations: 20 players, crowded cities, big fights and slow phones.
+1. Run a 20-player test server.
+2. Test busy Seireitei and Rukongai.
+3. Test a faction battle and several releases at once.
+4. Test on a slow device.
+5. Test controller and phone.
+D: The game hits the agreed speed and error targets.
+
+S12.06 | Play every path from start to finish
+W: Play the full launch paths for real, with no developer shortcuts, to find anything that blocks progress.
+1. Play new character to human to Plus.
+2. Play the Shinigami path to its launch end.
+3. Play the Hollow path to its launch end.
+4. Test travel, saving, rejoining and death.
+5. Test money, rank and world events.
+D: Nothing blocks a player on any launch path.
+
+S12.07 | Do a final look walkthrough
+W: A final look at every main world and playable form before launch, from the ground, not just from the air.
+1. Walk Karakura and Soul Society.
+2. Walk Hueco Mundo and Las Noches.
+3. Check every playable form and transformation.
+4. Check lighting and weather.
+D: There are no placeholders, broken roofs or clipping.
+
+S12.08 | Set up the game for launch
+W: Switch off developer-only settings and check safety and store settings before launch.
+1. Turn off developer buttons.
+2. Set up the admins.
+3. Make sure store items are cosmetic only.
+4. Check API permissions.
+5. Separate the test game from the real one.
+6. Set the final feature switches.
+D: The launch check passes and no power can be bought.
+
+S12.09 | Run a closed test, then a soft launch
+W: Launch in small steps: a closed test with 20 to 50 players, then a small public launch, and let the results guide you.
+1. Run a closed test with 20 to 50 players.
+2. Track crashes, speed and where players get stuck.
+3. Fix the worst problems first.
+4. Open to a small group of the public.
+5. Have a plan to roll back and patch.
+D: Players understand the main paths and the game is stable and fast.

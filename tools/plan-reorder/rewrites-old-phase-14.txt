@@ -1,0 +1,35 @@
+S14.01 | Studio capture rig: done
+W: A tool in Studio that takes pictures from fixed camera spots, so every effect is recorded the same way.
+1. Use its preset camera spots for captures.
+D: Captures use the rig's preset camera spots.
+
+S14.02 | Picture compare loop: done
+W: Claude Code takes a picture in Studio and puts it beside the reference at the same size to compare.
+1. Put every capture beside its reference.
+D: Every capture sits beside its reference at the same size.
+
+S14.03 | Claude Code session rules: done
+W: The rules file for Claude Code: one rule document per feature, a usage limit per session, never save the place, never push.
+1. Keep following the session rules.
+D: Every session follows the rules file.
+
+S14.04 | Effects shortlist workflow: done
+W: You shortlist library effects in Studio, and Claude Code records each one before using it and stops if it's the wrong kind.
+1. Shortlist effects into the feature's shortlist folder.
+2. Claude Code records each before use.
+D: Every shortlisted effect is recorded before it's used.
+
+S14.05 | Save the Hueco matching tools
+W: The tools for matching Hueco Mundo to the concept art are built but not saved in git yet.
+1. Commit the tools as part of S01.01.
+2. Check the generated code compiles.
+3. Use them in the concept-matching work to prove they work.
+D: The tools are in git and the generated code compiles.
+
+S14.06 | Run all the game's tests
+W: Older notes say the tests pass, but newer builds need a fresh run.
+1. Use the joined build from S01.01.
+2. Run every test set.
+3. Write down the results.
+4. List any failures as blockers.
+D: All tests pass, or each failure is written down as a blocker.

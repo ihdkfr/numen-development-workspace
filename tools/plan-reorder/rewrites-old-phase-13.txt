@@ -1,0 +1,53 @@
+S13.01 | Check what's built: Quincy and others (off)
+W: Code for Quincy and other routes exists but stays switched off until after launch. Don't play-check it now.
+1. Leave it switched off.
+2. Come back to it at S13.03.
+D: It stays off until after launch.
+
+S13.02 | Switch on homes, stadium and extras
+W: Some after-launch systems are already built: homes, stadium, research, keepsakes. Switch them on one by one once launch is stable.
+1. Check homes and the stadium.
+2. Check research and keepsakes.
+3. Check Dangai pockets and witness mode.
+4. Check the cross-server and gate systems.
+5. Switch on only what has a clear reason.
+D: Each one switched on has a clear reason and runs within budget.
+
+S13.03 | Decide when Quincy and Fullbringer open
+W: Only open the Quincy and Fullbringer paths when they're as good as the launch races.
+1. Check their progression is finished.
+2. Check combat balance.
+3. Check they fit the world.
+4. Check their tutorial.
+5. Test with players.
+D: Neither path feels like a side mode.
+
+S13.04 | Write the Quincy look guide
+W: Plan how Quincy (spirit archers) look, without opening their path yet.
+1. Design spirit weapon shapes.
+2. Design uniforms.
+3. Design how their spirit particles look.
+4. Design how Hirenkyaku looks.
+D: The look guide is ready and the path stays closed.
+
+S13.05 | Write the Fullbringer look guide
+W: Plan how Fullbringers (people who power up objects) look, without opening their path yet.
+1. Design how powered objects look.
+2. Design how they pull power from things around them.
+3. Set limits for their full form.
+D: The look guide is ready and the path stays closed.
+
+S13.06 | Plan later story arcs safely
+W: Keep later story content spoiler-free and away from the launch work.
+1. Use neutral names until Usman is ready.
+2. Build only after the main worlds are stable.
+3. Keep it original and legally safe.
+D: Nothing in the plan spoils later arcs.
+
+S13.07 | Design technique upgrades with trade-offs
+W: Small upgrades that change how a basic technique works, always with a downside. No gacha (paid random rolls).
+1. Design a few upgrades for basic techniques only.
+2. Give each a trade-off, like range for speed.
+3. Keep them off unique sword powers.
+4. Earn them by mastery or crafting, never random buys.
+D: Upgrades change how you play but never just make you stronger.

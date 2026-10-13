@@ -1,0 +1,52 @@
+S11.01 | Check what's built: menus, sound and looks
+W: Some menus, sounds and visual polish are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S11.02 | Finish the HUD and menus
+W: Make the HUD (the on-screen bars and buttons) and menus clean, simple and anime-styled.
+1. Make separate HUD modes for exploring and fighting.
+2. Make the most important info easiest to see.
+3. Join menus that overlap.
+4. Guide players without lots of markers.
+5. Show status, bounty and rank clearly.
+D: The HUD warns you of danger without covering the game.
+
+S11.03 | Finish the character creator
+W: Let players make their character look how they want, without looks changing their power.
+1. Polish the human creator.
+2. Show Hollow forms and masks.
+3. Link Bankai looks to the creator.
+4. Add the wardrobe and recolours.
+D: Looks never change hitboxes or fighting power.
+
+S11.04 | Add all the sound and music
+W: Missing or placeholder sound is the biggest quality gap. Add real sounds and our own music everywhere.
+1. Add footsteps and hit sounds.
+2. Add movement and spiritual pressure sounds.
+3. Add Hollow sounds.
+4. Add transformation sounds.
+5. Add background sound for each realm.
+6. Add our own music, never ripped anime audio.
+D: No big moment in the game is silent or uses a placeholder.
+
+S11.05 | Add camera and accessibility settings
+W: Settings for cutscene camera, screen shake, flashing and colour-blind players, without changing fight timing.
+1. Add Full, Reduced and Off cutscene camera.
+2. Add a screen shake slider.
+3. Add flash reduction.
+4. Make colours clear for colour-blind players.
+5. Fix the camera going through walls.
+D: Settings change only how it looks, never how fights play.
+
+S11.06 | Build stances and weapon looks
+W: Stances and sword looks let players show off their style before releasing a power, without any hidden advantage.
+1. Make stance styles that change idle poses only.
+2. Add sealed sword looks that fit the sword rules.
+3. Add carry styles for each race.
+4. Check nothing clips on custom bodies or phones.
+D: Players look unique before releasing, and looks never change reach or speed.

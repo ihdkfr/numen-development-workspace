@@ -1,0 +1,104 @@
+S10.01 | Check what's built: the living world
+W: Living world systems are already in the game, though many were switched off at the last check. Play them to see what works.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S10.02 | Build law, reputation, money and nemesis Hollows
+W: Join the living world systems up so actions have lasting results: crime, bounties, money, NPCs that remember you, nemesis Hollows.
+1. Add standing with each group.
+2. Add crime, witnesses, arrest and trial.
+3. Add bounties and scars.
+4. Add money and crafting.
+5. Add NPC memory and nemesis Hollows.
+6. Add a hall of names for server history.
+D: These systems work together and never feel like daily chores.
+
+S10.03 | Build events, raids and war
+W: Use the finished worlds for repeatable server events: Hollow attacks, raids, territory war, tournaments and investigations.
+1. Add Hollow attacks.
+2. Add raids.
+3. Add territory war.
+4. Add tournaments.
+5. Add investigations and faction orders.
+6. Don't let the server become nonstop alarms.
+D: Events add to normal life instead of replacing it.
+
+S10.04 | Build gear and loadout limits
+W: Add gear and accessories without gear becoming everything. A weight limit stops anyone wearing every best item.
+1. Design gear types and cosmetic slots.
+2. Add a weight or slot limit.
+3. Get gear from bosses, crafting, shops and exploring.
+4. Keep looks separate from stats.
+5. Add tailor and crafting only where useful.
+D: Gear lets you build your style, but a skilled player without gear can still win.
+
+S10.05 | Build world events
+W: Make world events pop up from what's happening in the world, not just on a timer: defence, rescue, chase, boss appears.
+1. Make a small set of event types.
+2. Start them from world conditions.
+3. Reward money, crafting, cosmetics or standing.
+4. Add anti-farming rules.
+5. Show clearly how to join.
+D: You understand an event in seconds and none are needed to level.
+
+S10.06 | Build faction raids with goals
+W: Build team PvP (player versus player) with goals like attack and defend, escort or sneak in, not just killing.
+1. Make several goal types for raids.
+2. Give each team member a job.
+3. Use faction rank duties as reasons to join.
+4. Add comeback rules and stop AFK farming.
+D: Raids need more than damage to win, and nobody is forced into PvP.
+
+S10.07 | Build ranked 1v1 and team queue
+W: A ranked mode for fair skill tests, separate from open-world rank like Captain or Espada.
+1. Build ranked 1v1 with fixed rules.
+2. Add team queue only if combat is stable.
+3. Keep ranked score separate from story rank.
+4. Handle leavers and stalling.
+5. Reward titles and looks, not power.
+D: Ranked measures skill, not who has the rarest drop.
+
+S10.08 | Build invasion missions
+W: Team missions into enemy land with goals like stealing information, rescuing a soul or sabotaging a gate.
+1. Make missions in a closed-off area.
+2. Write our own mission goals.
+3. Scale them by team size.
+4. Add clear escape and fail rules.
+D: You can repeat it without it feeling like one quest copied five times.
+
+S10.09 | Build a big faction battle event
+W: A big opt-in battle between three or more sides, tied to the world's story, with changing goals.
+1. Design the battle for three or more sides.
+2. Rotate goals during the event.
+3. Add scores for helping, rejoining and team balance.
+4. Make it work with few players too.
+D: Big battles stay clear and smooth, and every role gets rewarded.
+
+S10.10 | Build risky expeditions
+W: A dangerous trip that gets harder the deeper you go. You choose when to escape with your loot.
+1. Make the expedition area.
+2. Make danger rise the deeper you go.
+3. Let players leave whenever they choose.
+4. Mix goals and fights each run.
+5. Reward materials and cosmetics, not needed power.
+D: Players keep facing a real "keep going or leave" choice.
+
+S10.11 | Build faction reputation
+W: Your standing with each faction changes how NPCs treat you: friendliness, prices, patrols, missions and hostile zones.
+1. Link standing levels to NPC behaviour.
+2. Allow unusual friendships at high standing.
+3. Feed crimes and invasions into standing.
+4. Show standing through how NPCs act and talk.
+D: NPCs visibly act differently because of what you've done.
+
+S10.12 | Build a co-op wave raid
+W: A short 1 to 4 player mode with waves of enemies and bosses, separate from open-world raids.
+1. Build the wave arena for 1 to 4 players.
+2. Mix our own enemies and twists.
+3. Scale difficulty with party size.
+4. Reward materials and cosmetics.
+D: It works as a short co-op session and gets harder in smart ways.

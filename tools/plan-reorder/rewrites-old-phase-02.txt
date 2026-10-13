@@ -1,0 +1,131 @@
+S02.01 | Save the Hollow design bible
+W: The Hollow design bible (the rule book for how every Hollow looks and evolves) is written. Save it into the game repo.
+1. Check the bible is complete.
+2. Save it into docs/characters in the game repo.
+3. Commit it.
+D: The bible file is in the game repo.
+
+S02.02 | Write a two-page art guide for modellers
+W: A short guide with the rules for bone plates, masks, colours, shapes and size, so nobody making models has to guess.
+1. Write the rules for plates and masks.
+2. Write the colour rules.
+3. Write the shape and size rules.
+4. Keep it to two pages.
+D: The guide exists and a modeller could follow it without asking questions.
+
+S02.03 | Collect ideas for Hollows
+W: Decide the kind of look, personality traits, animal features and mask designs you want Hollows to have.
+1. Collect pictures and ideas you like.
+2. Write down the looks and traits you want.
+3. Sketch or describe mask designs.
+D: Your Hollow ideas are written in this task's notes.
+
+S02.04 | Approve the ten Hollow lines overview
+W: Ten new Hollow lines (families that evolve from small Hollow to Arrancar) are designed. The direction is approved; each line still needs its own yes.
+1. Read the rules and research in the notes.
+2. Check every stage of each line is described.
+3. Write anything you want changed.
+D: You have read the overview and every line has a yes or a change written down.
+
+S02.05 | Design Hollow line 1: Polilla the moth
+W: Polilla is a moth Hollow driven by longing. It fights at mid range and ends fights with an exploding burst.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.06 | Design Hollow line 2: Hiena the hyena
+W: Hiena is a hyena Hollow driven by mockery. It's a brawler that copies whatever beats it.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.07 | Design Hollow line 3: Ciervo the stag
+W: Ciervo is a stag Hollow driven by pride. It turns every fight into a one-on-one duel.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.08 | Design Hollow line 4: Alcaudón the shrike
+W: Alcaudón is a shrike (a small bird) Hollow driven by cruelty. It snipes from the air and pins enemies down.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.09 | Design Hollow line 5: Medusa the jellyfish
+W: Medusa is a jellyfish Hollow driven by apathy. It's a tank that hurts anyone standing too close.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.10 | Design Hollow line 6: Escarabajo the beetle
+W: Escarabajo is a rhinoceros beetle Hollow driven by resolve. It's an armoured tank that can suddenly open its shell and fly.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.11 | Design Hollow line 7: Anguila the eel
+W: Anguila is an electric eel Hollow driven by restlessness. It moves fast and chains lightning between enemies.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.12 | Design Hollow line 8: Buitre the vulture
+W: Buitre is a vulture Hollow driven by decay. It wears enemies down slowly and heals itself.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.13 | Design Hollow line 9: Oso the bear
+W: Oso is a bear Hollow driven by grief. It's a grappler that never speaks.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.14 | Design Hollow line 10: Avispa the hornet queen
+W: Avispa is a hornet queen Hollow driven by frenzy. She summons helpers and speeds up her side.
+1. Make the design sheets in ChatGPT with the prompts in the notes.
+2. Check each sheet against the appeal rules.
+3. Fix anything that looks off.
+4. Sign off the line.
+D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
+
+S02.15 | Lock the ten Hollow lines
+W: Fix the final details of each line so nothing changes later: animal, fighting style, moves, mask, hole, release name and Cero colour.
+1. Write each line's animal and death theme.
+2. Write its fighting style and three signature moves.
+3. Write its mask piece and where its hole is.
+4. Write its release name and Cero colour.
+D: All ten lines have every detail filled in and you've said they're locked.
+
+S02.16 | Decide which Fishbone forms launch first
+W: Decide how many of the ten lines get a Fishbone stage (the giant Hollow form) at launch. Each one is a lot of model work.
+1. Look at the cost of each Fishbone body.
+2. Pick how many launch with one.
+3. Pick which lines they are.
+D: Your answer is written in this task.
+
+S02.17 | Decide how eating and evolving works
+W: Decide how Hollows eat each other to evolve, including going backwards and half-eaten Hollows. Watch for bullying and runaway players.
+1. Decide what happens if you don't eat.
+2. Decide what happens if you're half eaten.
+3. Decide how pack hunting works.
+4. Write how to stop bullying and runaway leaders.
+D: The rules are written in this task.

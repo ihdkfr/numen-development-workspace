@@ -1,0 +1,109 @@
+S06.01 | Cero look: locked
+W: The standard Cero (a red beam fired from the mouth or hand) is finished and locked. Nothing about its look changes unless you say "unlock the Cero".
+1. Leave the Cero's look alone.
+2. Use it as the standard to compare other beams with.
+D: The Cero still looks exactly as it did when it was locked.
+
+S06.02 | Fix the Cero camera shake
+W: The screen shakes too much and too long when the Cero fires.
+1. Make one short shake when it fires.
+2. Add a tiny shake while holding.
+3. Add one shake when it hits.
+4. Shake less when you're far away.
+5. Record before and after and show Usman.
+D: You fire the Cero and the shake feels right.
+
+S06.03 | Add the Cero sound effects
+W: The Cero has five empty sound slots. Fill them with real sounds you're allowed to use.
+1. Find the five sounds.
+2. Write down each sound's licence.
+3. Put them in the slots and set the volumes.
+4. Record from close up and 40 studs away.
+D: You fire the Cero and the sounds feel right.
+
+S06.04 | Make the Cero run faster
+W: Make the Cero cheaper to run so phones keep up, without changing how it looks on PC.
+1. Reuse beam pieces instead of making new ones (pooling).
+2. Make lighter versions for phones.
+3. Compare before and after pictures on PC High.
+D: Phones get lighter versions and the PC High picture is exactly the same.
+
+S06.05 | Check what's built: Cero and effects library
+W: The Cero and the effects library are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S06.06 | Build the Gran Rey Cero
+W: The Gran Rey Cero is the Arrancar's blue Cero: wider and held longer. It's a recolour of the standard Cero.
+1. Add its colour, width and hold time.
+2. Record it beside the standard Cero.
+3. Add a deeper sound.
+D: It sits beside the standard Cero in a recording and you approve it.
+
+S06.07 | Build the Cero Oscuras
+W: The Cero Oscuras is the Vasto Lorde's black beam with a green edge, using the same parts as the Cero.
+1. Swap the body and edge colours.
+2. Record it beside the standard Cero.
+3. Show Usman.
+D: It sits beside the standard Cero in a recording and you approve it.
+
+S06.08 | Build the Bala
+W: The Bala is a short fast red shot that Hollows use a lot, so it must be cheaper to run than the Cero.
+1. Make the mouth flash and the travelling shot.
+2. Keep it about 0.3 seconds with no hold.
+3. Check it's cheaper than the Cero.
+4. Record it beside the Cero.
+D: The Bala looks right and costs less than the Cero.
+
+S06.09 | Build Shakkahō, Kido #31
+W: Shakkahō is a red ball spell that bursts. Build it from the Cero's shape pieces, with no beam.
+1. Make the red ball and the burst.
+2. Record it beside the standard Cero.
+3. Show Usman.
+D: You approve it beside the standard Cero.
+
+S06.10 | Build Sōkatsui, a 3D blue flame burst
+W: Sōkatsui is a violent blue flame burst with a white centre that looks right from every side, not a flat picture.
+1. Build a real 3D flame shape in Blender.
+2. Layer flame sheets and particles.
+3. Make a lighter phone version.
+4. Record it from front, back, sides and above.
+D: It looks like flame from every side, runs on phones and you approve it.
+
+S06.11 | Build Byakurai, Kido #4
+W: Byakurai is a thin white lightning line with no bands.
+1. Build it from the thin streak and ring pieces.
+2. Record it beside the standard Cero.
+3. Show Usman.
+D: You approve it beside the standard Cero.
+
+S06.12 | Build the binding spells
+W: Build the Bakudō (binding spells) Sai #1 and Rikujōkōrō #61, which uses six beams of light.
+1. Build them from the thin ring and streak pieces.
+2. Make them sit in the world, not on the screen.
+3. Record them and show Usman.
+D: Both binding spells work and you approve them.
+
+S06.13 | Texture variants library: done
+W: The library of effect textures (bands, bursts, streaks, rings, smoke) is made and uploaded. Keep every version.
+1. Keep every texture version.
+2. Keep the source list up to date.
+D: All the textures and their source list are in the game repo.
+
+S06.14 | VFX rules sheet: done
+W: The rules for effects are written: no darkening the sky, neon on the core only, nothing flat facing the camera.
+1. Follow the rules for every new effect.
+2. Record each effect from two angles.
+D: Every new effect follows the rules sheet.
+
+S06.15 | Set effect quality levels for each device
+W: Set one high standard for effects, with Ultra, High, Medium and Low versions, so they look great without hiding the fight.
+1. Set three levels: normal hits, named moves, big finishers.
+2. Make effects react to the world.
+3. Make Ultra, High, Medium and Low settings.
+4. Add options to reduce flashing and shaking.
+D: On Low you can still see every attack coming, and on High effects never hide the enemy.

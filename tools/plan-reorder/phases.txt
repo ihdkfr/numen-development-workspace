@@ -1,0 +1,55 @@
+01 | Set up and check what you have | setup
+G: Save all your work to GitHub, make sure the tools work, then play everything that's already built and write down what works and what's broken.
+X: All work is pushed, the tests run, and every "Check what's built" task is approved or has its problems written in a note.
+
+02 | Decide the big things | decisions
+G: Answer the big questions on paper before building more, so nothing gets built twice.
+X: Every task in this phase has your answer written in it.
+
+03 | Build the maps | world
+G: Finish every world, one at a time: Hueco Mundo first (it's half done), then Soul Society, then Karakura.
+X: Every map is finished, has its gameplay spots marked, and runs smoothly on an iPhone 13.
+
+04 | Player basics | systems
+G: Code the basic systems every player uses: saving, items, money, levels, missions, dying, parties and reporting.
+X: A test player can level up from missions, keep items, get knocked down and come back, and play in a party.
+
+05 | Movement and spiritual power | power
+G: Finish how players move and how spiritual power works.
+X: Shunpo and Airwalk pass their tests on PC, controller and phone, and release, Channel, sensing and pressure all work in a test fight.
+
+06 | Combat | combat
+G: Finish fighting: hits and blocks, the four Shinigami arts, skill trees, gear, loot, enemies, bosses, controller and phone.
+X: A full fight works on keyboard, controller and phone, and one test boss runs on the boss system.
+
+07 | Characters and models | art
+G: Finish the Hollow designs on paper, then build every model in Blender, rigged and animated: Hollows first, then playable characters. Their moves are Phase 09.
+X: Every model passes the model checks and you've approved it.
+
+08 | Animation and VFX | vfx
+G: Finish the Cero's last jobs, then every other beam and Kido, the animations and the cinematics.
+X: The Cero still looks exactly locked, every beam has a capture next to the Cero, and phones keep their frame rate.
+
+09 | Powers | zanpakuto
+G: Fill the game with powers: Zanpakuto 11 to 100, Shikai, Bankai, Inner Worlds and every Hollow's moves.
+X: You earn a Shikai and a Bankai in play, and every Hollow stage has its moves.
+
+10 | Story and life | life
+G: Join everything into the two life paths, the Soul Reaper path and the Hollow path, from the human start to the end.
+X: A new player can play either path from start to end without help.
+
+11 | Multiplayer and living world | living
+G: Give players reasons to come back and play together: trading, groups, raids, events, ranked and achievements.
+X: A full server runs events and raids for an evening without broken saves or lag.
+
+12 | Look, sound and menus | presentation
+G: Make it feel finished: menus, character creator, music and sound, settings and the game's store page.
+X: A full session has no placeholder menus, sounds or camera problems.
+
+13 | Launch | launch
+G: Make it fast and safe, build the shop, do what Roblox requires, test with a small group, then open to everyone.
+X: A closed test runs with no lost data, then the public launch.
+
+14 | After launch | later
+G: Kept for later: Quincy, Fullbringer, homes and later stories. Not estimated.
+X: Nothing yet. These open after launch, one at a time.

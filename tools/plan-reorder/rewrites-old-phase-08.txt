@@ -1,0 +1,152 @@
+S08.01 | Answer the open handover questions
+W: Answer the open questions from the ChatGPT handover first, so two versions of the same thing never get built.
+1. Q-SR1: use the Rukongai recruitment routes after Konsō?
+2. Q-SR2: keep the white front with gold roofs?
+3. Q-SR3: dorms for about 100 or about 48?
+4. C12: canon guest teachers or our own teachers?
+5. C06: a small bonus for later character slots?
+6. C09: is the dangerous Dangai run only for unauthorised and story trips?
+D: Every question has your answer written in your own words.
+
+S08.02 | Check what's built: the Soul Reaper path
+W: Parts of the Soul Reaper path are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S08.03 | Polish the opening: human, death, ghost
+W: Make the opening (living human, dying, becoming a Plus ghost) a great first experience, with no race menu.
+1. Polish the human life part.
+2. Polish how death is shown.
+3. Polish playing as a Plus with the chain.
+4. Polish who finds you and the choices.
+5. Never show the path chances in a menu.
+D: New players understand what happened without lots of tutorial pop-ups.
+
+S08.04 | Build the first hour and a tutorial boss
+W: Make the first hour a clear guided path with an early boss that teaches blocking, dodging and recovering.
+1. Plan the first 20 to 40 minutes as one journey.
+2. Add an early boss that teaches the basics.
+3. Guide with characters in the world, not pop-ups.
+4. End the hour with a big reveal about who you are.
+D: A brand-new player reaches the main path without looking anything up.
+
+S08.05 | Build the Soul Record
+W: The Soul Record saves your character's life story (choices, teachers, friends, failures) and shapes your sword spirit, quests and Inner World.
+1. Decide what is saved and how big it is.
+2. Plan how old saves update safely.
+3. Reuse the existing history code if it fits.
+4. Build the few systems that read it.
+D: Three test characters with different stories get different spirit lines and Inner Worlds.
+
+S08.06 | Map the level stages from 1 to 150
+W: Match the handover's life stages (ordinary soul to captain class, then Hōgyoku past 100) to the level system that exists.
+1. List each stage and what it unlocks today.
+2. Add what the handover suggests.
+3. Ask Usman about any change to existing unlocks.
+4. Check no saves break.
+D: One table of stages and unlocks is approved and no saves break.
+
+S08.07 | Build Rukongai, Academy exams and Divisions
+W: Link arriving in Soul Society to becoming a Shinigami: Rukongai life, Academy tests, getting a sword and joining a Division.
+1. Build the Rukongai start.
+2. Build the Academy tests and drills.
+3. Build getting and bonding with your Asauchi (blank sword).
+4. Build Division offers and duties.
+D: The Academy feels like being tested, not doing chores.
+
+S08.08 | Bigger Academy: on hold
+W: A bigger Academy is planned but on hold since 4 Oct. The current Academy stays and keeps working.
+1. Build nothing here until Usman lifts the hold.
+2. When it lifts, follow the steps in the checklist in order.
+D: Usman has lifted the hold, or this stays on hold.
+
+S08.09 | Build the Soul Imprint
+W: The game quietly tracks how you play (six hidden traits) and uses them to offer three fair choices when your sword awakens.
+1. Track traits from real play, not from spamming.
+2. Weigh what you say you like most.
+3. Then how you fight, your story choices and a little luck.
+4. Never lock anyone out of a style.
+D: Two players who fight differently get different first choices.
+
+S08.10 | Build the sword awakening trial
+W: Your nameless Asauchi becomes your own Zanpakutō through a trial built from your three imprint choices.
+1. Reuse the existing Asauchi code.
+2. Write the trials ahead of time.
+3. Combine trial parts from the imprint choices.
+4. Never let AI invent moves live.
+D: You play two different awakenings from start to finish.
+
+S08.11 | Build the bond with your sword spirit
+W: Make meeting your sword spirit, your Inner World, Shikai and Bankai feel earned through story, not grinding.
+1. Add early surprise visits to the Inner World.
+2. Add Jinzen (meditating to go there on purpose).
+3. Add spirit memories and dialogue choices.
+4. Add the Shikai name trial.
+5. Add the Bankai trial and mastery.
+D: You unlock powers by playing the story, not from a menu.
+
+S08.12 | Build the Inner Worlds
+W: Everyone gets their own Inner World (the world inside your soul), built from pieces chosen by your Soul Record.
+1. Make pieces: ground, sky, landmark, weather, the spirit's home.
+2. Pick pieces from the Soul Record and imprint.
+3. Test speed on the iPhone 13.
+D: Five test characters get five clearly different Inner Worlds that run smoothly.
+
+S08.13 | Build Shikai stages 1 to 8
+W: Shikai grows over eight stages instead of arriving all at once.
+1. Link the stages to the Focus checkpoints.
+2. Never change how Focus works.
+3. Make each stage add to normal fighting.
+4. Test climbing all eight.
+D: A test character climbs all eight stages by playing.
+
+S08.14 | Build Bankai
+W: Bankai is earned through your bond with the sword spirit. Part of it is already built.
+1. Compare the handover with what's built.
+2. List the gaps.
+3. Ask Usman about them.
+4. Build the gaps.
+D: You earn a Bankai by playing and approve the release.
+
+S08.15 | Build Division jobs, seats and captains
+W: Make Divisions and ranks a lasting part of server life, earned through work, not stats.
+1. Add Division duties.
+2. Add merit points.
+3. Add how to qualify for seat, lieutenant and captain.
+4. Add challenges and acting captains.
+5. Add captain tools.
+D: Rank is earned and comes with jobs, not huge stat boosts.
+
+S08.16 | Build friends, rivals and mentors
+W: Friends, rivals, mentors and roommates as part of a Soul Reaper's life.
+1. Start from what exists: seats, challenges and duties.
+2. Suggest the smallest version that adds to the Soul Record.
+3. Get Usman's yes.
+4. Build the first piece.
+D: Usman approves the plan and has played the first piece.
+
+S08.17 | Build stories that react to your life
+W: Quests and events change based on your Soul Record and imprint.
+1. Write story parts ahead of time.
+2. Give each part conditions from the Soul Record.
+3. Never use live AI-written quests.
+D: Two test characters meet different story parts from their histories.
+
+S08.18 | Build safe and dangerous Dangai trips
+W: The Dangai is the path between worlds. Approved trips are short and safe; unapproved or story trips are a dangerous chase.
+1. Wait for Usman's answer to C09.
+2. Adapt the existing Dangai run to that answer.
+3. Test both kinds of trip.
+D: Both trip types play the way you decided.
+
+S08.19 | Build a bonus for later character slots
+W: Should a strong earlier character give your later characters a small head start? Only build it if you said yes.
+1. Wait for Usman's answer to C06.
+2. If yes, add the small bonus only.
+3. Carry over no story or skills.
+4. Add limits to stop abuse.
+D: It's built only if you said yes, and nothing extra carries over.

@@ -1,0 +1,64 @@
+S07.01 | Check what's built: Zanpakutō and Bankai
+W: Zanpakutō (a Shinigami's sword) and Bankai systems are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S07.02 | Design Zanpakutō 11 to 20
+W: Design 10 more swords at least as good as the first 10. No filler.
+1. Write 10 full sword designs.
+2. Check none copy the first 10.
+3. Include the spirit, Inner World, Shikai, Bankai and counters for each.
+D: All 10 are as good as the first 10 and none are remixes.
+
+S07.03 | Design Zanpakutō 21 to 40
+W: Design 20 more swords, with more variety: support, information, creature and strange-rule swords, not just elements.
+1. Write swords 21 to 30.
+2. Write swords 31 to 40.
+3. Check none copy earlier ones.
+4. Add support and odd-rule swords on purpose.
+D: No two swords change the fight in the same way.
+
+S07.04 | Design Zanpakutō 41 to 60
+W: Design 20 more swords to reach 60, then check the quality of all of them halfway through.
+1. Write swords 41 to 50.
+2. Write swords 51 to 60.
+3. Replace weak ones.
+4. Balance simple against tricky swords.
+D: Every sword is still as good as the first 10.
+
+S07.05 | Design Zanpakutō 61 to 80
+W: Design 20 more swords, including quieter, sneaky Bankai that don't all look huge.
+1. Write swords 61 to 70.
+2. Write swords 71 to 80.
+3. Add subtle Bankai.
+4. Check the mix of easy and hard swords.
+D: The library still has lots of different kinds of power.
+
+S07.06 | Design Zanpakutō 81 to 100 and lock them
+W: Design the last 20 swords, then check all 100 together and lock the library.
+1. Write swords 81 to 90.
+2. Write swords 91 to 100.
+3. Check all 100 for copies, power creep and looks that repeat.
+4. Replace weak ones.
+5. Only mark tested swords as ready to build.
+D: 100 swords pass the quality check.
+
+S07.07 | Build the Zanpakutō moves
+W: Turn the sword designs into real moves with their own animations and effects, a batch at a time.
+1. Make a unique animation for each named move.
+2. Reuse the shared camera, hit-pause and trail tech.
+3. Let the server decide hits.
+4. Make Ultra to Low effect versions.
+5. Build in batches, never all at once.
+D: Important moves never look like recoloured basic sword swings.
+
+S07.08 | Decide how players change their power
+W: Can players only earn a power change, or also buy a fixed one for 79 Robux? Free ways to change exist either way.
+1. Read the two options.
+2. Pick A or B.
+3. Write your answer in your own words as a note.
+D: Your answer is written in this task.

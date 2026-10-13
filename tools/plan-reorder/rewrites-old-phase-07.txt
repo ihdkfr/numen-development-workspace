@@ -1,64 +1,148 @@
 S07.01 | Check what's built: Zanpakutō and Bankai
 W: Zanpakutō (a Shinigami's sword) and Bankai systems are already in the game. They only count as done when you have played them and they work.
-1. Open Studio with the current build (see S01.01).
-2. Play each item in the checklist.
+1. Open the current build in Studio (see S01.01).
+   - Read the note on S01.01 that says which build is the current one.
+   - If you're not sure, open Claude Code in the game folder and type: "Which branch is the current build and how do I open it? Don't change anything."
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
+2. Play each item in the checklist, one at a time.
+   - Press Play (F5) and try the first item, for example one of the first 10 Zanpakutō.
+   - For Bankai, type to Claude Code: "How do I test the Bankai release and BankaiQuest in Play mode? Don't change anything."
+   - For any other item you don't know how to trigger, ask Claude Code the same way, then press Stop.
 3. Read the Output window after each one.
-4. Write anything broken in a note here, or as a new task.
+   - Open View > Output while the game is playing.
+   - Look for red lines. Copy any red text into a note with the item's name.
+   - If Output is clean and the item worked, tick that item on the checklist.
+4. Write anything broken in a note here.
+   - Write what you did, what went wrong and the red Output text in Notes, then press Save note.
+   - For a bigger problem, type to Claude Code: "Write a short bug report for this problem. Don't change anything." Paste its report into a note.
 5. Approve this task when everything works.
+   - Check every checklist item has been played and ticked.
+   - If all of them work, set this task's status to Approved / done.
+   - If something failed, leave it in Needs review and make sure your note lists every problem.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S07.02 | Design Zanpakutō 11 to 20
 W: Design 10 more swords at least as good as the first 10. No filler.
-1. Write 10 full sword designs.
-2. Check none copy the first 10.
-3. Include the spirit, Inner World, Shikai, Bankai and counters for each.
+1. Ask Claude Code to write 10 full sword designs.
+   - Open Claude Code in the game folder, press Copy Claude build brief on this task and paste it in.
+   - Type: "Run batch P4-B05 only. Write Zanpakutō 11 to 20 in the Zanpakutō database. Quality over quantity. Then stop and report."
+   - Check its report says where the 10 designs are saved.
+2. Ask Claude Code to check none copy the first 10.
+   - Type: "Compare 11 to 20 with 1 to 10 and list any that are too close to an earlier sword. Don't change anything."
+   - For any that are too close, type: "Replace that sword with a fresh idea. Then stop and report."
+3. Ask Claude Code to include the spirit, Inner World, Shikai, Bankai and counters for each.
+   - Type: "Check each of 11 to 20 has its spirit, Inner World, Shikai, Bankai, Bankai control, counters and production notes. Fill any gaps. Then stop and report."
+   - Read at least three designs yourself. Each should feel as good as the first 10.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Write what you think in Notes and press Submit for review.
 D: All 10 are as good as the first 10 and none are remixes.
 
 S07.03 | Design Zanpakutō 21 to 40
 W: Design 20 more swords, with more variety: support, information, creature and strange-rule swords, not just elements.
-1. Write swords 21 to 30.
-2. Write swords 31 to 40.
-3. Check none copy earlier ones.
-4. Add support and odd-rule swords on purpose.
+1. Ask Claude Code to write swords 21 to 30.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P4-B06 only. Write Zanpakutō 21 to 30 in the Zanpakutō database. No generic element spam. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+2. Ask Claude Code to write swords 31 to 40.
+   - In the next session, paste the brief again and type: "Now write Zanpakutō 31 to 40. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+3. Ask Claude Code to check none copy earlier ones.
+   - Type: "Compare 21 to 40 with every earlier sword. List any two that change the fight in the same way. Don't change anything."
+   - For any it lists, type: "Replace the weaker one with a fresh idea. Then stop and report."
+4. Ask Claude Code to add support and odd-rule swords on purpose.
+   - Type: "Check 21 to 40 include support, information, object or creature, and strange-rule swords. Add more if there are too few. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review.
 D: No two swords change the fight in the same way.
 
 S07.04 | Design Zanpakutō 41 to 60
 W: Design 20 more swords to reach 60, then check the quality of all of them halfway through.
-1. Write swords 41 to 50.
-2. Write swords 51 to 60.
-3. Replace weak ones.
-4. Balance simple against tricky swords.
+1. Ask Claude Code to write swords 41 to 50.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P4-B07 only. Write Zanpakutō 41 to 50 in the Zanpakutō database. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+2. Ask Claude Code to write swords 51 to 60.
+   - In the next session, paste the brief again and type: "Now write Zanpakutō 51 to 60. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+3. Ask Claude Code to find and replace weak ones.
+   - Type: "Check all 60 against the quality of the first 10. List any weak ones and why. Don't change anything."
+   - Pick the ones you agree are weak, then type: "Replace these with fresh ideas. Don't keep weak ones just to hit a number. Then stop and report."
+4. Ask Claude Code to balance simple against tricky swords.
+   - Type: "Update the balance matrix: count simple against technical swords, and duel against battlefield swords. Suggest changes. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Write the counts in Notes and press Submit for review.
 D: Every sword is still as good as the first 10.
 
 S07.05 | Design Zanpakutō 61 to 80
 W: Design 20 more swords, including quieter, sneaky Bankai that don't all look huge.
-1. Write swords 61 to 70.
-2. Write swords 71 to 80.
-3. Add subtle Bankai.
-4. Check the mix of easy and hard swords.
+1. Ask Claude Code to write swords 61 to 70.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P4-B08 only. Write Zanpakutō 61 to 70 in the Zanpakutō database. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+2. Ask Claude Code to write swords 71 to 80.
+   - In the next session, paste the brief again and type: "Now write Zanpakutō 71 to 80. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+3. Ask Claude Code to add subtle Bankai.
+   - Type: "Make sure some Bankai in 61 to 80 are quiet or sneaky, not all huge. No fake Bankai II or III. Then stop and report."
+   - Check its report names the subtle ones.
+4. Ask Claude Code to check the mix of easy and hard swords.
+   - Type: "Count how many of all 80 swords are easy, medium and hard to play. Don't change anything."
+   - Write the counts in Notes. If one kind is too rare, ask Claude Code to fix it.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out." Then press Submit for review.
 D: The library still has lots of different kinds of power.
 
 S07.06 | Design Zanpakutō 81 to 100 and lock them
 W: Design the last 20 swords, then check all 100 together and lock the library.
-1. Write swords 81 to 90.
-2. Write swords 91 to 100.
-3. Check all 100 for copies, power creep and looks that repeat.
-4. Replace weak ones.
-5. Only mark tested swords as ready to build.
+1. Ask Claude Code to write swords 81 to 90.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P4-B09 only. Write Zanpakutō 81 to 90 in the master database. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+2. Ask Claude Code to write swords 91 to 100.
+   - In the next session, paste the brief again and type: "Now write Zanpakutō 91 to 100. Then stop and report."
+   - Read at least three of them yourself and write what you think in Notes.
+3. Ask Claude Code to check all 100 for copies, power creep and looks that repeat.
+   - Type: "Review all 100 for copied ideas, power creep (later swords being stronger), complexity and looks that repeat. List problems. Don't change anything."
+   - Copy the list into Notes and press Save note.
+4. Ask Claude Code to replace weak ones.
+   - Pick the ones you agree are weak, then type: "Replace these weak or repeated swords with fresh ideas. Then stop and report."
+   - Check its report lists each replacement.
+5. Ask Claude Code to mark only tested swords as ready to build.
+   - Type: "Mark only swords that have been prototyped and tested as Production Ready. Leave the rest unmarked. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Write how many are Production Ready in Notes and press Submit for review.
 D: 100 swords pass the quality check.
 
 S07.07 | Build the Zanpakutō moves
 W: Turn the sword designs into real moves with their own animations and effects, a batch at a time.
-1. Make a unique animation for each named move.
-2. Reuse the shared camera, hit-pause and trail tech.
-3. Let the server decide hits.
-4. Make Ultra to Low effect versions.
-5. Build in batches, never all at once.
+1. Ask Claude Code to make a unique animation for each named move in one small batch.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P6-B07 only. Pick a small batch of swords and make a unique animation for each named move. Never all 100 at once. Then stop and report."
+   - Check its report lists which swords are in this batch.
+2. Ask Claude Code to reuse the shared camera, hit-pause and trail tech.
+   - Type: "Use the existing IK, camera, hit-stop and trail systems for these moves. Don't build new copies of them. Then stop and report."
+   - Check its report names the shared systems it used.
+3. Ask Claude Code to let the server decide hits.
+   - Type: "Make sure the server decides every hit for these moves. Then stop and report."
+   - Check its report says how it tested this.
+4. Ask Claude Code to make Ultra to Low effect versions.
+   - Type: "Make Ultra, High, Medium and Low effect versions for each move, with the world reacting more on higher settings. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Play the batch, then repeat with the next batch.
+   - Open the game in Studio with Rojo, press Play and use every move in the batch.
+   - Each important move should look like its own move, not a recoloured basic sword swing.
+   - Attach captures with + Attach result, write what you think in Notes and start the next batch in a new session.
 D: Important moves never look like recoloured basic sword swings.
 
 S07.08 | Decide how players change their power
 W: Can players only earn a power change, or also buy a fixed one for 79 Robux? Free ways to change exist either way.
 1. Read the two options.
+   - Open this task's Extra detail (for Claude Code) and read the part called "Changing a power: Zanpakutō Rebirth".
+   - Option A: changes are earned or free only. Option B: also allow an optional 79 Robux change to a power you choose, never random.
+   - Remember the old plan says earned, not bought, and no Robux sword rerolls.
 2. Pick A or B.
+   - Think about which fits the game better for players. Both keep the free ways to change.
+   - If you want to know more, type to Claude Code: "Explain options A and B for changing a Zanpakutō in simple words. Don't change anything."
 3. Write your answer in your own words as a note.
+   - Write A or B and one or two sentences on why in Notes, then press Save note.
+   - Tick the steps when your answer is saved.
 D: Your answer is written in this task.

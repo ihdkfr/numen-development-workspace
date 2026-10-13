@@ -1,92 +1,226 @@
 S09.01 | Check what's built: the Hollow path
 W: Parts of the Hollow path are already in the game. They only count as done when you have played them and they work.
-1. Open Studio with the current build (see S01.01).
-2. Play each item in the checklist.
-3. Read the Output window after each one.
-4. Write anything broken in a note here, or as a new task.
-5. Approve this task when everything works.
+1. Open the game in Studio on the current build (S01.01 says which branch).
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Type: "Which branch has the current build, and how do I switch to it? Don't change anything."
+   - Open the game in Studio with Rojo connected, as "How to: the basics" shows.
+2. Play hunger, evolving and the Hollow forms, using the DevPanel QUICK evolve buttons.
+   - Press Play (F5). Play a Hollow and try eating and hunger (HollowHunger and HollowEvolution). These aren't fully tested yet.
+   - Use the DevPanel QUICK evolve buttons: Menos, Adjuchas, Vasto Lorde, Arrancar, then back to Hollow.
+   - In each form, try its powers, Sonído and the Hollow NPCs nearby.
+   - After each one, open View > Output and look for red lines. Press Stop.
+3. Play the Espada system and the ghost-to-Hollow trip to Hueco Mundo.
+   - Try what EspadaService does, such as seats or challenges.
+   - Play as a ghost until you turn into a Hollow, and check you travel to Hueco Mundo (as in the September test).
+   - Check View > Output for red lines after each one.
+4. Test the Garganta, inside the main place and between places.
+   - Use the Garganta ability inside the main place. It moves you with PivotTo.
+   - Travel between places only works in a published copy (build 246). Type: "Which place do I publish to test GargantaTravel, and how? Don't change anything."
+   - Publish it yourself with File > Publish to Roblox As... into a private test game, never the live game.
+   - Play the test game, open a Garganta and check you arrive in the Hueco Mundo place.
+5. Write anything broken in a note here, or mark it for a new task.
+   - If you see red text in Output, copy it into Notes and say which item caused it.
+   - Next to anything that needs real work, write "needs a new task" so it gets its own task.
+   - Press Save note.
+6. Approve this task when everything works.
+   - Tick each checklist item that you played and that worked.
+   - Attach a capture of anything that looked wrong with + Attach result.
+   - Press Submit for review. Leave failed items unticked and name them in Notes.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S09.02 | Make every new Hollow start in Hueco Mundo
 W: Every new Hollow is born in Hueco Mundo. Right now Hollow players turn in Karakura, which is wrong.
-1. Check where a new Hollow player appears now.
-2. Move Hollow births to Hueco Mundo.
-3. Make Karakura Hollows arrive through a Garganta.
-4. Keep the chain timing and rescue window.
+1. Ask Claude Code to check where a new Hollow player appears now.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Where does a new Hollow-path player appear today, and which code decides it? Don't change anything."
+   - Write its answer in Notes so you can compare later.
+2. Ask Claude Code to move every Hollow birth to Hueco Mundo.
+   - Type: "Move every new Hollow birth to Hueco Mundo, as decision OD12 says. Then stop and report."
+   - Play a ghost until it becomes a Hollow. You should appear in Hueco Mundo, never in Karakura.
+3. Ask Claude Code to make Karakura's Hollows arrive through a Garganta.
+   - Type: "Make Hollows in Karakura, including raids and the Garganta Rupture event, arrive through a Garganta instead of spawning on the street. Then stop and report."
+   - Watch a Hollow raid in Karakura and check each Hollow comes out of a Garganta.
+4. Check the chain timing and rescue window still work, then hand it in.
+   - Type: "Confirm the chain timing and the rescue window are unchanged. Don't change anything."
+   - Play a Plus and let a Soul Reaper do Konsō before the chain breaks. It should still work.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: A new Hollow player always appears in Hueco Mundo.
 
 S09.03 | Build death by pressure into a Hollow
 W: A human killed by huge spiritual pressure in an allowed area has their chain break and is reborn as a Hollow in Hueco Mundo.
-1. Write the flow on one page: areas, timings, rescue, what you see.
-2. Get Usman's approval.
-3. Build it.
-4. Play it from start to end.
+1. Ask Claude Code to write the whole flow on one page.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Write the pressure death flow on one page: allowed areas, timings, rescue, and what the player sees. Plain words. Don't build anything."
+   - Check it ends with a new Hollow in Hueco Mundo (OD12), never in the Human World.
+2. Read the page and give your approval yourself.
+   - Read the page carefully. Change anything you don't like by telling Claude Code.
+   - When you're happy, attach the page with + Attach result and write "Flow approved" in Notes. Press Save note.
+3. Ask Claude Code to build the approved flow.
+   - Type: "Build the pressure death flow exactly as on the approved page. Then stop and report."
+   - Check its report says what changed and how it was tested.
+4. Play the flow from start to end, then hand it in.
+   - Type: "Tell me how to test this in Studio with a human in an allowed area. Don't change anything."
+   - Play it: the human dies, the chain breaks and a Hollow appears in Hueco Mundo. Watch View > Output for red lines.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach a capture and press Submit for review.
 D: You approved the page and the flow plays from start to end.
 
 S09.04 | Build eating, hunger and evolving
 W: Make Hollow hunger and evolution match the locked look ladder: Hollow, Gillian, Adjuchas, Vasto Lorde.
-1. Show hunger as a feeling, not a bar on screen.
-2. Build the path from Hollow to Vasto Lorde.
-3. Add gathering and trials.
-4. Make it feel less like a kill counter.
-5. Keep the rules that stop going backwards.
+1. Ask Claude Code to show hunger as a feeling, not a bar on screen.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P7-B05 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: show hunger as an instinct, never a visible bar. Then stop and report."
+   - Play a Hollow and check there's no hunger bar on screen.
+2. Ask Claude Code to build the path from Hollow to Vasto Lorde.
+   - Type: "Now the progression Hollow, Gillian, Adjuchas, Vasto Lorde in HollowEvolution. Then stop and report."
+   - Use the DevPanel QUICK evolve buttons to check each form looks right.
+3. Ask Claude Code to add gathering and trials.
+   - Type: "Now add gathering and trials for evolving. Then stop and report."
+   - Play one trial and check it makes sense without a guide.
+4. Ask Claude Code to make it feel less like a kill counter.
+   - Type: "Now make evolving feel less like counting kills. Then stop and report."
+   - Play for a while and write in Notes whether it still feels like a counter.
+5. Check the rules that stop going backwards still hold, then hand it in.
+   - Type: "Confirm the stage rules (no going backwards) are unchanged. Don't change anything."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Players understand evolving by playing, with no hunger bar.
 
 S09.05 | Build Hollow family traits
 W: Each Hollow family has a small set of traits you earn by playing and carry into later forms. No paid rerolls.
-1. Make a small trait list for each family.
-2. Earn traits from how you play and eat.
-3. Show traits on later forms where they fit.
-4. Add limits so nobody stacks every strength.
+1. Ask Claude Code to make a small trait list for each family.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B04 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: a small trait list for each of the ten Hollow lines. Don't build yet."
+   - Read the lists. Check each family's traits feel like that family.
+2. Ask Claude Code to make traits earned through how you play and eat.
+   - Type: "Now make traits earned through behaviour, hunger choices and the Soul Record. No paid or random rerolls. Then stop and report."
+   - Play a Hollow and check a trait appears from what you did.
+3. Ask Claude Code to show traits on later forms where they fit.
+   - Type: "Now carry chosen traits into Adjuchas and later forms, in looks and in play. Follow the 2 to 3 feature Adjuchas rule. Then stop and report."
+   - Use the DevPanel QUICK evolve buttons and check the trait still shows on Adjuchas.
+4. Ask Claude Code to add limits so nobody stacks every strength.
+   - Type: "Now add trait conflicts and caps so nobody can stack every strength. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Your starting Hollow still matters later, and no trait is bought.
 
 S09.06 | Build Garganta unlocks in stages
 W: Hollows unlock travel in stages: Human World first, then Rukongai. Seireitei stays blocked. Trips show a travel scene and a safe arrival.
-1. Build on the existing Garganta trip.
-2. Add the unlock stages.
-3. Add the travel scene between places.
-4. Make arrivals safe for a moment.
+1. Ask Claude Code to build on the existing Garganta trip.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Explain how GargantaTravel works today and how the stages can build on it. Don't change anything."
+2. Ask Claude Code to add the unlock stages.
+   - Type: "Add the Garganta stages: Human World first, then Rukongai. Seireitei's barrier still blocks it. Save each player's unlocks. Then stop and report."
+   - Check its report says unlocks come from growth, not waiting until Gillian.
+3. Ask Claude Code to add the travel scene between places.
+   - Type: "Now add the cinematic Garganta passage for trips between places (decision C18). Then stop and report."
+   - Trips between places need a published copy. Type: "Which place do I publish to test this, and how? Don't change anything."
+   - Publish it yourself with File > Publish to Roblox As... into a private test game, never the live game.
+4. Ask Claude Code to make arrivals safe for a moment, then test it.
+   - Type: "Now add the protected arrival from C19: short damage protection and no attacking while protected. Then stop and report."
+   - In the test game, travel and try to attack straight after arriving. It shouldn't work.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Each stage unlocks as planned and new arrivals can't attack or be attacked.
 
 S09.07 | Build Hueco arrival, checkpoints and spawn choice
 W: Arrivals in Hueco Mundo are safe. Story checkpoints unlock by themselves, others by hand, and players pick where they spawn.
-1. Make arrivals safe.
-2. Unlock story checkpoints automatically.
-3. Let players switch on other checkpoints.
-4. Save each character's chosen spawn.
-5. Fall back safely if a spawn breaks.
+1. Ask Claude Code to make arrivals safe.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build the protected arrival in Hueco Mundo from C19: short damage protection, no attacking while protected. Then stop and report."
+   - Arrive in Hueco Mundo in Studio and check you can't attack straight away.
+2. Ask Claude Code to unlock story checkpoints automatically.
+   - Type: "Now make story checkpoints unlock by themselves as you progress, with a clear Reiatsu marker (C20 to C22). Then stop and report."
+   - Play past a story point and check its checkpoint unlocks.
+3. Ask Claude Code to let players switch on other checkpoints by hand.
+   - Type: "Now add optional exploration checkpoints that players activate by hand, with subtle markers in the scenery. Then stop and report."
+   - Find one in Studio and switch it on.
+4. Ask Claude Code to save each character's chosen spawn.
+   - Type: "Now let players pick an eligible active spawn, saved per character, with the server checking eligibility (C23). Then stop and report."
+   - Pick a spawn, leave the game and rejoin. You should appear there.
+5. Ask Claude Code to fall back safely if a spawn breaks, then hand it in.
+   - Type: "Now add a safe fallback when the chosen spawn is invalid. No fast travel inside Hueco Mundo (C24). Then stop and report."
+   - Type: "Tell me how to test a broken spawn in Studio. Don't change anything." Then test it.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Every rule plays as decided and a broken spawn always falls back safely.
 
 S09.08 | Build Hueco Mundo storms and hazards
 W: Hueco Mundo gets moving storms, safe zones and hazards, as decided on 12 Oct. Warnings come only through the world and sound.
-1. Let the server control storm places, strength and timing.
-2. Remove the sandstorm pop-up messages.
-3. Add safe zones storms never reach.
-4. Keep Shunpo, Sonído and Hirenkyaku working.
-5. Build it in small tested pieces.
+1. Ask Claude Code to let the server control storm places, strength and timing.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build roaming storms with server-owned positions, strength and timing (C34). They affect players only, not NPCs (C33). Then stop and report."
+   - Play in Hueco Mundo and wait for a storm to move past.
+2. Ask Claude Code to remove the sandstorm pop-up messages.
+   - Type: "Remove HuecoMundoService's sandstorm notices. Warnings come only through the world and sound (C27). Then stop and report."
+   - Play through a storm and check no message appears on screen.
+3. Ask Claude Code to add safe zones storms never reach.
+   - Type: "Add safe zones round settlements, hubs, checkpoints and important NPCs, with no storm effects inside (C37). Then stop and report."
+   - Stand in a safe zone during a storm and check nothing happens to you.
+4. Ask Claude Code to keep Shunpo, Sonído and Hirenkyaku working in storms.
+   - Type: "Confirm Shunpo, Sonído and Hirenkyaku still work in storms. Only severe storms add wind resistance (C36). Then stop and report."
+   - Use each movement move inside a storm in Studio.
+5. Ask Claude Code to build the rest in small tested pieces, then hand it in.
+   - Type: "Build the rest of C25 to C39 in small tested commits, one decision at a time (C40). Stop and report after each one."
+   - Test each decision in play and tick it off in Notes.
+   - Attach captures with + Attach result and press Submit for review.
 D: Each 12 Oct storm rule passes a test in play.
 
 S09.09 | Make Las Noches outside playable
 W: Turn the outside of Las Noches from a backdrop into a place you can explore.
-1. Add gates, wall-top paths, tower bases and side doors.
-2. Support fast Sonído movement.
-3. Add some inner walls without a second ring.
-4. Light it so you see it from the desert.
+1. Ask Claude Code to add gates, wall-top paths, tower bases and side doors.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P2-B05 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: gate approaches, wall-top routes, tower bases, service entrances and outside courtyards. Then stop and report."
+   - Check the shape still matches the locked Las Noches look (OD11): one wall, one fortress.
+2. Ask Claude Code to support fast Sonído movement.
+   - Type: "Now make the outside routes work with Sonído and other fast movement. Then stop and report."
+   - Play in Studio and Sonído along the walls. You shouldn't get stuck.
+3. Ask Claude Code to add some inner walls without a second ring.
+   - Type: "Now add local divider walls. Never make another full ring round the fortress. Then stop and report."
+   - Look from above in Studio and check there's still only one outer ring.
+4. Ask Claude Code to light it so you see it from the desert, then hand it in.
+   - Type: "Now light the fortress so it's easy to see from the desert. Then stop and report."
+   - Walk up to, around, over and into Las Noches. Note any dead ends in Notes.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: You can walk up to, around, over and into Las Noches without dead ends.
 
 S09.10 | Finish the Las Noches entrance and inside
 W: Finish the half-built way into Las Noches and make the inside fit the new outside.
-1. Swap the message-only entrance for a working one.
-2. Check the halls, Espada rooms, arena and prison.
-3. Make the inside size match the outside.
-4. Get the entrance working before rebuilding rooms.
+1. Ask Claude Code to swap the message-only entrance for a working one.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P2-B06 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: replace the notice-only entry with a working gate. Then stop and report."
+   - Walk to the main gate in Studio and check it takes you inside.
+2. Ask Claude Code to check the halls, Espada rooms, arena and prison.
+   - Type: "List the existing halls, Espada spaces, quarters, arena, pens and prison, and what state each is in. Don't change anything."
+   - Copy the list into Notes.
+3. Ask Claude Code to make the inside size match the outside.
+   - Type: "Now make the inside footprint match the outside. Then stop and report."
+   - Walk inside and outside in Studio and check they don't contradict each other.
+4. Keep the entrance working before any rooms are rebuilt, then hand it in.
+   - Don't let Claude Code rebuild rooms until the main gate works.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: The main gate works and the inside fits the outside.
 
 S09.11 | Build Arrancar ranks and the Espada
 W: Give Arrancar a society: Números, Fracción (followers) and 10 Espada seats you can challenge for.
-1. Build the Arrancar path.
-2. Add Números and Fracción.
-3. Add 10 active Espada seats.
-4. Add challenges and duties.
-5. Add places to hang out in Las Noches.
+1. Ask Claude Code to build the Arrancar path.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P7-B06 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: the Arrancar path. Then stop and report."
+   - Use the DevPanel QUICK evolve button for Arrancar and check the path works.
+2. Ask Claude Code to add Números and Fracción.
+   - Type: "Now add Números and Fracción (FraccionService). Then stop and report."
+   - Join as a Fracción in Studio and check it saves.
+3. Ask Claude Code to add 10 active Espada seats.
+   - Type: "Now add 10 active Espada seats in EspadaService. Seat number must not be a simple level ladder. Then stop and report."
+   - Check its report says how seats are earned, not bought.
+4. Ask Claude Code to add seat challenges and Echo fights.
+   - Type: "Now add seat challenges and Echo fights. Then stop and report."
+   - Try a seat challenge in Studio. Look in View > Output for red lines.
+5. Ask Claude Code to add duties and places to hang out in Las Noches.
+   - Type: "Now add Las Noches duties and social spaces. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Being Espada feels special and can't be bought.

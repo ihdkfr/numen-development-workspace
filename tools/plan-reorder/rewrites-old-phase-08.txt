@@ -1,152 +1,388 @@
 S08.01 | Answer the open handover questions
 W: Answer the open questions from the ChatGPT handover first, so two versions of the same thing never get built.
-1. Q-SR1: use the Rukongai recruitment routes after Konsō?
-2. Q-SR2: keep the white front with gold roofs?
-3. Q-SR3: dorms for about 100 or about 48?
-4. C12: canon guest teachers or our own teachers?
-5. C06: a small bonus for later character slots?
-6. C09: is the dangerous Dangai run only for unauthorised and story trips?
+1. Answer Q-SR1 yourself: after Konsō, should Rukongai use the handover's recruitment routes?
+   - Open this task's Extra detail (for Claude Code) and read the "Start of the game" row in the clash table.
+   - The routes are hunger, accidental reiatsu and self-discovery. The human start stays first either way (OD01).
+   - Write yes or no, and why, in your own words in Notes. Press Save note.
+2. Answer Q-SR2 yourself: keep the white front with tiered gold roofs for the Academy?
+   - In Extra detail, read "Academy (on hold)" under the locked decisions. The locked look is OD17.
+   - The handover wants a big round red-and-white building instead. Say which one you want.
+   - Write your answer in Notes and press Save note.
+3. Answer Q-SR3 yourself: Academy dorms for about 100 beds or about 48?
+   - About 100 comes from the research; about 48 comes from the handover.
+   - This only matters when the Academy hold lifts (A03), so a quick answer is fine.
+   - Write your answer in Notes and press Save note.
+4. Answer C12 yourself: canon guest teachers or our own original teachers?
+   - The handover suggests famous guests, such as Yoruichi teaching Hohō (speed movement).
+   - Option A is original NPC teachers. Option B is named canon guests, only with the rights to use them.
+   - Write A or B, and why, in Notes. Press Save note.
+5. Answer C06 yourself: should a strong earlier character give later slots a small bonus?
+   - Slots are never related either way (OD16): no parents, no children.
+   - Option A is no benefit between slots. Option B is a small start bonus for later slots.
+   - Write A or B in Notes and press Save note.
+6. Answer C09 yourself: is the dangerous Dangai run only for unauthorised and story trips?
+   - Option A: approved Senkaimon trips are short and safe, and the dangerous run is only for unauthorised or story trips.
+   - Option B: the dangerous sweeper chase happens on normal trips too.
+   - Write A or B in Notes and press Save note.
+   - When all six answers are written, tick the checklist and press Submit for review.
 D: Every question has your answer written in your own words.
 
 S08.02 | Check what's built: the Soul Reaper path
 W: Parts of the Soul Reaper path are already in the game. They only count as done when you have played them and they work.
-1. Open Studio with the current build (see S01.01).
-2. Play each item in the checklist.
-3. Read the Output window after each one.
-4. Write anything broken in a note here, or as a new task.
-5. Approve this task when everything works.
+1. Open the game in Studio on the current build (S01.01 says which branch).
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Type: "Which branch has the current build, and how do I switch to it? Don't change anything."
+   - Open the game in Studio with Rojo connected, as "How to: the basics" shows.
+2. Play the opening: the human start, the Plus, Konsō and the race tutorials.
+   - Press Play (F5). Play the human start in Karakura and watch the Chain of Fate (StoryService).
+   - Play as a Plus and do the Konsō tutorial (PlusService). It worked in the September test, builds 140 to 141.
+   - Try the tutorials for the three races, chapters 1 to 7, the Cleaner chase, safe travel and side goals (build 135).
+   - After each one, open View > Output and look for red lines. Press Stop.
+3. Play the Academy parts: the Rukongai opening, the exam road and the grounds.
+   - Play the Rukongai opening and the Division choice (AcademyService). It has no teachers yet.
+   - Type: "How do I switch on the AcademyExams switch for a Studio test only? Tell me, don't change anything."
+   - Play the exam road (AcademyExamService), then the Academy grounds and tutorial steps S-01 to S-03.
+   - Check View > Output for red lines after each one.
+4. Play Division life, levels and the Inner World.
+   - Play Division duties, global seats and challenges (DivisionLife and DutyService, build 136).
+   - Type: "How do I test levels 1 to 100, the Soul Web and the switched-off HogyokuService in Studio? Don't change anything."
+   - Visit the Inner World (InnerWorldService, 8 slots) and look around.
+   - Check View > Output for red lines after each one.
+5. Write anything broken in a note here, or mark it for a new task.
+   - If you see red text in Output, copy it into Notes and say which item caused it.
+   - Next to anything that needs real work, write "needs a new task" so it gets its own task.
+   - Press Save note.
+6. Approve this task when everything works.
+   - Tick each checklist item that you played and that worked.
+   - Attach a capture of anything that looked wrong with + Attach result.
+   - Press Submit for review. Leave failed items unticked and name them in Notes.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S08.03 | Polish the opening: human, death, ghost
 W: Make the opening (living human, dying, becoming a Plus ghost) a great first experience, with no race menu.
-1. Polish the human life part.
-2. Polish how death is shown.
-3. Polish playing as a Plus with the chain.
-4. Polish who finds you and the choices.
-5. Never show the path chances in a menu.
+1. Ask Claude Code to polish the human life part.
+   - Open Claude Code in the game folder. In NUMEN press Copy Claude build brief on this task and paste it in.
+   - Type: "Run roadmap batch P7-B01 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do the human life part only, then stop and report."
+   - Check its report gives the four states: source change, runs, visible, verified.
+2. Ask Claude Code to polish how death is shown.
+   - Type: "Now polish the death presentation in StoryService. Then stop and report."
+   - Play it in Studio: press Play, live as the human until you die, and watch it. Press Stop.
+3. Ask Claude Code to polish playing as a Plus with the chain.
+   - Type: "Now polish the Plus and Chain of Fate gameplay in PlusService. Then stop and report."
+   - Play as a Plus and check you can see what the chain means. Look in View > Output for red lines.
+4. Ask Claude Code to polish who finds you and the choices you make.
+   - Type: "Now polish the finder logic and the decisions after death. Then stop and report."
+   - Play it twice and make different choices, so you see both paths happen.
+5. Check no menu ever shows the path chances, then hand it in.
+   - Type: "Check that no menu shows a race choice or path odds anywhere in the opening. Don't change anything."
+   - Play the whole opening as if you were new. Count the tutorial pop-ups; it should make sense without many.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result, write what you think in Notes and press Submit for review.
 D: New players understand what happened without lots of tutorial pop-ups.
 
 S08.04 | Build the first hour and a tutorial boss
 W: Make the first hour a clear guided path with an early boss that teaches blocking, dodging and recovering.
-1. Plan the first 20 to 40 minutes as one journey.
-2. Add an early boss that teaches the basics.
-3. Guide with characters in the world, not pop-ups.
-4. End the hour with a big reveal about who you are.
+1. Ask Claude Code to plan the first 20 to 40 minutes as one journey.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B01 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: write out the first 20 to 40 minutes as one sequence."
+   - Read its plan. It should go human, death, Plus, finder (OD01), with no race menu.
+2. Ask Claude Code to add an early boss that teaches the basics.
+   - Type: "Now add the early teaching boss. It must test block, perfect guard, dodge or step, posture and recovery. Our own boss, not a copy of VV's. Then stop and report."
+   - Play it: press Play, reach the boss and try each move. Write in Notes which ones you learned without help.
+3. Ask Claude Code to guide players with characters in the world, not pop-ups.
+   - Type: "Now replace any permanent tutorial overlay with in-world characters and hints at the right moment. Then stop and report."
+   - Play the first part and check there's no tutorial box stuck on the screen.
+4. Ask Claude Code to end the hour with a big reveal about who you are.
+   - Type: "Now end the first hour with a strong identity reveal or route choice, not a level milestone. Then stop and report."
+   - Play to the end of the hour. Write in Notes whether the reveal felt big.
+5. Play it as a brand-new player, then hand it in.
+   - Start a fresh character and play from the very start without looking anything up.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result, write what passed or failed in Notes and press Submit for review.
 D: A brand-new player reaches the main path without looking anything up.
 
 S08.05 | Build the Soul Record
 W: The Soul Record saves your character's life story (choices, teachers, friends, failures) and shapes your sword spirit, quests and Inner World.
-1. Decide what is saved and how big it is.
-2. Plan how old saves update safely.
-3. Reuse the existing history code if it fits.
-4. Build the few systems that read it.
+1. Ask Claude Code to decide what is saved and how big it gets.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Design the Soul Record only: what is stored and how big it gets. No free-text AI storage. Write it down; don't build yet."
+   - Read it. It should cover choices, teachers, relationships, failures, Divisions and reputation.
+2. Ask Claude Code to plan how old saves update safely.
+   - Type: "Add to the design how existing saves move to the Soul Record without losing anything. Don't build yet."
+   - Check it says what happens to a character who has no record yet.
+   - If you're happy with the design, write "Design approved" in Notes and press Save note.
+3. Ask Claude Code whether the existing HistoryService can be reused.
+   - Type: "Can HistoryService hold the Soul Record, or does it need its own service? Explain simply. Don't change anything."
+   - Copy its answer into Notes so the next step follows it.
+4. Ask Claude Code to build the record and the few systems that read it.
+   - Type: "Build the Soul Record as designed, reusing HistoryService if it fits. Then make the sword spirit lines and Inner World pieces read it. Then stop and report."
+   - Check its report says what changed and how it was tested.
+5. Test three characters with different stories, then hand it in.
+   - Type: "Tell me how to make three test characters with different histories in Studio. Don't change anything."
+   - Play each one. Compare their spirit lines and Inner Worlds, and take a capture of each.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the captures with + Attach result, write what you saw in Notes and press Submit for review.
 D: Three test characters with different stories get different spirit lines and Inner Worlds.
 
 S08.06 | Map the level stages from 1 to 150
 W: Match the handover's life stages (ordinary soul to captain class, then Hōgyoku past 100) to the level system that exists.
-1. List each stage and what it unlocks today.
-2. Add what the handover suggests.
-3. Ask Usman about any change to existing unlocks.
-4. Check no saves break.
+1. Ask Claude Code to list each stage and what it unlocks today.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Make a table of level stages from LevelService (1 to 100) and HogyokuService (101 to 150, switched off), with what each unlocks today. Don't change code."
+   - Check every row names the service it comes from.
+2. Ask Claude Code to add what the handover suggests to the same table.
+   - Type: "Add a column for the handover's stages: 1 to 5 ordinary soul, the Shikai and Bankai bands, 81 to 90 Bankai, 91 to 99 captain class, 100 peak, 101+ Hōgyoku."
+   - Type: "Mark every row where the handover would change an existing unlock. Don't change code."
+3. Decide yourself on every change to an existing unlock.
+   - Read each marked row and choose: keep today's unlock, or use the handover's.
+   - Write your choice for each row in Notes and press Save note.
+   - Paste your choices back to Claude Code.
+4. Ask Claude Code to apply your choices and check no saves break.
+   - Type: "Apply only the changes I approved. Show me how you checked that existing saves still load. Then stop and report."
+   - Load an older test character in Studio and check its level and unlocks are the same as before.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the final table with + Attach result and press Submit for review.
 D: One table of stages and unlocks is approved and no saves break.
 
 S08.07 | Build Rukongai, Academy exams and Divisions
 W: Link arriving in Soul Society to becoming a Shinigami: Rukongai life, Academy tests, getting a sword and joining a Division.
-1. Build the Rukongai start.
-2. Build the Academy tests and drills.
-3. Build getting and bonding with your Asauchi (blank sword).
-4. Build Division offers and duties.
+1. Ask Claude Code to build the Rukongai start after Konsō.
+   - Answer Q-SR1 in S08.01 first: it decides whether the handover's recruitment routes are used.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P7-B02 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: the Rukongai start. Keep the human start. Then stop and report."
+   - Check its report gives the four states: source change, runs, visible, verified.
+2. Ask Claude Code to build the Academy tests and drills.
+   - Type: "Now the Academy exam and drill flow in AcademyExamService. No long compulsory lessons, and nothing from the on-hold bigger Academy. Then stop and report."
+   - Play the exam road in Studio. It should feel like being tested, not doing chores.
+3. Ask Claude Code to build getting and bonding with your Asauchi (blank sword).
+   - Type: "Now getting the Asauchi and bonding with it. Then stop and report."
+   - Play it and check you receive a nameless Asauchi. Look in View > Output for red lines.
+4. Ask Claude Code to build Division offers and duties.
+   - Type: "Now Division offers and duties, using DivisionChoice. Then stop and report."
+   - Play until a Division offer appears and accept it. Try one duty.
+5. Play the whole path once, then hand it in.
+   - Start a fresh character and play from Rukongai to joining a Division.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result, write what you think in Notes and press Submit for review.
 D: The Academy feels like being tested, not doing chores.
 
 S08.08 | Bigger Academy: on hold
 W: A bigger Academy is planned but on hold since 4 Oct. The current Academy stays and keeps working.
-1. Build nothing here until Usman lifts the hold.
-2. When it lifts, follow the steps in the checklist in order.
-D: Usman has lifted the hold, or this stays on hold.
+1. Build nothing here until you lift the hold yourself.
+   - The bigger Academy has been on hold since 4 Oct, confirmed by decision A03 on 12 Oct.
+   - The current Academy code stays in the game and keeps working. Only the bigger version waits.
+   - To lift the hold, write "Hold lifted" and the date in Notes and press Save note.
+2. When it lifts, ask Claude Code to follow the checklist in order, one item at a time.
+   - Answer Q-SR2, Q-SR3 and C12 in S08.01 first: they decide the building, the dorm size and the teachers.
+   - Open Claude Code in the game folder, paste this task's Claude build brief and type: "Do checklist item 1 only. Then stop and report."
+   - The order is exams, the 80-minute first run, lessons, teachers, multiplayer lessons, graduation, then the campus.
+   - The white and gold front stays (OD17). Interior sheets 9 to 11 are the preferred references.
+D: You have lifted the hold, or this stays on hold.
 
 S08.09 | Build the Soul Imprint
 W: The game quietly tracks how you play (six hidden traits) and uses them to offer three fair choices when your sword awakens.
-1. Track traits from real play, not from spamming.
-2. Weigh what you say you like most.
-3. Then how you fight, your story choices and a little luck.
-4. Never lock anyone out of a style.
+1. Ask Claude Code to track traits from real play, not from spamming.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build trait tracking only: aggression, precision, mobility, protection, control and resolve. Count meaningful play, never spammable actions. Then stop and report."
+   - Check its report says how spamming is ignored.
+2. Ask Claude Code to weigh what the player says they like most.
+   - Type: "Now start the choice weighting: what the player says they like counts 40%. Then stop and report."
+   - Check this is the biggest weight of all.
+3. Ask Claude Code to add how you fight, your story choices and a little luck.
+   - Type: "Now add how they fight 25%, story and spirit choices 20% and bounded randomness 15%. Offer three hand-made choices. Then stop and report."
+   - Check the three choices: one matches the strongest trait, one shows another side, one is unusual but fits.
+4. Check nobody is locked out of a style, then hand it in.
+   - Type: "Confirm a player can still pick a style their traits don't point to. Don't change anything."
+   - Play two test characters: fight aggressively with one and defensively with the other. Compare their first choices.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures of both sets of choices, write what you saw in Notes and press Submit for review.
 D: Two players who fight differently get different first choices.
 
 S08.10 | Build the sword awakening trial
 W: Your nameless Asauchi becomes your own Zanpakutō through a trial built from your three imprint choices.
-1. Reuse the existing Asauchi code.
-2. Write the trials ahead of time.
-3. Combine trial parts from the imprint choices.
-4. Never let AI invent moves live.
+1. Ask Claude Code to reuse the existing Asauchi code.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Find the existing Asauchi identity code and explain how the awakening trial can reuse it. Don't change anything."
+   - Read its answer. It should build on that code, not replace it.
+2. Ask Claude Code to write the trials ahead of time.
+   - Type: "Write the awakening trial parts by hand, ready to combine. Then stop and report."
+   - Check its report lists the parts it wrote.
+3. Ask Claude Code to combine trial parts from the three imprint choices.
+   - Type: "Now build each player's trial from their three Soul Imprint choices, using those parts. Then stop and report."
+   - Check the report shows two imprints giving two different trials.
+4. Check that no AI invents moves while the game runs.
+   - Type: "Confirm every trial part and move is written in advance, and nothing is made up live. Don't change anything."
+   - Write its answer in Notes.
+5. Play two different awakenings from start to finish, then hand it in.
+   - Type: "Tell me how to set up two test characters with different imprints in Studio. Don't change anything."
+   - Play both awakenings to the end. Look in View > Output for red lines.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: You play two different awakenings from start to finish.
 
 S08.11 | Build the bond with your sword spirit
 W: Make meeting your sword spirit, your Inner World, Shikai and Bankai feel earned through story, not grinding.
-1. Add early surprise visits to the Inner World.
-2. Add Jinzen (meditating to go there on purpose).
-3. Add spirit memories and dialogue choices.
-4. Add the Shikai name trial.
-5. Add the Bankai trial and mastery.
+1. Ask Claude Code to add early surprise visits to the Inner World.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P7-B03 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: early surprise Inner World visits. Then stop and report."
+   - Play until a visit happens. You shouldn't choose it; it should just happen.
+2. Ask Claude Code to add Jinzen (meditating to go there on purpose).
+   - Type: "Now add Jinzen, entering the Inner World on purpose. Then stop and report."
+   - Play it and check you can enter the Inner World when you want.
+3. Ask Claude Code to add spirit memories and dialogue choices.
+   - Type: "Now add spirit memories and dialogue choices. Then stop and report."
+   - Talk to the spirit and try different answers. Note in Notes whether it reacts.
+4. Ask Claude Code to add the Shikai name trial.
+   - Type: "Now add the Shikai name and trial (ShikaiTrial). Then stop and report."
+   - Play the trial to the end. Learning the name should feel earned.
+5. Ask Claude Code to add the Bankai trial and mastery.
+   - Type: "Now add Bankai: appearing, trial, understanding and mastery (BankaiQuest). Don't reveal every Bankai move at once. Then stop and report."
+   - Play the first Bankai stage and check only some moves are shown.
+6. Check powers come from story, not a menu, then hand it in.
+   - Look through the menus in Studio and check none of them simply unlocks Shikai or Bankai.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: You unlock powers by playing the story, not from a menu.
 
 S08.12 | Build the Inner Worlds
 W: Everyone gets their own Inner World (the world inside your soul), built from pieces chosen by your Soul Record.
-1. Make pieces: ground, sky, landmark, weather, the spirit's home.
-2. Pick pieces from the Soul Record and imprint.
-3. Test speed on the iPhone 13.
+1. Ask Claude Code to make the pieces: ground, sky, landmark, weather, the spirit's home.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Build Inner World pieces on top of InnerWorldService: ground, sky, landmark, weather and the spirit's home. Pieces only. Then stop and report."
+   - Check its report lists each piece it made.
+2. Ask Claude Code to pick pieces from the Soul Record and imprint.
+   - Type: "Now choose each character's pieces from their Soul Record and Soul Imprint, and save the result. Then stop and report."
+   - Type: "Tell me how to make five test characters with different stories in Studio. Don't change anything."
+   - Visit each one's Inner World and take a capture. All five should look clearly different.
+3. Test the speed on the iPhone 13, then hand it in.
+   - Type: "How do I test an Inner World on my iPhone 13 and check the frame budget? Tell me step by step. Don't change anything."
+   - Follow its steps and write in Notes whether it runs smoothly.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach the five captures with + Attach result and press Submit for review.
 D: Five test characters get five clearly different Inner Worlds that run smoothly.
 
 S08.13 | Build Shikai stages 1 to 8
 W: Shikai grows over eight stages instead of arriving all at once.
-1. Link the stages to the Focus checkpoints.
-2. Never change how Focus works.
-3. Make each stage add to normal fighting.
-4. Test climbing all eight.
+1. Ask Claude Code to link the stages to the Focus checkpoints.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Plan how the eight Shikai stages map onto the Focus gates at 30, 60, 85 and 100. Write the plan; don't build yet."
+   - Read the plan and check every stage has a place.
+2. Check Claude Code never changes how Focus works.
+   - Focus is the 0 to 100 meter and nothing may overwrite it (decision A02).
+   - Type: "Confirm your plan never changes or overwrites the Focus value. Don't change anything."
+3. Ask Claude Code to build the stages so each one adds to normal fighting.
+   - Type: "Build the eight stages. Each must add to normal combat, never replace it. Then stop and report."
+   - Play a stage in Studio and check your normal attacks still work.
+4. Test climbing all eight stages, then hand it in.
+   - Type: "Tell me how to test a character climbing all eight stages by playing. Don't change anything."
+   - Play through all eight. Look in View > Output for red lines.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach a capture and press Submit for review.
 D: A test character climbs all eight stages by playing.
 
 S08.14 | Build Bankai
 W: Bankai is earned through your bond with the sword spirit. Part of it is already built.
-1. Compare the handover with what's built.
-2. List the gaps.
-3. Ask Usman about them.
-4. Build the gaps.
+1. Ask Claude Code to compare the handover with what's built.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Compare the handover's Bankai section with what's built (BankaiQuest with 5 stages, and BankaiForge). Don't change anything."
+2. Ask Claude Code to list the gaps.
+   - Type: "List the gaps simply: what the handover wants that isn't built yet. Don't change anything."
+   - Copy the list into Notes and press Save note.
+3. Decide on each gap yourself.
+   - For each gap, write build it, change it or skip it in Notes.
+   - Press Save note, then paste your answers to Claude Code.
+4. Ask Claude Code to build only the gaps you approved, then hand it in.
+   - Type: "Build only the gaps I approved, one at a time. Then stop and report."
+   - Play until you earn a Bankai, and watch the release. Look in View > Output for red lines.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - If you like the release, write "Approved" in Notes, attach a capture and press Submit for review.
 D: You earn a Bankai by playing and approve the release.
 
 S08.15 | Build Division jobs, seats and captains
 W: Make Divisions and ranks a lasting part of server life, earned through work, not stats.
-1. Add Division duties.
-2. Add merit points.
-3. Add how to qualify for seat, lieutenant and captain.
-4. Add challenges and acting captains.
-5. Add captain tools.
+1. Ask Claude Code to add Division duties.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P7-B04 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: Division duties. Then stop and report."
+   - Play a duty in Studio. Look in View > Output for red lines.
+2. Ask Claude Code to add merit points.
+   - Type: "Now add merit and standing earned from duties. Then stop and report."
+   - Do a duty and check your merit goes up.
+3. Ask Claude Code to add how you qualify for seat, lieutenant and captain.
+   - Type: "Now add the requirements for seat, lieutenant and captain, using SeatService. No paid rank power. Then stop and report."
+   - Read the requirements in its report. They should be about work, not big stat boosts.
+4. Ask Claude Code to add challenges and acting captains.
+   - Type: "Now add rank challenges and acting captains. Then stop and report."
+   - Try a challenge in Studio and check who wins gets the seat.
+5. Ask Claude Code to add captain tools, then hand it in.
+   - Type: "Now add captain tools (CaptainPanel) and save rank history in HistoryService. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Rank is earned and comes with jobs, not huge stat boosts.
 
 S08.16 | Build friends, rivals and mentors
 W: Friends, rivals, mentors and roommates as part of a Soul Reaper's life.
-1. Start from what exists: seats, challenges and duties.
-2. Suggest the smallest version that adds to the Soul Record.
-3. Get Usman's yes.
-4. Build the first piece.
-D: Usman approves the plan and has played the first piece.
+1. Ask Claude Code to start from what exists: seats, challenges and duties.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "List what seats, challenges and duties already do that could support friends, rivals and mentors. Don't change anything."
+2. Ask Claude Code to suggest the smallest version that adds to the Soul Record.
+   - Type: "Suggest the smallest social feature that makes the Soul Record richer. Keep it short. Don't build yet."
+   - Read the suggestion and paste it into Notes.
+3. Give your own yes, or ask for changes.
+   - If you like it, write "Yes" in Notes and press Save note.
+   - If not, tell Claude Code what to change and ask for a new suggestion.
+4. Ask Claude Code to build the first piece, then play it.
+   - Type: "Build only the first piece of the plan I approved. Then stop and report."
+   - Play it in Studio. Look in View > Output for red lines.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Write what you thought in Notes and press Submit for review.
+D: You approve the plan and have played the first piece.
 
 S08.17 | Build stories that react to your life
 W: Quests and events change based on your Soul Record and imprint.
-1. Write story parts ahead of time.
-2. Give each part conditions from the Soul Record.
-3. Never use live AI-written quests.
+1. Ask Claude Code to write story parts ahead of time.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Write a small set of story parts by hand, ready to trigger. Then stop and report."
+   - Read the parts in its report.
+2. Ask Claude Code to give each part conditions from the Soul Record.
+   - Type: "Now give each part conditions from the Soul Record and Soul Imprint, so different histories meet different parts. Then stop and report."
+   - Check each part says which history triggers it.
+3. Check no live AI writes quests, then test two characters.
+   - Type: "Confirm no quest is written by AI while the game runs. Don't change anything."
+   - Type: "Tell me how to make two test characters with different histories. Don't change anything."
+   - Play both and write which story parts each one met in Notes.
+   - Commit with Claude Code, attach captures and press Submit for review.
 D: Two test characters meet different story parts from their histories.
 
 S08.18 | Build safe and dangerous Dangai trips
 W: The Dangai is the path between worlds. Approved trips are short and safe; unapproved or story trips are a dangerous chase.
-1. Wait for Usman's answer to C09.
-2. Adapt the existing Dangai run to that answer.
-3. Test both kinds of trip.
+1. Answer C09 yourself before Claude Code builds anything.
+   - Answer C09 in S08.01: A keeps approved Senkaimon trips safe and short; B puts the sweeper on normal trips too.
+   - Your answer is final. Claude Code builds whatever you chose.
+2. Ask Claude Code to adapt the existing Dangai run to your answer.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "My answer to C09 is [A or B]. Adapt the existing Dangai run and Cleaner chase to it. Then stop and report."
+   - If caught, a player is displaced or dies and resets. They never lose their account progress.
+3. Test both kinds of trip in Studio.
+   - Play an approved Senkaimon trip and check it matches your answer.
+   - Play an unauthorised or story trip and try to escape the Cleaner with your movement and Shunpo.
+   - Look in View > Output for red lines after each one.
+   - Commit with Claude Code, attach captures and press Submit for review.
 D: Both trip types play the way you decided.
 
 S08.19 | Build a bonus for later character slots
 W: Should a strong earlier character give your later characters a small head start? Only build it if you said yes.
-1. Wait for Usman's answer to C06.
-2. If yes, add the small bonus only.
-3. Carry over no story or skills.
-4. Add limits to stop abuse.
+1. Answer C06 yourself before anything is built.
+   - Answer C06 in S08.01. Slots are never related either way (OD16).
+   - If you said no, write "Not building" in Notes, press Save note and stop here.
+2. If yes, ask Claude Code to add the small start bonus only.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Add the Spiritual Legacy bonus only: more starting energy and slightly faster growth, from the tiers in the brief. Then stop and report."
+   - The tiers are still a working draft, so ask Claude Code to show the numbers it used.
+3. Ask Claude Code to make sure no story or skills carry over.
+   - Type: "Confirm nothing else carries over: no reiatsu control, Shikai, Bankai, Zanpakutō, Inner World, sword skills or Division. Don't change anything."
+   - Write its answer in Notes.
+4. Ask Claude Code to add limits to stop abuse, then test it.
+   - Type: "Add the abuse limits: only the strongest earlier slot counts, bonuses never stack, and gear or buffs don't count. Then stop and report."
+   - Make a new test character and check its starting energy matches the tier.
+   - Commit with Claude Code, write what you saw in Notes and press Submit for review.
 D: It's built only if you said yes, and nothing extra carries over.

@@ -14,7 +14,7 @@ for (const f of files) {
     const m = lines[0].match(/^(\S+) \| (.+)$/);
     if (!m) { bad(f, '?', 'bad header: ' + lines[0]); continue; }
     const id = m[1]; tasks++;
-    if (words(m[2]) > 8) bad(f, id, 'title over 8 words');
+    if (words(m[2]) > 8 && !id.startsWith('NEW:')) bad(f, id, 'title over 8 words'); // new-task titles are the owner's own words
     let cur = null, n = 0, w = '', d = '';
     const stepHows = [];
     for (const raw of lines.slice(1)) {

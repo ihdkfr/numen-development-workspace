@@ -1,53 +1,114 @@
 S13.01 | Check what's built: Quincy and others (off)
 W: Code for Quincy and other routes exists but stays switched off until after launch. Don't play-check it now.
 1. Leave it switched off.
+   - Don't switch on Quincy, the extra race paths or the homes, stadium, research and keepsakes systems.
+   - If a Claude Code report says one of them was switched on, type: "Switch it back off and tell me what changed."
 2. Come back to it at S13.03.
+   - Leave this task as it is until launch is stable.
+   - When you reach S13.03, read this checklist again so you know what is already built.
 D: It stays off until after launch.
 
 S13.02 | Switch on homes, stadium and extras
 W: Some after-launch systems are already built: homes, stadium, research, keepsakes. Switch them on one by one once launch is stable.
-1. Check homes and the stadium.
-2. Check research and keepsakes.
-3. Check Dangai pockets and witness mode.
-4. Check the cross-server and gate systems.
-5. Switch on only what has a clear reason.
+1. Ask Claude Code to check homes and the stadium.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P11-B01 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Audit homes and the stadium and tournaments. Don't switch anything on. Then stop and report."
+   - Read its report and write in Notes what each one gives the player.
+2. Ask Claude Code to check research and keepsakes.
+   - Type: "Now audit research (Division 12) and keepsakes, wardrobe and secrets. Don't switch anything on. Then stop and report."
+   - Write in Notes what each one gives the player.
+3. Ask Claude Code to check Dangai pockets and witness mode.
+   - Type: "Now audit Dangai pockets and witness mode. Don't switch anything on. Then stop and report."
+   - Write in Notes what each one gives the player.
+4. Ask Claude Code to check the cross-server and gate systems.
+   - Type: "Now audit the cross-server Tide and the lower-realm gate systems. Don't switch anything on. Then stop and report."
+   - Ask it for the speed cost of each one, and write the numbers in Notes.
+5. Decide what to switch on, and ask Claude Code to switch on only that.
+   - Pick only systems with a clear reason for players and room in the speed budget. Combat and world stability come first.
+   - Type: "Switch on only [name] behind its feature flag. Then stop and report."
+   - Play in Studio, try it and check Output for red lines before switching on the next one.
 D: Each one switched on has a clear reason and runs within budget.
 
 S13.03 | Decide when Quincy and Fullbringer open
 W: Only open the Quincy and Fullbringer paths when they're as good as the launch races.
-1. Check their progression is finished.
-2. Check combat balance.
-3. Check they fit the world.
-4. Check their tutorial.
-5. Test with players.
+1. Ask Claude Code to check their progression is finished.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P11-B02 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Report how finished Quincy and Fullbringer progression is. Don't change any playable flags."
+   - Write what is missing in Notes.
+2. Ask Claude Code to check combat balance.
+   - Type: "Compare Quincy and Fullbringer combat balance against the launch races. Don't change anything."
+   - Write anything that feels much stronger or weaker in Notes.
+3. Ask Claude Code to check they fit the world.
+   - Type: "Tell me where Quincy and Fullbringer fit into the world and what is missing. Don't change anything."
+   - Write what is missing in Notes.
+4. Ask Claude Code to check their tutorial.
+   - Type: "Tell me how a new Quincy or Fullbringer player learns the basics. Don't change anything."
+   - If there is no clear tutorial, write that in Notes.
+5. Test with players, then make your decision.
+   - Ask a few testers to play each path in a private test game, never the live game.
+   - Write your decision in Notes: open, or not yet and why. Code existing is not a reason to open.
+   - If it's a yes, tick the step and press Submit for review.
 D: Neither path feels like a side mode.
 
 S13.04 | Write the Quincy look guide
 W: Plan how Quincy (spirit archers) look, without opening their path yet.
-1. Design spirit weapon shapes.
-2. Design uniforms.
-3. Design how their spirit particles look.
-4. Design how Hirenkyaku looks.
+1. Ask Claude Code to design spirit weapon shapes.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P5-B05 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Write the spirit weapon shape families for the Quincy visual bible. Don't open the Quincy route."
+   - Read what it wrote and add your thoughts in Notes.
+2. Ask Claude Code to design uniforms.
+   - Type: "Now add the uniform and cosmetic look to the visual bible. Then stop and report."
+   - Read it and add your thoughts in Notes.
+3. Ask Claude Code to design how their spirit particles look.
+   - Type: "Now add the reishi (spirit particle) look to the visual bible. Then stop and report."
+   - Read it and add your thoughts in Notes.
+4. Ask Claude Code to design how Hirenkyaku looks.
+   - Type: "Now add how Hirenkyaku (Quincy fast movement) looks. Then stop and report."
+   - Type: "Confirm the Quincy playable flag is still false. Don't change anything."
+   - Attach the visual bible with + Attach result and press Submit for review.
 D: The look guide is ready and the path stays closed.
 
 S13.05 | Write the Fullbringer look guide
 W: Plan how Fullbringers (people who power up objects) look, without opening their path yet.
-1. Design how powered objects look.
-2. Design how they pull power from things around them.
-3. Set limits for their full form.
+1. Ask Claude Code to design how powered objects look.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P5-B06 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Write how affinity objects look for the Fullbringer visual bible. Don't open the Fullbringer route."
+   - Read what it wrote and add your thoughts in Notes.
+2. Ask Claude Code to design how they pull power from things around them.
+   - Type: "Now add the environmental pull look to the visual bible. Then stop and report."
+   - Read it and add your thoughts in Notes.
+3. Ask Claude Code to set limits for their full form.
+   - Type: "Now add the complete-form appearance limits. Then stop and report."
+   - Type: "Confirm the Fullbringer route is still closed. Don't change anything."
+   - Attach the visual bible with + Attach result and press Submit for review.
 D: The look guide is ready and the path stays closed.
 
 S13.06 | Plan later story arcs safely
 W: Keep later story content spoiler-free and away from the launch work.
-1. Use neutral names until Usman is ready.
+1. Use neutral names until you are ready.
+   - When Claude Code writes about later arcs, type: "Use neutral names only. Don't tell me later-arc story details unless I ask."
+   - If a document or task shows you a spoiler, write where in Notes so it can be fixed.
 2. Build only after the main worlds are stable.
+   - Keep later-arc work behind its feature flags and off until the main realms are stable.
+   - Before starting any of it, type: "Are the core realms stable enough for later-arc work? Don't change anything."
 3. Keep it original and legally safe.
+   - Type: "Check the later-arc plans are original and don't copy anything we can't legally use. Don't change anything."
+   - Write what it found in Notes and press Save note.
 D: Nothing in the plan spoils later arcs.
 
 S13.07 | Design technique upgrades with trade-offs
 W: Small upgrades that change how a basic technique works, always with a downside. No gacha (paid random rolls).
-1. Design a few upgrades for basic techniques only.
-2. Give each a trade-off, like range for speed.
+1. Ask Claude Code to design a few upgrades for basic techniques only.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch PB-B12 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Design a very small augment list for generic techniques only. Design only, no code."
+   - Read the list and write your thoughts in Notes.
+2. Check each upgrade has a trade-off, like range for speed.
+   - Look at each upgrade and find its downside, such as more range but slower startup.
+   - If one is just stronger with no downside, type: "Give this one a real trade-off."
 3. Keep them off unique sword powers.
-4. Earn them by mastery or crafting, never random buys.
+   - Type: "Confirm no augment touches a unique Zanpakuto power. Don't change anything."
+   - Check nothing is named or works like a Peroxide crystal.
+4. Make sure they're earned by mastery or crafting, never random buys.
+   - Type: "Confirm every augment is earned through mastery, research or crafting, never random paid rolls. Don't change anything."
+   - Write in Notes whether you want to build this, then press Submit for review.
 D: Upgrades change how you play but never just make you stronger.

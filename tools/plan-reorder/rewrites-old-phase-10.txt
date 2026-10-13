@@ -1,104 +1,255 @@
 S10.01 | Check what's built: the living world
 W: Living world systems are already in the game, though many were switched off at the last check. Play them to see what works.
-1. Open Studio with the current build (see S01.01).
-2. Play each item in the checklist.
-3. Read the Output window after each one.
-4. Write anything broken in a note here, or as a new task.
-5. Approve this task when everything works.
+1. Open the game in Studio on the current build (S01.01 says which branch).
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Type: "Which branch has the current build, and how do I switch to it? Don't change anything."
+   - Open the game in Studio with Rojo connected, as "How to: the basics" shows.
+2. Ask Claude Code which of these systems are switched off and how to test them.
+   - Type: "Which of LawService, HistoryService, NemesisService, FactionWarService, raids, seat fights, wars and CreatorService are switched off? How do I turn each on for a Studio test only? Don't change anything."
+   - Write the list in Notes so you know what to expect.
+3. Play law, history, nemesis Hollows and faction wars.
+   - Press Play (F5). Commit a small crime and see what LawService does.
+   - Check your history is saved (HistoryService) and look for a nemesis Hollow (NemesisService).
+   - Try a faction war and the war seasons (FactionWarService, build 136).
+   - After each one, open View > Output and look for red lines. Press Stop.
+4. Play raids, seat fights, wars, CreatorService and the Soul Candy shop.
+   - Try a raid, a seat fight and a war. They were switched off at the last check, so turn them on first.
+   - Try CreatorService and buy something in the Soul Candy shop (build 133).
+   - Check View > Output for red lines after each one.
+5. Write anything broken in a note here, or mark it for a new task.
+   - If you see red text in Output, copy it into Notes and say which item caused it.
+   - Next to anything that needs real work, write "needs a new task" so it gets its own task.
+   - Press Save note.
+6. Approve this task when everything works.
+   - Tick each checklist item that you played and that worked.
+   - Attach a capture of anything that looked wrong with + Attach result.
+   - Press Submit for review. Leave failed items unticked and name them in Notes.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S10.02 | Build law, reputation, money and nemesis Hollows
 W: Join the living world systems up so actions have lasting results: crime, bounties, money, NPCs that remember you, nemesis Hollows.
-1. Add standing with each group.
-2. Add crime, witnesses, arrest and trial.
-3. Add bounties and scars.
-4. Add money and crafting.
-5. Add NPC memory and nemesis Hollows.
-6. Add a hall of names for server history.
+1. Ask Claude Code to add standing with each group.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P7-B07 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: standing tracks for each group. Then stop and report."
+   - Check its report gives the four states: source change, runs, visible, verified.
+2. Ask Claude Code to add crime, witnesses, arrest and trial.
+   - Type: "Now crime, witnesses, arrest and trial, joined to LawService. Then stop and report."
+   - Commit a crime in Studio with an NPC watching, and see if you get arrested.
+3. Ask Claude Code to add bounties and scars.
+   - Type: "Now add bounties and scars. Then stop and report."
+   - Get a bounty in Studio and check it shows up.
+4. Ask Claude Code to add money and crafting.
+   - Type: "Now Kan (the money), the economy and crafting. No power for Robux. Then stop and report."
+   - Earn some Kan and craft one item in Studio.
+5. Ask Claude Code to add NPC memory and nemesis Hollows.
+   - Type: "Now NPC memory, then nemesis Hollows. Then stop and report."
+   - Meet the same NPC twice and check it remembers you. Lose to a Hollow and see if it returns.
+6. Ask Claude Code to add a hall of names, then hand it in.
+   - Type: "Now a hall of names for server history. No daily chores anywhere. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: These systems work together and never feel like daily chores.
 
 S10.03 | Build events, raids and war
 W: Use the finished worlds for repeatable server events: Hollow attacks, raids, territory war, tournaments and investigations.
-1. Add Hollow attacks.
-2. Add raids.
-3. Add territory war.
-4. Add tournaments.
-5. Add investigations and faction orders.
-6. Don't let the server become nonstop alarms.
+1. Ask Claude Code to add Hollow attacks.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch P7-B08 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: Hollow incursions. Then stop and report."
+   - Wait for a Hollow attack in Studio and play through it.
+2. Ask Claude Code to add raids.
+   - Type: "Now raids, using RaidService. Then stop and report."
+   - Play a raid. Look in View > Output for red lines.
+3. Ask Claude Code to add territory war.
+   - Type: "Now territory war, using WarService. Then stop and report."
+   - Check a territory changes hands when one side wins.
+4. Ask Claude Code to add tournaments.
+   - Type: "Now tournaments in the stadium. Then stop and report."
+   - Join a tournament in Studio and play one round.
+5. Ask Claude Code to add investigations and faction orders.
+   - Type: "Now investigations, then faction orders. Then stop and report."
+   - Try one of each in Studio.
+6. Check the server never becomes nonstop alarms, then hand it in.
+   - Play for 15 minutes and write in Notes how often events interrupted you.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Events add to normal life instead of replacing it.
 
 S10.04 | Build gear and loadout limits
 W: Add gear and accessories without gear becoming everything. A weight limit stops anyone wearing every best item.
-1. Design gear types and cosmetic slots.
-2. Add a weight or slot limit.
-3. Get gear from bosses, crafting, shops and exploring.
-4. Keep looks separate from stats.
-5. Add tailor and crafting only where useful.
+1. Ask Claude Code to design gear types and cosmetic slots.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B03 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: design gear types, cosmetic slots and a small sidegrade budget. Don't build yet."
+   - Read the design. Combat bonuses should be small; most gear should be utility or looks.
+2. Ask Claude Code to add a weight or slot limit.
+   - Type: "Now add a weight or slot-cost limit so nobody can wear every best item. Then stop and report."
+   - Try to equip all your best items in Studio. The limit should stop you.
+3. Ask Claude Code to make gear come from bosses, crafting, shops and exploring.
+   - Type: "Now add fixed ways to get gear: bosses, crafting, vendors, reputation and exploring. No Robux-only combat items. Then stop and report."
+   - Get one item each way in Studio.
+4. Ask Claude Code to keep looks separate from stats.
+   - Type: "Now make appearance separate from item stats where possible. Then stop and report."
+   - Change an item's look in Studio and check its stats stay the same.
+5. Ask Claude Code to add tailor and crafting only where useful, then hand it in.
+   - Type: "Add tailor, crafting or reforge only where they give players a clear goal. Then stop and report."
+   - Fight a test enemy with no gear on. Write in Notes whether skill can still win.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Gear lets you build your style, but a skilled player without gear can still win.
 
 S10.05 | Build world events
 W: Make world events pop up from what's happening in the world, not just on a timer: defence, rescue, chase, boss appears.
-1. Make a small set of event types.
-2. Start them from world conditions.
-3. Reward money, crafting, cosmetics or standing.
-4. Add anti-farming rules.
-5. Show clearly how to join.
+1. Ask Claude Code to make a small set of event types.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B05 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: a small set of event types. Our own names. Then stop and report."
+   - Read the list: contested objective, defence, pursuit, incursion, rescue, anomaly and boss appearance.
+2. Ask Claude Code to start them from world conditions.
+   - Type: "Now start events from world and faction conditions, not only timers. Then stop and report."
+   - Play in Studio and check an event starts because of something that happened.
+3. Ask Claude Code to reward money, crafting, cosmetics or standing.
+   - Type: "Now make event rewards money, crafting, cosmetics or standing, never random power. Then stop and report."
+   - Finish an event and check what you got.
+4. Ask Claude Code to add anti-farming rules.
+   - Type: "Now add anti-farming rules and event telemetry (records of how events are played). Then stop and report."
+   - Check its report says how farming is stopped.
+5. Ask Claude Code to show clearly how to join, then hand it in.
+   - Type: "Now make it clear how to join an event, without turning the map into a notice board. Then stop and report."
+   - Join an event in Studio. You should understand it within seconds.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: You understand an event in seconds and none are needed to level.
 
 S10.06 | Build faction raids with goals
 W: Build team PvP (player versus player) with goals like attack and defend, escort or sneak in, not just killing.
-1. Make several goal types for raids.
-2. Give each team member a job.
-3. Use faction rank duties as reasons to join.
-4. Add comeback rules and stop AFK farming.
+1. Ask Claude Code to make several goal types for raids.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B06 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: objective raid types for existing realms. Then stop and report."
+   - Check the list has attack and defend, escort, control, recover and sneaking in.
+2. Ask Claude Code to give each team member a job.
+   - Type: "Now give each raid team roles beyond doing the most damage. Then stop and report."
+   - Read the roles in its report. Each should matter to winning.
+3. Ask Claude Code to use faction rank duties as reasons to join.
+   - Type: "Now use faction standing and rank duties as reasons to join raids. Raid wins are never needed for transformations. Then stop and report."
+   - Check a player who skips raids can still progress.
+4. Ask Claude Code to add comeback rules and stop AFK farming, then hand it in.
+   - Type: "Now add comeback rules, spectator handling, exploit protection and rewards that don't pay AFK players. Then stop and report."
+   - Play a raid in Studio and stand still for a while. You shouldn't earn rewards.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Raids need more than damage to win, and nobody is forced into PvP.
 
 S10.07 | Build ranked 1v1 and team queue
 W: A ranked mode for fair skill tests, separate from open-world rank like Captain or Espada.
-1. Build ranked 1v1 with fixed rules.
-2. Add team queue only if combat is stable.
-3. Keep ranked score separate from story rank.
-4. Handle leavers and stalling.
-5. Reward titles and looks, not power.
+1. Ask Claude Code to build ranked 1v1 with fixed rules.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B07 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: ranked 1v1 with fixed rules (RankedService). Then stop and report."
+   - Play a ranked match in Studio. Look in View > Output for red lines.
+2. Ask Claude Code whether combat is stable enough for team queue.
+   - Type: "Is combat stable enough for a team queue yet? Explain simply. Don't change anything."
+   - Only if you agree it is, type: "Add the team queue. Then stop and report."
+3. Ask Claude Code to keep ranked score separate from story rank.
+   - Type: "Make sure ranked rating and ranks like Captain or Espada can never be confused. Then stop and report."
+   - Check both show up in different places in Studio.
+4. Ask Claude Code to handle leavers and stalling.
+   - Type: "Now add the map pool, round rules, disconnect handling, anti-stall and spectating (RankedRules, Spectate). Then stop and report."
+   - Leave a test match halfway and check what happens.
+5. Ask Claude Code to reward titles and looks, not power, then hand it in.
+   - Type: "Now make ranked rewards titles, cosmetics and history only, never combat power. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Ranked measures skill, not who has the rarest drop.
 
 S10.08 | Build invasion missions
 W: Team missions into enemy land with goals like stealing information, rescuing a soul or sabotaging a gate.
-1. Make missions in a closed-off area.
-2. Write our own mission goals.
-3. Scale them by team size.
-4. Add clear escape and fail rules.
+1. Ask Claude Code to make missions in a closed-off area.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B08 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: invasion missions in a closed-off enemy area. Then stop and report."
+   - Start a mission in Studio and check you can't wander out of the area.
+2. Ask Claude Code to write our own mission goals.
+   - Type: "Now add our own goals: steal intelligence, rescue a soul, sabotage a gate, take out a marked NPC, extract evidence, seal an anomaly. Then stop and report."
+   - Play two different goals and check they feel different.
+3. Ask Claude Code to scale them by team size.
+   - Type: "Now scale missions by team size and how hostile the enemy faction is. Then stop and report."
+   - Try a mission alone, then ask Claude Code how to test a bigger team.
+4. Ask Claude Code to add clear escape and fail rules, then hand it in.
+   - Type: "Now add clear extraction and failure rules, with standing, money and crafting rewards. Then stop and report."
+   - Fail one mission on purpose and check what you lose is clear.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: You can repeat it without it feeling like one quest copied five times.
 
 S10.09 | Build a big faction battle event
 W: A big opt-in battle between three or more sides, tied to the world's story, with changing goals.
-1. Design the battle for three or more sides.
-2. Rotate goals during the event.
-3. Add scores for helping, rejoining and team balance.
-4. Make it work with few players too.
+1. Ask Claude Code to design the battle for three or more sides.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B09 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: an opt-in battle for three or more sides, tied to Soul Balance. Don't build yet."
+   - Read the design. It should be a rare world crisis, not a lobby that runs all the time.
+2. Ask Claude Code to rotate goals during the event.
+   - Type: "Build it with goals that change during the event, not just knocking everyone out. Then stop and report."
+   - Play it in Studio and check the goal changes at least once.
+3. Ask Claude Code to add scores for helping, rejoining and team balance.
+   - Type: "Now add contribution scoring, rejoin rules and team balancing. Then stop and report."
+   - Check its report says how healers or defenders also score.
+4. Ask Claude Code to make it work with few players too, then hand it in.
+   - Type: "Now add a fallback for low player counts, and check performance with many players. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Big battles stay clear and smooth, and every role gets rewarded.
 
 S10.10 | Build risky expeditions
 W: A dangerous trip that gets harder the deeper you go. You choose when to escape with your loot.
-1. Make the expedition area.
-2. Make danger rise the deeper you go.
-3. Let players leave whenever they choose.
-4. Mix goals and fights each run.
-5. Reward materials and cosmetics, not needed power.
+1. Ask Claude Code to make the expedition area.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B10 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: suggest an expedition area, such as Dangai pockets or far Hueco Mundo. Don't build yet."
+   - Pick the area you like and tell Claude Code to build it.
+2. Ask Claude Code to make danger rise the deeper you go.
+   - Type: "Now make danger rise the deeper players go, with optional deeper goals. Then stop and report."
+   - Go deeper in Studio and check it gets harder.
+3. Ask Claude Code to let players leave whenever they choose.
+   - Type: "Now add voluntary extraction (leaving with your loot) at any point. Then stop and report."
+   - Leave halfway through and check you keep your loot.
+4. Ask Claude Code to mix goals and fights each run.
+   - Type: "Now mix goals and enemy groups each run, without random map shapes just for the sake of it. Then stop and report."
+   - Play two runs and check they feel different.
+5. Ask Claude Code to reward materials and cosmetics, not needed power, then hand it in.
+   - Type: "Now make rewards materials, cosmetics, research or history. Failing hurts but never ruins a character. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: Players keep facing a real "keep going or leave" choice.
 
 S10.11 | Build faction reputation
 W: Your standing with each faction changes how NPCs treat you: friendliness, prices, patrols, missions and hostile zones.
-1. Link standing levels to NPC behaviour.
-2. Allow unusual friendships at high standing.
-3. Feed crimes and invasions into standing.
-4. Show standing through how NPCs act and talk.
+1. Ask Claude Code to link standing levels to NPC behaviour.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B11 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: link standing levels to NPC behaviour. Then stop and report."
+   - Check standing changes friendliness, services, patrols, prices, missions and hostile zones.
+   - Check its report keeps separate standing for each faction, never one global meter.
+2. Ask Claude Code to allow unusual friendships at high standing.
+   - Type: "Now allow unusual cross-faction friendships at high standing, without erasing faction identity. Then stop and report."
+   - Read the example in its report and write in Notes if it feels right.
+3. Ask Claude Code to feed crimes and invasions into standing.
+   - Type: "Now make crimes, witnesses and invasions change standing the same way every time. Then stop and report."
+   - Commit a crime in Studio and check your standing drops.
+4. Ask Claude Code to show standing through how NPCs act and talk, then hand it in.
+   - Type: "Now show standing through NPC behaviour and dialogue before any bars or numbers. Then stop and report."
+   - Talk to the same NPC at high and low standing and compare what they say.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: NPCs visibly act differently because of what you've done.
 
 S10.12 | Build a co-op wave raid
 W: A short 1 to 4 player mode with waves of enemies and bosses, separate from open-world raids.
-1. Build the wave arena for 1 to 4 players.
-2. Mix our own enemies and twists.
-3. Scale difficulty with party size.
-4. Reward materials and cosmetics.
+1. Ask Claude Code to build the wave arena for 1 to 4 players.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run roadmap batch PB-B14 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Step 1 only: a 1 to 4 player arena with rising waves and boss rounds. Then stop and report."
+   - Play it alone in Studio. Look in View > Output for red lines.
+2. Ask Claude Code to mix our own enemies and twists.
+   - Type: "Now use our own enemy mixes and modifiers from Soul Survival's systems. Then stop and report."
+   - Play a few waves and check they aren't all the same.
+3. Ask Claude Code to scale difficulty with party size.
+   - Type: "Now scale difficulty with party size in smart ways, not just more health. Then stop and report."
+   - Check its report says what changes besides enemy health.
+4. Ask Claude Code to reward materials and cosmetics, then hand it in.
+   - Type: "Now make rewards mastery materials, cosmetics, research and economy items. Then stop and report."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Attach captures with + Attach result and press Submit for review.
 D: It works as a short co-op session and gets harder in smart ways.

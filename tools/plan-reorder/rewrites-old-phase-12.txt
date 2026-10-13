@@ -1,80 +1,187 @@
 S12.01 | Check what's built: saving and safety
 W: Saving and safety systems are already in the game. They only count as done when you have played them and they work.
 1. Open Studio with the current build (see S01.01).
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Type: "Which branch has the current build from S01.01, and how do I open it in Studio with Rojo? Don't change anything."
+   - Open the game in Studio with Rojo connected, the way Claude Code told you.
 2. Play each item in the checklist.
+   - Save protections: press Play (F5), change something on your character, press Stop, press Play again. Your change should still be there.
+   - Travel between places (prepareTeleport): type: "How do I test cross-place travel safely? Don't change anything." Then follow its steps.
+   - Store guards: type: "How do I check the store guards in Studio without spending Robux? Don't change anything." Then follow its steps.
 3. Read the Output window after each one.
+   - Open View > Output before you press Play.
+   - After each item, look for red lines in Output.
+   - If you see red text, copy it into a note on this task with the item's name.
 4. Write anything broken in a note here, or as a new task.
+   - For each problem, write what you did, what you expected and what happened.
+   - Press Save note. For a big problem, ask Claude Code to help you word it as a new task.
 5. Approve this task when everything works.
+   - Tick each checklist item that worked with no red lines in Output.
+   - If every item is ticked, press Submit for review. If not, leave it open and keep the notes.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S12.02 | Make the game load and run faster
 W: Get loading time and running speed under target, without moving slow work into fights.
-1. Find what makes the terrain slow.
-2. Move work to ready-made data where safe.
-3. Keep fight time fast.
-4. Check far-away realms are hidden.
-5. Measure every change.
+1. Ask Claude Code to find what makes the terrain slow.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P9-B01 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Profile TerrainService and give me the numbers. Don't change anything yet."
+   - Write the loading time it reports in Notes, so you can compare later.
+2. Ask Claude Code to move work to ready-made data where safe.
+   - Type: "Move safe terrain work to generated or offline data. Never move heavy generation into combat time. Then stop and report."
+   - Check its report gives the new loading time next to the old one.
+3. Ask Claude Code to keep fight time fast.
+   - Type: "Check the server frame budgets during active play are still strict. Show me the numbers. Then stop and report."
+   - Play in Studio, start a fight and watch for stutters.
+4. Ask Claude Code to check far-away realms are hidden.
+   - Type: "Verify realm culling works: far realms are hidden. Show me how you tested it. Then stop and report."
+   - Check its report says how it was tested, not just that it should work.
+5. Ask Claude Code to measure every change, then compare.
+   - Type: "Give me a before and after table for every change you made in this batch. Don't change anything."
+   - Copy the table into Notes and press Save note.
+   - If loading is faster and fights don't stutter, press Submit for review.
 D: Loading is faster and fights don't stutter.
 
 S12.03 | Check saves are safe before launch
 W: Make sure player saves never get wiped or broken, including old saves, before real players arrive.
-1. Check for save format clashes.
-2. Test all three character slots.
-3. Test save locks, recovery and backups.
-4. Test updating old sample saves.
-5. Save Bankai, Soul Record and Hollow traits safely.
+1. Ask Claude Code to check for save format clashes.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P9-B02 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Audit DataService schemas and versions for clashes. Report before changing anything."
+   - Read its list of clashes and write any questions in Notes.
+2. Ask Claude Code to test all three character slots.
+   - Type: "Test all three save slots. Use old profiles, not only fresh ones. Then stop and report."
+   - Play in Studio, make a change in each slot, rejoin and check each slot kept its own change.
+3. Ask Claude Code to test save locks, recovery and backups.
+   - Type: "Test session lock, recovery and backups. Show me there is no path that saves a blank profile over a real one. Then stop and report."
+   - Check its report says how it tested each one.
+4. Ask Claude Code to test updating old sample saves.
+   - Type: "Run the migration tests on the old sample saves. Migrations must give the same result every time. Then stop and report."
+   - Check its report shows every old sample save updated with no errors.
+5. Ask Claude Code to save Bankai, Soul Record and Hollow traits safely.
+   - Type: "Make sure Bankai, Soul Record and Hollow lineage are saved safely and tested. Then stop and report."
+   - Play in Studio, rejoin and check these are still there.
+   - Attach its test results with + Attach result and press Submit for review.
 D: No save can be wiped by accident and old saves update correctly.
 
 S12.04 | Stop cheaters without blocking fast players
 W: Protect fights from cheaters without wrongly catching players who use fast moves like Shunpo.
-1. Check every message from players on the server.
-2. Add limits on how often they're sent.
-3. Allow fast movement moves.
-4. Try to cheat with transformations and fake attacks.
-5. Log suspicious players, never auto-ban.
+1. Ask Claude Code to check every message from players on the server.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P9-B03 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Do remote validation only. Then stop and report."
+   - Check its report lists which remotes (messages from the player's game to the server) it checked.
+2. Ask Claude Code to add limits on how often they're sent.
+   - Type: "Now add rate limits to the remotes. Then stop and report."
+   - Check its report says what each limit is.
+3. Ask Claude Code to allow fast movement moves.
+   - Type: "Now add the movement exceptions so Shunpo and other fast moves are never flagged. Then stop and report."
+   - Play in Studio, use Shunpo many times and check you aren't flagged or pulled back.
+4. Ask Claude Code to try to cheat with transformations and fake attacks.
+   - Type: "Now test transformation and cinematic exploit attempts and forged ability events. Show me they are rejected. Then stop and report."
+   - Check its report shows each fake attack was blocked.
+5. Ask Claude Code to log suspicious players, never auto-ban.
+   - Type: "Now add suspicion logging. Never auto-ban from guesses. Then stop and report."
+   - Type: "Show me where the suspicion log can be read. Don't change anything."
+   - Write in Notes what you tested and press Submit for review.
 D: Normal fast movement isn't flagged and fake attacks are blocked.
 
 S12.05 | Test with 20 players and slow devices
 W: Test real busy situations: 20 players, crowded cities, big fights and slow phones.
-1. Run a 20-player test server.
-2. Test busy Seireitei and Rukongai.
+1. Ask Claude Code to set up a 20-player test server.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P9-B04 only. Read the HANDOVER and docs/plan/OWNER_PRIORITY_OVERRIDE.md first. Tell me exactly how to run a 20-player test in the test universe. Don't change anything."
+   - Follow its steps. A single-player test in Studio does not count.
+2. Test busy Seireitei and Rukongai with Claude Code's stress tools.
+   - Type: "How do I use /stress and /perf to test busy Seireitei and Rukongai? Don't change anything."
+   - Run the test it describes and write the speed numbers in Notes.
 3. Test a faction battle and several releases at once.
+   - Type: "Now tell me how to stress a faction battle with several releases at the same time. Don't change anything."
+   - Run it and write the numbers and any red lines in Output in Notes.
 4. Test on a slow device.
+   - Type: "How do I test the low-end device profile? Don't change anything."
+   - Play on the slowest phone or computer you have and write how smooth it felt in Notes.
 5. Test controller and phone.
+   - Play with a controller if you have one, then on a phone.
+   - Check you can reach every button and menu, and write anything awkward in Notes.
+   - Type: "Compare my numbers in Notes against the agreed speed and error targets. Don't change anything."
 D: The game hits the agreed speed and error targets.
 
 S12.06 | Play every path from start to finish
 W: Play the full launch paths for real, with no developer shortcuts, to find anything that blocks progress.
 1. Play new character to human to Plus.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P10-B01 only. Read the HANDOVER first. Give me a launch checklist for each path. Don't change anything."
+   - Make a new character and play from human to Plus with no dev commands. Tick each checklist line as you go.
 2. Play the Shinigami path to its launch end.
+   - Play the Shinigami path up to the target transformation for launch.
+   - Write in Notes anywhere you got stuck or had to use a dev command.
 3. Play the Hollow path to its launch end.
+   - Play the Hollow path up to the target evolution for launch.
+   - Write in Notes anywhere you got stuck or had to use a dev command.
 4. Test travel, saving, rejoining and death.
-5. Test money, rank and world events.
+   - Travel between realms, leave the game, rejoin and check your progress is still there.
+   - Die on purpose and check you come back the way you should.
+5. Test money, rank and world events, then report blockers.
+   - Earn and spend money, go up a rank and join a world event.
+   - Type: "Turn my notes into a list of blockers, worst first. Don't change anything."
+   - Paste the list into Notes and press Submit for review.
 D: Nothing blocks a player on any launch path.
 
 S12.07 | Do a final look walkthrough
 W: A final look at every main world and playable form before launch, from the ground, not just from the air.
 1. Walk Karakura and Soul Society.
+   - Open the game in Studio with Rojo connected and press Play.
+   - Walk through Karakura and Soul Society on foot, not from the air.
+   - Take captures of anything odd and attach them with + Attach result.
 2. Walk Hueco Mundo and Las Noches.
+   - Walk through Hueco Mundo and Las Noches on foot.
+   - Look for placeholder blocks, broken roofs and layouts that don't make sense.
 3. Check every playable form and transformation.
+   - Play each form and do each transformation.
+   - Look for body parts or weapons going through each other (clipping).
 4. Check lighting and weather.
+   - Look at each realm in its different lighting and weather.
+   - Type: "Compare my captures against the Art Bible and tell me what doesn't match. Don't change anything."
+   - Write the list in Notes and press Submit for review.
 D: There are no placeholders, broken roofs or clipping.
 
 S12.08 | Set up the game for launch
 W: Switch off developer-only settings and check safety and store settings before launch.
-1. Turn off developer buttons.
-2. Set up the admins.
-3. Make sure store items are cosmetic only.
+1. Ask Claude Code to turn off developer buttons.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P10-B03 only. Read the HANDOVER first. Turn DevButtons off in the launch Config. Then stop and report."
+   - Play in Studio and check the developer buttons are gone.
+2. Set up the admins with Claude Code.
+   - Type: "Show me where admins are set and who is on the list. Don't change anything."
+   - Tell it who should be an admin and ask it to update the list.
+3. Ask Claude Code to make sure store items are cosmetic only.
+   - Type: "List every store ID and say what it gives. Flag any Kan packs, XP boosts, power rerolls or race purchases."
+   - Check nothing on the list gives power. If something does, ask it to remove it.
 4. Check API permissions.
+   - Type: "Tell me exactly which API permissions the game needs and where I set them. Don't change anything."
+   - Follow its steps yourself, because settings on the Roblox website are yours to change.
 5. Separate the test game from the real one.
-6. Set the final feature switches.
+   - Type: "Tell me how the test universe is kept separate from the live game. Don't change anything."
+   - Check every test publish goes to the private test game, never the live game.
+6. Ask Claude Code to set the final feature switches and run the launch check.
+   - Type: "Set the final feature flags for launch, then run launchCheck. Then stop and report."
+   - Check its report says launchCheck passed and no power can be bought.
 D: The launch check passes and no power can be bought.
 
 S12.09 | Run a closed test, then a soft launch
 W: Launch in small steps: a closed test with 20 to 50 players, then a small public launch, and let the results guide you.
 1. Run a closed test with 20 to 50 players.
-2. Track crashes, speed and where players get stuck.
-3. Fix the worst problems first.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Run batch P10-B04 only. Read the HANDOVER first. Tell me exactly how to run a closed test for 20 to 50 players. Don't change anything."
+   - Pick your testers and follow its steps.
+2. Ask Claude Code to track crashes, speed and where players get stuck.
+   - Type: "Show me where the crash, performance and progression analytics are and how to read them. Don't change anything."
+   - Check them each day of the test and write what you see in Notes.
+3. Ask Claude Code to fix the worst problems first.
+   - Type: "From my notes, list the P0 and P1 problems (the worst ones). Don't add new features."
+   - Give it one problem at a time with: "Fix this one only. Then stop and report."
 4. Open to a small group of the public.
-5. Have a plan to roll back and patch.
+   - Type: "Tell me exactly how to open the game to a small soft-launch group. Don't change anything."
+   - Do it yourself only when there are no P0 or P1 problems left.
+5. Ask Claude Code to write a plan to roll back and patch.
+   - Type: "Write a short rollback and patch plan using the live flags and patch notes. Then stop and report."
+   - Read it, attach it with + Attach result and press Submit for review.
 D: Players understand the main paths and the game is stable and fast.

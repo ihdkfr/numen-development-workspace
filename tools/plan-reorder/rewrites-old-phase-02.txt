@@ -1,131 +1,480 @@
 S02.01 | Save the Hollow design bible
 W: The Hollow design bible (the rule book for how every Hollow looks and evolves) is written. Save it into the game repo.
-1. Check the bible is complete.
-2. Save it into docs/characters in the game repo.
-3. Commit it.
+1. Find the finished bible and check it is complete.
+   - The bible was sent to you in a Claude chat as HOLLOW_DESIGN_BIBLE.md, but the link dropped before it reached the repo. Find that chat.
+   - Download the file, or copy all of its text into a new file on your PC.
+   - Check it covers the evolution ladder and all ten lines, each with animal, aspect, fighting style, signature moves, mask fragment, hole, Resurrección and Cero colour.
+   - If anything is missing, write what in Notes and press Save note.
+2. Ask Claude Code to save it into docs/characters in the game repo.
+   - Open Claude Code in the game folder (see "How to: the basics" in the Codex).
+   - Type: "Save the file I attach as docs/characters/HOLLOW_DESIGN_BIBLE.md. Change nothing else. Then stop and report."
+   - Attach the file, or paste its text, and send.
+   - Check its report names that one file and nothing else.
+3. Ask Claude Code to commit it (save a snapshot in git).
+   - Type: "Commit docs/characters/HOLLOW_DESIGN_BIBLE.md with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Check Claude Code shows the commit and that it lists only the bible file.
+   - Tick the step and write "Bible saved and committed" in Notes.
 D: The bible file is in the game repo.
 
 S02.02 | Write a two-page art guide for modellers
 W: A short guide with the rules for bone plates, masks, colours, shapes and size, so nobody making models has to guess.
-1. Write the rules for plates and masks.
-2. Write the colour rules.
-3. Write the shape and size rules.
-4. Keep it to two pages.
+1. Ask Claude Code to write the rules for plates and masks.
+   - Open Claude Code in the game folder and paste this task's Claude build brief (press Copy Claude build brief on this task).
+   - Type: "Do the plate and mask rules only, from this task's detail. Tell me where you saved the guide. Then stop and report."
+   - Check it says plates are hard slabs 0.3 to 0.6 studs thick, never blended into the body, and masks are 15 to 20% of body height.
+2. Ask Claude Code to write the colour rules.
+   - Type: "Now add the colour rules: bone, flesh, sockets and one red accent, nothing else, no gradients on plates. Then stop and report."
+   - Check the four colours are written as numbers (bone 235,228,215; flesh 28,28,32; sockets 10,10,12; accent 200,20,30).
+3. Ask Claude Code to write the shape and size rules.
+   - Type: "Now add the silhouette and scale rules from this task's detail. Then stop and report."
+   - Check it says the outline must read in black at 150 studs, and gives the sizes for Fishbone, Adjuchas and Vasto Lorde.
+4. Check the guide fits on two pages, then save it.
+   - Type: "Is the guide two pages or less? If not, shorten it without losing a rule. Then show me the whole guide."
+   - Read it as if you were a modeller. Write any question it doesn't answer in Notes.
+   - Type: "Commit the art guide with a clear message. Never commit .rbxl files or tools/lune/out."
 D: The guide exists and a modeller could follow it without asking questions.
 
 S02.03 | Collect ideas for Hollows
 W: Decide the kind of look, personality traits, animal features and mask designs you want Hollows to have.
 1. Collect pictures and ideas you like.
+   - Make a folder on your PC for Hollow ideas.
+   - Save any pictures you like there: masks, animals, creatures, poses.
+   - Attach your favourites to this task with + Attach result.
 2. Write down the looks and traits you want.
+   - In Notes, write a short list of looks you like (for example thin and tall, huge and heavy).
+   - Add the personality traits and animal features you want to see.
+   - Press Save note.
 3. Sketch or describe mask designs.
+   - Draw masks on paper and take a photo, or describe each one in a sentence.
+   - Attach the photos with + Attach result, or add the descriptions to Notes.
+   - Press Save note when you're done.
 D: Your Hollow ideas are written in this task's notes.
 
 S02.04 | Approve the ten Hollow lines overview
 W: Ten new Hollow lines (families that evolve from small Hollow to Arrancar) are designed. The direction is approved; each line still needs its own yes.
-1. Read the rules and research in the notes.
+1. Read the rules and research in this task's Extra detail.
+   - Open this task and open Extra detail (for Claude Code).
+   - Read "What the research says the audience loves" and "The appeal rules every line obeys".
+   - Read "What a first-level Hollow really needs": first-level Hollows are warped souls with one hint, and the animal arrives at Adjuchas.
+   - Read "Lines at a glance" to see all ten lines side by side.
 2. Check every stage of each line is described.
-3. Write anything you want changed.
+   - Open each line task in turn, S02.05 to S02.14, and open its Extra detail.
+   - Check each one has a Fishbone, an Adjuchas, a Vasto Lorde, a Resurrección and a Segunda Etapa section.
+   - Check each one has its five ChatGPT prompts, a "Do not" list and a silhouette test.
+   - Write any line with a missing part in Notes.
+3. Write a yes or a change for every line.
+   - In Notes, list the ten lines and write "yes" or the change you want next to each one.
+   - Press Save note.
+   - Tick the step once every line has a yes or a change.
 D: You have read the overview and every line has a yes or a change written down.
 
 S02.05 | Design Hollow line 1: Polilla the moth
 W: Polilla is a moth Hollow driven by longing. It fights at mid range and ends fights with an exploding burst.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - The Lantern (Fishbone) turnaround and detail sheet already passed on 8 Oct, so start with the Adjuchas.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - The antennae and the four wings usually need a few retries. That is normal.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Your approved portrait v1 is attached here. Attach it to the revised portrait prompt so ChatGPT rebuilds it as a 3D model.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a thin dart with two long swept blades behind it and two hairs on its head.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If the wings look like a pinned butterfly, add: "Sweep the wings back 45 degrees, black membrane with bone veins."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.06 | Design Hollow line 2: Hiena the hyena
 W: Hiena is a hyena Hollow driven by mockery. It's a brawler that copies whatever beats it.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - The double grin usually needs a few retries. Ask for it in plain words each time.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a sloped wedge with a crest and a huge jaw.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If it looks like a normal humanoid, add: "Shoulders higher, hips lower, a steeper slope."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.07 | Design Hollow line 3: Ciervo the stag
 W: Ciervo is a stag Hollow driven by pride. It turns every fight into a one-on-one duel.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - The number of antler points drifts between pictures. Say the count in every prompt.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a figure with two forks above it.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If the forks get lost, add: "Add one tine and make the antler beams longer, not thicker."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.08 | Design Hollow line 4: Alcaudón the shrike
 W: Alcaudón is a shrike (a small bird) Hollow driven by cruelty. It snipes from the air and pins enemies down.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - Always describe the eye band as raised bone, or ChatGPT paints it on like make-up.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a small figure with wings folded to the knees and a bar across the face.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If the bar across the face is lost, add: "The eye band is raised bone, at least 0.2 studs thick."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.09 | Design Hollow line 5: Medusa the jellyfish
 W: Medusa is a jellyfish Hollow driven by apathy. It's a tank that hurts anyone standing too close.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - The strands are the hardest part to keep the same between views. Expect retries.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a bell with a curtain of strands under it.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If the body shows clearly through the strands, add: "More strands, thin jointed bone, hanging like a curtain."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.10 | Design Hollow line 6: Escarabajo the beetle
 W: Escarabajo is a rhinoceros beetle Hollow driven by resolve. It's an armoured tank that can suddenly open its shell and fly.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - Bulk and horns usually come out well first time, so this line should be quick.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a dome with a single hook on top.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If it looks like a plain block, add: "Make the single forked horn much longer." Fix the horn before anything else.
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.11 | Design Hollow line 7: Anguila the eel
 W: Anguila is an electric eel Hollow driven by restlessness. It moves fast and chains lightning between enemies.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - Say the hole in the left palm in every prompt, or ChatGPT leaves it out.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a crouched figure with a long serrated tail and a ridged spine.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If the tail blends into the ground, add: "Raise the tail to 30 degrees off the ground."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.12 | Design Hollow line 8: Buitre the vulture
 W: Buitre is a vulture Hollow driven by decay. It wears enemies down slowly and heals itself.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - The ragged wings come out well; the neck ruff usually needs a few retries.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a hunched mass with a tall collar and wings trailing on the ground.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If the collar is lost, add: "The bone ruff at the neck is at least 1 stud tall."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.13 | Design Hollow line 9: Oso the bear
 W: Oso is a bear Hollow driven by grief. It's a grappler that never speaks.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - Bulk and the muzzle usually come out well first time, so this line should be quick.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a hill with a small head in front of it.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If you can see a neck, add: "Raise the hump so no neck is visible."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.14 | Design Hollow line 10: Avispa the hornet queen
 W: Avispa is a hornet queen Hollow driven by frenzy. She summons helpers and speeds up her side.
-1. Make the design sheets in ChatGPT with the prompts in the notes.
-2. Check each sheet against the appeal rules.
-3. Fix anything that looks off.
-4. Sign off the line.
+1. Make a hero picture of each Hollow stage in ChatGPT, using the prompts in Extra detail.
+   - Open this task's Extra detail and scroll to "ChatGPT prompts". There are five: Fishbone, Adjuchas, Vasto Lorde, Arrancar portrait, Arrancar + Resurrección.
+   - Copy the stage prompt whole, paste it into ChatGPT and add: "Show the three-quarter view only." Ask for four versions.
+   - Pick the best one. Save it in the game folder under docs/characters/concepts, in a folder for this line, as fishbone_hero.png (or adjuchas_hero.png and so on).
+   - Do the same for each Hollow stage prompt.
+   - The four see-through wings and the eye visor usually need a few retries.
+2. Make the full turnaround and the detail sheet for each stage.
+   - Start a new ChatGPT message, attach the hero picture, paste the full stage prompt and add: "Use the attached image as the exact character."
+   - Save the result next to the hero picture as fishbone_turnaround.png (or the matching stage name).
+   - Open S02.04, find "Detail sheet prompt" in its Extra detail and copy it. Swap the parts in square brackets for this line and stage.
+   - Attach the turnaround, paste the detail prompt and save the result as fishbone_details.png (or the matching stage name).
+3. Make the Arrancar portrait, then the Arrancar and Resurrección sheet.
+   - Paste the Arrancar portrait prompt into ChatGPT. Save the best one as arrancar_portrait.png.
+   - Start a new message, attach the portrait and paste the Arrancar + Resurrección prompt.
+   - Save the result, then attach every finished picture to this task with + Attach result.
+4. Check each sheet against the appeal rules and this line's "Do not" list.
+   - Read "The appeal rules every line obeys" in the Extra detail of S02.04, then the "Do not" list in this task's Extra detail.
+   - Zoom each picture out to about 10% so only the outline counts.
+   - The Adjuchas should read as a figure with four long blades behind it and a hook below.
+   - Count the colours on each Hollow stage: four only (bone white, near-black skin, black sockets, one red).
+   - Check the plate edges show and the hole is a real hole you can see through.
+   - Write each sheet as pass or fail in Notes, with the reason, and press Save note.
+5. Fix anything that looks off by running that prompt again.
+   - Go back to ChatGPT, attach the failed picture and paste its prompt again with one short sentence saying what to fix.
+   - If the wings disappear, add: "Give the wings a bone vein every 0.5 studs."
+   - Save the new picture over the old one and attach it with + Attach result.
+   - Check it again with step 4.
+6. Sign off the line once every sheet passes.
+   - Look at the turnaround, the detail sheet, every stage and the Arrancar picture together.
+   - Write "Line signed off" in Notes, press Save note and tick the checklist.
+   - Open Claude Code in the game folder. Type: "Commit the new pictures in docs/characters/concepts with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Press Submit for review. Model work for this line waits for this sign-off.
 D: You've approved the turnaround, the detail sheet, every stage and the Arrancar picture.
 
 S02.15 | Lock the ten Hollow lines
 W: Fix the final details of each line so nothing changes later: animal, fighting style, moves, mask, hole, release name and Cero colour.
 1. Write each line's animal and death theme.
+   - Open S02.04 and find the "Lines at a glance" table in its Extra detail.
+   - Copy each line's animal and aspect (the death theme) into this task's Notes, one line per Hollow line.
+   - Press Save note.
 2. Write its fighting style and three signature moves.
+   - Open each line task (S02.05 to S02.14) and read "Fighting style and kit" in its Extra detail.
+   - Write the style, the gimmick and the three signature moves next to that line in Notes.
+   - Press Save note.
 3. Write its mask piece and where its hole is.
+   - Copy the fragment and hole columns from the "Lines at a glance" table in S02.04.
+   - Check they match what the signed-off sheets show. If not, write which one is right.
 4. Write its release name and Cero colour.
+   - In each line task's Extra detail, take the name from its Resurrección section and the Cero colour from the Cero row of its spec sheet.
+   - When all ten lines are filled in, write "Locked" at the top of Notes and press Save note.
+   - Ask Claude Code to check your list against docs/characters/HOLLOW_DESIGN_BIBLE.md. Type: "Compare this list with the Hollow bible and tell me any differences. Don't change anything."
 D: All ten lines have every detail filled in and you've said they're locked.
 
 S02.16 | Decide which Fishbone forms launch first
 W: Decide how many of the ten lines get a Fishbone stage (the giant Hollow form) at launch. Each one is a lot of model work.
 1. Look at the cost of each Fishbone body.
+   - Open each line task (S02.05 to S02.14) and read its Fishbone section in Extra detail: height, body type and what makes it different.
+   - Read the "Estimate" section too. Fishbone and Adjuchas are counted together there.
+   - Note that all ten lines now use the humanoid body, not the old roster (Kaijin, Ryuu, Tsubasa).
 2. Pick how many launch with one.
+   - Write a number in Notes, with one sentence on why.
+   - Remember: ten body plans is more work than the whole Adjuchas line.
 3. Pick which lines they are.
+   - Write the line names under your number in Notes.
+   - Press Save note and tick the step.
 D: Your answer is written in this task.
 
 S02.17 | Decide how eating and evolving works
 W: Decide how Hollows eat each other to evolve, including going backwards and half-eaten Hollows. Watch for bullying and runaway players.
 1. Decide what happens if you don't eat.
+   - The idea so far is "eat or regress": a Hollow that stops eating slides back down the ladder.
+   - Write in Notes how fast that happens, or if it shouldn't happen at all.
 2. Decide what happens if you're half eaten.
+   - The idea so far: a partly eaten Hollow has its evolution frozen.
+   - Write in Notes how long it stays frozen and how it gets unfrozen.
 3. Decide how pack hunting works.
+   - The idea so far is called "pack-bite loyalty" (Hollows that hunt together stay loyal to each other).
+   - Write in Notes who gets what when a pack eats one target, and what stops a pack turning on its own.
 4. Write how to stop bullying and runaway leaders.
+   - Open Claude Code in the game folder. Type: "List simple ways eat-to-grow games stop strong players bullying new ones. Don't change any file."
+   - Pick the ideas you like and write them in Notes.
+   - Decide how much the game simulates. Simpler is safer. Press Save note.
 D: The rules are written in this task.

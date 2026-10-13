@@ -1,258 +1,621 @@
 S01.01 | Save all your game work to GitHub
 W: Two copies of the game exist and the newest work (build 246) is only on your PC. One broken disk would lose a week of work.
-1. Commit the loose files in the main game folder (commit means save a snapshot in git).
-2. Run all the tests in the second copy and write down the results.
-3. Decide with Usman how the two copies join together.
-4. Stop and report if any files clash.
-5. Usman pushes the joined copy to GitHub (push means upload).
-6. Write down which build is now the current one.
+1. Ask Claude Code to commit the loose files in the main game folder (commit means save a snapshot in git).
+   - Open Claude Code in the main game folder (see "How to: the basics" in the Codex).
+   - Type: "List every file git isn't tracking yet. Don't change anything."
+   - Check the list includes the Cero and Hueco contracts, docs/world/, docs/reference/hueco/ and tools/hueco/.
+   - Type: "Commit these in sensible groups with clear messages. Never commit .rbxl files or tools/lune/out."
+   - Read its report. It should show each commit it made.
+2. Ask Claude Code to run all the tests in the second copy and write down the results.
+   - Open Claude Code in the second copy, the SoulSurvival-cero-v6 folder (branch feat/cero-v6, build 246).
+   - Type: "Run the full Lune test suite and list every pass and failure. Don't change anything."
+   - Copy the results into a note on this task and press Save note.
+   - Write any failure in the note as a blocker, so it gets fixed before later work.
+3. Decide with Claude Code how the two copies join together.
+   - Type: "Explain in plain words how feat/cero-v6 can join rukongai-v2 with a merge, no force and no rebase. Don't do anything yet."
+   - Read the answer and ask about anything you don't understand.
+   - When you're happy, type: "Do the merge now. Stop and report if any files clash."
+4. Check that Claude Code stops and reports if any files clash.
+   - A clash (git calls it a conflict) means both copies changed the same part of a file.
+   - If Claude Code reports one, copy its list of files into a note on this task.
+   - Type: "Explain each clash in plain words and suggest a fix. Don't change anything." Then tell it which fix to use.
+5. Push the joined copy to GitHub yourself (push means upload).
+   - Type: "Give me the exact command to push rukongai-v2. Don't run it."
+   - Open Command Prompt in the main game folder (in File Explorer, open the folder, click the address bar, type cmd, press Enter).
+   - Paste the command and press Enter. You should see a line ending in rukongai-v2.
+6. Ask Claude Code to write down which build is now the current one.
+   - Type: "Record HEAD, Config.Build and BuildStamp, and refresh the HANDOVER with the true state. Then commit it."
+   - Push that commit the same way as step 5.
+   - Copy the commit and build number into a note on this task and press Save note.
 D: You can name the current build, and all of it is on GitHub.
 
 S01.02 | Play every route and fix the spawn wait
 W: Play the game as it really is before replacing anything. Right now a player waits about 4 minutes to spawn in Studio.
-1. Reconnect Rojo and Studio MCP (the tools that link Claude Code to Studio).
-2. Play the Hollow opening, the Konsō route, the combat lab and every realm.
+1. Ask Claude Code to reconnect Rojo and Studio MCP (the tools that link Claude Code to Studio).
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Check that Rojo and Studio MCP are both connected. Tell me if I need to click anything. Don't change anything."
+   - Do any clicks it asks for, then let it confirm both are connected.
+2. Ask Claude Code to play-test the Hollow opening, the Konsō route, the combat lab and every realm.
+   - Type: "Play-test the Hollow opening, Konsō route, combat lab, Seireitei, Rukongai, Karakura, Hueco Mundo and Las Noches outside, one at a time. Report after each."
+   - Then play each route yourself: press Play (F5), go through it, press Stop.
+   - Write a line in Notes for each route: what you saw and how it felt.
 3. Read the Output window after every test.
-4. Measure loading time and frame rate.
-5. Fix the 4-minute spawn wait first.
-6. Mark each thing as written, runs, visible or checked.
+   - After each play test, open View > Output and look for red lines.
+   - Copy any red text into a note on this task.
+   - Type: "Read Output from that test and list every error in plain words. Don't change anything."
+4. Ask Claude Code to measure loading time and frame rate.
+   - Type: "Measure boot time and frame rate, and take before captures of each route. Tell me where they are."
+   - Write the numbers into a note on this task.
+   - Attach the captures with + Attach result.
+5. Ask Claude Code to fix the 4-minute spawn wait first.
+   - Type: "Find why spawning takes about 4 minutes in Studio (232 s with terrain, 15 s without). Explain before changing anything."
+   - Read the explanation, then type: "Fix it with streaming kept off. Then stop and report."
+   - Press Play again and count how long until you spawn. Write the time in Notes.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+6. Ask Claude Code to mark each thing as written, runs, visible or checked.
+   - Written means the code exists, runs means it starts without errors, visible means you can see it in Studio, checked means it was played and confirmed.
+   - Type: "Make a table of every route with its state: source change, runs, visible or verified."
+   - Paste the table into Notes, then press Submit for review.
 D: Every route has been played, and you spawn without the long wait.
 
 S01.03 | Measure how fast the game runs now
 W: Write down today's speed numbers before adding new art, so you can tell if later work slows the game down.
-1. Measure loading time and normal frame rate.
-2. Measure frame rate on the busiest street.
-3. Count parts and NPCs (computer-controlled characters).
-4. Keep streaming (loading the map in pieces) switched off for now.
-5. Make a repeatable test route for each realm.
+1. Ask Claude Code to measure loading time and normal frame rate.
+   - Open the game in Studio with Rojo connected, then open Claude Code and paste this task's Claude build brief.
+   - Type: "Measure boot time and normal frame rate in Studio. Put the numbers in a table. Then stop and report."
+   - Check the report gives a number for each, not just "fine".
+2. Ask Claude Code to measure frame rate on the busiest street.
+   - Type: "Now measure frame rate on the busiest street and add it to the table. Then stop and report."
+   - Press Play, go to that street yourself and check it feels like the number says.
+3. Ask Claude Code to count parts and NPCs (computer-controlled characters).
+   - Parts are the blocks the world is built from. More parts usually means a slower game.
+   - Type: "Count server parts, rendered parts and NPCs, and add them to the table."
+4. Check Claude Code keeps streaming (loading the map in pieces) switched off.
+   - Streaming stays off because that is your current rule.
+   - Type: "Confirm StreamingEnabled is still off. Don't change it."
+   - Check its answer says off.
+5. Ask Claude Code to make a repeatable test route for each realm.
+   - Type: "Create repeatable /perf routes for Seireitei, Rukongai, Hueco Mundo and Las Noches. Then stop and report."
+   - Type: "Tell me exactly how to run one /perf route myself. Don't change anything." Then try it once in Play.
+   - Type: "Add pass and fail targets to the table, then commit. Never commit .rbxl files or tools/lune/out."
+   - Paste the finished table into Notes and press Submit for review.
 D: A table of speed numbers exists with pass and fail targets.
 
 S01.04 | Keep Claude's rules file up to date
 W: Claude Code reads one rules file first every session. It is missing every decision made since 30 Sep.
-1. Add every owner decision newer than 30 Sep, newest first, with dates.
-2. Mark the "10 locked base forms" rule as replaced by A05.
-3. Say that NUMEN is now the plan for order and status.
+1. Ask Claude Code to add every owner decision newer than 30 Sep, newest first, with dates.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Add every owner decision newer than 30 Sep to docs/plan/OWNER_PRIORITY_OVERRIDE.md, newest first, with dates and sources. Then stop and report."
+   - Open the Codex section "Owner decisions" in NUMEN and check nothing is missing.
+   - Look for the Cero lock (11 Oct), the Hueco answers (8 to 9 Oct) and the 12 Oct approvals.
+2. Ask Claude Code to mark the "10 locked base forms" rule as replaced by A05.
+   - Type: "Mark the '10 locked base forms' rule as replaced by A05. Keep the old text, don't delete history."
+   - Read the changed lines it shows you and check A05 is named.
+3. Ask Claude Code to say that NUMEN is now the plan for order and status.
+   - Type: "Say NUMEN is the plan of record for order and status, and roadmap v5 for batch detail."
+   - Type: "Make sure docs/GAME_PLAN.md and docs/HANDOVER_CLAUDE.md tell the next session to read this file first."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+   - Push it yourself: type "Give me the exact command to push this branch. Don't run it.", then paste it into Command Prompt.
 D: The rules file lists every current decision and tells Claude Code to read it first.
 
 S01.05 | Check what's built: realms and world tech
 W: These realms and world systems are already in the game. They only count as done when you have played them and they work.
 1. Open Studio with the current build (see S01.01).
+   - If you're not sure which branch is current, type to Claude Code: "Which branch and build is current? Don't change anything."
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
 2. Play each item in the checklist.
+   - Press Play (F5) and time how long until the server is ready. The checklist says about 7 to 11 seconds.
+   - Visit all six realms: Karakura, Soul Society, Hueco Mundo, Dojo, Dangai and Inner World.
+   - If you can't find a way to a realm, type: "Tell me how to reach each realm in Play. Don't change anything."
+   - In each realm, look at the lighting and the flat ground, and try photo mode once.
 3. Read the Output window after each one.
+   - Open View > Output and look for red lines.
+   - Find the [Spawn] VERDICT line. It shows how long spawning took.
+   - Copy any red text into a note on this task.
 4. Write anything broken in a note here, or as a new task.
+   - Say which item broke, where you were, and paste the red text.
+   - Press Save note.
+   - If a problem needs its own fix, write "needs a new task" at the start of the note.
 5. Approve this task when everything works.
+   - Only approve if every item worked and Output had no red lines.
+   - Write "All items played and working" in Notes, press Save note, then approve the task.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S01.06 | Check what's built: Soul Society
 W: Soul Society parts are already in the game. They only count as done when you have played them and they work.
 1. Open Studio with the current build (see S01.01).
+   - If you're not sure which branch is current, type to Claude Code: "Which branch and build is current? Don't change anything."
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
 2. Play each item in the checklist.
+   - Press Play (F5) and go to Soul Society. Walk Seireitei, the 13 Division compounds and Sōkyoku Hill.
+   - Walk out through the Rukongai inner and outer districts to the wilds (rings 7 and 8).
+   - Find the benchmark zone and the 100-stud great wall, and look at the far view.
+   - For the material gallery from the texture pass, type: "Tell me where to find the material gallery in Play. Don't change anything."
 3. Read the Output window after each one.
+   - Open View > Output and look for red lines.
+   - Copy any red text into a note on this task, with where you were.
 4. Write anything broken in a note here, or as a new task.
+   - Say which checklist item broke and what you saw.
+   - Press Save note.
+   - If a problem needs its own fix, write "needs a new task" at the start of the note.
 5. Approve this task when everything works.
+   - Only approve if every item worked and Output had no red lines.
+   - Write "All items played and working" in Notes, press Save note, then approve the task.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S01.07 | Rebuild the Soul Society landscape
 W: Rebuild the ground of Soul Society (hills, slopes, grass) without burying any road, wall or building.
-1. Read the Soul Society terrain plan first.
-2. Mark every road, wall and building as protected.
-3. Build the land one ring at a time, one step per session.
-4. Check gameplay and speed after each step.
+1. Ask Claude Code to read the Soul Society terrain plan first.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Read docs/maps/SOUL_SOCIETY_TERRAIN_V3.md and explain the 12 TERRAIN batches in plain words. Don't change anything."
+   - Read its answer so you know what each session will do.
+2. Ask Claude Code to mark every road, wall and building as protected.
+   - Type: "Run TERRAIN-01 only. Then stop and report."
+   - Type: "Tell me exactly how to show the /terrainreservations overlay in Play. Don't change anything." Then look at it.
+   - You should see protected areas over every road, building and compound.
+3. Ask Claude Code to find broken overlaps before any new land is added.
+   - In a new session, type: "Run TERRAIN-02 only. Then stop and report."
+   - Ask it how to show the colour debug view, then look: red means parts cut into each other, green means clean.
+   - Write in Notes how much red and orange you saw.
+4. Ask Claude Code to build the land one ring at a time, one batch per session.
+   - Next session, type: "Run TERRAIN-03 only. Then stop and report." This is a small test area.
+   - Look at the test area from the ground and from Airwalk height. Only carry on if it looks natural.
+   - Then, one session each, type: "Run the next TERRAIN batch only. Then stop and report." Go up to TERRAIN-09.
+   - After each batch, type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
+5. Check gameplay and speed after each step.
+   - After each batch, press Play and walk, sprint, Shunpo and Airwalk around the new land.
+   - Look for buried roads or floating buildings. Write any you find in Notes.
+   - Finish with TERRAIN-10 (clean-up), TERRAIN-11 (gameplay check) and TERRAIN-12 (speed check), one session each.
+   - Attach captures with + Attach result and press Submit for review.
 D: You walk Soul Society and nothing is buried or floating.
 
 S01.08 | Build the Seireitei houses and streets
 W: Fill the empty grey areas of Seireitei (the Shinigami city) with believable houses, streets and props.
-1. Build reusable house types: homes, offices, stores and terraces.
-2. Use white walls, dark wood, tiled roofs and stone bases.
-3. Add street props like lanterns, signs, crates, trees and benches.
-4. Keep rooftops reachable with Shunpo.
-5. Build one test ward first and show Usman.
+1. Ask Claude Code to build reusable house types: homes, offices, stores and terraces.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: build modular residential, administrative, storage, service and townhouse families. Then stop and report."
+   - Check its report lists each house type and how it was tested.
+2. Ask Claude Code to use white walls, dark wood, tiled roofs and stone bases.
+   - Type: "Now give them white plaster, dark timber, tiled roofs, stone foundations, covered walkways and courtyard walls. Then stop and report."
+   - Type: "Add real eaves, roof ridges, recessed windows and both joined and separate houses. Then stop and report."
+3. Ask Claude Code to add street props like lanterns, signs, crates, trees and benches.
+   - Type: "Now add street props: lanterns, signs, racks, crates, training gear, trees, gardens and benches. Then stop and report."
+   - Check the report says the props are reused pieces, not thousands of hand-placed ones.
+4. Check rooftops stay reachable with Shunpo.
+   - Press Play, Shunpo up onto the rooftops and run across several.
+   - Write in Notes any roof you couldn't land on or got stuck on.
+5. Ask Claude Code to build one test ward first, then judge it yourself.
+   - Type: "Build one test ward of 120 to 160 studs only. Don't roll it out city-wide. Then stop and report."
+   - Press Play and look at it from the street, from the rooftops and from above.
+   - Check no two houses side by side look copy-pasted.
+   - Write your verdict in Notes. The rest of the city only follows after you say yes.
 D: Streets, rooftops and the view from above all look real, with no obvious copy-paste.
 
 S01.09 | Build Sōkyoku Hill and Central 46
 W: Build the big central landmark, Sōkyoku Hill, and the Central 46 complex near it.
-1. Make the hill the tallest thing on the skyline.
-2. Add paths, stairs, walls and lookout points up to it.
-3. Build Central 46 as its own formal complex nearby.
-4. Avoid giant empty squares.
+1. Ask Claude Code to make the hill the tallest thing on the skyline.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: make Sōkyoku Hill the central skyline anchor. No palace in the centre. Then stop and report."
+   - Press Play and look towards the centre from a few streets away. The hill should stand out.
+2. Ask Claude Code to add paths, stairs, walls and lookout points up to it.
+   - Type: "Now add strong approach routes, stairs, retaining walls and overlooks. Then stop and report."
+   - Press Play and walk up one route to the top. Check you don't get stuck.
+3. Ask Claude Code to build Central 46 as its own formal complex nearby.
+   - Type: "Now build Central 46 as a separate formal complex near the hill. Then stop and report."
+   - Check it looks different from the hill but clearly sits close to it.
+4. Check there are no giant empty squares.
+   - Type: "Check the spaces are ready for events without giant empty plazas. Fix any. Then stop and report."
+   - Fly or Airwalk above the area and look for big bare patches.
+   - Attach captures from the ground and from the air with + Attach result.
 D: The hill stands out from the ground and the air, and Central 46 sits close by.
 
 S01.10 | Build the 13 Division neighbourhoods
 W: Make each of the 13 Division headquarters sit inside a living part of the city, not alone like a prop.
-1. Keep the 13 headquarters you can walk into.
-2. Add barracks, training yards, offices and side streets around each.
-3. Give each its own layout with the same building style.
-4. Finish one fully and check it before doing the rest.
+1. Ask Claude Code to keep the 13 headquarters you can walk into.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Check all 13 Division headquarters can still be entered, and keep them. Don't change anything else yet."
+2. Ask Claude Code to add barracks, training yards, offices and side streets around one headquarters.
+   - Type: "For one Division only, add barracks, training yards, offices, service alleys, courtyards and support streets. Then stop and report."
+   - Check the report says no walls or water now cut that Division off.
+3. Walk that one finished Division and check it before doing the rest.
+   - Press Play and walk around the finished Division, inside and out.
+   - Check doors work and nothing blocks the streets.
+   - Write in Notes whether it feels like part of a city. Only carry on if yes.
+4. Ask Claude Code to give the rest their own layout with the same building style.
+   - Type: "Now do the other 12 with the same building style but different layouts, no colour coding. Then stop and report."
+   - Press Play and walk all 13. Write any that look the same in Notes.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
 D: You can walk all 13 areas and each one looks different.
 
 S01.11 | Build the middle Rukongai districts
 W: Build the middle districts of Rukongai (the poorer town outside Seireitei) so the look changes smoothly from rich to poor.
-1. Mix clean plaster with bare wood.
-2. Add repairs, dirty edges, small shops and twisty lanes.
-3. Use both joined and separate houses.
+1. Ask Claude Code to mix clean plaster with bare wood.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: mix maintained plaster and exposed timber in the middle districts. Then stop and report."
+   - Check the report says it changed more than just one material.
+2. Ask Claude Code to add repairs, dirty edges, small shops and twisty lanes.
+   - Type: "Now add more repairs, dirt edges, smaller shops and irregular side lanes. Then stop and report."
+   - Press Play and walk one middle district. Check it looks lived in.
+3. Ask Claude Code to use both joined and separate houses.
+   - Type: "Now use both terrace and detached housing. Then stop and report."
+   - Press Play and walk from the inner districts out to the outer ones.
+   - Write in Notes anywhere the look jumps suddenly, and attach captures with + Attach result.
 D: Walking outwards, the districts get rougher step by step with no sudden jump.
 
 S01.12 | Add real textures to Soul Society
 W: Put proper materials (textures like wood, stone and tile) on the rebuilt city, step by step.
-1. Do one main Division building first.
-2. Then do the roofs.
-3. Then roll it out across Seireitei.
-4. Then Rukongai, getting rougher further out.
-5. Check rain, night and speed at the end.
-D: Each step passes its check and Usman has played the result.
+1. Ask Claude Code to texture one main Division building first.
+   - First approve the material gallery: type "Tell me exactly how to see the TEXTURE-02 material gallery in Studio. Don't change anything." Then look at it.
+   - Open Claude Code, paste this task's Claude build brief and type: "Run TEXTURE-03 only. Then stop and report."
+   - Ask it for old and new captures in day, night and rain. Say yes or no in Notes.
+2. Ask Claude Code to do the roofs next.
+   - Next session, type: "Run TEXTURE-04 only. Then stop and report."
+   - Press Play and look at the roofs from a rooftop, from Airwalk height and from Sōkyoku Hill.
+3. Ask Claude Code to roll the textures out across Seireitei.
+   - Next session, type: "Run TEXTURE-05 only. Then stop and report."
+   - Check the report says the layout didn't change.
+   - Press Play and walk a few streets to check it all looks like one city.
+4. Ask Claude Code to do Rukongai, getting rougher further out.
+   - Next session, type: "Run TEXTURE-06 only. Then stop and report."
+   - Walk from the inner districts outwards. Patched plaster and aged wood should increase as you go.
+5. Ask Claude Code to check rain, night and speed at the end.
+   - Type: "Run TEXTURE-07 only. Then stop and report." Look at the city in rain and at night.
+   - Next session, type: "Run TEXTURE-08 only. Then stop and report." The busiest streets need at least 45 fps.
+   - Attach captures with + Attach result and press Submit for review.
+D: Each step passes its check and you have played the result.
 
 S01.13 | Roll out all 320 districts
 W: Spread the approved district style over all 320 Rukongai districts without loading them all at once.
-1. Keep 80 districts in each direction.
-2. Give each district a type, a landmark spot and a look.
-3. Make districts rougher further from the centre.
-4. Add them in groups and test speed after each group.
+1. Ask Claude Code to keep 80 districts in each direction.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: set up 80 districts per direction in the data. Don't switch them all on. Then stop and report."
+2. Ask Claude Code to give each district a type, a landmark spot and a look.
+   - Type: "Now give each district a tier, seed, terrain identity and landmark slot, with small land, road and tree gaps between them. Then stop and report."
+   - Check the report says the same district always comes out the same.
+3. Ask Claude Code to make districts rougher further from the centre.
+   - Type: "Now make districts rougher and more rural with distance, keeping their unique landmarks. Then stop and report."
+   - Check its report says how the look changes from the inner districts to the far ones.
+4. Ask Claude Code to add them in groups and test speed after each group.
+   - Type: "Switch on the next group of districts only, then measure frame rate. Then stop and report."
+   - Press Play and walk the new group yourself. Write the frame rate in Notes.
+   - Repeat in later sessions until all 320 are on. Never switch on all 320 in one jump.
+   - Type: "Regenerate the far skyline data if the planner rules changed, then commit. Never commit .rbxl files or tools/lune/out."
 D: All 320 districts exist and the game still runs at target speed.
 
 S01.14 | Bring Soul Society to life
 W: Make the rebuilt city feel lived in with people, patrols, sounds and the odd Hollow attack.
-1. Add townsfolk routines, Shinigami patrols and markets.
-2. Add rare Hollow attacks in the outer districts.
-3. Add footsteps, background sounds and music spots.
-4. Keep the city easy to see at night.
+1. Ask Claude Code to add townsfolk routines, Shinigami patrols and markets.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Do step 1 only: add civilian routines, Shinigami patrols, market activity and district props. Then stop and report."
+   - Press Play and watch a street for a minute. People should be doing things.
+2. Ask Claude Code to add rare Hollow attacks in the outer districts.
+   - Type: "Now add sparse Hollow incursions to suitable outer districts. Then stop and report."
+   - Type: "Tell me how to trigger one in Play so I can see it. Don't change anything." Then try it.
+3. Ask Claude Code to add footsteps, background sounds and music spots.
+   - Type: "Now add footsteps, ambience zones and music hooks. Then stop and report."
+   - Press Play with sound on and walk through a few areas. Write anything that sounds wrong in Notes.
+4. Check the city is easy to see at night, then do a 15-minute walk.
+   - Type: "Check Soul Society is readable at night and fix it if not. Then stop and report."
+   - Press Play and walk for 15 minutes. Write the lowest frame rate you notice in Notes.
+   - Attach a capture with + Attach result and press Submit for review.
 D: A 15-minute walk shows lots of life and the frame rate holds.
 
 S01.15 | Check what's built: the old Hueco Mundo
 W: The old Hueco Mundo inside the main game is already built. It stays until the new Hueco place passes and you say so.
 1. Open Studio with the current build (see S01.01).
+   - If you're not sure which branch is current, type to Claude Code: "Which branch and build is current? Don't change anything."
+   - Open the main game in Studio with Rojo connected (see "How to: the basics" in the Codex).
 2. Play each item in the checklist.
+   - Press Play (F5) and go to Hueco Mundo. Look at the desert, the basalt ring, craters, rock fins and the Glass Plain.
+   - Visit the Forest of Menos and the Menos cave.
+   - Walk around the outside of Las Noches and try its entry.
+   - Watch the moonlight and weather for a while. If you can't find something, ask Claude Code where it is.
 3. Read the Output window after each one.
+   - Open View > Output and look for red lines.
+   - Copy any red text into a note on this task, with where you were.
 4. Write anything broken in a note here, or as a new task.
+   - Say which checklist item broke and what you saw.
+   - Press Save note.
+   - If a problem needs its own fix, write "needs a new task" at the start of the note.
 5. Approve this task when everything works.
+   - Only approve if every item worked and Output had no red lines.
+   - Approving this does not remove the old Hueco Mundo. That is a separate decision later.
+   - Write "All items played and working" in Notes, press Save note, then approve the task.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S01.16 | Approve the big Hueco desert pictures
 W: The code that makes the new Hueco Mundo desert (about 5 times bigger) is built. Look at its test pictures (renders) and approve them.
 1. Open the two desert renders in docs/renders.
+   - The renders are in the copy with build 246 (see S01.01).
+   - In File Explorer, open the game folder, then docs, then renders.
+   - Double-click hm_expanse_height.png and hm_expanse_cell.png to open them.
 2. Look at the height map and the layout.
+   - Type to Claude Code: "Explain in plain words what the colours in hm_expanse_height.png and hm_expanse_cell.png mean. Don't change anything."
+   - Look for dunes, craters, fins, mesas, salt flats with ravines, sinkhole clusters, and ruin and grove spots.
+   - The tests already pass, so you are judging only the look.
 3. Approve them, or write what to change.
+   - Write your answer in your own words in Notes and press Save note.
+   - If it's a yes, tick the step. If not, say exactly what to change.
 D: You have said yes to the renders, or written what to change.
 
 S01.17 | Test the separate Hueco Mundo place
 W: Hueco Mundo is now its own place (a separate game world in the same Roblox game). Check that it opens correctly.
 1. Open the Hueco place in Studio.
+   - Type to Claude Code: "Tell me exactly how to open the Hueco place locally from hueco.project.json with Rojo. Don't change anything."
+   - Follow its steps one at a time.
 2. Check you spawn on the Hueco spawn point.
+   - Press Play (F5) and count the seconds until you are standing.
+   - You should stand on the Hueco spawn in about 3.5 seconds. The server should be ready in about 12.
+   - Write both times in Notes.
 3. Check only Hueco things are in the world.
-4. Save a copy (Claude Code never saves places).
+   - Type: "List what's in the world right now and tell me if anything isn't Hueco. Don't change anything."
+   - Open View > Output and look for red lines. Copy any into Notes.
+4. Save a copy yourself (Claude Code never saves places).
+   - Press Stop. Type: "Tell me what name and folder to save the baked Hueco place under. Don't save it."
+   - In Studio press File > Save to File (or Ctrl+S) and use that name.
 D: You spawn in Hueco Mundo within a few seconds and nothing else is in the world.
 
 S01.18 | Test the Garganta trip both ways
 W: The Garganta (the portal between worlds) takes players to the Hueco place and back. Test it doesn't lose anyone's progress.
 1. Publish a test copy (Studio Play cannot move between places).
+   - Type to Claude Code: "Which places do I publish for the Garganta test, and how? Don't change anything."
+   - In Studio use File > Publish to Roblox As... into a private test game, never the live game.
+   - Publish each place it names, the way it tells you.
 2. Follow the Garganta round trip checklist.
+   - Type: "Show me docs/world/hueco/CHECKLIST_W3_GARGANTA_ROUND_TRIP.md in plain words. Don't change anything."
+   - Join your private test game from Roblox, not from Studio.
+   - Do each line of the checklist in order and write pass or fail for each in Notes.
 3. Try cutting the trip off halfway.
+   - Do the checklist's interrupted-trip lines exactly as written.
+   - The trip should recover, or give up cleanly after a few retries.
 4. Check nobody loses or doubles their progress.
+   - Before each trip, write down your level and items. After it, check they match.
+   - Write anything lost or doubled in Notes, then press Submit for review.
 D: The checklist passes with no lost or doubled progress.
 
 S01.19 | Bake the desert into the Hueco place
 W: Bake (build once and save) the giant desert into the Hueco place, so it doesn't build every time the game starts.
-1. Run the bake in the Hueco place, the middle area first.
+1. Ask Claude Code to run the bake in the Hueco place, the middle area first.
+   - Open the Hueco place in Studio the way S01.17 showed you.
+   - Open Claude Code, paste this task's Claude build brief and type: "Bake the Core first, then run HuecoExpanseBake.run. Then stop and report."
+   - Wait for the report. The test bake took about 2 minutes.
 2. Check no pieces failed.
+   - The report should say 0 failed chunks (pieces of terrain).
+   - If any failed, type: "Explain which chunks failed and why. Don't change anything."
 3. Check memory stays under the warning level.
-4. Usman saves and publishes the place.
+   - The report's terrain memory should be under 1,500 MB. The test bake used about 330 MB.
+   - Write the chunk count and memory in Notes.
+4. Save and publish the place yourself.
+   - In Studio press File > Save to File (or Ctrl+S) and keep the name Claude Code tells you.
+   - Type: "Tell me exactly where to publish the baked Hueco place and how. Don't publish anything." Then do it yourself.
+   - Press Play and check you stand on sand in under 30 seconds.
+   - Type: "Teleport my character far out in the desert in Play." Check you land on sand.
 D: You land on sand in under 30 seconds, even far out in the desert.
 
 S01.20 | Make Las Noches visible from far away
 W: Make the far view work, so you can see Las Noches (the Hollow fortress) from across the desert.
-1. Set the fog distance.
-2. Add the far ring of dunes.
+1. Ask Claude Code to set the fog distance.
+   - Open the Hueco place in Studio and open Claude Code. Paste this task's Claude build brief.
+   - Type: "Do the fog end only. Then stop and report."
+2. Ask Claude Code to add the far ring of dunes.
+   - Type: "Now add the far band of dunes. Then stop and report."
+   - Press Play and look out towards the desert edge. The dunes should fade into the distance.
 3. Check Las Noches shows from far away.
+   - Type: "In Play, put my character 7,200 studs from Las Noches facing it and take a capture."
+   - Look at the capture and at the screen yourself. Las Noches should be clear on the horizon.
+   - Attach the capture with + Attach result.
 4. Measure memory on the iPhone 13.
+   - Type: "Tell me exactly how to measure client memory on my iPhone 13. Don't change anything."
+   - Publish a test copy as Claude Code tells you, then open it on the phone.
+   - Write the memory number in Notes.
 D: You can see Las Noches from the far side of the desert.
 
 S01.21 | Judge the sandstorm at the desert edge
 W: A sandstorm stops players at the edge of the desert. Check it feels like a storm, not a wall.
 1. Walk or fly to the edge of the desert.
+   - Open the Hueco place in Studio and press Play.
+   - Type to Claude Code: "Tell me the quickest way to reach the desert edge at radius 8,000 in Play. Don't change anything."
+   - Head out. The haze should start at about 7,200 studs from the centre.
 2. Judge the haze, the blowing sand and the push-back.
+   - Keep going. The wind should start pushing you back at about 7,800 studs.
+   - Ask yourself: does it feel like a storm, or like an invisible wall?
 3. Try to get past it.
+   - Run, Shunpo or fly straight at it a few times.
+   - Type: "How far from the centre did my character get? Don't change anything." It should be under about 8,050.
+   - Write your verdict on the look and feel in Notes, then press Save note.
 D: Nobody gets past the edge, and it looks like a storm.
 
 S01.22 | Add things to find in the desert
 W: Put interesting things around the big desert so there's a reason to explore it.
-1. Finish the detail pass on the remaining spots.
-2. Show Usman the spots to judge.
-3. Fix what Usman rejects.
+1. Ask Claude Code to finish the detail pass on the remaining spots.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Finish the detail pass on the items still waiting for me to judge. Then stop and report."
+   - These are the rock and ruin kit, the cliff bands, the ravines and the basalt crater walls.
+2. Ask Claude Code to show you the spots, then judge them.
+   - Type: "Take captures of each spot waiting for my judgement and tell me where they are."
+   - Open the Hueco place, press Play and fly over the desert to see them yourself.
+   - Write yes or no for each spot in Notes, in your own words.
+3. Ask Claude Code to fix what you reject.
+   - Type: "Here is what I rejected: (paste your notes). Fix only those. Then stop and report."
+   - Look again and write your new verdict in Notes.
 D: You fly over the desert and keep finding things worth stopping for.
 
 S01.23 | Match the Hueco rules to 12 Oct answers
 W: Three things in the Hueco Mundo build disagree with your 12 Oct decisions. Decide each one and update the rules files.
 1. Answer Q-HM1: streaming on or off in the Hueco place.
-2. Add a Garganta travel scene and safe arrival as follow-ups.
-3. Remove sandstorm pop-up messages; warn through the world and sound.
-4. Write the results into the Hueco rules file and the main rules file.
+   - Streaming is ON as built (HW7, 9 Oct), but your 12 Oct decision C16 says OFF at first.
+   - Type to Claude Code: "Explain in plain words what streaming on or off means for the Hueco place. Don't change anything."
+   - Write your answer in your own words in Notes and press Save note.
+2. Ask Claude Code to add a Garganta travel scene and safe arrival as follow-ups.
+   - Type: "Add a cinematic Garganta passage and a protected arrival (C18, C19) as W3 follow-ups. Don't build them yet."
+   - Check its report says where it wrote them down.
+3. Ask Claude Code to remove sandstorm pop-up messages, warning through the world and sound instead.
+   - Type: "Remove the sandstorm notices HuecoMundoService sends, so warnings come only through the world and sound (C27). Then stop and report."
+   - Press Play in the Hueco place, go near the storm and check no pop-up message appears.
+4. Ask Claude Code to write the results into the Hueco rules file and the main rules file.
+   - Type: "Add a new version line to HUECO_WORLD_SCALE.md and update OWNER_PRIORITY_OVERRIDE.md with these answers."
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
 D: Q-HM1 has your answer in your own words, and the rules files agree.
 
 S01.24 | Speed test Hueco Mundo with 20 players
 W: Test the new Hueco place with lots of players and on a phone before the old one is removed.
 1. Publish a test copy.
+   - Type to Claude Code: "Which places do I publish for the Hueco speed test, and how? Don't change anything."
+   - In Studio use File > Publish to Roblox As... into a private test game, never the live game.
 2. Measure join time, frame rate and memory with 20 players spread out.
+   - Type: "Tell me exactly how to run a 20-player test in the published copy and measure it. Don't change anything."
+   - Follow its steps. Join must be under 30 seconds.
+   - Frame rate targets: 60 fps on a mid PC and 30 fps on a mid phone. Check on your iPhone 13 too.
+   - Write every number in Notes.
 3. Time the Garganta trip.
+   - Use the Garganta and count the seconds until you arrive. It must be under 20.
+   - Do it both ways and write both times in Notes.
 4. Check every locked item still works.
-5. Usman decides whether to remove the old Hueco Mundo.
+   - Type: "List every locked item in the Hueco place I should check. Don't change anything."
+   - Play each one in the test copy and write pass or fail in Notes.
+5. Decide whether to remove the old Hueco Mundo.
+   - This needs your own clear yes (decision A01). Nothing is removed without it.
+   - Read your results, then write your decision in your own words in Notes and press Save note.
 D: Join is under 30 seconds, frame rate hits target on PC and phone, and Garganta takes under 20 seconds.
 
 S01.25 | Pick a scene spot for each concept panel
 W: Choose where in the new desert each of the six concept pictures (panels) will be built.
-1. Rewrite the world file for the new desert.
-2. Let the tool suggest a spot for each panel.
-3. Usman picks a spot per panel.
-4. Restart the matching steps from Phase 2.
+1. Ask Claude Code to rewrite the world file for the new desert.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Rewrite world.json for the new desert. Then stop and report."
+2. Ask Claude Code to let the tool suggest a spot for each panel.
+   - Type: "Run spot_solver with --free-layout and show me its suggested spot for each panel."
+   - Type: "For each panel, explain keep-the-Core-scene versus stamp-a-new-scene in plain words. Don't change anything."
+3. Pick a spot for each panel yourself.
+   - Look at each panel's concept picture and the suggested spot side by side.
+   - Write your pick for each panel in Notes: keep the Core scene or stamp a new one.
+4. Ask Claude Code to restart the matching steps from Phase 2.
+   - Type: "Rewrite panel_map.json with my picks from this note: (paste your picks). Then stop and report."
+   - Type: "Resume the runbook at Phase 2. Then stop and report."
 D: Every panel has a chosen spot.
 
 S01.26 | Make Hueco Mundo match the concept art
 W: Build Hueco Mundo to match the six concept pictures, one change at a time, comparing each step with the picture.
 1. Answer the owner questions first.
-2. Follow the Hueco build guide one phase at a time.
-3. Compare each change with the concept picture.
+   - Type to Claude Code: "Show me docs/world/hueco/OWNER_QUESTIONS.md with the recommended answers. Don't change anything."
+   - Answer Q1 to Q8 in your own words in Notes. Phase 3 can't start until Q1 to Q4 and Q8 are answered.
+2. Ask Claude Code to follow the Hueco build guide one phase at a time.
+   - Open this task's Extra detail and copy the "Every later session" prompt.
+   - Fill in your weekly usage percent, then paste it into Claude Code in the game folder.
+   - One phase per session. Phases 3 to 13 take about 23 sessions in all.
+3. Check each change against the concept picture.
+   - Each step should end with compare.py printing PASS for that stage.
+   - Look at its captures next to the concept picture yourself. Write what still looks off in Notes.
 4. Pick between versions when asked.
+   - After Phase 3, Claude Code shows a variant sheet for each panel. Pick one camera version per panel.
+   - Write your picks in Notes in your own words.
 5. Re-bake after each approved phase.
+   - Type: "Re-bake the Hueco place now. Then stop and report."
+   - Save the place yourself: File > Save to File (or Ctrl+S), with the name Claude Code tells you.
 D: Every panel passes the compare check and you have signed it off.
 
 S01.27 | Reshape Las Noches to the agreed design
 W: Reshape the existing Las Noches into the 8 Oct design: a huge shallow dome, round towers of different heights and half-buried cube buildings.
-1. Reshape the existing model; never make a new one.
-2. Make the dome, the base and round towers.
-3. Add cube buildings half-buried in the sand.
+1. Ask Claude Code to reshape the existing model, never make a new one.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Reshape the existing LasNochesMaster only. Never make a new skyline mesh. Explain your plan first."
+   - Read the plan. It should keep the footprint, routes and inside the same.
+2. Ask Claude Code to make the dome, the base and round towers.
+   - Type: "Make the huge shallow dome with three short rods on a wide, low, blocky base. Then stop and report."
+   - Type: "Now make smooth flared round towers at different heights, no spires. Then stop and report."
+3. Ask Claude Code to add cube buildings half-buried in the sand.
+   - Type: "Now add cube buildings with dark doorways, half-buried in the dunes. Then stop and report."
+   - Ask it for captures next to concept sheet v2 and compare the shape yourself.
 4. Check the inside still fits.
+   - Type: "Run /lnaudit and tell me if it is all green. Don't change anything."
+   - Write yes or what to change in Notes. Claude Code updates lasnoches_master_test only after your yes.
 D: Las Noches looks like the concept sheet and you say yes.
 
 S01.28 | Build the six Hueco zones
 W: Build each area of Hueco Mundo with its own ground, light, props and sound.
-1. Set the ground materials and lighting for each zone.
-2. Build the rocks, quartz trees and masks in Blender.
-3. Build the zones one by one, from the Dunes to the Rift.
-4. Add Gillian walkers on the horizon.
-5. Add sound for each zone.
-6. Check speed on the phone.
+1. Ask Claude Code to set the ground materials and lighting for each zone.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Make the five terrain material overrides: Sand, Salt, Basalt, Rock and Ground. Then stop and report."
+   - Next session, type: "Do the lighting A/B test, sky and atmosphere presets per zone. Keep the moon and black sky locked. Then stop and report."
+   - Press Play and compare the A and B versions. Write your pick in Notes.
+2. Ask Claude Code to build the rocks, quartz trees and masks in Blender.
+   - Open Blender first and make sure the Blender MCP add-on says it's connected.
+   - Type: "Build the rock, quartz tree and mask kit in Blender as the task says. Then stop and report."
+   - Check its report lists 10 rocks, 3 surface trees, 3 Menos giants and 8 masks.
+3. Ask Claude Code to build the zones one by one, from the Dunes to the Rift.
+   - One zone per session, type: "Build the next zone only. Then stop and report."
+   - Order: the Dunes, the Black Teeth, the Basin, the Sinkholes, Menos Forest, then the Rift with its sandstorm.
+   - Press Play and walk each zone after it's built. Write what you think in Notes.
+4. Ask Claude Code to add Gillian walkers on the horizon.
+   - Type: "Add Gillian walkers on the horizon: one shared mesh, looping walk, no AI. Then stop and report."
+   - Press Play and look out to the horizon to see them walking.
+5. Ask Claude Code to add sound for each zone.
+   - Type: "Add sound beds per zone: wind, forest hum, distant Gillian moans, no music on the surface. Then stop and report."
+   - Press Play with sound on and walk between zones.
+6. Check speed on the phone and the Cero in every zone.
+   - Type: "Do the streaming and speed pass for the baseline phone with eight players and four Hollows. Then stop and report."
+   - Type: "Capture the locked Cero in every zone and tell me where the captures are."
+   - Check the Cero still looks like the locked one. Attach captures with + Attach result.
 D: Every zone looks finished, sounds right and runs on the phone.
 
 S01.29 | Check what's built: Karakura
 W: Karakura's systems are already in the game, though the city is still plain boxes. Play it to see what works.
 1. Open Studio with the current build (see S01.01).
+   - If you're not sure which branch is current, type to Claude Code: "Which branch and build is current? Don't change anything."
+   - Open the game in Studio with Rojo connected (see "How to: the basics" in the Codex).
 2. Play each item in the checklist.
+   - Press Play (F5) and walk around Karakura. Watch the city life: people and things moving.
+   - Visit the school and look for the spiritual layer.
+   - The school and spiritual layer need feature flags and assets. Type: "Tell me how to switch these on in Play. Don't change anything."
+   - Remember the city is still boxes. You are checking the systems, not the look.
 3. Read the Output window after each one.
+   - Open View > Output and look for red lines.
+   - Copy any red text into a note on this task, with where you were.
 4. Write anything broken in a note here, or as a new task.
+   - Say which checklist item broke and what you saw.
+   - Press Save note.
+   - If a problem needs its own fix, write "needs a new task" at the start of the note.
 5. Approve this task when everything works.
+   - Only approve if every item worked and Output had no red lines.
+   - Write "All items played and working" in Notes, press Save note, then approve the task.
 D: Every item has been played, and it is approved or its problems are written in a note.
 
 S01.30 | Rebuild Karakura town
 W: Karakura is where every player starts, so it's the first thing anyone sees. Today it's a grid of grey boxes.
-1. Read the Karakura plan.
-2. Split it into steps, one per session.
-3. Ask Usman for reference pictures once.
-4. Build it step by step.
+1. Ask Claude Code to read the Karakura plan.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Read docs/plan/M5_KARAKURA.md and explain it in plain words. Don't change anything."
+2. Ask Claude Code to split it into steps, one per session.
+   - Type: "Write the Karakura plan up as batches, one per session, each with references and a check. Don't build anything yet."
+   - Read the list and ask about anything unclear.
+3. Ask Claude Code which reference pictures it needs, all at once.
+   - Type: "List every reference picture you need for Karakura, in one list."
+   - Gather them, then attach them to this task with + Attach result.
+4. Ask Claude Code to build it step by step.
+   - Each session, type: "Do the next Karakura batch only. Then stop and report."
+   - After each batch, press Play and walk the new part. Write what you think in Notes.
+   - Type: "Commit these changes with a clear message. Never commit .rbxl files or tools/lune/out."
 5. Check the frame rate on the iPhone 13.
+   - Publish a test copy: ask Claude Code which place and how, then use File > Publish to Roblox As... into a private test game.
+   - Open it on your iPhone 13 and play the opening. Write the frame rate and how it felt in Notes.
 D: You play the opening in the new Karakura, like how it looks, and it runs well on the phone.
 
 S01.31 | Speed test every map
 W: One final speed check of every world before moving on, so nothing later is built on a world that can't run.
-1. Measure join time, frame rate and memory in each realm.
+1. Ask Claude Code to measure join time, frame rate and memory in each realm.
+   - Open Claude Code in the game folder and paste this task's Claude build brief.
+   - Type: "Measure join time, frame rate and memory for each realm. Put them in a table. Then stop and report."
+   - Targets: join under 30 seconds and no realm over its memory budget.
 2. Test on a mid PC and on the iPhone 13.
-3. Use 8 players and 4 Hollows.
-4. Fix the worst problem first.
+   - Publish a test copy: ask Claude Code which place and how, then use File > Publish to Roblox As... into a private test game.
+   - Play each realm on your PC (60 fps target) and on the iPhone 13 (30 fps target).
+   - Write the numbers into the table in Notes.
+3. Test with 8 players and 4 Hollows.
+   - Type: "Tell me exactly how to run each realm with 8 players and 4 Hollows. Don't change anything."
+   - Follow its steps and write the new numbers in Notes.
+4. Ask Claude Code to fix the worst problem first.
+   - Type: "From this table, which realm is worst? Fix only that. Then stop and report." Paste the table after it.
+   - Measure that realm again and check it now passes.
+   - Attach the final table with + Attach result and press Submit for review.
 D: Every realm joins in under 30 seconds and runs at target speed on PC and phone.

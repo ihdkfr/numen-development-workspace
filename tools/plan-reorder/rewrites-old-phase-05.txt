@@ -1,0 +1,101 @@
+S05.01 | Check what's built: combat
+W: Combat systems are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S05.02 | Polish basic attacks and blocking
+W: Check and improve the basic fighting everyone shares: light attacks (M1), heavy hits, blocks, grabs, knock-ups and recovery.
+1. Test every basic move as it is now.
+2. Fix timings that feel wrong.
+3. Keep the server in charge of hits.
+4. Don't rewrite parts that already work.
+5. Test it with lag.
+D: A fight with lag still feels clear and fair.
+
+S05.03 | Build the four Shinigami fighting arts
+W: Join sword, hand-to-hand, speed movement and Kido spells (Zanjutsu, Hakuda, Hohō and Kidō) into one Shinigami fighting style.
+1. Build the sword core.
+2. Add hand-to-hand moves.
+3. Add Hohō movement.
+4. Add the Kido spellbook, chanting and healing.
+5. Make Shikai add to these, not replace them.
+D: A Shinigami can fight with all four arts, and Shikai adds to them.
+
+S05.04 | Decide which Hollow stage unlocks what
+W: Decide which Hollow stage unlocks each shared power: Cero levels, Bala, Hierro (hard skin), Sonído, healing and Garganta.
+1. List the shared Hollow powers.
+2. Pick the stage that unlocks each.
+3. Write it in this task.
+D: Every shared power has an unlock stage written down.
+
+S05.05 | Build Hollow and Adjuchas fighting
+W: Design the final moves, movement and animations for the ten Hollow lines at the low stages.
+1. Build the shared Hollow basics.
+2. Add attacks for each body type.
+3. Add moves only one line has.
+4. Set Cero rules for each stage.
+5. Link fighting to hunger.
+6. Give each line its own walk, idle and attack style.
+D: Each line feels different to play, all on one system.
+
+S05.06 | Build three signature moves per Hollow line
+W: Each Hollow line gets three signature moves, built from the Cero's shape pieces in that line's Cero colour.
+1. Take the three moves for each line from the bible.
+2. Build each from the Cero shape kit.
+3. Use the line's Cero colour.
+4. Test each move in a fight.
+D: All 30 moves work in a test fight.
+
+S05.07 | Build Vasto Lorde and Arrancar fighting
+W: Finish fighting for the top Hollow stages: Vasto Lorde, Arrancar and their releases.
+1. Polish Vasto Lorde fighting.
+2. Build Arrancar basics: Hierro, Sonído, Cero, Bala, Pesquisa and Garganta.
+3. Link releases to the old Hollow.
+4. Give Espada-level moves only where right.
+D: Top stages feel like an evolution, not just stronger copies.
+
+S05.08 | Build the Resurrección release
+W: Resurrección brings back an Arrancar's Hollow form: swap the model to the line's plates, change the Cero colour, the sword is the mask piece.
+1. Swap the model to the line's plate kit.
+2. Change the Cero colour.
+3. Link the sword to the mask piece.
+4. Test releasing and returning.
+D: An Arrancar releases and returns in a test fight with no errors.
+
+S05.09 | Build enemy AI and fighting styles
+W: Give each Hollow line its own enemy behaviour (ambush, brawl, swarm or shoot from range), keeping their effects cheap.
+1. Take each line's style from the bible.
+2. Build the AI for each style.
+3. Keep their Cero effects cheap.
+4. Test several fights at once.
+D: Each line fights in its own style, and a busy fight keeps its frame rate.
+
+S05.10 | Build transformation and finisher cutscenes
+W: Make short cinematic scenes for Shikai, Bankai, Resurrección, evolutions and finishers, without pausing the server.
+1. Build the shared cutscene system.
+2. Make the Shikai and Bankai scenes.
+3. Make the Resurrección and evolution scenes.
+4. Make finisher scenes.
+5. Handle two players releasing at once.
+D: Scenes never pause the server, steal other cameras or grant a hit before the server agrees.
+
+S05.11 | Make combat work on controller and phone
+W: Make the whole fighting system easy to use on a controller and a phone, not just a keyboard.
+1. Check for button clashes on controller.
+2. Build a phone ability tray that changes with the fight.
+3. Add Bankai touch gestures.
+4. Add lock-on, block and jump buttons for touch.
+5. Keep timings the same everywhere.
+D: A full fight works on controller and phone with nothing important hidden.
+
+S05.12 | Build skill trees
+W: Design skill trees where players pick a fighting role (weapon, hands, speed, spells or support). It shouldn't just be raw damage.
+1. Check the stat and skill systems that exist.
+2. Pick a few clear fighting roles.
+3. Make levels unlock new options, not just bigger numbers.
+4. Keep race and power more important than stats.
+D: Two players with the same power can build them differently and both are fine.

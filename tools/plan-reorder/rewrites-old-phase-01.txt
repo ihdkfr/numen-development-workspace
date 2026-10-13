@@ -1,0 +1,258 @@
+S01.01 | Save all your game work to GitHub
+W: Two copies of the game exist and the newest work (build 246) is only on your PC. One broken disk would lose a week of work.
+1. Commit the loose files in the main game folder (commit means save a snapshot in git).
+2. Run all the tests in the second copy and write down the results.
+3. Decide with Usman how the two copies join together.
+4. Stop and report if any files clash.
+5. Usman pushes the joined copy to GitHub (push means upload).
+6. Write down which build is now the current one.
+D: You can name the current build, and all of it is on GitHub.
+
+S01.02 | Play every route and fix the spawn wait
+W: Play the game as it really is before replacing anything. Right now a player waits about 4 minutes to spawn in Studio.
+1. Reconnect Rojo and Studio MCP (the tools that link Claude Code to Studio).
+2. Play the Hollow opening, the Konsō route, the combat lab and every realm.
+3. Read the Output window after every test.
+4. Measure loading time and frame rate.
+5. Fix the 4-minute spawn wait first.
+6. Mark each thing as written, runs, visible or checked.
+D: Every route has been played, and you spawn without the long wait.
+
+S01.03 | Measure how fast the game runs now
+W: Write down today's speed numbers before adding new art, so you can tell if later work slows the game down.
+1. Measure loading time and normal frame rate.
+2. Measure frame rate on the busiest street.
+3. Count parts and NPCs (computer-controlled characters).
+4. Keep streaming (loading the map in pieces) switched off for now.
+5. Make a repeatable test route for each realm.
+D: A table of speed numbers exists with pass and fail targets.
+
+S01.04 | Keep Claude's rules file up to date
+W: Claude Code reads one rules file first every session. It is missing every decision made since 30 Sep.
+1. Add every owner decision newer than 30 Sep, newest first, with dates.
+2. Mark the "10 locked base forms" rule as replaced by A05.
+3. Say that NUMEN is now the plan for order and status.
+D: The rules file lists every current decision and tells Claude Code to read it first.
+
+S01.05 | Check what's built: realms and world tech
+W: These realms and world systems are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S01.06 | Check what's built: Soul Society
+W: Soul Society parts are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S01.07 | Rebuild the Soul Society landscape
+W: Rebuild the ground of Soul Society (hills, slopes, grass) without burying any road, wall or building.
+1. Read the Soul Society terrain plan first.
+2. Mark every road, wall and building as protected.
+3. Build the land one ring at a time, one step per session.
+4. Check gameplay and speed after each step.
+D: You walk Soul Society and nothing is buried or floating.
+
+S01.08 | Build the Seireitei houses and streets
+W: Fill the empty grey areas of Seireitei (the Shinigami city) with believable houses, streets and props.
+1. Build reusable house types: homes, offices, stores and terraces.
+2. Use white walls, dark wood, tiled roofs and stone bases.
+3. Add street props like lanterns, signs, crates, trees and benches.
+4. Keep rooftops reachable with Shunpo.
+5. Build one test ward first and show Usman.
+D: Streets, rooftops and the view from above all look real, with no obvious copy-paste.
+
+S01.09 | Build Sōkyoku Hill and Central 46
+W: Build the big central landmark, Sōkyoku Hill, and the Central 46 complex near it.
+1. Make the hill the tallest thing on the skyline.
+2. Add paths, stairs, walls and lookout points up to it.
+3. Build Central 46 as its own formal complex nearby.
+4. Avoid giant empty squares.
+D: The hill stands out from the ground and the air, and Central 46 sits close by.
+
+S01.10 | Build the 13 Division neighbourhoods
+W: Make each of the 13 Division headquarters sit inside a living part of the city, not alone like a prop.
+1. Keep the 13 headquarters you can walk into.
+2. Add barracks, training yards, offices and side streets around each.
+3. Give each its own layout with the same building style.
+4. Finish one fully and check it before doing the rest.
+D: You can walk all 13 areas and each one looks different.
+
+S01.11 | Build the middle Rukongai districts
+W: Build the middle districts of Rukongai (the poorer town outside Seireitei) so the look changes smoothly from rich to poor.
+1. Mix clean plaster with bare wood.
+2. Add repairs, dirty edges, small shops and twisty lanes.
+3. Use both joined and separate houses.
+D: Walking outwards, the districts get rougher step by step with no sudden jump.
+
+S01.12 | Add real textures to Soul Society
+W: Put proper materials (textures like wood, stone and tile) on the rebuilt city, step by step.
+1. Do one main Division building first.
+2. Then do the roofs.
+3. Then roll it out across Seireitei.
+4. Then Rukongai, getting rougher further out.
+5. Check rain, night and speed at the end.
+D: Each step passes its check and Usman has played the result.
+
+S01.13 | Roll out all 320 districts
+W: Spread the approved district style over all 320 Rukongai districts without loading them all at once.
+1. Keep 80 districts in each direction.
+2. Give each district a type, a landmark spot and a look.
+3. Make districts rougher further from the centre.
+4. Add them in groups and test speed after each group.
+D: All 320 districts exist and the game still runs at target speed.
+
+S01.14 | Bring Soul Society to life
+W: Make the rebuilt city feel lived in with people, patrols, sounds and the odd Hollow attack.
+1. Add townsfolk routines, Shinigami patrols and markets.
+2. Add rare Hollow attacks in the outer districts.
+3. Add footsteps, background sounds and music spots.
+4. Keep the city easy to see at night.
+D: A 15-minute walk shows lots of life and the frame rate holds.
+
+S01.15 | Check what's built: the old Hueco Mundo
+W: The old Hueco Mundo inside the main game is already built. It stays until the new Hueco place passes and you say so.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S01.16 | Approve the big Hueco desert pictures
+W: The code that makes the new Hueco Mundo desert (about 5 times bigger) is built. Look at its test pictures (renders) and approve them.
+1. Open the two desert renders in docs/renders.
+2. Look at the height map and the layout.
+3. Approve them, or write what to change.
+D: You have said yes to the renders, or written what to change.
+
+S01.17 | Test the separate Hueco Mundo place
+W: Hueco Mundo is now its own place (a separate game world in the same Roblox game). Check that it opens correctly.
+1. Open the Hueco place in Studio.
+2. Check you spawn on the Hueco spawn point.
+3. Check only Hueco things are in the world.
+4. Save a copy (Claude Code never saves places).
+D: You spawn in Hueco Mundo within a few seconds and nothing else is in the world.
+
+S01.18 | Test the Garganta trip both ways
+W: The Garganta (the portal between worlds) takes players to the Hueco place and back. Test it doesn't lose anyone's progress.
+1. Publish a test copy (Studio Play cannot move between places).
+2. Follow the Garganta round trip checklist.
+3. Try cutting the trip off halfway.
+4. Check nobody loses or doubles their progress.
+D: The checklist passes with no lost or doubled progress.
+
+S01.19 | Bake the desert into the Hueco place
+W: Bake (build once and save) the giant desert into the Hueco place, so it doesn't build every time the game starts.
+1. Run the bake in the Hueco place, the middle area first.
+2. Check no pieces failed.
+3. Check memory stays under the warning level.
+4. Usman saves and publishes the place.
+D: You land on sand in under 30 seconds, even far out in the desert.
+
+S01.20 | Make Las Noches visible from far away
+W: Make the far view work, so you can see Las Noches (the Hollow fortress) from across the desert.
+1. Set the fog distance.
+2. Add the far ring of dunes.
+3. Check Las Noches shows from far away.
+4. Measure memory on the iPhone 13.
+D: You can see Las Noches from the far side of the desert.
+
+S01.21 | Judge the sandstorm at the desert edge
+W: A sandstorm stops players at the edge of the desert. Check it feels like a storm, not a wall.
+1. Walk or fly to the edge of the desert.
+2. Judge the haze, the blowing sand and the push-back.
+3. Try to get past it.
+D: Nobody gets past the edge, and it looks like a storm.
+
+S01.22 | Add things to find in the desert
+W: Put interesting things around the big desert so there's a reason to explore it.
+1. Finish the detail pass on the remaining spots.
+2. Show Usman the spots to judge.
+3. Fix what Usman rejects.
+D: You fly over the desert and keep finding things worth stopping for.
+
+S01.23 | Match the Hueco rules to 12 Oct answers
+W: Three things in the Hueco Mundo build disagree with your 12 Oct decisions. Decide each one and update the rules files.
+1. Answer Q-HM1: streaming on or off in the Hueco place.
+2. Add a Garganta travel scene and safe arrival as follow-ups.
+3. Remove sandstorm pop-up messages; warn through the world and sound.
+4. Write the results into the Hueco rules file and the main rules file.
+D: Q-HM1 has your answer in your own words, and the rules files agree.
+
+S01.24 | Speed test Hueco Mundo with 20 players
+W: Test the new Hueco place with lots of players and on a phone before the old one is removed.
+1. Publish a test copy.
+2. Measure join time, frame rate and memory with 20 players spread out.
+3. Time the Garganta trip.
+4. Check every locked item still works.
+5. Usman decides whether to remove the old Hueco Mundo.
+D: Join is under 30 seconds, frame rate hits target on PC and phone, and Garganta takes under 20 seconds.
+
+S01.25 | Pick a scene spot for each concept panel
+W: Choose where in the new desert each of the six concept pictures (panels) will be built.
+1. Rewrite the world file for the new desert.
+2. Let the tool suggest a spot for each panel.
+3. Usman picks a spot per panel.
+4. Restart the matching steps from Phase 2.
+D: Every panel has a chosen spot.
+
+S01.26 | Make Hueco Mundo match the concept art
+W: Build Hueco Mundo to match the six concept pictures, one change at a time, comparing each step with the picture.
+1. Answer the owner questions first.
+2. Follow the Hueco build guide one phase at a time.
+3. Compare each change with the concept picture.
+4. Pick between versions when asked.
+5. Re-bake after each approved phase.
+D: Every panel passes the compare check and you have signed it off.
+
+S01.27 | Reshape Las Noches to the agreed design
+W: Reshape the existing Las Noches into the 8 Oct design: a huge shallow dome, round towers of different heights and half-buried cube buildings.
+1. Reshape the existing model; never make a new one.
+2. Make the dome, the base and round towers.
+3. Add cube buildings half-buried in the sand.
+4. Check the inside still fits.
+D: Las Noches looks like the concept sheet and you say yes.
+
+S01.28 | Build the six Hueco zones
+W: Build each area of Hueco Mundo with its own ground, light, props and sound.
+1. Set the ground materials and lighting for each zone.
+2. Build the rocks, quartz trees and masks in Blender.
+3. Build the zones one by one, from the Dunes to the Rift.
+4. Add Gillian walkers on the horizon.
+5. Add sound for each zone.
+6. Check speed on the phone.
+D: Every zone looks finished, sounds right and runs on the phone.
+
+S01.29 | Check what's built: Karakura
+W: Karakura's systems are already in the game, though the city is still plain boxes. Play it to see what works.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S01.30 | Rebuild Karakura town
+W: Karakura is where every player starts, so it's the first thing anyone sees. Today it's a grid of grey boxes.
+1. Read the Karakura plan.
+2. Split it into steps, one per session.
+3. Ask Usman for reference pictures once.
+4. Build it step by step.
+5. Check the frame rate on the iPhone 13.
+D: You play the opening in the new Karakura, like how it looks, and it runs well on the phone.
+
+S01.31 | Speed test every map
+W: One final speed check of every world before moving on, so nothing later is built on a world that can't run.
+1. Measure join time, frame rate and memory in each realm.
+2. Test on a mid PC and on the iPhone 13.
+3. Use 8 players and 4 Hollows.
+4. Fix the worst problem first.
+D: Every realm joins in under 30 seconds and runs at target speed on PC and phone.

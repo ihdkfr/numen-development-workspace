@@ -1,0 +1,235 @@
+NEW:core-loop | Write the core loop and pacing sheet
+W: One page: what a player does in a normal session, where XP comes from at each stage, and roughly how many hours to reach Shikai, Bankai, Adjuchas and Vasto Lorde.
+1. Write what a player does in a normal session.
+2. List where XP comes from at each stage.
+3. Guess the hours to reach Shikai and Bankai.
+4. Guess the hours to reach Adjuchas and Vasto Lorde.
+5. Keep it to one page.
+D: It's written and Claude Code can set XP numbers from it.
+
+NEW:version-1 | Decide what's in version 1
+W: Pick what the first public version needs and what waits (for example 30 Zanpakuto instead of 100, fewer raid types, how many Hollow lines). This is the biggest way to save time.
+1. List the big features in the plan.
+2. Mark each one "in version 1" or "later".
+3. Pick how many Zanpakuto and Hollow lines launch.
+4. Pick which raid types launch.
+D: A written in/out list.
+
+NEW:death-rules | Decide what happens when you're knocked down or die
+W: Can others grip, carry or finish a downed player? What do you lose when you die? What happens if someone leaves mid-fight? Every top Bleach game has rules for this.
+1. Decide if others can grip, carry or finish you.
+2. Decide what you lose when you die.
+3. Decide what happens if someone leaves mid-fight.
+4. Write the rules as a short list.
+D: The rules are a short written list.
+
+NEW:races-clans-vizard | Decide races at launch, clans and Vizard
+W: Other games launch with 3 or 4 races and rolled clans that give buffs. You plan 2 races and no clans. Decide on purpose: races at launch, clans yes or no (and how players get them), Vizard path yes or no.
+1. Decide which races are in at launch.
+2. Decide clans yes or no.
+3. If yes, decide how players get a clan.
+4. Decide the Vizard path yes or no.
+D: Answers written.
+
+NEW:money-plan | Decide how the game makes money
+W: List what you'll sell (game passes like extra storage, character slots, private servers, cosmetics) and what you'll never sell. Roblox rule: anything random you pay for must show its odds in %, and some countries block paid random items.
+1. List what you'll sell.
+2. List what you'll never sell.
+3. Set a price for each item.
+4. Mark anything random so its odds get shown.
+D: A short list with prices.
+
+NEW:server-size | Decide server size and private servers
+W: How many players per server, and whether to sell private servers.
+1. Pick how many players fit in one server.
+2. Decide whether to sell private servers.
+3. Write both answers here.
+D: Answer written.
+
+NEW:ip-names | Check names that could get the game taken down
+W: List the Bleach names, logos, music and character looks in the game and store page, and decide which to swap for your own. Other anime games on Roblox were taken down after copyright claims.
+1. List the Bleach names used in the game and store page.
+2. List any logos, music and character looks copied from Bleach.
+3. Mark each one keep or change.
+4. Pick a new name for each one you change.
+D: A keep or change list.
+
+NEW:maturity-draft | Answer Roblox's maturity questions on paper
+W: Roblox asks about violence and blood; without answers the game is restricted. Decide how much blood the game shows.
+1. Read Roblox's maturity questions.
+2. Decide how much blood the game shows.
+3. Write draft answers to every question.
+D: Draft answers saved.
+
+NEW:gameplay-spots | Mark gameplay spots on every map
+W: Place markers for mission boards, safe zones, PvP zones, boss arenas, spawn points and shops, using the Phase 02 answers.
+1. Read the Phase 02 answers.
+2. Place spawn points and safe zones.
+3. Place mission boards and shops.
+4. Place PvP zones and boss arenas.
+5. List every marker per map.
+D: Every map has them and they're listed.
+
+NEW:save-items-money | Saving, inventory and money
+W: Items, storage space and a currency. Check what exists first (save system, Soul Candy shop).
+1. Check the save system and Soul Candy shop that exist.
+2. Add an inventory with storage space.
+3. Add the currency.
+4. Save both when a player leaves.
+5. Test leaving and rejoining.
+D: A test player keeps items and money after leaving and rejoining.
+
+NEW:missions | Mission boards and daily and weekly quests
+W: The main way to earn XP between story steps, like Type Soul's mission boards.
+1. Build mission boards in each realm.
+2. Add a set of mission types.
+3. Add daily and weekly quests.
+4. Set XP from the pacing sheet.
+5. Test levelling from 1 to 10.
+D: You can level from 1 to 10 with missions only, at the speed in the pacing sheet.
+
+NEW:knockdowns | Knock-downs, grips, dying and leaving mid-fight
+W: Build the Phase 02 rules.
+1. Read the Phase 02 death rules.
+2. Build knock-downs and getting up.
+3. Build grips and carries if chosen.
+4. Build what you lose when you die.
+5. Handle players who leave mid-fight.
+D: Tested with two players.
+
+NEW:parties | Parties
+W: Invite friends, share mission progress, travel together (Garganta already moves parties).
+1. Add party invites.
+2. Share mission progress in a party.
+3. Move the party together through Garganta and other travel.
+4. Test with two players.
+D: Two players party up, do a mission and travel together.
+
+NEW:safety-tools | Safe chat, report button and admin tools
+W: Roblox's text filter on any custom chat or names, a report button, and kick and ban tools with a log.
+1. Run every custom chat and name through Roblox's text filter.
+2. Add a report button.
+3. Add kick and ban tools for admins.
+4. Log every report and ban.
+D: A test report and a test ban both work.
+
+NEW:analytics | Track where players quit
+W: Record key moments (joined, finished the tutorial, first Shikai, left) to see where players give up.
+1. Pick the key moments to record.
+2. Send each one to Roblox analytics.
+3. Check they show up in the dashboard.
+D: The events show in Roblox analytics.
+
+NEW:servers | Set up server size and private servers
+W: Apply the Phase 02 answer.
+1. Read the Phase 02 server answer.
+2. Set the server size.
+3. Set up private servers if chosen.
+4. Test a full server.
+D: Servers fill to the chosen size; private servers work if chosen.
+
+NEW:loot | Loot drops
+W: What enemies, bosses and chests drop, and how rare each drop is.
+1. List what each enemy, boss and chest can drop.
+2. Set how rare each drop is.
+3. Build the drop tables.
+4. Test a boss drop.
+D: Drop tables exist and a test boss drops correctly.
+
+NEW:bosses | Boss system and boss list
+W: One shared boss system, plus a list of every boss: where it lives and what it unlocks (for example the Shikai spirit fight).
+1. Build one shared boss system.
+2. List every boss in every realm.
+3. Write where each lives and what it unlocks.
+4. Put one test boss on the system.
+D: One test boss uses the system and the list covers every realm.
+
+NEW:animations | Animations for every playable form
+W: Upload the 32 animations already made, then fill the gaps (walk, run, attacks, Cero cast) for each form.
+1. Upload the 32 animations already made.
+2. List the gaps for each playable form.
+3. Make the missing walk and run animations.
+4. Make the missing attack and Cero cast animations.
+5. Test each form in game.
+D: Every playable form has its full set in game.
+
+NEW:vizard | Vizard path (only if you said yes in Phase 02)
+W: The Soul Reaper's Hollow-mask path.
+1. Check the Phase 02 answer.
+2. If no, mark this task "not doing".
+3. If yes, build the inner Hollow story.
+4. Build the mask and its powers.
+5. Play the path from start to end.
+D: Playable end to end, or marked "not doing" if Phase 02 said no.
+
+NEW:trading | Trading between players
+W: A safe trade window where both players confirm, with a log. Roblox rule: some countries can't trade paid items.
+1. Build the trade window.
+2. Make both players confirm.
+3. Log every trade.
+4. Block paid items where Roblox says to.
+5. Test for item duplication.
+D: Two players trade with no duplication.
+
+NEW:groups | Player groups and bases
+W: Players make their own groups with ranks, and maybe a base.
+1. Let players make a group.
+2. Add ranks and permissions.
+3. Add joining, leaving and kicking.
+4. Add a base if chosen.
+D: A group can be made, joined and managed.
+
+NEW:achievements | Achievements and titles
+W: Badges and titles for milestones.
+1. List the milestones.
+2. Make a badge or title for each.
+3. Award them in game.
+D: At least 10 work in game.
+
+NEW:codes-events | Codes and limited-time events
+W: A code box and an easy way to run timed events (holidays, double XP).
+1. Add a code box.
+2. Add a way to switch timed events on and off.
+3. Test a code.
+4. Test a double XP event.
+D: A test code and a test event work.
+
+NEW:store-page | Store page: icon, thumbnails, trailer and description
+W: What players see before they press Play.
+1. Make the game icon.
+2. Make the thumbnails.
+3. Record a short trailer.
+4. Write the description.
+5. Upload them all.
+D: All uploaded and you're happy with them.
+
+NEW:shop | Build the shop
+W: The game passes and products from the money plan, with odds shown for anything random and Roblox's PolicyService checks.
+1. Make each game pass and product from the money plan.
+2. Show odds for anything random.
+3. Add PolicyService checks for each country.
+4. Test a purchase in Studio.
+D: A test purchase works in Studio.
+
+NEW:maturity-form | Fill in Roblox's maturity questionnaire
+W: Use the Phase 02 draft.
+1. Open the questionnaire on Roblox.
+2. Fill it in from the Phase 02 draft.
+3. Submit it.
+4. Check the label shows.
+D: It's submitted and the label is shown.
+
+NEW:ip-final | Final name and copyright check
+W: Re-check everything the players will see.
+1. Go through the keep or change list.
+2. Check the game and store page again.
+3. Change anything left on the list.
+D: Nothing on the change list is left.
+
+NEW:community | Discord, wiki and socials
+W: Where players get news, codes and help.
+1. Set up a Discord server.
+2. Set up a wiki.
+3. Set up social accounts.
+4. Link them all from the store page.
+D: Each is set up and linked from the store page.

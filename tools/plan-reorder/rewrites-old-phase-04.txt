@@ -1,0 +1,82 @@
+S04.01 | Check what's built: spiritual power and movement
+W: Spiritual power and movement systems are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S04.02 | Build Channel: where your power goes
+W: Channel picks where your spiritual power goes in a fight: blade, body, technique, aura or auto. It never touches the Focus meter.
+1. Make Auto the default, following what you do.
+2. Add the manual modes with their gains and costs.
+3. Keep some body defence in every mode.
+4. Let the server decide the mode, not the player's computer.
+5. Test it on keyboard, controller and phone.
+D: In a test fight each mode changes what it should, and Focus never changes.
+
+S04.03 | Build reserve, release and control values
+W: Spiritual power uses four numbers: max reserve, current reserve, release limit and control. Release % is always a share of your own limit.
+1. Add the four values to the server.
+2. Add the formulas behind an on/off switch.
+3. Make every number easy to tune.
+4. Recalculate the limit when your stats change.
+D: In a test, a strong character at 25% beats a weak one at 100%.
+
+S04.04 | Build hiding and sensing spiritual pressure
+W: Each player feels another's spiritual pressure scaled to their own strength. Players can hide their pressure, but never fully from the server.
+1. Use the strength ratio table from the research.
+2. Scale the aura size by that ratio.
+3. Make hiding after a full release take time.
+4. Warn players when someone's pressure jumps up.
+D: Two test characters of different strength see the same aura differently.
+
+S04.05 | Build pressure that floors weak players
+W: Huge spiritual pressure close up slows a much weaker player, makes them kneel, then crawl. There is always a fair way out.
+1. Make distance and time decide the stage, 1 to 8.
+2. Give the weaker player an escape, defence or rescue.
+3. Protect new players in safe areas.
+4. Let the server check everything.
+D: A captain-level test character floors a beginner outside safe areas, and the beginner can crawl away.
+
+S04.06 | Check the spiritual power controls
+W: The proposed Alt-key controls might clash with keys the game already uses. Check before building them.
+1. List every key and button the game uses now.
+2. Check the Alt keys, phone wheel and controller pad against it.
+3. Suggest the final controls to Usman.
+4. Make every control changeable by the player.
+D: No controls clash and Usman has approved the final layout.
+
+S04.07 | Finish Shunpo, steps 3 to 6
+W: Shunpo (the Shinigami flash step) needs its last four steps: direction from the camera, vanishing, afterimages, chaining and mastery.
+1. Do one Shunpo step per session, in order.
+2. Test each step in play.
+3. Show Usman before starting the next one.
+D: Each step passes its test when you play it.
+
+S04.08 | Finish Airwalk, steps 3 to 7
+W: Airwalk lets you stand on spirit particles in the air. It needs smooth landing, animations, effects, sound and phone controls.
+1. Do one Airwalk step per session, in order.
+2. Add the catch and descent.
+3. Add animations, effects and sound.
+4. Make it work with combat and Shunpo.
+5. Test on controller and phone.
+D: Each step passes its test when you play it.
+
+S04.09 | Build one movement system for every form
+W: Make one shared movement system (walk, sprint, jump, fall, wall run) that every playable form plugs into.
+1. Set the rules for walking, sprinting, jumping and falling.
+2. Add wall and rooftop movement.
+3. Build the movement states and animation markers.
+4. Leave room for each race's special moves.
+D: Every form uses the same system but still moves in its own way.
+
+S04.10 | Build each race's fast movement
+W: Give each race its own fast move: Shunpo, Sonído, Hirenkyaku and Bringer Light. Each should look and feel different.
+1. Polish Shunpo.
+2. Build Sonído for Hollows and Arrancar.
+3. Build Hirenkyaku and Bringer Light.
+4. Add special movement for Hollow body types.
+5. Allow flying and wall moves only for forms that should have them.
+D: With effects switched off, you can still tell which move is which.

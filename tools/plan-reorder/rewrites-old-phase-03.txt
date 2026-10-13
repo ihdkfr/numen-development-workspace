@@ -1,0 +1,157 @@
+S03.01 | Check Blender can send models to Studio
+W: Before building lots of models, check one test bone plate goes from Blender (the 3D modelling tool) into Studio and sticks to a bone.
+1. Make one test plate in Blender with a script.
+2. Export it.
+3. Bring it into Studio with RBXMonkey (the import tool).
+4. Weld it to a bone and test it moves.
+D: The test plate shows in Studio and moves with the bone.
+
+S03.02 | Check what's built: models waiting for upload
+W: Some models and animations are made but not in the game yet. Only you can import or upload them.
+1. Import or upload each item in the checklist.
+2. Play each one in Studio.
+3. Read the Output window after each one.
+4. Write anything broken in a note here.
+D: Every item is uploaded and played, and it is approved or its problems are written in a note.
+
+S03.03 | Make rough 3D shapes from the sheets
+W: Turn the front, side and back of each design sheet into a rough 3D shape (a blockout) to check the outline. Try Kaijin first.
+1. Make a blockout of Kaijin first.
+2. Check if one clean-up makes it good enough.
+3. Make blockouts of the other sheets.
+4. Compare each outline to its sheet.
+D: Every sheet has a rough 3D shape and the outlines match.
+
+S03.04 | Build the shared Hollow body
+W: Build one dark humanoid body that every Hollow uses, with bone plates added on top separately.
+1. Write the brief from the art guide.
+2. Make a rough shape in Tripo.
+3. Clean the mesh with Instant Meshes.
+4. Rig it with Rigify (add bones).
+5. Paint the weights so it bends nicely.
+D: The body loads in Studio, bends cleanly and stays under 9,000 triangles.
+
+S03.05 | Build the bone plate kit
+W: Write Blender scripts that make bone plates, spines, masks, claws, tails and wings that can be reused on every Hollow.
+1. Make a plate script with settings for shape and thickness.
+2. Make spine, mask, claw and tail scripts.
+3. Make a wing script.
+4. Export each piece.
+5. Weld them onto the body in Studio.
+D: Every kit piece shows in Studio stuck to the body, each under 2,000 triangles.
+
+S03.06 | Make the Hollow bone and skin materials
+W: Make two materials: cream bone and near-black skin, plus one glowing red for eyes.
+1. Make the bone material with darker edges.
+2. Add glowing cracks for when a Hollow gets angry.
+3. Make the dark skin material.
+4. Make the red glow for eyes.
+D: A Hollow in Studio shows cream bone, dark skin and red eyes.
+
+S03.07 | Rig and animate the shared body
+W: Give the shared body its moves: walking and running, attacks and a Cero cast.
+1. Make the walk and run set.
+2. Make the attack set.
+3. Make the Cero cast.
+4. Check plates move with the bones.
+5. Send the rig and animations to Studio.
+D: The body walks, runs, attacks and casts in Studio with no plates clipping.
+
+S03.08 | Build one full Hollow line as a test
+W: Build one complete Hollow line from start to finish to prove the method works before doing the other nine.
+1. Put the kit pieces on the body.
+2. Add the materials.
+3. Add the rig and animations.
+4. Run the model checks.
+D: One full line passes the model checks and you've approved it.
+
+S03.09 | Build the other nine Hollow lines
+W: Build the other nine lines quickly by giving each one a settings file that places kit pieces on the body.
+1. Write a settings file for each line.
+2. Add each line's colours.
+3. Build each line from its file.
+4. Run the model checks on each.
+D: All nine lines pass the model checks.
+
+S03.10 | Set up the model checks
+W: The checks every model must pass: matches its sheet from four sides, right plates, four colours only, few enough triangles, no clipping.
+1. Take pictures from front, side, back and three-quarter.
+2. Put them beside the design sheet.
+3. Check the outline from far away.
+4. Check colours and triangle count.
+5. Check it walks, runs and casts without clipping.
+D: Each model has a check page and you can see if it passes.
+
+S03.11 | Build the Vasto Lorde hero model
+W: The Vasto Lorde (the strongest Hollow form) is the hero model. It sets the quality bar for every other model.
+1. Build the model in Blender.
+2. Keep the mesh clean.
+3. Add the rig.
+4. Bring it into Studio.
+D: The Vasto Lorde shows in Studio and you approve it.
+
+S03.12 | Keep the Gillian as it is
+W: You've already approved the Gillian's look. Only fix technical problems; don't redesign it.
+1. Keep the outline and mask the same.
+2. Check the import, materials and detail levels.
+3. Fix only technical problems.
+D: The Gillian looks exactly as approved in Studio.
+
+S03.13 | Put the locked Vasto Lorde look in game
+W: Turn the locked Vasto Lorde design into a real game model without changing how it looks.
+1. Use the locked design as the target.
+2. Keep the lean body, horns, mask, eyes and chest hole.
+3. Fix the mesh, rig and materials.
+4. Make sure the model is our own work, not copied.
+5. Show it in Studio for approval.
+D: The Vasto Lorde in Studio matches the locked design from all sides and you approve it.
+
+S03.14 | Design how Arrancar look
+W: Decide how an Arrancar (a Hollow that removed its mask) keeps its Hollow look.
+1. Decide where mask pieces can sit.
+2. Decide where Hollow holes can be.
+3. Decide how weapons look.
+4. Decide the clothing style.
+5. Make sure it works with the character creator.
+D: Arrancar look different from each other but you can still see their Hollow roots.
+
+S03.15 | Design how Resurrección forms look
+W: A Resurrección (an Arrancar's released form) should grow from that player's old Hollow, not be a random transformation.
+1. Build the look from the player's Hollow history.
+2. Split fixed parts from cosmetic parts.
+3. Set shape and rig limits for each body type.
+4. Leave the moves for later.
+D: A release clearly links to the earlier Hollow, and no broken rigs can be made.
+
+S03.16 | Finish the human and Plus looks
+W: Finish how a living human and a Plus (a ghost still on its chain) look at the start of the game.
+1. Make humans work with the character creator.
+2. Show when a human can sense spirits.
+3. Show the Plus and its Chain of Fate.
+4. Show the chain rotting in stages.
+D: The opening change from human to ghost is clear without a race menu.
+
+S03.17 | Design the Shinigami uniforms and swords
+W: Lock the Shinigami look: uniform, sword at the hip, Division details and rank.
+1. Make the Academy look.
+2. Make the standard uniform.
+3. Add Division trims.
+4. Make the sword carry and draw.
+5. Show rank without changing stats.
+D: Players look different from each other but clearly belong to the Gotei 13.
+
+S03.18 | Design the Visored masks
+W: Lock how Visored (Shinigami with Hollow powers) masks look and appear before building their powers.
+1. Design mask types and levels.
+2. Design how the mask appears.
+3. Check it works with faces and hair.
+4. Show the link to the inner Hollow.
+D: Masks are clear and never block the camera.
+
+S03.19 | Finish Substitute, Gigai and Mod Soul looks
+W: Finish the looks for Substitute Shinigami, Gigai (fake bodies) and Mod Souls, which are already in the code.
+1. Make the Substitute change.
+2. Make entering and leaving a Gigai.
+3. Make the Mod Soul look.
+4. Check they work with the character creator.
+D: Each change is easy to see and nothing breaks.

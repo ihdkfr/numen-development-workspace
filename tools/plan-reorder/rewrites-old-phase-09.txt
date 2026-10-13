@@ -1,0 +1,92 @@
+S09.01 | Check what's built: the Hollow path
+W: Parts of the Hollow path are already in the game. They only count as done when you have played them and they work.
+1. Open Studio with the current build (see S01.01).
+2. Play each item in the checklist.
+3. Read the Output window after each one.
+4. Write anything broken in a note here, or as a new task.
+5. Approve this task when everything works.
+D: Every item has been played, and it is approved or its problems are written in a note.
+
+S09.02 | Make every new Hollow start in Hueco Mundo
+W: Every new Hollow is born in Hueco Mundo. Right now Hollow players turn in Karakura, which is wrong.
+1. Check where a new Hollow player appears now.
+2. Move Hollow births to Hueco Mundo.
+3. Make Karakura Hollows arrive through a Garganta.
+4. Keep the chain timing and rescue window.
+D: A new Hollow player always appears in Hueco Mundo.
+
+S09.03 | Build death by pressure into a Hollow
+W: A human killed by huge spiritual pressure in an allowed area has their chain break and is reborn as a Hollow in Hueco Mundo.
+1. Write the flow on one page: areas, timings, rescue, what you see.
+2. Get Usman's approval.
+3. Build it.
+4. Play it from start to end.
+D: You approved the page and the flow plays from start to end.
+
+S09.04 | Build eating, hunger and evolving
+W: Make Hollow hunger and evolution match the locked look ladder: Hollow, Gillian, Adjuchas, Vasto Lorde.
+1. Show hunger as a feeling, not a bar on screen.
+2. Build the path from Hollow to Vasto Lorde.
+3. Add gathering and trials.
+4. Make it feel less like a kill counter.
+5. Keep the rules that stop going backwards.
+D: Players understand evolving by playing, with no hunger bar.
+
+S09.05 | Build Hollow family traits
+W: Each Hollow family has a small set of traits you earn by playing and carry into later forms. No paid rerolls.
+1. Make a small trait list for each family.
+2. Earn traits from how you play and eat.
+3. Show traits on later forms where they fit.
+4. Add limits so nobody stacks every strength.
+D: Your starting Hollow still matters later, and no trait is bought.
+
+S09.06 | Build Garganta unlocks in stages
+W: Hollows unlock travel in stages: Human World first, then Rukongai. Seireitei stays blocked. Trips show a travel scene and a safe arrival.
+1. Build on the existing Garganta trip.
+2. Add the unlock stages.
+3. Add the travel scene between places.
+4. Make arrivals safe for a moment.
+D: Each stage unlocks as planned and new arrivals can't attack or be attacked.
+
+S09.07 | Build Hueco arrival, checkpoints and spawn choice
+W: Arrivals in Hueco Mundo are safe. Story checkpoints unlock by themselves, others by hand, and players pick where they spawn.
+1. Make arrivals safe.
+2. Unlock story checkpoints automatically.
+3. Let players switch on other checkpoints.
+4. Save each character's chosen spawn.
+5. Fall back safely if a spawn breaks.
+D: Every rule plays as decided and a broken spawn always falls back safely.
+
+S09.08 | Build Hueco Mundo storms and hazards
+W: Hueco Mundo gets moving storms, safe zones and hazards, as decided on 12 Oct. Warnings come only through the world and sound.
+1. Let the server control storm places, strength and timing.
+2. Remove the sandstorm pop-up messages.
+3. Add safe zones storms never reach.
+4. Keep Shunpo, Sonído and Hirenkyaku working.
+5. Build it in small tested pieces.
+D: Each 12 Oct storm rule passes a test in play.
+
+S09.09 | Make Las Noches outside playable
+W: Turn the outside of Las Noches from a backdrop into a place you can explore.
+1. Add gates, wall-top paths, tower bases and side doors.
+2. Support fast Sonído movement.
+3. Add some inner walls without a second ring.
+4. Light it so you see it from the desert.
+D: You can walk up to, around, over and into Las Noches without dead ends.
+
+S09.10 | Finish the Las Noches entrance and inside
+W: Finish the half-built way into Las Noches and make the inside fit the new outside.
+1. Swap the message-only entrance for a working one.
+2. Check the halls, Espada rooms, arena and prison.
+3. Make the inside size match the outside.
+4. Get the entrance working before rebuilding rooms.
+D: The main gate works and the inside fits the outside.
+
+S09.11 | Build Arrancar ranks and the Espada
+W: Give Arrancar a society: Números, Fracción (followers) and 10 Espada seats you can challenge for.
+1. Build the Arrancar path.
+2. Add Números and Fracción.
+3. Add 10 active Espada seats.
+4. Add challenges and duties.
+5. Add places to hang out in Las Noches.
+D: Being Espada feels special and can't be bought.

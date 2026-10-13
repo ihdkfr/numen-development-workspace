@@ -6,7 +6,8 @@ The **NUMEN Command Centre** is a browser-based development planner for a two-pe
 - **Source:** `index.html`; Cloudflare Pages deploys the GitHub `main` branch.
 - **Database:** Supabase project `rvvilkqxphdpkepojwnr` (London / eu-west-2).
 - **Schema:** `supabase/initial_schema.sql` (already applied to the existing project; **do not rerun blindly**).
-- **Plan:** The Soul Survival plan (14 phases, 182 tasks, owner decisions, codex) is in `data/plan-data.js` and `data/codex-data.js`, with images in `plan-assets/`. It replaced the earlier NUMEN blueprint on 13 Oct 2026; that blueprint, the original-plan data and any team records made for it are kept on the **Archive** page and in `archive/`. See `docs/PLAN_MOVE_2026-10-13.md`. Task changes, comments, ideas, custom combat designs and media metadata are saved separately in Supabase.
+- **Plan:** The Soul Survival plan (14 phases done one after another, 211 tasks with time estimates, owner decisions, codex) is in `data/plan-data.js` and `data/codex-data.js`, with images in `plan-assets/`. It replaced the earlier NUMEN blueprint on 13 Oct 2026; that blueprint, the original-plan data and any team records made for it are kept on the **Archive** page and in `archive/`. See `docs/PLAN_MOVE_2026-10-13.md`.
+- **Task ids:** Tasks are `T01.01` and up. The same day the plan was reordered, with the earlier `S01.01`-style id kept on each task as an alias, so work saved under it still shows. The old-to-new table is in `docs/PLAN_REORDER.md`. Change the plan only with a script (see `tools/plan-reorder/`), never by hand-editing `data/plan-data.js`. Never reuse an old id. Task changes, comments, ideas, custom combat designs and media metadata are saved separately in Supabase.
 
 ## First-time team setup
 

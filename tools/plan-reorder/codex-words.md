@@ -35,7 +35,7 @@ Short, plain meanings for words that come up in the plan.
 | Frame rate (fps) | How many pictures a second the game shows. Higher is smoother |
 | Server | The Roblox computer running the game for everyone in it. It has the final say |
 | Output | The Studio window that shows errors and messages |
-| Locked | Finished and frozen. Not changed unless Usman says so |
+| Locked | Finished and frozen. Not changed unless you say so |
 | Placeholder | A temporary stand-in, like a grey box or a beep sound |
 | HUD | The bars, buttons and numbers on screen during play |
 | PvP | Player versus player fighting |

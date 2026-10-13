@@ -25,8 +25,8 @@ Each phase has a **gate**: the check that says the phase is finished.
 |---|---|
 | To do | Not started |
 | In progress | Someone is working on it |
-| Needs review | Built or handed in, waiting for Usman to play it. Every "Check what's built" task starts here |
-| Approved / done | Usman played it and approved it. Done means played |
+| Needs review | Built or handed in, waiting for you to play it. Every "Check what's built" task starts here |
+| Approved / done | You played it and approved it. Done means played |
 | Blocked | Waiting on something, or on hold |
 
 ## Sessions and time
@@ -36,6 +36,8 @@ A **session** is one sitting with Claude Code, about 1 to 3 hours. Each task sho
 1. Open a task and press **Copy Claude build brief**. It holds the task, its steps, the done check, the owner decisions, the full technical detail and the session rules.
 2. Paste it into Claude Code in the game folder. One task per session.
 3. Add Claude Code's report as a note, attach pictures or videos under Completed work, then press **Submit for review**.
-4. Usman plays it and approves it, or sends it back.
+4. You play it and approve it, or send it back.
+
+Every step on a task has a **Show me how** drop-down with click-by-click instructions. If a word is new, look it up in **Words explained**. If you've never opened Claude Code or Studio for this game before, read **How to: the basics** first.
 
 Each task's technical detail is under **Extra detail (for Claude Code)**, closed by default. You don't need to read it; the brief carries it.

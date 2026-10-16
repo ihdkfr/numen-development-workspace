@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soul Survival Roadmap</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+html, body { margin: 0; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.back { font-size: 13px; color: var(--accent); text-decoration: none; }
+.back:hover { text-decoration: underline; }
+/* Layout: a scrolling horizontal rail of 12 stages; the chosen stage opens below as a vertical timeline of its sub-stages. */
+:root {
+  --bg: #f4f5f8;
+  --surface: #ffffff;
+  --ink: #15171d;
+  --muted: #5a6070;
+  --line: #d6d9e1;
+  --accent: #2c50cc;
+  --accent-soft: #e4e9fb;
+  --done: #2f7a4c;
+  --progress: #b26f12;
+  --todo: #8a90a0;
+  --later: #7447b8;
+  --font-display: "Shippori Mincho", "Hiragino Mincho ProN", Georgia, serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1015; --surface: #161920; --ink: #e9ebf1; --muted: #9ba2b3; --line: #2a2f3b;
+    --accent: #86a0ff; --accent-soft: #1d2440; --done: #5fbf86; --progress: #e3a548; --todo: #6f7687; --later: #b28ef0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1015; --surface: #161920; --ink: #e9ebf1; --muted: #9ba2b3; --line: #2a2f3b;
+  --accent: #86a0ff; --accent-soft: #1d2440; --done: #5fbf86; --progress: #e3a548; --todo: #6f7687; --later: #b28ef0;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 15px; line-height: 1.55;
+}
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 56px;
+  display: grid; gap: 28px;
+}
+header { display: grid; gap: 8px; }
+.eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 5vw, 44px); line-height: 1.1; margin: 0; text-wrap: balance; }
+.lede { color: var(--muted); max-width: 64ch; margin: 0; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: none; }
+.s-done { --c: var(--done); } .s-progress { --c: var(--progress); } .s-todo { --c: var(--todo); } .s-later { --c: var(--later); }
+.dot { background: var(--c); }
+.dot.s-todo { background: transparent; border: 2px solid var(--c); }
+
+/* Horizontal rail */
+.rail-box { overflow-x: auto; scrollbar-width: thin; padding-bottom: 6px; margin-inline: -4px; }
+.rail { position: relative; display: flex; gap: 10px; min-width: max-content; padding: 4px; }
+.rail::before { content: ""; position: absolute; left: 30px; right: 30px; top: 36px; height: 2px; background: var(--line); }
+.stage {
+  position: relative; width: 140px; flex: none; text-align: left; cursor: pointer;
+  background: transparent; border: 0; padding: 0; color: inherit; font: inherit;
+  display: grid; gap: 8px; justify-items: start;
+}
+.stage .num {
+  width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); border: 2px solid var(--line);
+  font-family: var(--font-display); font-weight: 800; font-size: 22px; position: relative; z-index: 1;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.stage .name { font-weight: 700; font-size: 14px; line-height: 1.3; text-wrap: balance; }
+.stage .meta { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.bar { width: 100%; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; display: flex; }
+.bar i { display: block; height: 100%; }
+.stage:hover .num { border-color: var(--accent); }
+.stage:focus-visible { outline: none; }
+.stage:focus-visible .num { outline: 3px solid var(--accent); outline-offset: 3px; }
+.stage[aria-selected="true"] .num { background: var(--accent); border-color: var(--accent); color: var(--surface); }
+.stage[aria-selected="true"] .name { color: var(--accent); }
+.stage.milestone .num { border-style: dashed; }
+
+/* Detail */
+.detail { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 24px; display: grid; gap: 18px; min-width: 0; }
+.detail-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+.detail h2 { font-family: var(--font-display); font-weight: 800; font-size: clamp(22px, 3.4vw, 30px); margin: 0; line-height: 1.2; text-wrap: balance; }
+.detail .goal { color: var(--muted); margin: 0; max-width: 70ch; }
+.nav { display: flex; gap: 8px; }
+.nav button {
+  font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+}
+.nav button:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.nav button:disabled { opacity: .4; cursor: default; }
+.nav button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+ol.vt { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+ol.vt li { display: grid; grid-template-columns: 22px 1fr; gap: 14px; position: relative; padding-bottom: 18px; }
+ol.vt li::before { content: ""; position: absolute; left: 10px; top: 18px; bottom: 0; width: 2px; background: var(--line); }
+ol.vt li:last-child { padding-bottom: 0; }
+ol.vt li:last-child::before { display: none; }
+ol.vt .dot { margin-top: 6px; margin-left: 5px; width: 12px; height: 12px; }
+.item { min-width: 0; display: grid; gap: 4px; }
+.item-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+.item h3 { margin: 0; font-size: 15px; font-weight: 700; }
+.item p { margin: 0; color: var(--muted); max-width: 72ch; }
+.code { font-family: var(--font-mono); font-size: 11px; color: var(--muted); }
+.chip {
+  font-family: var(--font-mono); font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase;
+  padding: 2px 8px; border-radius: 999px; border: 1px solid var(--c); color: var(--c);
+}
+.note { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; margin: 0; }
+.foot { font-size: 13px; color: var(--muted); max-width: 72ch; margin: 0; }
+@media (max-width: 520px) {
+  .detail { padding: 18px; }
+  .stage { width: 118px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="back" href="./">← Back to NUMEN</a>
+    <div class="eyebrow">Soul Survival · build order</div>
+    <h1>Soul Survival Roadmap</h1>
+    <p class="lede">The main stages from first models to launch and the updates after it. Pick a stage to see its sub-stages in order.</p>
+    <div class="legend" aria-label="Status key">
+      <span><i class="dot s-done"></i>Done</span>
+      <span><i class="dot s-progress"></i>In progress</span>
+      <span><i class="dot s-todo"></i>Not started</span>
+      <span><i class="dot s-later"></i>After launch</span>
+    </div>
+  </header>
+
+  <div class="rail-box">
+    <div class="rail" id="rail" role="tablist" aria-label="Stages"></div>
+  </div>
+
+  <section class="detail" id="detail" role="tabpanel" aria-live="polite"></section>
+
+  <p class="foot">Status is taken from the owner's vault and design notes as of 16 Oct 2026. The NUMEN site stays the live task tracker. The launch slice is Soul Reaper stages 1 and 2 of the life path (about 15 hours of play), so the later story items sit in stage 12.</p>
+</div>
+
+<script>
+const STAGES = [
+  { n: 1, name: "3D modelling and design", goal: "Design and model everything the game is made of: every map, Hollow, character, weapon and place, before the systems that use them.", items: [
+    ["Art direction and standards", "The look rules: stylised anime, high-end Roblox models, painted textures, adapt don't copy. Held in the vault Standards pages.", "done"],
+    ["Rukongai terrain", "The bands from inner districts to the wilderness edge and far mountains, with painted ground textures and Blender mountain models.", "progress"],
+    ["Rukongai houses", "House kit V2: seven houses with full interiors and Poly Haven props, rich to poor.", "progress"],
+    ["Nature kit", "Trees, forest giants big enough to Shunpo between, bushes, rocks and water edges. Rocks built, still under the quality bar.", "progress"],
+    ["Seireitei and the Academy", "The walls, division barracks, Shin'ō Academy grounds and dorms, and the 4th Division ward with a bed for every player.", "todo"],
+    ["Karakura Town", "Big and beautiful: the school, the roadside shrine, homes and streets for the prologue and Human World duty.", "todo"],
+    ["Hueco Mundo", "Its own place at about 20 times the scale, with a generated desert around a hand-built core and Las Noches.", "progress"],
+    ["Special places", "The Dangai, base inner worlds and Sōkyoku Hill.", "todo"],
+    ["Hollow designs", "Fresh designs for every evolution stage, each one playable and able to hold a weapon, made for fans of Ulquiorra, Grimmjow and Starrk.", "progress"],
+    ["Menos and Vasto Lorde", "Gillian, Adjuchas and Vasto Lorde models. The VL2 Vasto Lorde already has a model, animations and Cero previews.", "progress"],
+    ["Arrancar rivals", "The few rival versions: sealed form, Resurrección and second release.", "todo"],
+    ["Characters", "The human creator parts, student and Soul Reaper uniforms (uniform approved), haori, and the NPCs: friends, lieutenants, instructors, Kisuke and captains.", "progress"],
+    ["Weapons", "The sealed Zanpakutō (approved), then Shikai and Bankai weapon shapes once the Zanpakutō families are set in stage 4.", "progress"]
+  ]},
+  { n: 2, name: "Combat and animations", goal: "Make fighting feel great before anything is built on top of it.", items: [
+    ["Combat design document", "Combos, guard, parry with a cooldown, guard break, dodge, air dash and how releases change your moves.", "todo"],
+    ["Sword combat", "Light and heavy attacks, combo routes and stances for the Asauchi skill tree.", "todo"],
+    ["Hand-to-hand", "Unarmed counters and grabs.", "todo"],
+    ["Movement", "Running, Shunpo and air walking. Tree-hopping comes later.", "todo"],
+    ["Hit feel", "Hit pause, camera shake, knockback and showing power, from the combat standards.", "todo"],
+    ["Player animations", "Movement, attacks, hit reactions and the near-death collapse.", "todo"],
+    ["Hollow combat and AI", "How Hollows fight, plus boss phases for the anomaly and the rivals.", "todo"],
+    ["Cinematic system", "Release cinematics, split screen for 2 or 4 players, pausing the fight, and who gets to see them.", "todo"]
+  ]},
+  { n: 3, name: "Kidō and VFX", goal: "Build the effects library, then every Kidō spell and spiritual effect.", items: [
+    ["VFX pipeline and library", "Painted textures, the Sine VFX plugin and reusable effect definitions.", "progress"],
+    ["Cero", "The standard Cero is locked. Only camera shake and sound are still open.", "done"],
+    ["Academy Kidō", "Bakudō #1 Sai, Hadō #1 Shō, Bakudō #4 Hainawa, Hadō #4 Byakurai, Bakudō #8 Seki, #9 Geki and Hadō #11 Tsuzuri Raiden.", "todo"],
+    ["Higher Kidō", "Which spells unlock at which levels, up to the strongest numbers.", "todo"],
+    ["Reiatsu auras", "Each player's Reiatsu colour, chosen at Konsō, plus Shunpo trails.", "todo"],
+    ["Impact effects", "Sword slashes, hits and Hollow attacks.", "todo"],
+    ["Effect sounds", "Sound for every effect.", "todo"]
+  ]},
+  { n: 4, name: "Zanpakutō", goal: "Give every player a Zanpakutō that's truly theirs, from sealed sword to Final Bankai.", items: [
+    ["Families and the shortlist", "The Zanpakutō families, and how the Asauchi ceremony picks a shortlist from your answers and Academy results.", "todo"],
+    ["Spirits and inner worlds", "Each family's spirit and its base inner world.", "todo"],
+    ["Shikai", "Three tiers for each family, with 8 to 12 families at launch.", "todo"],
+    ["Bankai", "One central mechanic for each family, plus its hidden realisation.", "todo"],
+    ["Final Bankai", "Each family's last form, unlocked in the Dangai.", "todo"],
+    ["Release cinematics", "The first Shikai, the first Bankai and the short later releases.", "todo"]
+  ]},
+  { n: 5, name: "Resurrección and Hollow powers", goal: "Give the Hollow side powers equal to the Soul Reaper side, at the same hours played.", items: [
+    ["Hollow evolution powers", "What each evolution stage can do, timed to match the Soul Reaper path.", "todo"],
+    ["Menos powers", "Gillian, Adjuchas and Vasto Lorde abilities.", "todo"],
+    ["Arrancar and Resurrección", "Each released form and its powers.", "todo"],
+    ["Second release", "The rare second form, like Ulquiorra's Segunda Etapa.", "todo"],
+    ["Hollow abilities", "Cero variants and the other Hollow techniques.", "todo"],
+    ["Visored masks", "Mask powers, the time limit and the cost.", "todo"],
+    ["Balance check", "Big powers on both sides unlock at about the same hours played.", "todo"]
+  ]},
+  { n: 6, name: "Player basics", goal: "Code the basic systems every player uses: saving, items, money, levels, missions, dying, parties and reporting.", items: [
+    ["Saving and player data", "Saving, loading and backups.", "todo"],
+    ["Levels and level gates", "EXP, levels and the gates at 30, 40, 50, 65, 75, 85 and 95.", "todo"],
+    ["Items and inventory", "What you carry and use.", "todo"],
+    ["Money and shops", "Kan, prices and what you can buy without Robux.", "todo"],
+    ["Missions", "The mission board, division missions, mission ranks and rewards.", "todo"],
+    ["Dying", "Near death, the 4th Division ward, enough beds and the weakened state.", "todo"],
+    ["Parties and squads", "Squads with anyone in the server, including across divisions.", "todo"],
+    ["Soul Record", "What it records and how standing rises and falls.", "todo"],
+    ["Reporting and moderation", "Player reports and staff tools.", "todo"]
+  ]},
+  { n: 7, name: "Story and life paths", goal: "Put the Soul Reaper and Hollow life paths into the game, starting with the launch slice.", items: [
+    ["The opening", "Character creation, the cold open, the Karakura prologue and the Plus choice.", "todo"],
+    ["Rukongai and the Academy", "Your Rukongai friend, the entrance trial, four terms, real friends as classmates and the graduation trial.", "todo"],
+    ["Divisions and seats", "Graduation day, the launch divisions and seat exams up to the 6th seat.", "todo"],
+    ["The Vanishing", "The main story mission at level 24.", "todo"],
+    ["Arrancar rival, part one", "The silhouette sightings that start the rival's story.", "todo"],
+    ["Hollow life path", "Planned next, built to match this path.", "todo"]
+  ]},
+  { n: 8, name: "Multiplayer and living world", goal: "Give players reasons to come back and play together: trading, groups, raids, events, ranked and achievements.", items: [
+    ["Trading", "Trading between players.", "todo"],
+    ["Groups at scale", "Squads of 4 and raid groups of 6.", "todo"],
+    ["Raids and bosses", "Raid types, bosses and rewards.", "todo"],
+    ["World events", "Hollow breaches in Rukongai and Menos events.", "todo"],
+    ["Ranked and duels", "Ranked play and open duels.", "todo"],
+    ["Achievements", "Achievements across the life path.", "todo"],
+    ["Community links", "Discord and the official social links. Check Roblox's rules first.", "todo"]
+  ]},
+  { n: 9, name: "Look, sound and menus", goal: "Make it finished: menus, character creator, music and sound, settings and the game's store page.", items: [
+    ["Menus and HUD", "Every screen and the on-screen display.", "todo"],
+    ["Character creator", "The human creator at the start of the game.", "todo"],
+    ["Loading screen", "It lets players in once the ground near them is ready.", "todo"],
+    ["Music", "Themes for each world and the big moments.", "todo"],
+    ["Sound", "Sound effects for the world, combat and menus.", "todo"],
+    ["Settings", "Graphics levels for phones and PCs, controls and audio.", "todo"],
+    ["Store page", "Icon, thumbnails, trailer and description.", "todo"]
+  ]},
+  { n: 10, name: "Playtest and fix", goal: "Prove it works with real players before launch, then fix what they find.", milestone: true, items: [
+    ["Phone performance", "Hit the iPhone 13 targets: never under 30 fps and under 20 seconds from joining to playing.", "todo"],
+    ["First-hour playtest", "Watch 5 to 10 new players play the opening and fix where they get bored or lost.", "todo"],
+    ["Balance pass", "Soul Reaper against Hollow at every stage.", "todo"],
+    ["Bug fixing", "Fix everything the tests turned up.", "todo"],
+    ["Closed beta", "A wider test with community members before launch.", "todo"]
+  ]},
+  { n: 11, name: "Launch", goal: "Release the launch slice and keep it running smoothly.", milestone: true, items: [
+    ["The launch slice", "Soul Reaper life path stages 1 and 2 (about 15 hours of play), plus the matching Hollow stages.", "todo"],
+    ["Store page live", "Trailer, thumbnails and description go public.", "todo"],
+    ["Community ready", "The Discord set up, with 2 or 3 trusted moderators.", "todo"],
+    ["Launch day", "Watch the servers and players, and ship fixes fast.", "todo"]
+  ]},
+  { n: 12, name: "Updates after launch", goal: "Grow the game in updates: the rest of the Soul Reaper path, more divisions, then the Quincy and Fullbring paths.", items: [
+    ["Soul Reaper, later stages", "Senior seats, Lieutenant, Bankai and the Arrancar duel, Captain-class, the real Gotei 13 captains and the endgame.", "later"],
+    ["More divisions", "Beyond the 4 at launch, starting with the 12th and 5th.", "later"],
+    ["Visored side quest", "The Vanishing part 2 and Visored training.", "later"],
+    ["Seasons", "The Hōgyoku seasonal arcs, with the captains voting on the fragment.", "later"],
+    ["Quincy path", "A full life path for Quincy players.", "later"],
+    ["Fullbring path", "A full life path for Fullbringers.", "later"]
+  ]}
+];
+const LABEL = { done: "Done", progress: "In progress", todo: "Not started", later: "After launch" };
+const rail = document.getElementById("rail");
+const detail = document.getElementById("detail");
+const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function bar(items) {
+  const n = items.length, count = (k) => items.filter((i) => i[2] === k).length;
+  return ["done", "progress", "later"].map((k) => count(k) ? `<i style="width:${(count(k) / n) * 100}%;background:var(--${k})"></i>` : "").join("");
+}
+function stageStatus(items) {
+  if (items.every((i) => i[2] === "done")) return "Done";
+  if (items.every((i) => i[2] === "later")) return "After launch";
+  if (items.some((i) => i[2] === "progress" || i[2] === "done")) return "In progress";
+  return "Not started";
+}
+STAGES.forEach((s, idx) => {
+  const b = document.createElement("button");
+  b.className = "stage" + (s.milestone ? " milestone" : "");
+  b.id = "tab-" + s.n; b.type = "button";
+  b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "detail");
+  b.innerHTML = `<span class="num">${s.n}</span><span class="name">${esc(s.name)}</span><span class="bar" aria-hidden="true">${bar(s.items)}</span><span class="meta">${s.items.length} parts · ${stageStatus(s.items)}</span>`;
+  b.addEventListener("click", () => select(idx, true));
+  b.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { e.preventDefault(); select(Math.min(idx + 1, STAGES.length - 1), true, true); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); select(Math.max(idx - 1, 0), true, true); }
+  });
+  rail.appendChild(b);
+});
+let current = 0;
+function select(idx, save, focus) {
+  current = idx;
+  const s = STAGES[idx];
+  [...rail.children].forEach((b, i) => { b.setAttribute("aria-selected", i === idx ? "true" : "false"); b.tabIndex = i === idx ? 0 : -1; });
+  const tab = rail.children[idx];
+  if (focus) tab.focus();
+  tab.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+  detail.setAttribute("aria-labelledby", tab.id);
+  detail.innerHTML = `
+    <div class="detail-head">
+      <div><div class="eyebrow">Stage ${s.n} of ${STAGES.length}</div><h2>${esc(s.name)}</h2></div>
+      <div class="nav"><button type="button" id="prev" ${idx === 0 ? "disabled" : ""}>Previous stage</button><button type="button" id="next" ${idx === STAGES.length - 1 ? "disabled" : ""}>Next stage</button></div>
+    </div>
+    <p class="goal">${esc(s.goal)}</p>
+    <ol class="vt">${s.items.map((it, i) => `
+      <li><i class="dot s-${it[2]}" aria-hidden="true"></i>
+        <div class="item"><div class="item-top"><span class="code">${s.n}.${i + 1}</span><h3>${esc(it[0])}</h3><span class="chip s-${it[2]}">${LABEL[it[2]]}</span></div><p>${esc(it[1])}</p></div>
+      </li>`).join("")}
+    </ol>`;
+  detail.querySelector("#prev").addEventListener("click", () => select(idx - 1, true));
+  detail.querySelector("#next").addEventListener("click", () => select(idx + 1, true));
+  if (save) { try { localStorage.setItem("ss-roadmap-stage", String(idx)); } catch (e) {} }
+}
+let start = 0;
+const m = /^#stage-(\d+)$/.exec(location.hash || "");
+if (m) start = Math.min(Math.max(parseInt(m[1], 10) - 1, 0), STAGES.length - 1);
+else { try { const v = parseInt(localStorage.getItem("ss-roadmap-stage"), 10); if (!isNaN(v) && v >= 0 && v < STAGES.length) start = v; } catch (e) {} }
+select(start, false);
+</script>
+
+</body>
+</html>

@@ -715,5 +715,59 @@ pageRender=function(){if(state.page==='map')return mapPage();return mapOldPageRe
 
 init();
 
+
+/* NUMEN to-do list (27 Oct 2026): every idea card gets a "+ To do" button that files it under a build stage.
+   Items saved here use the same storage as ideas (records "todo:<id>"); no database change.
+   Claude's chat inbox is read from data/todo-inbox.json and shown beside them, read-only. */
+const TODO_STAGES=['3D modelling and design','Combat and animations','Kidō and VFX','Zanpakutō','Resurrección and Hollow powers','Player basics','Story and life paths','Multiplayer and living world','Look, sound and menus','Playtest and fix','Launch','Updates after launch'];
+const TODO_STATUS={open:'Open',doing:'Doing',ask:'Waiting for an answer',done:'Done',moved:'On the roadmap'};
+let CLAUDE_TODO=[];
+fetch('data/todo-inbox.json',{cache:'no-store'}).then(r=>r.ok?r.json():[]).then(x=>{CLAUDE_TODO=Array.isArray(x)?x:[];if(state.page==='todo')render()}).catch(()=>{});
+state.todoFilter='open';
+NAV.splice(NAV.findIndex(x=>x[0]==='ideas')+1,0,['todo','☑','To do list']);
+document.head.insertAdjacentHTML('beforeend',`<style>
+.todo-group{margin-top:14px}.todo-group h3{margin:0 0 4px;font-size:15px}
+.todo-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:center;padding:10px 0;border-top:1px solid var(--border)}
+.todo-row strong{font-size:14px}.todo-row .tiny{margin-top:2px}.todo-src{font-size:11px;color:var(--muted)}
+.todo-stage{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);margin-right:6px}
+.todo-done strong{text-decoration:line-through;color:var(--muted)}
+@media(max-width:700px){.todo-row{grid-template-columns:1fr}}
+</style>`);
+function todoStageNum(st){let n=parseInt(String(st||'').trim(),10);return n>=1&&n<=12?n:0}
+function todoButton(id){let o=libraryItem('idea',id);return o.todoId?'<span class="tiny muted">✓ In to-do list</span>':`<button class="btn sm" data-act="idea-todo" data-id="${attr(id)}">+ To do</button>`}
+const oldNavRenderTodo=navRender;
+navRender=function(){let h=oldNavRenderTodo(),ideas=navButton('ideas','✧','Ideas board');return h.includes(ideas)?h.replace(ideas,ideas+navButton('todo','☑','To do list')):h};
+const oldPageRenderTodo=pageRender;
+pageRender=function(){if(state.page==='todo')return todoPage();return oldPageRenderTodo()};
+const oldIdeasPageTodo=ideasPage;
+ideasPage=function(){return oldIdeasPageTodo().replace(/(<button class="btn sm" data-act="lib-open" data-kind="idea" data-id="([^"]*)">Open →<\/button>)/g,(m,btn,id)=>`<span class="row" style="gap:6px">${todoButton(id)}${btn}</span>`)};
+const oldIdeaDetailTodo=ideaDetail;
+ideaDetail=function(id){return oldIdeaDetailTodo(id).replace('<label class="label" style="margin-top:15px">Idea stage</label>',`<div style="margin-top:10px">${libraryItem('idea',id).todoId?'<p class="small muted">✓ This idea is on the to-do list.</p>':`<button class="btn wide" data-act="idea-todo" data-id="${attr(id)}">+ Send to the to-do list</button>`}</div><label class="label" style="margin-top:15px">Idea stage</label>`)};
+function todoPage(){
+  let mine=libraryItems('todo').map(x=>({...x,src:x.ideaId?'idea':'site'}));
+  let fromClaude=CLAUDE_TODO.map((x,i)=>({id:'claude-'+i,title:x.item,stage:x.stage,status:x.status||'open',date:x.date,src:'claude'}));
+  let f=state.todoFilter,keep=x=>f==='all'||(f==='open'?!['done','moved'].includes(x.status):x.status===f);
+  let all=[...mine,...fromClaude].filter(keep);
+  let groups={};all.forEach(x=>{let n=todoStageNum(x.stage);(groups[n]=groups[n]||[]).push(x)});
+  let order=Object.keys(groups).map(Number).sort((a,b)=>(a||99)-(b||99));
+  let row=x=>`<div class="todo-row ${x.status==='done'?'todo-done':''}"><div><strong><span class="todo-stage">${esc(x.stage||'')}</span>${esc(x.title)}</strong>${x.note?`<div class="tiny muted">${esc(x.note)}</div>`:''}<div class="todo-src">${x.src==='claude'?'From the Claude chat'+(x.date?' · '+esc(x.date):''):x.src==='idea'?`From the Ideas board · <button class="btn sm ghost" data-act="lib-open" data-kind="idea" data-id="${attr(x.ideaId)}">Open idea</button>`:'Added here'}</div></div>${x.src==='claude'?`<span class="tiny muted">${esc(TODO_STATUS[x.status]||x.status)}</span>`:`<select class="sel" data-change="todo-status" data-id="${attr(x.id)}">${Object.entries(TODO_STATUS).map(([k,v])=>`<option value="${k}" ${x.status===k?'selected':''}>${esc(v)}</option>`).join('')}</select>`}</div>`;
+  return pageHeader('BUILD ORDER','To do list','Everything we have decided to do, sorted by the build stage it belongs to. Send ideas here from the Ideas board; what you agree with Claude in chat is added from its inbox.',`<button class="btn primary" data-act="idea-todo" data-id="">+ Add to-do</button>`)
+   +`<div class="filterbar">${[['open','Still to do'],['doing','Doing'],['ask','Waiting for an answer'],['done','Done'],['all','Everything']].map(([v,l])=>`<button class="btn sm ${f===v?'primary':''}" data-act="todo-filter" data-value="${v}">${l}</button>`).join('')}</div>`
+   +(order.length?order.map(n=>`<section class="panel todo-group"><h3>${n?`Stage ${n} · ${esc(TODO_STAGES[n-1])}`:'Across all stages'}</h3>${groups[n].map(row).join('')}</section>`).join(''):'<div class="panel"><p class="small muted">Nothing here. Use + To do on an idea, or + Add to-do.</p></div>')};
+const oldRenderModalTodo=renderModal;
+renderModal=function(){let m=state.modal;if(!m||m.type!=='idea-todo')return oldRenderModalTodo();let o=m.id?libraryItem('idea',m.id):null;
+  $('#modalRoot').innerHTML=`<div class="modalShade" data-act="shade-close"><div class="modal" role="dialog" aria-modal="true"><h2>${o?'Send this idea to the to-do list':'Add a to-do'}</h2>${o?`<p class="muted">"${esc(o.title)}"</p>`:`<label class="label">What needs doing</label><input class="inp" id="todoTitle" placeholder="e.g. Add the Kasumiōji manor to Book 8">`}<label class="label">Which build stage is it for?</label><select id="todoStage" class="sel" style="width:100%"><option value="">Choose a stage…</option>${TODO_STAGES.map((n,i)=>`<option value="${i+1}">${i+1} · ${esc(n)}</option>`).join('')}</select><label class="label">Note (optional)</label><textarea id="todoNote" class="area" style="min-height:70px" placeholder="Anything to remember when it is done"></textarea><div class="foot"><button class="btn" data-act="close-modal">Cancel</button><button class="btn primary" data-act="save-idea-todo" data-id="${attr(m.id||'')}">Add to the to-do list</button></div></div></div>`};
+async function saveIdeaTodo(ideaId){let stage=inputValue('todoStage');if(!stage)throw Error('Choose the build stage it belongs to');let o=ideaId?libraryItem('idea',ideaId):null;let title=o?o.title:inputValue('todoTitle').trim();if(!title)throw Error('Write what needs doing');let tid=uid().slice(0,12);
+  let ok=await saveLibrary('todo',tid,{title,stage,note:inputValue('todoNote').trim(),status:'open',ideaId:ideaId||'',createdAt:now(),createdBy:personId()},'added to-do '+title);
+  if(ok&&o){o.todoId=tid;await saveLibrary('idea',ideaId,o,'sent idea to the to-do list')}
+  if(ok){closeModal();toast('Added to the to-do list');render()}}
+const oldHandleActTodo=handleAct;
+handleAct=async function(act,el){switch(act){
+  case'idea-todo':openModal('idea-todo',{id:el.dataset.id||''});return;
+  case'save-idea-todo':await saveIdeaTodo(el.dataset.id||'');return;
+  case'todo-filter':state.todoFilter=el.dataset.value;render();return;}
+  return await oldHandleActTodo(act,el)};
+const oldHandleChangeTodo=handleChange;
+handleChange=async function(el){if(el.dataset.change==='todo-status'){let o=libraryItem('todo',el.dataset.id);o.status=el.value;await saveLibrary('todo',el.dataset.id,o,'changed to-do status');render();return}return await oldHandleChangeTodo(el)};
 </script>
 </body></html>

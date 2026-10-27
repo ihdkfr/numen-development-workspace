@@ -1,0 +1,122 @@
+[
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Master plan v2: wall at radius 4,520, Divisions spread out at Blender sizes, 1st Division at the head of the North avenue",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Push the Rukongai out by 1,120 studs; Code checks the terrain and wilds first",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Ground levels approved: 1st Division terrace +10, training cave −40, pond −4, cherry park mound +6, towers",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Watchtowers are about 90 tall (type sheet), not 40: fix in Ground levels",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Layout standard: lane lanterns every 60, not 40; passages 12 wide as a new street class",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Layout standard and six gates; pilot ward next to Divisions 4 and 5",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Book 8: city landmarks, street kit, gate names and gatekeepers, Kasumiōji manor, shops from the show; no shrines",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Book 9: 18 variations in 5 wealth levels",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Water: small garden ponds in manors, officers' gardens and squares",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Long canal through the outer ring: Usman's call",
+  "status": "ask"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Underground waterways vs the 16 Oct \"no sewers\" rule: keep or drop?",
+  "status": "ask"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Check the 19 waiting pictures after the weekly reset",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Blender top-down shapes of built compounds onto the map (needs the PC)",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Copy today's maps, budget, scripts and plans into the vault (needs the PC)",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "6",
+  "item": "Housing: Housing viewer menu, move to a bigger house elsewhere, 4 house levels, manors earned by rank",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "6",
+  "item": "Housing: which ranks unlock each level; what happens to an idle manor",
+  "status": "ask"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1.5",
+  "item": "Push the Seireitei checklist branch to NUMEN once the repo is connected",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "all",
+  "item": "Save this To do inbox into the vault when the PC is reachable, and keep it there from then on",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "7",
+  "item": "NUMEN roadmap: split stage 7 into expandable Soul Reaper and Hollow sections, each linking to its full plan; write the Hollow life path plan",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "all",
+  "item": "NUMEN: \"+ To do\" button on every idea and a To do list page (built; goes live with the NUMEN push)",
+  "status": "doing"
+ }
+]

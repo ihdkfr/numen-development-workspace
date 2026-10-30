@@ -39,13 +39,13 @@
   "date": "27 Oct",
   "stage": "1.5",
   "item": "Book 8: city landmarks, street kit, gate names and gatekeepers, Kasumiōji manor, shops from the show; no shrines",
-  "status": "open"
+  "status": "done"
  },
  {
   "date": "27 Oct",
   "stage": "1.5",
   "item": "Book 9: 18 variations in 5 wealth levels",
-  "status": "open"
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -98,8 +98,8 @@
  {
   "date": "27 Oct",
   "stage": "1.5",
-  "item": "Push the Seireitei checklist branch to NUMEN once the repo is connected",
-  "status": "open"
+  "item": "Push the Seireitei checklist branch to NUMEN once the repo is connected (pushed from the PC 30 Oct: PR #12, waiting for Usman to merge)",
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -218,19 +218,109 @@
  {
   "date": "30 Oct",
   "stage": "1.5",
-  "item": "Pictures left: 20 remakes to run, 51 Book 7 pictures to check, Books 8 and 9 to write",
+  "item": "Pictures left: 73 waiting for Claude's check (22 remakes made 23 Oct plus 51 Book 7); Books 8 and 9 to write",
   "status": "open"
  },
  {
   "date": "30 Oct",
   "stage": "1.5",
-  "item": "13.20, 15.19 and 15.20 blocked by the safety filter every time: leave them out and build from the approved hero picture and section?",
-  "status": "ask"
+  "item": "15.19 and 15.20 (ritual frame) on hold: Usman edits their prompts later (13.20 was made after all)",
+  "status": "open"
  },
  {
   "date": "30 Oct",
   "stage": "all",
-  "item": "NUMEN push still blocked: add the repo to this session's sources, or OK a push from the PC",
+  "item": "NUMEN push: Usman OK'd pushing from the PC; PR #12 has the checklist, Workshop tasks and To do list",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Academy build rules written (Recipes/Seireitei layout/Academy build rules.md): 240 students, 12 classes in lessons at once, 12 classrooms, 4 dorms of 15 rooms, campus 640 x 640",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Academy: 240 students or smaller; lessons as NPC life only or can players sit in; dorm bed as first home?",
   "status": "ask"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Academy pictures: check main hall, classroom block and training grounds now; hold dorm and campus pictures for a remake; 9 new Academy pictures for Book 8",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "ChatGPT Academy atlas v2 reviewed (Academy atlas v2 review.md): numbers and timetable right; buildings, heights and layout need fixing before use",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Academy: keep the Book 7 main hall and classroom shapes over the atlas versions? Dorms 2 or 3 storeys?",
+  "status": "ask"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Division 9 gate: widen the roof to about 36 x 22 like the picture, keeping the 20-wide opening, posts 20 apart and the 44 ridge (the written 28 left no eave overhang)",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Rule when the written numbers and the approved picture disagree: keep the written door and opening sizes, take everything else's proportions from the picture?",
+  "status": "ask"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Built vs left list (Recipes/Seireitei build audit/What is built and what is left.md): about 30 buildings in Divisions 9 to 13, the centre and the city edge have approved pictures and can be built now",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Academy answers from ChatGPT v3: 240 students, Book 7 main hall and classroom shapes, dorms 2 storeys (8 + 7 rooms)",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Academy site plan v4 drawn by Claude: clash-free, every rule met, two mirrored bathhouses (Recipes/Seireitei layout/Academy site plan v4.md)",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "NUMEN T03.34 text: remakes are already made (only 15.19 and 15.20 on hold); correct it in the next NUMEN push",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Book 8 finished: phases 21 to 23 added (city landmarks, street kit, nobles and named shops), 60 more pictures; record is \"9 Book 8.md\", jobs.json now 423 jobs",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Run Book 8 phases 21 to 23 in the picture runner once phase 20 is made and checked",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Book 9 written: 18 variations in wealth levels 1 to 4 (phases 24 and 25), 68 pictures (hero, elevations, plan, one cutaway each; estates aerial and site plan); record \"10 Book 9.md\", jobs.json now 491 jobs",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Run Book 9 phases 24 and 25 after Book 8; 25.29 to 25.32 (noble estates) wait for the lesser noble manor hero (23.01) to be approved",
+  "status": "open"
  }
 ]

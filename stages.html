@@ -104,11 +104,11 @@ h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 
 .nav button:disabled { opacity: .4; cursor: default; }
 .nav button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 ol.vt { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
-ol.vt li { display: grid; grid-template-columns: 22px 1fr; gap: 14px; position: relative; padding-bottom: 18px; }
-ol.vt li::before { content: ""; position: absolute; left: 10px; top: 18px; bottom: 0; width: 2px; background: var(--line); }
-ol.vt li:last-child { padding-bottom: 0; }
-ol.vt li:last-child::before { display: none; }
-ol.vt .dot { margin-top: 6px; margin-left: 5px; width: 12px; height: 12px; }
+ol.vt > li { display: grid; grid-template-columns: 22px 1fr; gap: 14px; position: relative; padding-bottom: 18px; }
+ol.vt > li::before { content: ""; position: absolute; left: 10px; top: 18px; bottom: 0; width: 2px; background: var(--line); }
+ol.vt > li:last-child { padding-bottom: 0; }
+ol.vt > li:last-child::before { display: none; }
+ol.vt > li > .dot { margin-top: 6px; margin-left: 5px; width: 12px; height: 12px; }
 .item { min-width: 0; display: grid; gap: 4px; }
 .item-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
 .item h3 { margin: 0; font-size: 15px; font-weight: 700; }
@@ -120,6 +120,32 @@ ol.vt .dot { margin-top: 6px; margin-left: 5px; width: 12px; height: 12px; }
 }
 .note { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; margin: 0; }
 .foot { font-size: 13px; color: var(--muted); max-width: 72ch; margin: 0; }
+
+/* Closable checklist under a sub-stage */
+details.sub { margin-top: 8px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); min-width: 0; }
+details.sub > summary { cursor: pointer; padding: 10px 14px; font-weight: 700; font-size: 14px; list-style: none; display: flex; align-items: center; gap: 8px; }
+details > summary::-webkit-details-marker { display: none; }
+details > summary::before { content: "\25B8"; color: var(--accent); transition: transform .15s; flex: none; }
+details[open] > summary::before { transform: rotate(90deg); }
+details > summary:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 8px; }
+details.sub > summary .count { font-family: var(--font-mono); font-size: 11px; font-weight: 500; color: var(--muted); margin-left: auto; }
+.checklist { list-style: none; margin: 0; padding: 0 14px 14px; display: grid; gap: 14px; }
+.checklist > li { display: grid; grid-template-columns: 18px 1fr; gap: 10px; min-width: 0; }
+.box { width: 16px; height: 16px; margin-top: 3px; border-radius: 4px; border: 2px solid var(--c); display: grid; place-items: center; font-size: 11px; line-height: 1; color: var(--surface); }
+.box.s-done { background: var(--c); }
+.box.s-progress { background: linear-gradient(135deg, var(--c) 50%, transparent 50%); }
+.step { min-width: 0; display: grid; gap: 4px; }
+.step-top { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; }
+.step h4 { margin: 0; font-size: 14.5px; font-weight: 700; }
+.step p { margin: 0; color: var(--muted); font-size: 14px; max-width: 72ch; }
+details.drop { border-left: 2px solid var(--line); padding-left: 10px; margin-top: 2px; }
+details.drop > summary { cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px; font-size: 13.5px; font-weight: 500; color: var(--accent); padding: 2px 0; }
+details.drop ul { margin: 6px 0 4px; padding-left: 18px; color: var(--muted); font-size: 13.5px; display: grid; gap: 3px; }
+details.drop li b { color: var(--ink); font-weight: 500; }
+.maps { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; margin: 6px 0 2px; }
+.maps figure { margin: 0; display: grid; gap: 4px; min-width: 0; }
+.maps img { width: 100%; max-width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); }
+.maps figcaption { font-size: 12px; color: var(--muted); }
 @media (max-width: 520px) {
   .detail { padding: 18px; }
   .stage { width: 118px; }
@@ -149,7 +175,7 @@ ol.vt .dot { margin-top: 6px; margin-left: 5px; width: 12px; height: 12px; }
 
   <section class="detail" id="detail" role="tabpanel" aria-live="polite"></section>
 
-  <p class="foot">Status is taken from the owner's vault and design notes as of 16 Oct 2026. The NUMEN site stays the live task tracker. The launch slice is Soul Reaper stages 1 and 2 of the life path (about 15 hours of play), so the later story items sit in stage 12.</p>
+  <p class="foot">Status is taken from the owner's vault and design notes as of 16 Oct 2026; the Seireitei checklist as of 27 Oct 2026. The NUMEN site stays the live task tracker. The launch slice is Soul Reaper stages 1 and 2 of the life path (about 15 hours of play), so the later story items sit in stage 12.</p>
 </div>
 
 <script>
@@ -159,7 +185,7 @@ const STAGES = [
     ["Rukongai terrain", "The bands from inner districts to the wilderness edge and far mountains, with painted ground textures and Blender mountain models.", "progress"],
     ["Rukongai houses", "House kit V2: seven houses with full interiors and Poly Haven props, rich to poor.", "progress"],
     ["Nature kit", "Trees, forest giants big enough to Shunpo between, bushes, rocks and water edges. Rocks built, still under the quality bar.", "progress"],
-    ["Seireitei and the Academy", "The walls, division barracks, Shin'ō Academy grounds and dorms, and the 4th Division ward with a bed for every player.", "todo"],
+    ["Seireitei and the Academy", "The walls, the 13 Division compounds, Central 46, Sōkyoku Hill, the Shin'ō Academy, the noble estates and the city around them. Built from approved pictures in Blender, then placed in Roblox ward by ward.", "progress", "seireitei"],
     ["Karakura Town", "Big and beautiful: the school, the roadside shrine, homes and streets for the prologue and Human World duty.", "todo"],
     ["Hueco Mundo", "Its own place at about 20 times the scale, with a generated desert around a hand-built core and Las Noches.", "progress"],
     ["Special places", "The Dangai, base inner worlds and Sōkyoku Hill.", "todo"],
@@ -265,6 +291,105 @@ const STAGES = [
   ]}
 ];
 const LABEL = { done: "Done", progress: "In progress", todo: "Not started", later: "After launch" };
+// Closable checklists under a sub-stage (the 4th entry of an item names one). Updated 27 Oct 2026.
+const MAP = "plan-assets/seireitei-map/";
+const CHECKLISTS = {
+  seireitei: { title: "Seireitei build checklist", steps: [
+    { name: "Finish the pictures", status: "progress",
+      text: "Every building gets its pictures (hero, elevations, details, plans and room views) before it is modelled. Books 2 to 6 are almost all approved; Book 7 is queued in the picture runner; Books 8 and 9 are still to write.",
+      drops: [
+        { title: "Still to make", items: [
+          "<b>Book 6, ritual frame:</b> elevations (15.19) and details sheet (15.20). Blocked 4 times by OpenAI's safety filter; retrying with a calmer shrine-gate description.",
+          "<b>Book 7, nobles, Academy and shops (51 pictures, queued):</b> Kuchiki main house (6) and estate (2), Shihōin main house (6) and estate (2), Academy main hall (6), campus (2), classroom block (5), dormitory (5), training grounds (2), tea house and sweet shop (5), apothecary (5), blade care shop (5).",
+          "<b>Book 8, city landmarks and street kit (to write):</b> Kidō Corps headquarters, alarm bell tower, pond and public garden with canal, cherry park, Shinigami's Health Land bathhouse, training cave under Sōkyoku Hill, waterway tunnels, gatekeeper posts for the four gates, Kasumiōji manor, lesser noble manor, market stall, square kit, signpost, bench, small bridge, lantern kit, barracks yard, and the show's shops (Tomorrow's Tiger Pharmacy, Gin Tonbo, Purgatory Company).",
+          "<b>Book 9, variations (to write):</b> 18 new designs in 5 wealth levels: modest ward houses (3), standard ward houses (3), storehouses (2), officers' houses (3), offices (2), shop-houses (3), noble manors (2). About 110 pictures."
+        ]},
+        { title: "Waiting for a check, made 23 Oct", count: 19, items: [
+          "<b>Central 46 council drum:</b> floor plan (third try), room views 1 and 2",
+          "<b>Central 46 residence towers:</b> hero (third try), area plan",
+          "<b>Senzaikyū:</b> hero (third try), elevations, details, floor plan, cutaway, room view",
+          "<b>Sōkyoku Hill:</b> hero, area plan",
+          "<b>12th Division vault:</b> section (third try)",
+          "<b>13th Division HQ:</b> cutaway (third try), room view",
+          "<b>9th Division HQ:</b> cutaway (third try), room view",
+          "<b>8th Division HQ:</b> room view"
+        ]},
+        { title: "Need remaking or editing", items: [
+          "Third-try pictures are approved as the best of three; their faults go in the Known faults log instead of another remake.",
+          "Anything rejected at the next check is remade by the runner with a fix line, and listed here.",
+          "321 small faults are logged in the Known faults log. These are fixed in the 3D build, not by remaking the picture."
+        ]}
+      ]},
+    { name: "Build everything in Blender", status: "progress",
+      text: "Claude Code builds each building from its approved pictures in the Seireitei kit, then the build audit checks it for gaps, flicker and missing parts.",
+      drops: [
+        { title: "Built", items: [
+          "<b>Division compounds 1 to 8,</b> with their headquarters and main buildings",
+          "<b>Public dojo,</b> gardens and squares inside the compounds"
+        ]},
+        { title: "Still to build", items: [
+          "Division compounds 9 to 13",
+          "Central 46, Senzaikyū, Sōkyoku Hill and the ritual frame",
+          "Kuchiki and Shihōin estates, the Academy and the shops (Book 7)",
+          "City landmarks and street kit (Book 8)",
+          "Building variations in 5 wealth levels (Book 9)",
+          "Check the city kit (ward house, officer's house, office, storehouse, shop-house, barracks, gates, lane wall, watchtower) and list what is missing",
+          "Give compounds 2 to 8 their own outlines, so they don't all read as the same square from above"
+        ]}
+      ]},
+    { name: "Map it out completely, with the terrain", status: "progress",
+      text: "Master plan v2 is drawn: the wall moved out to radius 4,520, the Divisions spread out at their Blender sizes, the 1st Division at the head of the North avenue, and the whole city filled in by the layout rules. Every raised, stepped and sunken place is in the ground levels list.",
+      maps: [
+        { src: "master_plan_v2.png", alt: "Seireitei master plan v2 without the city", caption: "Master plan v2" },
+        { src: "master_plan_v2_city.png", alt: "Seireitei master plan v2 with the city filled in", caption: "With the city" },
+        { src: "master_plan_v2_city_large.png", alt: "Large version of the city map", caption: "City, large (zoom in)" },
+        { src: "ward_budget.png", alt: "The 15 wards with their plot counts", caption: "The 15 wards and their plots" }
+      ],
+      drops: [
+        { title: "To finish", items: [
+          "Code checks the Rukongai push outwards (all 8 rings move out about 1,120 studs) against the terrain and the wilds",
+          "Code rebuilds the map data to master plan v2 and redraws it from the game data",
+          "Shape the terrain for every level change: terraces, stairs, ramps, ponds, the training cave and the moats",
+          "Show each built compound in its real shape on the map (Blender top views)",
+          "Plan each ward: plots, doors, walls, lantern, tree and prop spots, NPC routes"
+        ]}
+      ]},
+    { name: "Import everything into Roblox", status: "todo",
+      text: "Export each approved Blender build as meshes with its materials and simple collision, add far versions for the distance, and check each one against the part and light budgets.",
+      drops: [
+        { title: "Checks on import", items: [
+          "Pivot on the ground, door markers on every entrance, the right size against a Soul Reaper",
+          "Solid walls and buildings, no collision on small dressing",
+          "Far versions (FarLOD) so distant roofs swap in without popping",
+          "Part budget per ward, and no more than 24 real lights in any 300-stud circle"
+        ]}
+      ]},
+    { name: "Put it all in place", status: "todo",
+      text: "Place the city one ward at a time through the six layout gates. Start with the pilot ward next to Divisions 4 and 5, and lock each ward before the next is built.",
+      drops: [
+        { title: "Each ward must pass", items: [
+          "<b>Plan test:</b> street widths, gaps of 0 or at least 10 studs, clear doors, capped walls",
+          "<b>World audit in Studio:</b> no wall gaps, nothing floating or flickering, every door reachable, NPCs on the ground",
+          "<b>Camera tour at noon and at night,</b> scored on the 16 checklist questions",
+          "<b>Owner walk-through and sign-off,</b> then locked in the layout ledger"
+        ]}
+      ]}
+  ]}
+};
+function checklist(key) {
+  const c = CHECKLISTS[key]; if (!c) return "";
+  const done = c.steps.filter((x) => x.status === "done").length;
+  return `<details class="sub"><summary>${esc(c.title)}<span class="count">${done} of ${c.steps.length} done</span></summary>
+    <ol class="checklist">${c.steps.map((st, i) => `
+      <li><i class="box s-${st.status}" aria-hidden="true">${st.status === "done" ? "&#10003;" : ""}</i>
+        <div class="step"><div class="step-top"><span class="code">${i + 1}</span><h4>${esc(st.name)}</h4><span class="chip s-${st.status}">${LABEL[st.status]}</span></div>
+          <p>${esc(st.text)}</p>
+          ${st.maps ? `<div class="maps">${st.maps.map((m) => `<figure><a href="${MAP + m.src}" target="_blank" rel="noopener"><img src="${MAP + m.src}" alt="${esc(m.alt)}" loading="lazy"></a><figcaption>${esc(m.caption)}</figcaption></figure>`).join("")}</div>` : ""}
+          ${(st.drops || []).map((d) => `<details class="drop"><summary>${esc(d.title)} (${d.count || d.items.length})</summary><ul>${d.items.map((t) => `<li>${t}</li>`).join("")}</ul></details>`).join("")}
+        </div></li>`).join("")}
+    </ol></details>`;
+}
+
 const rail = document.getElementById("rail");
 const detail = document.getElementById("detail");
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -309,7 +434,7 @@ function select(idx, save, focus) {
     <p class="goal">${esc(s.goal)}</p>
     <ol class="vt">${s.items.map((it, i) => `
       <li><i class="dot s-${it[2]}" aria-hidden="true"></i>
-        <div class="item"><div class="item-top"><span class="code">${s.n}.${i + 1}</span><h3>${esc(it[0])}</h3><span class="chip s-${it[2]}">${LABEL[it[2]]}</span></div><p>${esc(it[1])}</p></div>
+        <div class="item"><div class="item-top"><span class="code">${s.n}.${i + 1}</span><h3>${esc(it[0])}</h3><span class="chip s-${it[2]}">${LABEL[it[2]]}</span></div><p>${esc(it[1])}</p>${it[3] ? checklist(it[3]) : ""}</div>
       </li>`).join("")}
     </ol>`;
   detail.querySelector("#prev").addEventListener("click", () => select(idx - 1, true));

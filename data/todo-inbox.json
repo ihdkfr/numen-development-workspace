@@ -21,7 +21,7 @@
   "date": "27 Oct",
   "stage": "1.5",
   "item": "Watchtowers are about 90 tall (type sheet), not 40: fix in Ground levels",
-  "status": "open"
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -81,7 +81,7 @@
   "date": "27 Oct",
   "stage": "1.5",
   "item": "Copy today's maps, budget, scripts and plans into the vault (needs the PC)",
-  "status": "open"
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -105,7 +105,7 @@
   "date": "27 Oct",
   "stage": "all",
   "item": "Save this To do inbox into the vault when the PC is reachable, and keep it there from then on",
-  "status": "open"
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -118,5 +118,119 @@
   "stage": "all",
   "item": "NUMEN: \"+ To do\" button on every idea and a To do list page (built; goes live with the NUMEN push)",
   "status": "doing"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hueco Mundo: density rule (detail every ~300 studs, destination every ~1,200, landmark every ~3,000; quiet stretches capped at 20 to 30 s), moving life, and the canon and terrain list; add to the Hueco Mundo plan",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow designs: Ichigo-style Vasto Lorde rule dropped; base the Vasto Lorde stage on canon research",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow designs: Cold Hollow Prompt Book (Raven, Black swan, Scorpion, Arctic fox, Eclipse, Ice crystal at Adjuchas, Vasto Lorde and Resurrección); Usman runs it in ChatGPT and checks",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow designs: cut Jellyfish, Spider, Comet, Cold flame; Void merged into Eclipse (Hunger); Chain and Mirror rejected; warm slate on hold",
+  "status": "done"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow design rule: Hollow first, animal second (carved mask not a skull, hide and bone plates not feathers or fur, Hollow feet, animal in 2 to 3 shapes only); prompt book v2",
+  "status": "done"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Rerun the Adjuchas and Vasto Lorde prompts from book v2, Raven first",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Research: canon looks of every kind of Hollow and form (Hollows, Menos, Arrancar, releases, Visored and Hollowfied forms)",
+  "status": "done"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow designs: update the prompt book with the report's rules (one shared Gillian body, weapons grown from the line's bone, mask state shows control)",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow designs: house rule, holes and bone never on sexualised areas (Roblox audience)",
+  "status": "ask"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow designs: one line at a time; pick animals only for traits that make the character cooler (no twig legs, no giant beaks)",
+  "status": "done"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow designs: Jackal line (Contempt, crimson, twin khopesh); Usman runs the three prompts and checks",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Folder of every finished Blender model, two titled pictures each, plus an index page (script ready; needs the PC)",
+  "status": "done"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Jackal v2: Adjuchas is a huge hunched beast (mostly black, forearm blades, open jaw); Vasto Lorde is slim, person-sized, mostly bone, holds the khopesh; each step in a new chat; rerun 1.1 and 1.2",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "1",
+  "item": "Hollow rule: every stage needs its own outline (shadow test); apply the same fix to the Cold Hollow Prompt Book before its lines are rerun",
+  "status": "open"
+ },
+ {
+  "date": "27 Oct",
+  "stage": "all",
+  "item": "Blender models page: 116 finished models with two pictures each, in Images/Blender models; rerun with run_gallery.bat after big model changes",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Order of work: pictures, Blender, check every build, full map with terrain, Seireitei into the game, then the Rukongai; added to the NUMEN Workshop as T03.34 to T03.39 (live once the NUMEN branch is pushed)",
+  "status": "doing"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Pictures left: 20 remakes to run, 51 Book 7 pictures to check, Books 8 and 9 to write",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "13.20, 15.19 and 15.20 blocked by the safety filter every time: leave them out and build from the approved hero picture and section?",
+  "status": "ask"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "all",
+  "item": "NUMEN push still blocked: add the repo to this session's sources, or OK a push from the PC",
+  "status": "ask"
  }
 ]

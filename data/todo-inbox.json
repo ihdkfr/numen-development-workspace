@@ -57,13 +57,13 @@
   "date": "27 Oct",
   "stage": "1.5",
   "item": "Long canal through the outer ring: Usman's call",
-  "status": "ask"
+  "status": "done"
  },
  {
   "date": "27 Oct",
   "stage": "1.5",
   "item": "Underground waterways vs the 16 Oct \"no sewers\" rule: keep or drop?",
-  "status": "ask"
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -93,7 +93,7 @@
   "date": "27 Oct",
   "stage": "6",
   "item": "Housing: which ranks unlock each level; what happens to an idle manor",
-  "status": "ask"
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -171,7 +171,7 @@
   "date": "27 Oct",
   "stage": "1",
   "item": "Hollow designs: house rule, holes and bone never on sexualised areas (Roblox audience)",
-  "status": "ask"
+  "status": "done"
  },
  {
   "date": "27 Oct",
@@ -243,7 +243,7 @@
   "date": "30 Oct",
   "stage": "1.5",
   "item": "Academy: 240 students or smaller; lessons as NPC life only or can players sit in; dorm bed as first home?",
-  "status": "ask"
+  "status": "done"
  },
  {
   "date": "30 Oct",
@@ -261,7 +261,7 @@
   "date": "30 Oct",
   "stage": "1.5",
   "item": "Academy: keep the Book 7 main hall and classroom shapes over the atlas versions? Dorms 2 or 3 storeys?",
-  "status": "ask"
+  "status": "done"
  },
  {
   "date": "30 Oct",
@@ -273,7 +273,7 @@
   "date": "30 Oct",
   "stage": "1.5",
   "item": "Rule when the written numbers and the approved picture disagree: keep the written door and opening sizes, take everything else's proportions from the picture?",
-  "status": "ask"
+  "status": "done"
  },
  {
   "date": "30 Oct",
@@ -297,7 +297,7 @@
   "date": "30 Oct",
   "stage": "1.5",
   "item": "NUMEN T03.34 text: remakes are already made (only 15.19 and 15.20 on hold); correct it in the next NUMEN push",
-  "status": "open"
+  "status": "done"
  },
  {
   "date": "30 Oct",
@@ -309,7 +309,7 @@
   "date": "30 Oct",
   "stage": "1.5",
   "item": "Run Book 8 phases 21 to 23 in the picture runner once phase 20 is made and checked",
-  "status": "open"
+  "status": "done"
  },
  {
   "date": "30 Oct",
@@ -321,6 +321,144 @@
   "date": "30 Oct",
   "stage": "1.5",
   "item": "Run Book 9 phases 24 and 25 after Book 8; 25.29 to 25.32 (noble estates) wait for the lesser noble manor hero (23.01) to be approved",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "all",
+  "item": "NUMEN pushed to PR #12 (55e6985): T03.34 up to date and the To do inbox synced (54 rows); waiting for Usman to merge",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Picture runner fix: it crashed reading Codex's output file while Codex still held it; now reads it shared with retries",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Book 8 phase 20 (the Academy, 33 pictures) made and checked: all approved, faults logged (mess hall 20 tables, infirmary 6 beds, ring has no wall, positions from site plan v4)",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Old Book 7 campus and dormitory (18.07, 18.08, 18.14 to 18.18) stay held in \"to check\"; Book 8 replaces them. Delete them when you clear \"to check\"",
   "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "all",
+  "item": "NUMEN PR #12 merged (a8d9145) on Usman's go-ahead",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Decided: no long canal; water stays small (garden ponds, the public pond garden and its short canal to the wall)",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Decided: drop the underground waterways, the 16 Oct \"no sewers\" rule stays; Book 8's waterway tunnel removed before it was made",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Decided: written numbers win for every size (footprint, heights, doors, openings); the approved picture decides the look and what goes where",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1",
+  "item": "Decided: house rule for Hollow designs, holes and bone plates never on sexualised areas of the body",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "6",
+  "item": "Decided: house levels by seat. 1 unseated; 2 20th to 11th seat; 3 10th to 4th seat; 4 3rd seat, lieutenant and captain",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "6",
+  "item": "Decided: a player's plot frees as soon as they leave the server; their house is saved to them and placed on a free plot of their level when they rejoin",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "7",
+  "item": "Decided: the Academy is the first journey of every Soul Reaper life path; players sit in lessons, unlock the basics and learn how to play (the tutorial)",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "7",
+  "item": "Plan the Academy tutorial: which lessons, what each unlocks, how many sessions, when they graduate",
+  "status": "open"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "6",
+  "item": "Decided: a dormitory bed is a new Soul Reaper's first home and respawn point until graduation, then a Level 1 home",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "15.19 and 15.20 rewritten to meet ChatGPT's standard (plain gateway frame and mast, top ornament left off, no person on the sheet) and sent to the runner",
+  "status": "done"
+ },
+ {
+  "date": "30 Oct",
+  "stage": "1.5",
+  "item": "Book 8 made and checked: phases 20 to 23, 90 pictures, all approved (faults logged; manor timber to be dark walnut)",
+  "status": "done"
+ },
+ {
+  "date": "31 Oct",
+  "stage": "1.5",
+  "item": "15.19 and 15.20 made on the second rewrite and approved: every Seireitei picture before Book 9 is now made and approved",
+  "status": "done"
+ },
+ {
+  "date": "31 Oct",
+  "stage": "1.5",
+  "item": "Building sizes page made (Recipes/Seireitei build sizes): every building, 197 items, written sizes with corrections, built-vs-written check for 55 Blender models; Claude Code checks builds against it",
+  "status": "done"
+ },
+ {
+  "date": "31 Oct",
+  "stage": "1.5",
+  "item": "Sizes conflicts C01 to C16 need Usman (see the end of Building sizes.md); C16 first: is the written ridge the top of the ridge tiles? 22 built models stand 1 to 3.5 above it",
+  "status": "ask"
+ },
+ {
+  "date": "31 Oct",
+  "stage": "1.5",
+  "item": "Built vs written: 39 of 55 Blender models are off by more than 1 stud or 3 percent (officer house top 28 vs 34, kit mess hall +7.6, lane wall gate +5.6); fix list for Claude Code",
+  "status": "open"
+ },
+ {
+  "date": "31 Oct",
+  "stage": "1.5",
+  "item": "Check that Divisions 9 to 13 fit their 620 x 600 sites once corner towers add about 30 each way",
+  "status": "open"
+ },
+ {
+  "date": "31 Oct",
+  "stage": "1.5",
+  "item": "Book 9 made and checked: 68 pictures, all approved. Every Seireitei picture (481 jobs, Books 1 to 9) is now made and approved; Claude Code can build from them",
+  "status": "done"
+ },
+ {
+  "date": "31 Oct",
+  "stage": "1.5",
+  "item": "What is built and what is left.md updated: everything is ready to build; sizes from Building sizes.md",
+  "status": "done"
  }
 ]
